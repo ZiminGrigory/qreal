@@ -77,6 +77,7 @@ public slots:
 	void doRemote(const QString &remote, const QString &adress, const QString &targerFolder = QString());
 	void startPush(
 		const QString &remote
+		, const QString &branch
 		, const QString &sourceProject = QString()
 		, const QString &targetFolder = QString()
 	);

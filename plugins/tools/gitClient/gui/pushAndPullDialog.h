@@ -11,12 +11,12 @@ namespace git
 namespace ui
 {
 
-class PullDialog : public QDialog
+class PushAndPullDialog : public QDialog
 {
 	Q_OBJECT
 
 public:
-	PullDialog(QWidget *parent = 0);
+	PushAndPullDialog(QWidget *parent = 0);
 	QString url() const;
 	QString branch() const;
 

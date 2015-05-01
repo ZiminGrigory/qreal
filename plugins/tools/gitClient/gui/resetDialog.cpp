@@ -12,7 +12,7 @@ ResetDialog::ResetDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	mHashCommitLabel = new QLabel(tr("Enter hash of commit: "));
-	mHashCommitComboBox = createComboBox(qReal::SettingsManager::value("hashCommit", "").toString());
+	mHashCommitLineEdit = new QLineEdit(this);
 	QPushButton *ok = new QPushButton(tr("OK"), this);
 	QPushButton *cancel = new QPushButton(tr("Cancel"), this);
 
@@ -26,7 +26,7 @@ ResetDialog::ResetDialog(QWidget *parent)
 
 	QGridLayout *mainLayout = new QGridLayout;
 	mainLayout->addWidget(mHashCommitLabel, 0, 0);
-	mainLayout->addWidget(mHashCommitComboBox, 0, 1, 1, 2);
+	mainLayout->addWidget(mHashCommitLineEdit, 0, 1, 1, 2);
 	mainLayout->addLayout(buttonsLayout,2, 0, 1, 3);
 	setLayout(mainLayout);
 
@@ -41,18 +41,9 @@ QPushButton *ResetDialog::createButton(const QString &text, const char *member)
 	return button;
 }
 
-QComboBox *ResetDialog::createComboBox(const QString &text)
-{
-	QComboBox *comboBox = new QComboBox;
-	comboBox->setEditable(true);
-	comboBox->addItem(text);
-	comboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-	return comboBox;
-}
-
 QString ResetDialog::hashCommit() const
 {
-	return mHashCommitComboBox->currentText();
+	return mHashCommitLineEdit->text();
 }
 
 

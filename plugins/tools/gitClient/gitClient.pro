@@ -24,10 +24,9 @@ HEADERS += \
 	$$PWD/transparentMode.h \
 	$$PWD/gui/versioningPage.h \
 	$$PWD/gui/commitDialog.h \
-	$$PWD/gui/pushDialog.h \
+	$$PWD/gui/pushAndPullDialog.h \
 	$$PWD/gui/cloneDialog.h \
 	$$PWD/gui/remoteDialog.h \
-	$$PWD/gui/pullDialog.h \
 	$$PWD/gui/resetDialog.h \
 	$$PWD/gui/statusDialog.h \
 	$$PWD/gui/changeVersionWidget.h \
@@ -41,10 +40,9 @@ SOURCES += \
 	$$PWD/transparentMode.cpp \
 	$$PWD/gui/versioningPage.cpp \
 	$$PWD/gui/commitDialog.cpp \
-	$$PWD/gui/pushDialog.cpp \
+	$$PWD/gui/pushAndPullDialog.cpp \
 	$$PWD/gui/cloneDialog.cpp \
 	$$PWD/gui/remoteDialog.cpp \
-	$$PWD/gui/pullDialog.cpp \
 	$$PWD/gui/resetDialog.cpp \
 	$$PWD/gui/statusDialog.cpp \
 	$$PWD/gui/changeVersionWidget.cpp \

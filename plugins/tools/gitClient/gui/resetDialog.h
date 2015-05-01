@@ -2,7 +2,7 @@
 
 #include <QtCore/QDir>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
@@ -20,12 +20,11 @@ public:
 	QString hashCommit() const;
 
 private:
-	QComboBox *mHashCommitComboBox;
+	QLineEdit *mHashCommitLineEdit;
 	QLabel *mHashCommitLabel;
 	QDir mCurrentDir;
 
 	QPushButton *createButton(const QString &text, const char *member);
-	QComboBox *createComboBox(const QString &text = QString());
 };
 
 }

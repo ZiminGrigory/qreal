@@ -221,7 +221,7 @@ void Serializer::prepareWorkingCopy(const QString &targetFolder, const QString &
 void Serializer::processWorkingCopy(const QString &workingCopyPath, const QString &targetProject)
 {
 	QString const targetProjectPath = targetProject.isEmpty() ? mWorkingFile : targetProject;
-		if (QDir(workingCopyPath).exists()) {
+	if (QDir(workingCopyPath).exists()) {
 		FolderCompressor::compressFolder(workingCopyPath, targetProjectPath);
 	}
 	if (!QDir(workingCopyPath).removeRecursively()){

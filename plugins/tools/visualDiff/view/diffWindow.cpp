@@ -32,8 +32,8 @@ DiffWindow::DiffWindow(
 	QList<int> sizes;
 	sizes << 5 << 2;
 	mSplitter->setSizes(sizes);
-	mSplitter->setStretchFactor(0, 5);
-	mSplitter->setStretchFactor(1, 2);
+	mSplitter->setStretchFactor(0, 9);
+	mSplitter->setStretchFactor(1, 0);
 }
 
 DiffWindow::~DiffWindow()
@@ -68,7 +68,6 @@ void DiffWindow::initLayout()
 	mLayout->setContentsMargins(5, 5, 5, 5);
 	mLayout->setColumnStretch(0, 10);
 	mLayout->setRowStretch(0, 10);
-	mLayout->setRowStretch(1, 0);
 
 	mSplitter = new QSplitter(Qt::Vertical, this);
 	mSplitter->setFrameStyle(QFrame::Sunken);

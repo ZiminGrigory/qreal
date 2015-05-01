@@ -75,10 +75,12 @@ bool ExternalClientPluginBase::invokeOperation(
 	if (needPreparation) {
 		prepareWorkingCopy(workingDir, sourceProject);
 	}
+
 	bool const result = startAndWait(args, reportErrors, workingDir, checkWorkingDir);
 	if (needProcessing) {
 		processWorkingCopy(targetProject);
 	}
+
 	return result;
 }
 
@@ -95,6 +97,7 @@ invocation::LongOperation* ExternalClientPluginBase::invokeOperationAsync(
 	if (needPreparation) {
 		prepareWorkingCopy(workingDir, sourceProject);
 	}
+
 	invocation::details::FunctorInterface<bool> *functor =
 		new invocation::details::Functor<bool, ExternalClientPluginBase
 			, bool(ExternalClientPluginBase::*)(const QStringList&, bool, const QString&, const bool)
@@ -176,6 +179,7 @@ bool ExternalClientPluginBase::startProcess(QStringList const &args, QString con
 	if (!checkClientPath(reportErrors)) {
 		return false;
 	}
+
 	mClientProcess = new QProcess;
 
 	mClientProcess->setWorkingDirectory(workingDir);
@@ -188,6 +192,7 @@ bool ExternalClientPluginBase::startProcess(QStringList const &args, QString con
 		}
 		return false;
 	}
+
 	QCoreApplication::processEvents();
 	return true;
 }
@@ -209,6 +214,7 @@ bool ExternalClientPluginBase::processErrors(bool reportErrors)
 	if (error.size() > 0 && reportErrors) {
 		emit errorOccured(QString(error));
 	}
+
 	return error.isEmpty();
 }
 
@@ -225,5 +231,6 @@ bool ExternalClientPluginBase::waitForClient(bool reportErrors)
 			return false;
 		}
 	}
+
 	return true;
 }

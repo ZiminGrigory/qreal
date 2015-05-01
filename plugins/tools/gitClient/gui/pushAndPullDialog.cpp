@@ -1,11 +1,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFileDialog>
 
-#include "pullDialog.h"
+#include "pushAndPullDialog.h"
 
 using namespace git::ui;
 
-PullDialog::PullDialog(QWidget *parent)
+PushAndPullDialog::PushAndPullDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	mUrlLabel = new QLabel(tr("remote url: "));
@@ -35,19 +35,19 @@ PullDialog::PullDialog(QWidget *parent)
 	setMinimumSize(500,100);
 }
 
-QPushButton *PullDialog::createButton(const QString &text, const char *member)
+QPushButton *PushAndPullDialog::createButton(const QString &text, const char *member)
 {
 	QPushButton *button = new QPushButton(text);
 	connect(button, SIGNAL(clicked()), this, member);
 	return button;
 }
 
-QString PullDialog::url() const
+QString PushAndPullDialog::url() const
 {
 	return mUrl->text();
 }
 
-QString PullDialog::branch() const
+QString PushAndPullDialog::branch() const
 {
 	return mBranch->text();
 }

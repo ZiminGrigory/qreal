@@ -240,7 +240,7 @@ void GitPlugin::startCheckoutBranch(const QString &branchName, const QString &ta
 	const Tag tagStruct("checkoutBranch", branchName);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	invokeOperationAsync(QStringList() << "checkout" << branchName, tagVariant, needPreparation, targetFolder);
+	invokeOperationAsync(QStringList() << "checkout" << "-q" << branchName, tagVariant, needPreparation, targetFolder);
 }
 
 void GitPlugin::createBranch(const QString &branchName)
@@ -471,28 +471,17 @@ void GitPlugin::doRemote(const QString &remote, const QString &adress, const QSt
 
 void GitPlugin::startPush(
 	const QString &remote
+	, const QString &branch
 	, const QString &sourceProject
 	, const QString &targetFolder
 )
 {
 	QString targetDir = targetFolder.isEmpty() ? tempFolder() : targetFolder;
 
-	invokeOperation(QStringList() << "remote" << "-v");
-	QStringList tmp = standartOutput().split(QChar('\n'));
-
-	while (!tmp.first().startsWith(remote) && !tmp.isEmpty()){
-		tmp.removeFirst();
-	}
-
-	QString repo = tmp.first();
-	repo.remove(remote, Qt::CaseSensitive);
-	repo.remove(" ", Qt::CaseSensitive);
-	repo.remove("\t", Qt::CaseSensitive);
-	repo.remove("(fetch)", Qt::CaseSensitive);
-	repo.remove("(push)", Qt::CaseSensitive);
+	QString repo = remote;
 	repo.remove("https://", Qt::CaseSensitive);
 
-	QStringList arguments{"push" ,"https://" + getUsername() + ":" + getPassword() + "@" + repo, "master", "-q"};
+	QStringList arguments{"push" ,"https://" + getUsername() + ":" + getPassword() + "@" + repo, branch, "-q"};
 
 	const Tag tagStruct("push");
 	QVariant tagVariant;
@@ -502,7 +491,7 @@ void GitPlugin::startPush(
 
 void GitPlugin::startPull(const QString &remote, const QString &branch, const QString &targetFolder)
 {
-	QStringList arguments{"pull", remote, branch};
+	QStringList arguments{"pull", remote, branch, "-q"};
 
 	const Tag tagStruct("pull", remote, branch);
 	QVariant tagVariant;
@@ -713,7 +702,16 @@ void GitPlugin::onPushComplete(bool result)
 
 void GitPlugin::onPullComplete(bool result, const QString &remote, const QString &branch)
 {
-	if (result) {
+	invokeOperation(
+		QStringList() << "status" << "--short"
+		, !needPreparation
+		, dummyWorkingDir
+		, !checkWorkingDir
+		, !needProcessing
+	);
+	QString output = standartOutput();
+	bool res = result && !output.contains(QRegExp(".*^UU*")) && !output.contains(QRegExp(".*^U*"));
+	if (res) {
 		processWorkingCopy();
 		emit pullComplete(result);
 		emit operationComplete("pull", result);

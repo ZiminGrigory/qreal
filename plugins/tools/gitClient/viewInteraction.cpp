@@ -6,7 +6,7 @@
 
 #include "gitPlugin.h"
 #include "gui/pushDialog.h"
-#include "gui/pullDialog.h"
+#include "gui/pushAndPullDialog.h"
 #include "gui/commitDialog.h"
 #include "gui/cloneDialog.h"
 #include "gui/remoteDialog.h"
@@ -188,19 +188,19 @@ void ViewInteraction::commitClicked()
 
 void ViewInteraction::pushClicked()
 {
-	ui::PushDialog *dialog = new ui::PushDialog(mMainWindowIface->windowWidget());
+	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
 
 	QString const remote = dialog->url();
-	qReal::SettingsManager::setValue("gitRemoteName", remote);
-	mPlugin->startPush(remote);
+	QString const branch = dialog->branch();
+	mPlugin->startPush(remote, branch);
 }
 
 void ViewInteraction::pullClicked()
 {
-	ui::PullDialog *dialog = new ui::PullDialog(mMainWindowIface->windowWidget());
+	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
