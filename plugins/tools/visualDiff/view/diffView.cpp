@@ -29,7 +29,7 @@ DiffView::DiffView(
 	, mModel(mIsOldModel ? mDiffModel->oldModel() : mDiffModel->newModel())
 	, mDetailsWidget(nullptr)
 {
-	this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+	this->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	setScene(&mScene);
 	mMVIface.configure(mModel->graphicalModelAssistApi(), mModel->logicalModelAssistApi(), mModel->exploser());
 	mMVIface.setModel(mModel->graphicalModel());
@@ -54,6 +54,7 @@ void DiffView::adjustZoom(int zoom)
 	qreal const xExpand = 0.01;
 	qreal const yExpand = 0.01;
 
+	setSceneRect(mScene.sceneRect());
 	resetTransform();
 	scale(xExpand * zoom, yExpand * zoom);
 }

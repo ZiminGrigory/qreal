@@ -511,5 +511,7 @@ QWidget *ViewInteraction::makeDiffTab(const QString &name)
 	mMainWindowIface->openTab(widget, name);
 	mDiffWidgets << widget;
 	connect(mSystemEvents, SIGNAL(otherTabClosed(QWidget*)), this, SLOT(removeClosedTab(QWidget*)));
+
+	widget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	return widget;
 }

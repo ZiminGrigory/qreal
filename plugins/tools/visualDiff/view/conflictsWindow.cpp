@@ -10,15 +10,15 @@ ConflictsWindow::ConflictsWindow(DiffModel *diffModel, QWidget *parent) :
 	, mSceneCustomizer(new SceneCustomizer)
 	, mController(new Controller)
 {
-	this->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 	initLayout();
 	initButton();
 	initViews();
 	QList<int> sizes;
-	sizes << 5 << 2;
+	sizes << 5 << 5;
 	mSplitter->setSizes(sizes);
 	mSplitter->setStretchFactor(0, 5);
-	mSplitter->setStretchFactor(1, 2);
+	mSplitter->setStretchFactor(1, 5);
+	this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
 }
 

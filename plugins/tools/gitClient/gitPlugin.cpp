@@ -502,12 +502,14 @@ void GitPlugin::startPush(
 
 void GitPlugin::startPull(const QString &remote, const QString &branch, const QString &targetFolder)
 {
-	QStringList arguments{"pull", remote, branch};
+//	QStringList arguments{"pull", remote, branch};
 
-	const Tag tagStruct("pull", remote, branch);
-	QVariant tagVariant;
-	tagVariant.setValue(tagStruct);
-	invokeOperationAsync(arguments, tagVariant, needPreparation, targetFolder, dummySourceProject, !checkWorkingDir);
+//	const Tag tagStruct("pull", remote, branch);
+//	QVariant tagVariant;
+//	tagVariant.setValue(tagStruct);
+//	invokeOperationAsync(arguments, tagVariant, needPreparation, targetFolder, dummySourceProject, !checkWorkingDir);
+	//because git pull ended with conflicts
+	onPullComplete(false, remote, branch);
 }
 
 void GitPlugin::startReset(const QString &hash, const QString &targetFolder, bool quiet)
