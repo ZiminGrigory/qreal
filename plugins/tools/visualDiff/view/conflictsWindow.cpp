@@ -10,14 +10,14 @@ ConflictsWindow::ConflictsWindow(DiffModel *diffModel, QWidget *parent) :
 	, mSceneCustomizer(new SceneCustomizer)
 	, mController(new Controller)
 {
-	initLayout();
+	initBaseLayout();
 	initButton();
 	initViews();
-	QList<int> sizes;
-	sizes << 5 << 5;
-	mSplitter->setSizes(sizes);
-	mSplitter->setStretchFactor(0, 5);
-	mSplitter->setStretchFactor(1, 5);
+//	QList<int> sizes;
+//	sizes << 5 << 5;
+//	mSplitter->setSizes(sizes);
+//	mSplitter->setStretchFactor(0, 5);
+//	mSplitter->setStretchFactor(1, 5);
 	this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
 }
@@ -31,6 +31,16 @@ versioning::details::DiffView *ConflictsWindow::getNewModel()
 	return mNewView;
 }
 
+void ConflictsWindow::initBaseLayout()
+{
+
+	mLayout = new QGridLayout(this);
+	mLayout->setContentsMargins(5, 5, 5, 5);
+	mDiagrams = new QTabWidget(this);
+	mLayout->addWidget(mDiagrams,0,0);
+	setLayout(mLayout);
+}
+
 void ConflictsWindow::initLayout()
 {
 	mLayout = new QGridLayout(this);
@@ -40,15 +50,14 @@ void ConflictsWindow::initLayout()
 	mLayout->setRowStretch(0, 10);
 	mLayout->setRowStretch(1, 0);
 
-	mSplitter = new QSplitter(Qt::Vertical, this);
-	mSplitter->setFrameStyle(QFrame::Sunken);
-	mLayout->addWidget(mSplitter);
 	setLayout(mLayout);
 }
 
 void ConflictsWindow::initButton()
 {
-	///@to do: make it, add save button, on clicked -> emit signal to wrapper for process and reopen project
+	saveButton = new QPushButton(tr("save"), this);
+	connect(saveButton, SIGNAL(clicked()),SIGNAL(processWorkingCopy()));
+	mLayout->addWidget(saveButton,1,0);
 }
 
 
@@ -75,7 +84,11 @@ void ConflictsWindow::initViews()
 	splitter->addWidget(newFrame);
 
 	splitter->setSizes(sizes);
-	mSplitter->addWidget(splitter);
+	QWidget *tmp = new QWidget;
+	QGridLayout *layoutTmp = new QGridLayout;
+	layoutTmp->addWidget(splitter);
+	tmp->setLayout(layoutTmp);
+	mDiagrams->addTab(tmp, "ololo1");
 }
 
 QGridLayout *ConflictsWindow::initView(details::DiffView *view)

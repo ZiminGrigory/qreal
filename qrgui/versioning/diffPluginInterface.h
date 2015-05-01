@@ -73,7 +73,6 @@ public:
 		, BriefVersioningInterface *vcs
 		, QWidget *parent, EditorManagerInterface *manager
 	) = 0;
-
 };
 
 }

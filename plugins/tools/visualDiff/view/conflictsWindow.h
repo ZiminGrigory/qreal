@@ -4,6 +4,8 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTabWidget>
+#include <QWidget>
 
 #include <qrgui/editor/sceneCustomizer.h>
 #include <qrgui/controller/controller.h>
@@ -24,7 +26,11 @@ public:
 	details::DiffView *getNewModel();
 	bool diagramHasConflicts();
 
+signals:
+	void processWorkingCopy();
+
 private:
+	void initBaseLayout();
 	void initLayout();
 	void initButton();
 	void initViews();
@@ -32,12 +38,13 @@ private:
 
 	DiffModel *mDiffModel;
 	QGridLayout *mLayout;
-	QSplitter *mSplitter;
 	details::DiffView *mOldView;
 	details::DiffView *mNewView;
 	QWidget *mMainWindow;
 	SceneCustomizer *mSceneCustomizer;
 	Controller *mController;
+	QPushButton *saveButton;
+	QTabWidget *mDiagrams;
 
 	int mDiagram;
 };

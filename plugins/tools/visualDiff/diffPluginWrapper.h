@@ -6,6 +6,7 @@
 #include <qrutils/versioningUtils/briefVersioningInterface.h>
 #include <qrgui/plugins/toolPluginInterface/toolPluginInterface.h>
 #include <qrgui/plugins/pluginManager/editorManagerInterface.h>
+#include <plugins/tools/visualDiff/view/conflictsWindow.h>
 
 #include "model/modelLoader.h"
 
@@ -56,6 +57,7 @@ public slots:
 
 private slots:
 	void onModelLoaded(DiffModel *model);
+	void processProjectAndReopen();
 
 private:
 	qrRepo::WorkingCopyManagementInterface *mWorkingCopyManager;
@@ -66,6 +68,7 @@ private:
 	qReal::ProjectManagementInterface *mProjectManager;
 	details::ModelLoader *mLoader;
 	QWidget *mParentWidget;
+	ConflictsWindow *mConflictWidget;
 	bool mCompactMode;
 	bool solveConflicts;
 	QString mTargetProject;

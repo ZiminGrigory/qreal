@@ -4,7 +4,6 @@
 
 #include <plugins/tools/visualDiff/model/diffModel.h>
 #include <plugins/tools/visualDiff/view/diffWindow.h>
-#include <plugins/tools/visualDiff/view/conflictsWindow.h>
 
 
 using namespace versioning;
@@ -136,8 +135,14 @@ void DiffPluginWrapper::onModelLoaded(DiffModel *model)
 
 		mParentWidget->layout()->addWidget(diffWindowSet);
 	} else {
-		ConflictsWindow *widget = new ConflictsWindow(model, mMainWindow);
-		mParentWidget->layout()->addWidget(widget);
+		mConflictWidget = new ConflictsWindow(model, mMainWindow);
+		connect(mConflictWidget, SIGNAL(processWorkingCopy()), SLOT(processProjectAndReopen()));
+		mParentWidget->layout()->addWidget(mConflictWidget);
 	}
+}
+
+void DiffPluginWrapper::processProjectAndReopen()
+{
+
 }
 
