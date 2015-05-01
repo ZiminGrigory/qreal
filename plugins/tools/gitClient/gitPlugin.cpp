@@ -492,7 +492,7 @@ void GitPlugin::startPush(
 	repo.remove("(push)", Qt::CaseSensitive);
 	repo.remove("https://", Qt::CaseSensitive);
 
-	QStringList arguments{"push" ,"https://" + getUsername() + ":" + getPassword() + "@" + repo, "master"};
+	QStringList arguments{"push" ,"https://" + getUsername() + ":" + getPassword() + "@" + repo, "master", "-q"};
 
 	const Tag tagStruct("push");
 	QVariant tagVariant;
@@ -502,14 +502,12 @@ void GitPlugin::startPush(
 
 void GitPlugin::startPull(const QString &remote, const QString &branch, const QString &targetFolder)
 {
-//	QStringList arguments{"pull", remote, branch};
+	QStringList arguments{"pull", remote, branch};
 
-//	const Tag tagStruct("pull", remote, branch);
-//	QVariant tagVariant;
-//	tagVariant.setValue(tagStruct);
-//	invokeOperationAsync(arguments, tagVariant, needPreparation, targetFolder, dummySourceProject, !checkWorkingDir);
-	//because git pull ended with conflicts
-	onPullComplete(false, remote, branch);
+	const Tag tagStruct("pull", remote, branch);
+	QVariant tagVariant;
+	tagVariant.setValue(tagStruct);
+	invokeOperationAsync(arguments, tagVariant, needPreparation, targetFolder, dummySourceProject, !checkWorkingDir);
 }
 
 void GitPlugin::startReset(const QString &hash, const QString &targetFolder, bool quiet)
