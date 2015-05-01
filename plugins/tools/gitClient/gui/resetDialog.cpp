@@ -1,8 +1,10 @@
+#include "resetDialog.h"
+
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFileDialog>
 
-#include "resetDialog.h"
-#include "../../../qrkernel/settingsManager.h"
+#include <qrkernel/settingsManager.h>
+
 
 using namespace git::ui;
 

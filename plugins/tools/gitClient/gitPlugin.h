@@ -28,83 +28,84 @@ public:
 	virtual QPair<QString, qReal::gui::PreferencesPage *> preferencesPage();
 
 	// Working copy inspection
-	virtual bool onFileAdded(const QList<QString> &list, QString const &workingDir);
-	virtual bool onFileRemoved(const QList<QString> &list, QString const &workingDir);
-	virtual bool onFileChanged(const QList<QString> &list, QString const &workingDir);
+	virtual bool onFileAdded(const QList<QString> &list, const QString &workingDir);
+	virtual bool onFileRemoved(const QList<QString> &list, const QString &workingDir);
+	virtual bool onFileChanged(const QList<QString> &list, const QString &workingDir);
 
 	// Brief VCS interface
 	virtual void beginWorkingCopyDownloading(
-		QString const &repoAddress
-		, QString const &targetProject
-		, QString commitId = "-1"
+		const QString &repoAddress
+		, const QString &targetProject
+		, const QString &branch = QString()
+		, const QString &commitId = "-1"
 		, bool quiet = false
 	);
-	virtual void beginWorkingCopyUpdating(QString const &targetProject = QString());
+	virtual void beginWorkingCopyUpdating(const QString &targetProject = QString());
 	virtual void beginChangesSubmitting(
-		QString const &description
-		, QString const &targetProject = QString()
+		const QString &description
+		, const QString &targetProject = QString()
 		, bool quiet = false
 	);
-	virtual bool reinitWorkingCopy(QString const &targetProject = QString());
-	virtual QString information(QString const &targetProject = QString());
-	virtual QString commitId(QString const &targetProject = QString());
-	virtual QString remoteRepositoryUrl(QString const &targetProject = QString());
+	virtual bool reinitWorkingCopy(const QString &targetProject = QString());
+	virtual QString information(const QString &targetProject = QString());
+	virtual QString commitId(const QString &targetProject = QString());
+	virtual QString remoteRepositoryUrl(const QString &targetProject = QString());
 	virtual bool isMyWorkingCopy(
-		QString const &directory = QString()
+		const QString &directory = QString()
 		, bool quiet = false
 		, bool prepareAndProcess = false
 	);
 	virtual QString friendlyName();
 	bool clientExist();
 
-	virtual QString getLog(QString const &format = QString(), bool quiet = false);
+	virtual QString getLog(const QString &format = QString(), bool quiet = false);
 	virtual void setVersion(QString hash, bool quiet = false);
 	void setDiffViewerInterface(qReal::DiffPluginInterface *diffInterface);
 
 public slots:
-	void doInit(QString const &targetFolder = QString()
+	void doInit(const QString &targetFolder = QString()
 		, bool prepareAndProcess = true
 		, bool quiet = false
 	);
-	void startClone(QString const &from = QString(), QString const &targetProject = QString());
+	void startClone(const QString &from = QString(), const QString &targetProject = QString());
 	void startCommit(
-		QString const &message
-		, QString const &from  = QString()
-		, QString const &sourceProject = QString()
+		const QString &message
+		, const QString &from  = QString()
+		, const QString &sourceProject = QString()
 		, bool quiet = false
 	);
-	void doRemote(QString const &remote, QString const &adress, QString const &targerFolder = QString());
+	void doRemote(const QString &remote, const QString &adress, const QString &targerFolder = QString());
 	void startPush(
-		QString const &remote
-		, QString const &sourceProject = QString()
-		, QString const &targetFolder = QString()
+		const QString &remote
+		, const QString &sourceProject = QString()
+		, const QString &targetFolder = QString()
 	);
-	void startPull(QString const &remote, QString const &targetFolder = QString());
-	void startReset(QString const &hash = QString(), QString const &targetFolder = QString(), bool quiet = false);
-	bool doAdd(QString const &what, QString const &targetFolder, bool force = true);
-	bool doRemove(QString const &what, bool prepare = true, bool process = true, bool force = true);
+	void startPull(const QString &remote, const QString &branch = QString(), const QString &targetFolder = QString());
+	void startReset(const QString &hash = QString(), const QString &targetFolder = QString(), bool quiet = false);
+	bool doAdd(const QString &what, const QString &targetFolder, bool force = true);
+	bool doRemove(const QString &what, bool prepare = true, bool process = true, bool force = true);
 	bool doClean(const QString &targetProject = QString());
 	QString doStatus(const QString &targetProject = QString());
-	QString doLog(QString const &format = QString(), bool quiet = false, bool showDialog = false);
+	QString doLog(const QString &format = QString(), bool quiet = false, bool showDialog = false);
 	QString doRemoteList();
 	void doAfterOperationIsFinished(QVariant const &tag, bool result);
 	void checkClientInstalling();
 
 	//For branches
-	void deleteBranch(QString const &branchName);
-	void startCheckoutBranch(QString const &branchName, QString const &targetFolder = QString());
-	void createBranch(QString const &branchName);
+	void deleteBranch(const QString &branchName);
+	void startCheckoutBranch(const QString &branchName, const QString &targetFolder = QString());
+	void createBranch(const QString &branchName);
 	QString getBranchesList();
-	void startMergeBranch(QString const &targetBranchName);
+	void startMergeBranch(const QString &targetBranchName);
 
 	//Difference between commits
 	void showDiff(const QString &targetProject, QWidget *widget, bool compactMode = true);
 	void showDiff(const QString &oldHash, const QString &newHash
-				  , QString const &targetProject, QWidget *widget, bool compactMode = true);
-	void showDiff(const QString &oldhash, QString const &targetProject, QWidget *widget, bool compactMode = true);
+				  , const QString &targetProject, QWidget *widget, bool compactMode = true);
+	void showDiff(const QString &oldhash, const QString &targetProject, QWidget *widget, bool compactMode = true);
 
 signals:
-	void workingCopyDownloaded(bool success, QString const &targetProject);
+	void workingCopyDownloaded(bool success, const QString &targetProject);
 	void workingCopyUpdated(bool success);
 	void changesSubmitted(bool success);
 	void clientInstalled(QString client, bool exist);
@@ -121,11 +122,12 @@ signals:
 	void checkoutComplete(bool success);
 	void deleteBranchComplete(bool success);
 	void createBranchComplete(bool success);
+	void mergeBranchesComplete(bool success);
 	void removeComplete(bool success);
-	void statusComplete(QString const &answer, bool success);
-	void logComplete(QString const &answer, bool success);
-	void remoteListComplete(QString const &answer, bool success);
-	void operationComplete(QString const &name, bool success);
+	void statusComplete(const QString &answer, bool success);
+	void logComplete(const QString &answer, bool success);
+	void remoteListComplete(const QString &answer, bool success);
+	void operationComplete(const QString &name, bool success);
 
 protected:
 	// External client overloads
@@ -134,12 +136,13 @@ protected:
 	virtual QString tempFolder() const;
 
 private:
-	void onCloneComplete(bool result, bool quiet);
+	void onCloneComplete(bool result, const QString &targetProject, bool quiet);
 	void onRemoteComplete(bool result);
 	void onPushComplete(bool result);
-	void onPullComplete(bool result);
+	void onPullComplete(bool result, const QString &remote, const QString &branch);
 	void onResetComplete(bool result, bool quiet);
 	void onCheckoutComplete(bool result);
+	void onMergeComplete(bool result, const QString &branch);
 
 	QString &getFilePath(QString &adress);
 	QString getUsername();

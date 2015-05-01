@@ -51,6 +51,8 @@ public slots:
 		, QWidget *parentWidget
 		, bool compactMode = false
 	);
+	void solvePull(const QString &repoUrl, const QString &branch, const QString &targetProject, QWidget *parentWidget);
+	void solveMerge(const QString &targetBranch, const QString &targetProject, QWidget *parentWidget);
 
 private slots:
 	void onModelLoaded(DiffModel *model);
@@ -65,6 +67,8 @@ private:
 	details::ModelLoader *mLoader;
 	QWidget *mParentWidget;
 	bool mCompactMode;
+	bool solveConflicts;
+	QString mTargetProject;
 };
 
 }

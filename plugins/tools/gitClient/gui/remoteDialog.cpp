@@ -1,8 +1,10 @@
+#include "remoteDialog.h"
+
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QFileDialog>
 
-#include "remoteDialog.h"
-#include "../../../qrkernel/settingsManager.h"
+#include <qrkernel/settingsManager.h>
+
 
 using namespace git::ui;
 

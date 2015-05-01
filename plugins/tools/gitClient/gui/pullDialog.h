@@ -2,7 +2,7 @@
 
 #include <QtCore/QDir>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QComboBox>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
@@ -18,14 +18,17 @@ class PullDialog : public QDialog
 public:
 	PullDialog(QWidget *parent = 0);
 	QString url() const;
+	QString branch() const;
+
 
 private:
-	QComboBox *mUrlComboBox;
+	QLineEdit *mUrl;
 	QLabel *mUrlLabel;
+	QLineEdit *mBranch;
+	QLabel *mBranchLabel;
 	QDir mCurrentDir;
 
 	QPushButton *createButton(const QString &text, const char *member);
-	QComboBox *createComboBox(const QString &text = QString());
 };
 
 }

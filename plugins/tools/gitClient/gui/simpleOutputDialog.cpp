@@ -1,6 +1,7 @@
+#include "simpleOutputDialog.h"
+
 #include <QtWidgets/QHBoxLayout>
 
-#include "simpleOutputDialog.h"
 
 using namespace git::ui;
 

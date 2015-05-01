@@ -3,6 +3,8 @@
 #include <QtCore/QRegExp>
 #include <QtCore/QString>
 
+#include <qrutils/invocationUtils/functorOperation.h>
+
 #include "gitPlugin.h"
 
 using namespace git;

@@ -22,12 +22,12 @@ PreferencesVersioningPage::PreferencesVersioningPage(QWidget *parent)
 	mUi->verticalLayout->insertWidget(mUi->verticalLayout->count() - 1, mAuthenticationSettings);
 
 	// for both mode
-	//mUi->checkBoxCompactMode->setChecked(qReal::SettingsManager::value("versioningCompactMode", true).toBool());
-	//qReal::SettingsManager::setValue("versioningCompactMode", mUi->checkBoxCompactMode->isChecked());
+	mUi->checkBoxCompactMode->setChecked(qReal::SettingsManager::value("versioningCompactMode", true).toBool());
+	qReal::SettingsManager::setValue("versioningCompactMode", mUi->checkBoxCompactMode->isChecked());
 
 	//now only compact mode
-	mUi->checkBoxCompactMode->setChecked(true);
-	mUi->checkBoxCompactMode->setEnabled(false);
+	//mUi->checkBoxCompactMode->setChecked(true);
+	//mUi->checkBoxCompactMode->setEnabled(false);
 	qReal::SettingsManager::setValue("versioningCompactMode", mUi->checkBoxCompactMode->isChecked());
 }
 

@@ -43,7 +43,8 @@ public slots:
 	virtual void beginWorkingCopyDownloading(
 		QString const &repoAddress
 		, QString const &targetProject
-		, QString commitId = "-1"
+		, const QString &branch = QString()
+		, const QString &commitId = "-1"
 		, bool quiet = false
 	) = 0;
 

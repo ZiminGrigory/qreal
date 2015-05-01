@@ -56,10 +56,11 @@ public:
 
 public slots:
 	void beginWorkingCopyDownloading(
-			QString const &repoAddress
-			, QString const &targetProject
-			, QString commitId = "-1"
-			, bool quiet = false
+		QString const &repoAddress
+		, QString const &targetProject
+		, const QString &branch = QString()
+		, const QString &commitId = "-1"
+		, bool quiet = false
 	);
 	void beginWorkingCopyUpdating(QString const &targetProject = QString());
 	void beginChangesSubmitting(

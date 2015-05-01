@@ -159,18 +159,19 @@ bool VersioningPluginsManager::onFileChanged(const QList<QString> &list, const Q
 }
 
 void VersioningPluginsManager::beginWorkingCopyDownloading(
-	  QString const &repoAddress
-	, QString const &targetProject
-	, QString commitId
+	const QString &repoAddress
+	, const QString &targetProject
+	, const QString &branch
+	, const QString &commitId
 	, bool quiet
-	)
+)
 {
 	BriefVersioningInterface *activeVcs = activePlugin(true, tempFolder());
 	if (!activeVcs) {
 		return;
 	}
 
-	return activeVcs->beginWorkingCopyDownloading(repoAddress, targetProject, commitId, quiet);
+	return activeVcs->beginWorkingCopyDownloading(repoAddress, targetProject, branch, commitId, quiet);
 }
 
 void VersioningPluginsManager::beginWorkingCopyUpdating(QString const &targetProject)

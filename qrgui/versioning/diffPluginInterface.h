@@ -54,6 +54,17 @@ public:
 		, bool compactMode = false
 	) = 0;
 
+	/// Must be implemented to solve pull conflicts
+	virtual void solvePull(
+		const QString &repoUrl
+		, const QString &branch
+		, const QString &targetProject
+		, QWidget *parentWidget
+	) = 0;
+
+	/// Must be implemented to solve merge conflicts
+	virtual void solveMerge(const QString &targetBranch, const QString &targetProject, QWidget *parentWidget) = 0;
+
 	/// For plugin, because plugin's configurator cannot give necessary objects
 	virtual void configure(
 		ProjectManagementInterface *projectManager

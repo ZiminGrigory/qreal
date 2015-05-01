@@ -11,15 +11,21 @@ struct Tag
 	{
 	}
 
-	Tag(QString const &oper, QString const &strTag = QString(), bool bTag = false)
+	Tag(
+			const QString &oper
+			, const QString &strTagOption1 = QString()
+			, const QString &strTagOption2 = QString()
+			, bool bTag = false)
 		: operation(oper)
-		, stringTag(strTag)
+		, stringTagOption1(strTagOption1)
+		, stringTagOption2(strTagOption2)
 		, boolTag(bTag)
 	{
 	}
 
 	QString operation;
-	QString stringTag;
+	QString stringTagOption1;
+	QString stringTagOption2;
 	bool boolTag;
 };
 }

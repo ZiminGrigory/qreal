@@ -19,34 +19,42 @@ class ModelLoader : public QObject
 
 public:
 	ModelLoader(
-			qReal::BriefVersioningInterface *vcs
-			, qReal::ErrorReporterInterface *errorReporter
-			, qReal::EditorManagerInterface *editorManager
-			, qrRepo::WorkingCopyManagementInterface *workingCopyManager
+		qReal::BriefVersioningInterface *vcs
+		, qReal::ErrorReporterInterface *errorReporter
+		, qReal::EditorManagerInterface *editorManager
+		, qrRepo::WorkingCopyManagementInterface *workingCopyManager
 	);
 
-	void startModelLoading(QString const &targetProject);
-	void startModelLoading(QString repoRevision, QString const &targetProject);
-	void startModelLoading(QString oldRepoRevision, QString newRepoRevision, QString const &targetProject);
+	// for diff
+	void startModelLoading(const QString &targetProject);
+	void startModelLoading(const QString &repoRevision, const QString &targetProject);
+	void startModelLoading(
+		const QString &oldRepoRevision
+		, const QString &newRepoRevision
+		, const QString &targetProject
+	);
+	//for condlicts
+	void startModelLoading2(const QString &repoUrl, const QString &branch, const QString &targetProject);
+	void startModelLoading2(const QString &branch, const QString &targetProject);
 
 signals:
 	void modelLoaded(DiffModel *model);
 	void internalModelLoaded(qReal::models::Models *model);
 
 private slots:
-	void onDownloadingComplete(bool success, QString const &targetProject);
+	void onDownloadingComplete(bool success, const QString &targetProject);
 	void onOldModelLoaded(qReal::models::Models *model);
 	void onNewModelLoaded(qReal::models::Models *model);
 
 private:
 	QString tempProject() const;
 
-	qReal::models::Models *loadFromDisk(QString const &targetProject);
+	qReal::models::Models *loadFromDisk(const QString &targetProject);
 
 	void finishModelLoading();
 
-	void reportError(QString const &message);
-	void reportWarning(QString const &message);
+	void reportError(const QString &message);
+	void reportWarning(const QString &message);
 
 	qReal::BriefVersioningInterface *mVcs;
 	qReal::ErrorReporterInterface *mErrorReporter;
@@ -58,6 +66,7 @@ private:
 	qReal::models::Models *mNewModel;
 	QString mRepoUrl;
 	QString mNewRevision;
+	QString mBranch;
 };
 
 }

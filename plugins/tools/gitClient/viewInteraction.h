@@ -5,17 +5,7 @@
 #include <qrgui/plugins/toolPluginInterface/pluginInterface.h>
 #include <qrgui/plugins/toolPluginInterface/tabInfo.h>
 
-#include "gui/pushDialog.h"
-#include "gui/pullDialog.h"
-#include "gui/commitDialog.h"
 #include "gui/versioningPage.h"
-#include "gui/cloneDialog.h"
-#include "gui/remoteDialog.h"
-#include "gui/resetDialog.h"
-#include "gui/statusDialog.h"
-#include "gui/simpleOutputDialog.h"
-#include "gui/diffBetweenDialog.h"
-#include "gui/branchNameDialog.h"
 #include "transparentMode.h"
 
 namespace git {
@@ -36,6 +26,9 @@ public:
 	QList<qReal::ActionInfo> actions() const;
 	QPair<QString, qReal::gui::PreferencesPage *> preferencesPage() const;
 	void init(const qReal::PluginConfigurator &configurator);
+	QWidget *makeDiffTab(const QString &name);
+	void reopenWithoutSavings();
+	QString currentProject();
 
 public slots:
 	void initClicked();
@@ -66,13 +59,13 @@ private slots:
 	void onPushComplete(bool success);
 	void onPullComplete(bool success);
 	void onResetComplete(bool success);
-	void onCheckoutBranch(bool success);
+	void onCheckoutBranchComplete(bool success);
 	void onCreateBranchComplete(bool success);
 	void onDeleteBranchComplete(bool success);
+	void onMergeBranchesComplete(bool success);
 	void onStatusComplete(const QString &answer, bool success);
 	void onLogComplete(const QString &answer, bool success);
 	void onRemoteListComplete(const QString &answer, bool success);
-	void onCheckoutComplete(bool success);
 	void modeChanged(bool compactMode);
 	void removeClosedTab(QWidget *widget);
 	void activeTabChanged(const TabInfo &info);
@@ -80,8 +73,6 @@ private slots:
 private:
 	void initActions();
 	void showMessage(const QString &message);
-	void reopenWithoutSavings();
-	QWidget *makeDiffTab();
 
 	bool isFullScreen;
 	QList<qReal::ActionInfo> mMenu;

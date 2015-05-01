@@ -47,14 +47,14 @@ public:
 	/// @param sourceProject A path to source project. If empty working one used
 	/// @param reportErrors Specifies if all occured errors are reported to GUI
 	bool invokeOperation(
-			QStringList const &args
+			const QStringList &args
 			, bool needPreparation = true
-			, QString const &workingDir = QString()
-			, bool const checkWorkingDir = true
-			, bool const needProcessing = true
-			, QString const &targetProject = QString()
-			, QString const &sourceProject = QString()
-			, bool const reportErrors = true
+			, const QString &workingDir = QString()
+			, bool checkWorkingDir = true
+			, bool needProcessing = true
+			, const QString &targetProject = QString()
+			, const QString &sourceProject = QString()
+			, bool reportErrors = true
 	);
 
 	/// Starts process which executable`s path specified by setPathToClient() method in separate thread.

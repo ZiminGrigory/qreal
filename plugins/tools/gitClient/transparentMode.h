@@ -6,7 +6,6 @@
 
 #include <qrgui/plugins/toolPluginInterface/toolPluginInterface.h>
 #include <qrgui/plugins/toolPluginInterface/pluginConfigurator.h>
-#include <qrutils/invocationUtils/functorOperation.h>
 
 #include "gui/changeVersionWidget.h"
 

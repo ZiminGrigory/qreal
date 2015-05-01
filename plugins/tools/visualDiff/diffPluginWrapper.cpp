@@ -4,6 +4,7 @@
 
 #include <plugins/tools/visualDiff/model/diffModel.h>
 #include <plugins/tools/visualDiff/view/diffWindow.h>
+#include <plugins/tools/visualDiff/view/conflictsWindow.h>
 
 
 using namespace versioning;
@@ -54,13 +55,14 @@ void DiffPluginWrapper::configure(
 	mErrorReporter = errorReporter;
 	mProjectManager = projectManager;
 	mLoader = new details::ModelLoader(mVcs, mErrorReporter, mEditorManager, mWorkingCopyManager);
-	connect(mLoader, SIGNAL(modelLoaded(DiffModel*)), this, SLOT(onModelLoaded(DiffModel*)));
+	connect(mLoader, SIGNAL(modelLoaded(DiffModel*)), this, SLOT(onModelLoaded(DiffModel *)));
 }
 
 void DiffPluginWrapper::showDiff(const QString &targetProject, QWidget *parentWidget, bool compactMode)
 {
 	mCompactMode = compactMode;
 	mParentWidget = parentWidget;
+	solveConflicts = false;
 	mLoader->startModelLoading(targetProject);
 }
 
@@ -73,6 +75,7 @@ void DiffPluginWrapper::showDiff(
 {
 	mCompactMode = compactMode;
 	mParentWidget = parentWidget;
+	solveConflicts = false;
 	mLoader->startModelLoading(repoRevision, targetProject);
 }
 
@@ -86,7 +89,29 @@ void DiffPluginWrapper::showDiff(
 {
 	mCompactMode = compactMode;
 	mParentWidget = parentWidget;
+	solveConflicts = false;
 	mLoader->startModelLoading(oldRepoRevision, newRepoRevision, targetProject);
+}
+
+void DiffPluginWrapper::solvePull(
+	const QString &repoUrl
+	, const QString &branch
+	, const QString &targetProject
+	, QWidget *parentWidget
+)
+{
+	mParentWidget = parentWidget;
+	mTargetProject = targetProject;
+	solveConflicts = true;
+	mLoader->startModelLoading2(repoUrl, branch, targetProject);
+}
+
+void DiffPluginWrapper::solveMerge(const QString &targetBranch, const QString &targetProject, QWidget *parentWidget)
+{
+	mParentWidget = parentWidget;
+	mTargetProject = targetProject;
+	solveConflicts = true;
+	mLoader->startModelLoading2(targetBranch, targetProject);
 }
 
 void DiffPluginWrapper::onModelLoaded(DiffModel *model)
@@ -95,19 +120,24 @@ void DiffPluginWrapper::onModelLoaded(DiffModel *model)
 		return;
 	}
 
-	int newDiagrams = model->newModel()->graphicalModelAssistApi().childrenOfRootDiagram();
-	int oldDiagrams = model->oldModel()->graphicalModelAssistApi().childrenOfRootDiagram();
-	int diagrams = std::min(newDiagrams, oldDiagrams);
-	QTabWidget *diffWindowSet = new QTabWidget;
-	for (int i = 0; i < diagrams; i++){
-		DiffWindow *tmp = new DiffWindow(model, mCompactMode, i, mMainWindow);
-		QString text = QString(tr("diagram ")) + QString::number(i+1);
-		if (tmp->diagramChanged()) {
-			text += QString("_CHANGED*");
+	if (!solveConflicts) {
+		int newDiagrams = model->newModel()->graphicalModelAssistApi().childrenOfRootDiagram();
+		int oldDiagrams = model->oldModel()->graphicalModelAssistApi().childrenOfRootDiagram();
+		int diagrams = std::min(newDiagrams, oldDiagrams);
+		QTabWidget *diffWindowSet = new QTabWidget;
+		for (int i = 0; i < diagrams; i++){
+			DiffWindow *tmp = new DiffWindow(model, mCompactMode, i, mMainWindow);
+			QString text = QString(tr("diagram ")) + QString::number(i+1);
+			if (tmp->diagramChanged()) {
+				text += QString("_CHANGED*");
+			}
+			diffWindowSet->addTab(tmp, text);
 		}
-		diffWindowSet->addTab(tmp, text);
-	}
 
-	mParentWidget->layout()->addWidget(diffWindowSet);
+		mParentWidget->layout()->addWidget(diffWindowSet);
+	} else {
+		ConflictsWindow *widget = new ConflictsWindow(model, mMainWindow);
+		mParentWidget->layout()->addWidget(widget);
+	}
 }
 

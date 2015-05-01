@@ -1,6 +1,7 @@
+#include "statusDialog.h"
+
 #include <QtWidgets/QHBoxLayout>
 
-#include "statusDialog.h"
 
 using namespace git::ui;
 

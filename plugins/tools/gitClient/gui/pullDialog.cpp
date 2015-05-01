@@ -2,15 +2,16 @@
 #include <QtWidgets/QFileDialog>
 
 #include "pullDialog.h"
-#include "../../../qrkernel/settingsManager.h"
 
 using namespace git::ui;
 
 PullDialog::PullDialog(QWidget *parent)
 	: QDialog(parent)
 {
-	mUrlLabel = new QLabel(tr("Choose remote: "));
-	mUrlComboBox = createComboBox(qReal::SettingsManager::value("pullUrl", "").toString());
+	mUrlLabel = new QLabel(tr("remote url: "));
+	mUrl = new QLineEdit(this);
+	mBranchLabel = new QLabel(tr("branch: "));
+	mBranch = new QLineEdit(this);
 	QPushButton *ok = new QPushButton(tr("OK"), this);
 	QPushButton *cancel = new QPushButton(tr("Cancel"), this);
 
@@ -24,8 +25,10 @@ PullDialog::PullDialog(QWidget *parent)
 
 	QGridLayout *mainLayout = new QGridLayout;
 	mainLayout->addWidget(mUrlLabel, 0, 0);
-	mainLayout->addWidget(mUrlComboBox, 0, 1, 1, 2);
-	mainLayout->addLayout(buttonsLayout,2, 0, 1, 3);
+	mainLayout->addWidget(mUrl, 0, 1, 1, 2);
+	mainLayout->addWidget(mBranchLabel, 1, 0);
+	mainLayout->addWidget(mBranch, 1, 1, 1, 2);
+	mainLayout->addLayout(buttonsLayout, 2, 0, 1, 3);
 	setLayout(mainLayout);
 
 	setWindowTitle(tr("Pull options"));
@@ -39,18 +42,14 @@ QPushButton *PullDialog::createButton(const QString &text, const char *member)
 	return button;
 }
 
-QComboBox *PullDialog::createComboBox(const QString &text)
-{
-	QComboBox *comboBox = new QComboBox;
-	comboBox->setEditable(true);
-	comboBox->addItem(text);
-	comboBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-	return comboBox;
-}
-
 QString PullDialog::url() const
 {
-	return mUrlComboBox->currentText();
+	return mUrl->text();
+}
+
+QString PullDialog::branch() const
+{
+	return mBranch->text();
 }
 
 

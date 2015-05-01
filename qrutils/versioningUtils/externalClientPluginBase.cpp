@@ -64,11 +64,11 @@ void ExternalClientPluginBase::onErrorsOccured(QStringList const &errorMessages)
 bool ExternalClientPluginBase::invokeOperation(
 	const QStringList &args
 	, bool needPreparation
-	, QString const &workingDir
-	, bool const checkWorkingDir
+	, const QString &workingDir
+	, bool checkWorkingDir
 	, bool needProcessing
-	, QString const &targetProject
-	, QString const &sourceProject
+	, const QString &targetProject
+	, const QString &sourceProject
 	, bool reportErrors
 )
 {

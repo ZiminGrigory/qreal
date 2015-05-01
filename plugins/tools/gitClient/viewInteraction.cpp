@@ -5,6 +5,16 @@
 #include <QtWidgets/QGridLayout>
 
 #include "gitPlugin.h"
+#include "gui/pushDialog.h"
+#include "gui/pullDialog.h"
+#include "gui/commitDialog.h"
+#include "gui/cloneDialog.h"
+#include "gui/remoteDialog.h"
+#include "gui/resetDialog.h"
+#include "gui/statusDialog.h"
+#include "gui/simpleOutputDialog.h"
+#include "gui/diffBetweenDialog.h"
+#include "gui/branchNameDialog.h"
 
 
 using namespace git::details;
@@ -23,9 +33,10 @@ ViewInteraction::ViewInteraction(GitPlugin *pluginInstance)
 	connect(mPlugin, SIGNAL(pushComplete(bool)), this, SLOT(onPushComplete(bool)));
 	connect(mPlugin, SIGNAL(pullComplete(bool)), this, SLOT(onPullComplete(bool)));
 	connect(mPlugin, SIGNAL(resetComplete(bool)), this, SLOT(onResetComplete(bool)));
-	connect(mPlugin, SIGNAL(checkoutComplete(bool)), this, SLOT(onCheckoutComplete(bool)));
+	connect(mPlugin, SIGNAL(checkoutComplete(bool)), this, SLOT(onCheckoutBranchComplete(bool)));
 	connect(mPlugin, SIGNAL(createBranchComplete(bool)), this, SLOT(onCreateBranchComplete(bool)));
 	connect(mPlugin, SIGNAL(deleteBranchComplete(bool)), this, SLOT(onDeleteBranchComplete(bool)));
+	connect(mPlugin, SIGNAL(mergeBranchesComplete(bool)), SLOT(onMergeBranchesComplete(bool)));
 	connect(mPlugin, SIGNAL(statusComplete(QString,bool)), this, SLOT(onStatusComplete(QString,bool)));
 	connect(mPlugin, SIGNAL(logComplete(QString,bool)), this, SLOT(onLogComplete(QString,bool)));
 	connect(mPlugin, SIGNAL(remoteListComplete(QString,bool)), this, SLOT(onRemoteListComplete(QString,bool)));
@@ -141,7 +152,7 @@ void ViewInteraction::cloneClicked()
 
 	QString url = dialog->url();
 	qReal::SettingsManager::setValue("cloneUrl",url);
-	mProjectManager->saveOrSuggestToSaveAs();
+	mProjectManager->suggestToSaveAs();
 	mPlugin->startClone(url, mRepoApi->workingFile());
 }
 
@@ -165,10 +176,12 @@ void ViewInteraction::commitClicked()
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
+
 	QString message = dialog->message();
 	if (message.isEmpty()) {
 		message = "<no message>";
 	}
+
 	mProjectManager->saveOrSuggestToSaveAs();
 	mPlugin->startCommit(message);
 }
@@ -179,6 +192,7 @@ void ViewInteraction::pushClicked()
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
+
 	QString const remote = dialog->url();
 	qReal::SettingsManager::setValue("gitRemoteName", remote);
 	mPlugin->startPush(remote);
@@ -191,9 +205,7 @@ void ViewInteraction::pullClicked()
 		return;
 	}
 
-	QString const remote = dialog->url();
-	qReal::SettingsManager::setValue("pullUrl", remote);
-	mPlugin->startPull(remote);
+	mPlugin->startPull(dialog->url(), dialog->branch());
 }
 
 void ViewInteraction::resetClicked()
@@ -288,10 +300,11 @@ void ViewInteraction::onResetComplete(bool success)
 	}
 }
 
-void ViewInteraction::onCheckoutBranch(bool success)
+void ViewInteraction::onCheckoutBranchComplete(bool success)
 {
 	if (success) {
 		showMessage(tr("Checkout branch successfully."));
+		reopenWithoutSavings();
 	}
 }
 
@@ -306,6 +319,13 @@ void ViewInteraction::onDeleteBranchComplete(bool success)
 {
 	if (success) {
 		showMessage(tr("Delete branch successfully."));
+	}
+}
+
+void ViewInteraction::onMergeBranchesComplete(bool success)
+{
+	if (success) {
+		showMessage(tr("Merge branches successfully."));
 	}
 }
 
@@ -331,6 +351,7 @@ void ViewInteraction::onLogComplete(const QString &answer, bool success)
 	} else {
 		dialog->message(answer);
 	}
+
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
@@ -349,11 +370,6 @@ void ViewInteraction::onRemoteListComplete(const QString &answer, bool success)
 	}
 }
 
-void ViewInteraction::onCheckoutComplete(bool success)
-{
-	Q_UNUSED(success)
-}
-
 void ViewInteraction::versionsClicked()
 {
 	mCompactMode->openChangeVersionTab();
@@ -361,10 +377,8 @@ void ViewInteraction::versionsClicked()
 
 void ViewInteraction::diffClicked()
 {
-	mMainWindowIface->windowWidget()->setEnabled(false);
-	QWidget *widget = makeDiffTab();
+	QWidget *widget = makeDiffTab(tr("diff"));
 	mPlugin->showDiff(mProjectManager->saveFilePath(), widget, false);
-	mMainWindowIface->windowWidget()->setEnabled(true);
 }
 
 void ViewInteraction::diffBetweenClicked()
@@ -373,16 +387,14 @@ void ViewInteraction::diffBetweenClicked()
 	if (QDialog::Accepted != dialog->exec()) {
 		return;
 	}
-	mMainWindowIface->windowWidget()->setEnabled(false);
 	QString const newHash = dialog->firstHash();
 	QString const oldHash = dialog->secondHash();
-	QWidget *widget = makeDiffTab();
+	QWidget *widget = makeDiffTab(tr("diff"));
 	if (oldHash.isEmpty()) {
 		mPlugin->showDiff(newHash, mProjectManager->saveFilePath(), widget, false);
 	} else {
 		mPlugin->showDiff(oldHash, newHash, mProjectManager->saveFilePath(), widget, false);
 	}
-	mMainWindowIface->windowWidget()->setEnabled(true);
 }
 
 void ViewInteraction::deleteBranch()
@@ -479,18 +491,24 @@ void ViewInteraction::reopenWithoutSavings()
 	mProjectManager->open(currentAdress);
 }
 
-QWidget *ViewInteraction::makeDiffTab()
+QString ViewInteraction::currentProject()
+{
+	return mProjectManager->saveFilePath();
+}
+
+QWidget *ViewInteraction::makeDiffTab(const QString &name)
 {
 	isFullScreen = mMainWindowIface->isFullScreen();
 	if (!isFullScreen) {
 		mMainWindowIface->makeFullScreen(true);
 	}
+
 	mMainWindowIface->makeFullScreen();
 	QWidget *widget = new QWidget();
 	QGridLayout *mLayout = new QGridLayout(widget);
 	mLayout->setMargin(0);
 	widget->setLayout(mLayout);
-	mMainWindowIface->openTab(widget, "diff");
+	mMainWindowIface->openTab(widget, name);
 	mDiffWidgets << widget;
 	connect(mSystemEvents, SIGNAL(otherTabClosed(QWidget*)), this, SLOT(removeClosedTab(QWidget*)));
 	return widget;

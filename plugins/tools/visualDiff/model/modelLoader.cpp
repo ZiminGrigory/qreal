@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMessageBox>
+#include <QtCore/QString>
 
 #include <qrutils/fileSystemUtils.h>
 
@@ -32,8 +33,9 @@ QString ModelLoader::tempProject() const
 	return qReal::SettingsManager::value("diffTempProject", mTempProject).toString();
 }
 
-void ModelLoader::startModelLoading(QString const &targetProject)
+void ModelLoader::startModelLoading(const QString &targetProject)
 {
+	mBranch = QString();
 	mOldModel = loadFromDisk(targetProject);
 	if (!mOldModel) {
 		emit modelLoaded(nullptr);
@@ -53,11 +55,12 @@ void ModelLoader::startModelLoading(QString const &targetProject)
 		, SLOT(onNewModelLoaded(qReal::models::Models*))
 	);
 
-	mVcs->beginWorkingCopyDownloading(repoUrl, tempProject(), "-1", true);
+	mVcs->beginWorkingCopyDownloading(repoUrl, tempProject(), "", "-1");
 }
 
-void ModelLoader::startModelLoading(QString repoRevision, QString const &targetProject)
+void ModelLoader::startModelLoading(const QString &repoRevision, const QString &targetProject)
 {
+	mBranch = QString();
 	mOldModel = loadFromDisk(targetProject);
 	if (!mOldModel) {
 		emit modelLoaded(nullptr);
@@ -77,13 +80,18 @@ void ModelLoader::startModelLoading(QString repoRevision, QString const &targetP
 		, SLOT(onNewModelLoaded(qReal::models::Models*))
 	);
 
-	mVcs->beginWorkingCopyDownloading(repoUrl, tempProject(), repoRevision, true);
+	mVcs->beginWorkingCopyDownloading(repoUrl, tempProject(), QString(), repoRevision);
 }
 
-void ModelLoader::startModelLoading(QString oldRepoRevision, QString newRepoRevision, QString const &targetProject)
+void ModelLoader::startModelLoading(
+	const QString &oldRepoRevision
+	, const QString &newRepoRevision
+	, const QString &targetProject
+)
 {
 	mRepoUrl = mVcs->remoteRepositoryUrl(targetProject);
 	mNewRevision = newRepoRevision;
+	mBranch = QString();
 	if (mRepoUrl.isEmpty()) {
 		emit modelLoaded(nullptr);
 		return;
@@ -96,10 +104,40 @@ void ModelLoader::startModelLoading(QString oldRepoRevision, QString newRepoRevi
 		, SLOT(onOldModelLoaded(qReal::models::Models*))
 	);
 
-	mVcs->beginWorkingCopyDownloading(mRepoUrl, tempProject(), oldRepoRevision, true);
+	mVcs->beginWorkingCopyDownloading(mRepoUrl, tempProject(), QString(), oldRepoRevision);
 }
 
-qReal::models::Models *ModelLoader::loadFromDisk(QString const &targetProject)
+void ModelLoader::startModelLoading2(const QString &repoUrl, const QString &branch, const QString &targetProject)
+{
+	mRepoUrl = repoUrl;
+	mBranch = branch;
+	mNewRevision = "-1";
+	connect(
+		this
+		, SIGNAL(internalModelLoaded(qReal::models::Models*))
+		, this
+		, SLOT(onOldModelLoaded(qReal::models::Models*))
+	);
+
+	mVcs->beginWorkingCopyDownloading(mVcs->remoteRepositoryUrl(targetProject), tempProject(), QString(), "-1");
+}
+
+void ModelLoader::startModelLoading2(const QString &branch, const QString &targetProject)
+{
+	mRepoUrl = mVcs->remoteRepositoryUrl(targetProject);;
+	mBranch = branch;
+	mNewRevision = "-1";
+	connect(
+		this
+		, SIGNAL(internalModelLoaded(qReal::models::Models*))
+		, this
+		, SLOT(onOldModelLoaded(qReal::models::Models*))
+	);
+
+	mVcs->beginWorkingCopyDownloading(mRepoUrl, tempProject(), QString(), "-1");
+}
+
+qReal::models::Models *ModelLoader::loadFromDisk(const QString &targetProject)
 {
 	qReal::models::Models *result = new qReal::models::Models(targetProject, *mEditorManager);
 	result->repoControlApi().open(targetProject);
@@ -131,7 +169,7 @@ void ModelLoader::onOldModelLoaded(qReal::models::Models *model)
 		, SLOT(onNewModelLoaded(qReal::models::Models*))
 	);
 
-	mVcs->beginWorkingCopyDownloading(mRepoUrl, tempProject(), mNewRevision, true);
+	mVcs->beginWorkingCopyDownloading(mRepoUrl, tempProject(), mBranch, mNewRevision);
 }
 
 void ModelLoader::onNewModelLoaded(qReal::models::Models *model)
@@ -152,12 +190,12 @@ void ModelLoader::finishModelLoading()
 	emit modelLoaded(result);
 }
 
-void ModelLoader::reportError(QString const &message)
+void ModelLoader::reportError(const QString &message)
 {
 	mErrorReporter->addError(message);
 }
 
-void ModelLoader::reportWarning(QString const &message)
+void ModelLoader::reportWarning(const QString &message)
 {
 	mErrorReporter->addWarning(message);
 }
