@@ -51,6 +51,8 @@ public slots:
 	void getBranchesList();
 	void mergeBranch();
 
+	bool isCompactMode();
+
 private slots:
 	void onInitComplete(bool success);
 	void onCloneComplete(bool success);
@@ -74,7 +76,8 @@ private:
 	void initActions();
 	void showMessage(const QString &message);
 
-	bool isFullScreen;
+	bool mIsFullScreen;
+	bool mIsCompactMode;
 	QList<qReal::ActionInfo> mMenu;
 	GitPlugin *mPlugin;
 	qReal::gui::MainWindowInterpretersInterface *mMainWindowIface;

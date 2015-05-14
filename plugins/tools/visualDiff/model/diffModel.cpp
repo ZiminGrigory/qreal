@@ -1,5 +1,7 @@
 #include "diffModel.h"
 
+#include <QtCore/QtAlgorithms>
+
 #include <qrgui/models/graphicalModelAssistApi.h>
 #include <qrgui/models/logicalModelAssistApi.h>
 
@@ -9,8 +11,16 @@
 using namespace versioning;
 using namespace versioning::details;
 
-DiffModel::DiffModel(qReal::models::Models *oldModel, qReal::models::Models *newModel)
+
+qReal::Id dummyId = qReal::Id();
+
+DiffModel::DiffModel(
+		qReal::models::Models *oldModel
+		, qReal::models::Models *newModel
+		, qReal::models::Models *oldActiveModel
+		)
 	: mOldModel(oldModel)
+	, mOldActiveModel(oldActiveModel)
 	, mNewModel(newModel)
 	, mOldGraphicalElements(graphicalElements(mOldModel))
 	, mNewGraphicalElements(graphicalElements(mNewModel))
@@ -34,6 +44,11 @@ Difference *DiffModel::difference(const qReal::Id &id) const
 qReal::models::Models *DiffModel::oldModel()
 {
 	return mOldModel;
+}
+
+qReal::models::Models *DiffModel::oldActiveModel()
+{
+	return mOldActiveModel;
 }
 
 qReal::models::Models *DiffModel::newModel()

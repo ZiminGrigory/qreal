@@ -72,25 +72,30 @@ QPair<QString, qReal::gui::PreferencesPage *> GitPlugin::preferencesPage()
 
 bool GitPlugin::onFileAdded(const QList<QString> &list, QString const &workingDir)
 {
-//	return doAdd(filePath, workingDir);
-	Q_UNUSED(list)
-	Q_UNUSED(workingDir)
-	return true;
+	if (mViewInteraction->isCompactMode() || list.empty()) {
+		return true;
+	} else {
+		return doAdd(list, workingDir);
+	}
 }
 
 bool GitPlugin::onFileRemoved(const QList<QString> &list, QString const &workingDir)
 {
 	Q_UNUSED(workingDir)
-	Q_UNUSED(list)
-	return true;
+	if (mViewInteraction->isCompactMode() || list.empty()) {
+		return true;
+	} else {
+		return doRemove(list, workingDir);
+	}
 }
 
 bool GitPlugin::onFileChanged(const QList<QString> &list, QString const &workingDir)
 {
-//	return doAdd(filePath, workingDir);
-	Q_UNUSED(list)
-	Q_UNUSED(workingDir)
-	return true;
+	if (mViewInteraction->isCompactMode() || list.empty()) {
+		return true;
+	} else {
+		return doAdd(list, workingDir);
+	}
 }
 
 void GitPlugin::beginWorkingCopyDownloading(
@@ -190,7 +195,7 @@ QString GitPlugin::information(QString const &targetProject)
 
 QString GitPlugin::commitId(QString const &targetProject)
 {
-	QStringList args {"log", "--pretty=%H", "-1"};
+	QStringList args{"log", "--pretty=%H", "-1"};
 	invokeOperation(args, needPreparation, dummyWorkingDir, checkWorkingDir, needProcessing, targetProject);
 	return standartOutput().remove("\"");
 }
@@ -258,9 +263,10 @@ QString GitPlugin::getBranchesList()
 void GitPlugin::startMergeBranch(const QString &targetBranchName)
 {
 	const Tag tagStruct("merge", targetBranchName);
+	mTargetBranch = targetBranchName;
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	invokeOperationAsync(QStringList() << "merge" << targetBranchName, tagVariant, needPreparation);
+	invokeOperationAsync(QStringList() << "merge" << targetBranchName << "-q", tagVariant, needPreparation);
 }
 
 QString GitPlugin::friendlyName()
@@ -491,8 +497,11 @@ void GitPlugin::startPush(
 
 void GitPlugin::startPull(const QString &remote, const QString &branch, const QString &targetFolder)
 {
+	disconnect(mDiffInterface, SIGNAL(pullOurs()), this, SLOT(pullOurs()));
+	connect(mDiffInterface, SIGNAL(pullOurs()), this, SLOT(pullOurs()));
 	QStringList arguments{"pull", remote, branch, "-q"};
-
+	mTargetBranch = branch;
+	mTargetPullUrl = remote;
 	const Tag tagStruct("pull", remote, branch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
@@ -544,40 +553,43 @@ void GitPlugin::doUserEmailConfig()
 	emit operationComplete("userEmail", result);
 }
 
-bool GitPlugin::doAdd(const QString &what, const QString &targetFolder, bool force)
+bool GitPlugin::doAdd(const QList<QString> &list, const QString &targetFolder, bool force)
 {
-	QStringList arguments{"add", what};
+	QStringList arguments = list;
+	arguments.push_front("add");
 	if (force){
 		arguments.append("-f");
 	}
-	QString path = what;
-	path = getFilePath(path);
 
-	bool result = invokeOperation(arguments, needPreparation, path, !checkWorkingDir, needProcessing, targetFolder);
+	bool result = invokeOperation(arguments, !needPreparation, targetFolder, !checkWorkingDir, !needProcessing);
 	emit addComplete(result);
 	emit operationComplete("add", result);
 	return result;
 }
 
-QString &GitPlugin::getFilePath(QString &adress)
+QString &GitPlugin::getFilePath(QString &address)
 {
-	int pos = adress.lastIndexOf("/");
-	int len = adress.length();
-	return adress.remove(pos, len - pos);
+	int pos = address.lastIndexOf("/");
+	int len = address.length();
+	return address.remove(pos, len - pos);
 }
 
-bool GitPlugin::doRemove(const QString &what, bool prepare, bool process, bool force)
+bool GitPlugin::doRemove(const QList<QString> &list, const QString &targetFolder, bool force)
 {
-	QStringList arguments{"rm", what, "-r"};
+	QStringList arguments = list;
+	int size = targetFolder.size();
+	for (auto &arg: arguments) {
+		arg.remove(0, size + 1);
+	}
+
+	arguments.push_front("rm");
+	arguments.push_back("-r");
 
 	if (force) {
 		arguments.append("-f");
 	}
 
-	QString path = what;
-	path = getFilePath(path);
-
-	bool result = invokeOperation(arguments, prepare, path, !checkWorkingDir, process);
+	bool result = invokeOperation(arguments, !needPreparation, targetFolder, !checkWorkingDir, !needProcessing);
 	emit removeComplete(result);
 	emit operationComplete("rm", result);
 	return result;
@@ -729,6 +741,8 @@ void GitPlugin::onMergeComplete(bool result, const QString &branch)
 		emit operationComplete("pull", result);
 	} else {
 		QWidget *widget = mViewInteraction->makeDiffTab(tr("mergeConflicts"));
+		disconnect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
+		connect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
 		mDiffInterface->solveMerge(branch, mViewInteraction->currentProject(), widget);
 	}
 }
@@ -759,6 +773,26 @@ void GitPlugin::showDiff(const QString &oldHash, const QString &newHash, const Q
 void GitPlugin::showDiff(const QString &oldhash, const QString &targetProject, QWidget *widget, bool compactMode)
 {
 	mDiffInterface->showDiff(oldhash, targetProject, widget, compactMode);
+}
+
+void GitPlugin::mergeOurs()
+{
+	startCommit("pre merge commit", "", dummyTargetProject, true);
+	const Tag tagStruct("merge", mTargetBranch);
+	QVariant tagVariant;
+	tagVariant.setValue(tagStruct);
+	QStringList arguments{"merge", "--no-edit", "-s", "ours", mTargetBranch , "-q"};
+	invokeOperationAsync(arguments, tagVariant, needPreparation);
+}
+
+void GitPlugin::pullOurs()
+{
+	startCommit("pre pull commit", "", dummyTargetProject, true);
+	QStringList arguments{"pull", "--no-edit", "-s", "ours", mTargetPullUrl, mTargetBranch, "-q"};
+	const Tag tagStruct("pull", mTargetPullUrl, mTargetBranch);
+	QVariant tagVariant;
+	tagVariant.setValue(tagStruct);
+	invokeOperationAsync(arguments, tagVariant, needPreparation, dummyWorkingDir, dummySourceProject, !checkWorkingDir);
 }
 
 void GitPlugin::showDiff(const QString &targetProject, QWidget *widget, bool compactMode)

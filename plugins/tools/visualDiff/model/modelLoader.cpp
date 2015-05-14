@@ -36,6 +36,8 @@ QString ModelLoader::tempProject() const
 void ModelLoader::startModelLoading(const QString &targetProject)
 {
 	mBranch = QString();
+	mIsForConflicts = false;
+	mTargetProject = targetProject;
 	mOldModel = loadFromDisk(targetProject);
 	if (!mOldModel) {
 		emit modelLoaded(nullptr);
@@ -61,6 +63,8 @@ void ModelLoader::startModelLoading(const QString &targetProject)
 void ModelLoader::startModelLoading(const QString &repoRevision, const QString &targetProject)
 {
 	mBranch = QString();
+	mIsForConflicts = false;
+	mTargetProject = targetProject;
 	mOldModel = loadFromDisk(targetProject);
 	if (!mOldModel) {
 		emit modelLoaded(nullptr);
@@ -92,6 +96,8 @@ void ModelLoader::startModelLoading(
 	mRepoUrl = mVcs->remoteRepositoryUrl(targetProject);
 	mNewRevision = newRepoRevision;
 	mBranch = QString();
+	mIsForConflicts = false;
+	mTargetProject = targetProject;
 	if (mRepoUrl.isEmpty()) {
 		emit modelLoaded(nullptr);
 		return;
@@ -111,6 +117,8 @@ void ModelLoader::startModelLoading2(const QString &repoUrl, const QString &bran
 {
 	mRepoUrl = repoUrl;
 	mBranch = branch;
+	mIsForConflicts = true;
+	mTargetProject = targetProject;
 	mNewRevision = "-1";
 	connect(
 		this
@@ -126,6 +134,8 @@ void ModelLoader::startModelLoading2(const QString &branch, const QString &targe
 {
 	mRepoUrl = mVcs->remoteRepositoryUrl(targetProject);;
 	mBranch = branch;
+	mIsForConflicts = true;
+	mTargetProject = targetProject;
 	mNewRevision = "-1";
 	connect(
 		this
@@ -159,6 +169,9 @@ void ModelLoader::onOldModelLoaded(qReal::models::Models *model)
 	disconnect(this, SLOT(onOldModelLoaded(qReal::models::Models*)));
 	if (!mOldModel) {
 		emit modelLoaded(nullptr);
+		mOldActiveModel = nullptr;
+	} else if (mIsForConflicts) {
+		mOldActiveModel = loadFromDisk(mTargetProject);
 	}
 
 	qReal::FileSystemUtils::removeFile(tempProject());
@@ -183,7 +196,7 @@ void ModelLoader::finishModelLoading()
 {
 	DiffModel *result = nullptr;
 	if (mOldModel && mNewModel) {
-		result = new DiffModel(mOldModel, mNewModel);
+		result = new DiffModel(mOldModel, mNewModel, mOldActiveModel);
 	}
 
 	qReal::FileSystemUtils::removeFile(tempProject());

@@ -103,7 +103,7 @@ private:
 	qrRepo::RepoControlInterface *mRepoApi;
 	QList<VersioningPluginInterface *> mPlugins;
 	qReal::ErrorReporterInterface *mErrorReporter;
-	DiffPluginInterface *mDiffInterface;
+	qReal::DiffPluginInterface *mDiffInterface;
 	qReal::ProjectManagerWrapper *mProjectManager;
 	QString mTempDir;
 };

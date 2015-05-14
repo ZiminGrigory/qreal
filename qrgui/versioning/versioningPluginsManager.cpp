@@ -96,21 +96,13 @@ VersioningPluginInterface *VersioningPluginsManager::activePlugin(
 	, bool quiet
 )
 {
-	if (needPreparation) {
-		prepareWorkingCopy();
-	}
-
 	VersioningPluginInterface *result = nullptr;
 	// 1 project one vcs
 	for (VersioningPluginInterface *plugin : mPlugins) {
-		if (plugin->isMyWorkingCopy(workingDir, quiet)) {
+		if (plugin->isMyWorkingCopy(workingDir, quiet, needPreparation)) {
 			result = plugin;
 			break;
 		}
-	}
-
-	if (needPreparation) {
-		qReal::FileSystemUtils::removeDir(tempFolder());
 	}
 
 	return result;

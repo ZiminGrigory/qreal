@@ -42,7 +42,8 @@ HEADERS += \
 	$$PWD/view/detailsWidget/propertiesWidget.h \
 	$$PWD/view/detailsWidget/propertyWidget.h \
 	$$PWD/view/detailsWidget/idListDiffWidget.h \
-    view/conflictsWindow.h
+    view/conflictsWindow.h \
+    view/conflictsView.h
 
 SOURCES += \
 	$$PWD/diffPluginWrapper.cpp \
@@ -65,7 +66,8 @@ SOURCES += \
 	$$PWD/view/detailsWidget/propertiesWidget.cpp \
 	$$PWD/view/detailsWidget/propertyWidget.cpp \
 	$$PWD/view/detailsWidget/idListDiffWidget.cpp \
-    view/conflictsWindow.cpp
+    view/conflictsWindow.cpp \
+    view/conflictsView.cpp
 
 FORMS += \
 	$$PWD/view/diffColorPreferencesDialog.ui

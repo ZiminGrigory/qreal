@@ -83,8 +83,8 @@ public slots:
 	);
 	void startPull(const QString &remote, const QString &branch = QString(), const QString &targetFolder = QString());
 	void startReset(const QString &hash = QString(), const QString &targetFolder = QString(), bool quiet = false);
-	bool doAdd(const QString &what, const QString &targetFolder, bool force = true);
-	bool doRemove(const QString &what, bool prepare = true, bool process = true, bool force = true);
+	bool doAdd(const QList<QString> &list, const QString &targetFolder, bool force = true);
+	bool doRemove(const QList<QString> &list, const QString &targetFolder, bool force = true);
 	bool doClean(const QString &targetProject = QString());
 	QString doStatus(const QString &targetProject = QString());
 	QString doLog(const QString &format = QString(), bool quiet = false, bool showDialog = false);
@@ -104,6 +104,10 @@ public slots:
 	void showDiff(const QString &oldHash, const QString &newHash
 				  , const QString &targetProject, QWidget *widget, bool compactMode = true);
 	void showDiff(const QString &oldhash, const QString &targetProject, QWidget *widget, bool compactMode = true);
+
+private slots:
+	void mergeOurs();
+	void pullOurs();
 
 signals:
 	void workingCopyDownloaded(bool success, const QString &targetProject);
@@ -131,8 +135,9 @@ signals:
 	void operationComplete(const QString &name, bool success);
 
 protected:
-	// External client overloads
 	friend class TransparentMode;
+
+	// External client overloads
 	virtual int timeout() const;
 	virtual QString tempFolder() const;
 
@@ -145,7 +150,7 @@ private:
 	void onCheckoutComplete(bool result);
 	void onMergeComplete(bool result, const QString &branch);
 
-	QString &getFilePath(QString &adress);
+	QString &getFilePath(QString &address);
 	QString getUsername();
 	QString getPassword();
 	void doUserNameConfig();
@@ -154,5 +159,7 @@ private:
 	details::ViewInteraction *mViewInteraction;
 	QString mTempDir;
 	qReal::DiffPluginInterface *mDiffInterface;
+	QString mTargetBranch;
+	QString mTargetPullUrl;
 };
 }

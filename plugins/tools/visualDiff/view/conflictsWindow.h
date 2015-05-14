@@ -11,7 +11,8 @@
 #include <qrgui/controller/controller.h>
 
 #include "model/diffModel.h"
-#include "diffView.h"
+#include "conflictsView.h"
+#include "view/detailsWidget/diffDetailsWidget.h"
 
 namespace versioning
 {
@@ -23,7 +24,7 @@ class ConflictsWindow : public QWidget
 public:
 	explicit ConflictsWindow(DiffModel *diffModel, QWidget *parent = 0);
 	~ConflictsWindow();
-	details::DiffView *getNewModel();
+	details::ConflictsView *getNewModel();
 	bool diagramHasConflicts();
 
 signals:
@@ -34,17 +35,22 @@ private:
 	void initLayout();
 	void initButton();
 	void initViews();
-	QGridLayout *initView(details::DiffView *view);
+	QGridLayout *initView(details::ConflictsView *view);
 
 	DiffModel *mDiffModel;
 	QGridLayout *mLayout;
-	details::DiffView *mOldView;
-	details::DiffView *mNewView;
+	details::ConflictsView *mOursView;
+	details::ConflictsView *mTheirsView;
+	EditorView *mSolveView;
+	details::DiffDetailsWidget *mDiffDetailsWidget;
 	QWidget *mMainWindow;
 	SceneCustomizer *mSceneCustomizer;
 	Controller *mController;
 	QPushButton *saveButton;
 	QTabWidget *mDiagrams;
+
+	QAction *mUndo;
+	QAction *mRedo;
 
 	int mDiagram;
 };

@@ -99,6 +99,7 @@ void DiffPluginWrapper::solvePull(
 	, QWidget *parentWidget
 )
 {
+	mIsPull = true;
 	mParentWidget = parentWidget;
 	mTargetProject = targetProject;
 	solveConflicts = true;
@@ -107,6 +108,7 @@ void DiffPluginWrapper::solvePull(
 
 void DiffPluginWrapper::solveMerge(const QString &targetBranch, const QString &targetProject, QWidget *parentWidget)
 {
+	mIsPull = false;
 	mParentWidget = parentWidget;
 	mTargetProject = targetProject;
 	solveConflicts = true;
@@ -118,6 +120,8 @@ void DiffPluginWrapper::onModelLoaded(DiffModel *model)
 	if (!model) {
 		return;
 	}
+
+	mDiffModel = model;
 
 	if (!solveConflicts) {
 		int newDiagrams = model->newModel()->graphicalModelAssistApi().childrenOfRootDiagram();
@@ -143,6 +147,11 @@ void DiffPluginWrapper::onModelLoaded(DiffModel *model)
 
 void DiffPluginWrapper::processProjectAndReopen()
 {
-
+	mDiffModel->oldActiveModel()->repoControlApi().saveTo(mTargetProject);
+	if (mIsPull) {
+		emit pullOurs();
+	} else {
+		emit mergeOurs();
+	}
 }
 

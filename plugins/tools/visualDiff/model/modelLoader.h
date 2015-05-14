@@ -63,10 +63,13 @@ private:
 	QString mTempProject;
 
 	qReal::models::Models *mOldModel;
+	qReal::models::Models *mOldActiveModel;
 	qReal::models::Models *mNewModel;
 	QString mRepoUrl;
 	QString mNewRevision;
 	QString mBranch;
+	QString mTargetProject;
+	bool mIsForConflicts;
 };
 
 }

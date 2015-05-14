@@ -1,7 +1,10 @@
 #include "conflictsWindow.h"
 
+#include <QtWidgets/QAction>
+
 
 using namespace versioning;
+using versioning::details::ConflictsView;
 
 ConflictsWindow::ConflictsWindow(DiffModel *diffModel, QWidget *parent) :
 	QWidget(parent)
@@ -9,35 +12,36 @@ ConflictsWindow::ConflictsWindow(DiffModel *diffModel, QWidget *parent) :
 	, mMainWindow(parent)
 	, mSceneCustomizer(new SceneCustomizer)
 	, mController(new Controller)
+	, saveButton(nullptr)
+	, mDiagrams(nullptr)
+	, mUndo(new QAction(this))
+	, mRedo(new QAction(this))
 {
+	this->addAction(mUndo);
+	this->addAction(mRedo);
+
 	initBaseLayout();
 	initButton();
 	initViews();
-//	QList<int> sizes;
-//	sizes << 5 << 5;
-//	mSplitter->setSizes(sizes);
-//	mSplitter->setStretchFactor(0, 5);
-//	mSplitter->setStretchFactor(1, 5);
 	this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-
 }
 
 ConflictsWindow::~ConflictsWindow()
 {
 }
 
-versioning::details::DiffView *ConflictsWindow::getNewModel()
+versioning::details::ConflictsView *ConflictsWindow::getNewModel()
 {
-	return mNewView;
+	return mTheirsView;
 }
 
 void ConflictsWindow::initBaseLayout()
 {
-
 	mLayout = new QGridLayout(this);
 	mLayout->setContentsMargins(5, 5, 5, 5);
 	mDiagrams = new QTabWidget(this);
 	mLayout->addWidget(mDiagrams,0,0);
+
 	setLayout(mLayout);
 }
 
@@ -49,6 +53,7 @@ void ConflictsWindow::initLayout()
 	mLayout->setColumnStretch(0, 10);
 	mLayout->setRowStretch(0, 10);
 	mLayout->setRowStretch(1, 0);
+
 
 	setLayout(mLayout);
 }
@@ -63,46 +68,85 @@ void ConflictsWindow::initButton()
 
 void ConflictsWindow::initViews()
 {
+	QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);
+	verticalSplitter->setFrameStyle(QFrame::Sunken);
+
 	QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
 	QList<int> sizes;
 	sizes << 1;
 
-	QModelIndex indexForOld = mDiffModel->oldModel()->graphicalModel()->index(0, 0);
-	Id rootIdForOld = mDiffModel->oldModel()->graphicalModelAssistApi().idByIndex(indexForOld);
-	mOldView = new details::DiffView(mMainWindow, mDiffModel, true, *mController, *mSceneCustomizer, rootIdForOld);
-	QFrame *oldFrame = new QFrame;
-	oldFrame->setLayout(initView(mOldView));
+	QModelIndex oursIndex = mDiffModel->oldModel()->graphicalModel()->index(0, 0);
+	Id oursRootId = mDiffModel->oldModel()->graphicalModelAssistApi().idByIndex(oursIndex);
+	mOursView = new ConflictsView(mMainWindow, mDiffModel, false, *mController, *mSceneCustomizer, oursRootId);
+	QFrame *oursFrame = new QFrame;
+	oursFrame->setLayout(initView(mOursView));
 	sizes << 1;
-	splitter->addWidget(oldFrame);
+	splitter->addWidget(oursFrame);
+	mController->diagramOpened(oursRootId);
 
-
-	QModelIndex indexForNew = mDiffModel->newModel()->graphicalModel()->index(0,0);
-	Id rootIdForNew = mDiffModel->newModel()->graphicalModelAssistApi().idByIndex(indexForNew);
-	mNewView = new details::DiffView(mMainWindow, mDiffModel, false, *mController, *mSceneCustomizer, rootIdForNew);
-	QFrame *newFrame = new QFrame;
-	newFrame->setLayout(initView(mNewView));
-	splitter->addWidget(newFrame);
+	QModelIndex theirsIndex = mDiffModel->newModel()->graphicalModel()->index(0,0);
+	Id theirsRootId = mDiffModel->newModel()->graphicalModelAssistApi().idByIndex(theirsIndex);
+	mTheirsView = new ConflictsView(mMainWindow, mDiffModel, true, *mController, *mSceneCustomizer, theirsRootId);
+	QFrame *theirsFrame = new QFrame;
+	theirsFrame->setLayout(initView(mTheirsView));
+	splitter->addWidget(theirsFrame);
+	mController->diagramOpened(theirsRootId);
 
 	splitter->setSizes(sizes);
+
+	verticalSplitter->addWidget(splitter);
+
+	mDiffDetailsWidget = new details::DiffDetailsWidget(mDiffModel, this);
+	verticalSplitter->addWidget(mDiffDetailsWidget);
+	mOursView->setDetailsWidget(mDiffDetailsWidget);
+	mTheirsView->setDetailsWidget(mDiffDetailsWidget);
+	mDiffDetailsWidget->setVisible(true);
+
+	auto solveModel = mDiffModel->oldActiveModel();
+	QModelIndex rootSolveIndex = solveModel->graphicalModel()->index(0, 0);
+	Id rootId = solveModel->graphicalModelAssistApi().idByIndex(rootSolveIndex);
+	mSolveView = new EditorView(*solveModel, *mController, *mSceneCustomizer, rootId, mMainWindow);
+	mController->diagramOpened(rootId);
+
+	mSolveView->mutableMvIface().configure(
+		solveModel->graphicalModelAssistApi()
+		, solveModel->logicalModelAssistApi()
+		, solveModel->exploser()
+	);
+	mSolveView->mutableMvIface().setModel(solveModel->graphicalModel());
+	mSolveView->mutableMvIface().setLogicalModel(solveModel->logicalModel());
+	mSolveView->mutableMvIface().setRootIndex(rootSolveIndex);
+	verticalSplitter->addWidget(mSolveView);
+
 	QWidget *tmp = new QWidget;
 	QGridLayout *layoutTmp = new QGridLayout;
-	layoutTmp->addWidget(splitter);
+	layoutTmp->addWidget(verticalSplitter);
 	tmp->setLayout(layoutTmp);
-	mDiagrams->addTab(tmp, "ololo1");
+	mDiagrams->addTab(tmp, "conflicts");
+
+	QList<int> sizesForCopySplitter;
+	sizesForCopySplitter << 1 << 1 << 1;
+	verticalSplitter->setSizes(sizesForCopySplitter);
+	verticalSplitter->setStretchFactor(0, 9);
+	verticalSplitter->setStretchFactor(1, 0);
+	verticalSplitter->setStretchFactor(2, 9);
+
+	mController->setActiveDiagram(rootId);
+
+	mUndo->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+	mUndo->setText(tr("Undo"));
+	connect(mUndo, &QAction::triggered, mController, &Controller::undo);
+
+	mRedo->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Z));
+	mRedo->setText(tr("Redo"));
+	connect(mRedo, &QAction::triggered, mController, &Controller::redo);
 }
 
-QGridLayout *ConflictsWindow::initView(details::DiffView *view)
+QGridLayout *ConflictsWindow::initView(ConflictsView *view)
 {
 	QGridLayout *result = new QGridLayout;
 	result->setColumnStretch(0, 10);
 	result->setColumnStretch(1, 0);
 	result->addWidget(view, 0, 0);
-	QSlider *zoomSlider = new QSlider(Qt::Horizontal, this);
-	zoomSlider->setMinimum(0);
-	zoomSlider->setMaximum(100);
-	zoomSlider->setValue(50);
-	connect(zoomSlider, SIGNAL(valueChanged(int)), view, SLOT(adjustZoom(int)));
-	view->adjustZoom(zoomSlider->value());
-	result->addWidget(zoomSlider, 1, 0);
 	return result;
 }

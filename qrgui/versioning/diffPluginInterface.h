@@ -14,16 +14,21 @@
 
 #pragma once
 
+#include <QtCore/QObject>
+
 #include <qrutils/versioningUtils/briefVersioningInterface.h>
 #include <qrgui/plugins/toolPluginInterface/toolPluginInterface.h>
 #include <qrgui/plugins/pluginManager/editorManagerInterface.h>
 
+#include "qrgui/versioning/versioningPluginsManagerDeclSpec.h"
 
 namespace qReal
 {
 
-class DiffPluginInterface : public ToolPluginInterface
+class QRGUI_VERSIONING_PLUGINS_MANAGER_EXPORT DiffPluginInterface : public QObject, public ToolPluginInterface
 {
+	Q_OBJECT
+
 public:
 	virtual ~DiffPluginInterface() {}
 
@@ -73,6 +78,11 @@ public:
 		, BriefVersioningInterface *vcs
 		, QWidget *parent, EditorManagerInterface *manager
 	) = 0;
+
+signals:
+	void pullOurs();
+	void mergeOurs();
+
 };
 
 }

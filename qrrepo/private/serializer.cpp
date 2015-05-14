@@ -53,7 +53,7 @@ Serializer::Serializer(const QString &saveDirName)
 
 Serializer::~Serializer()
 {
-	clearWorkingDir();
+	FileSystemUtils::removeDir(mWorkingDir);
 }
 
 QString Serializer::workingDirectory() const
@@ -169,6 +169,10 @@ void Serializer::saveToDisk(QList<Object *> const &objects, QHash<QString, QVari
 		previousSave.remove();
 	}
 
+	reportAdded();
+	reportChanged();
+	reportRemoved();
+
 	const QString filePath = fileInfo.absolutePath() + "/" + fileName + ".qrs";
 	FolderCompressor::compressFolder(compressDir.absolutePath(), filePath);
 
@@ -177,9 +181,6 @@ void Serializer::saveToDisk(QList<Object *> const &objects, QHash<QString, QVari
 		FileSystemUtils::makeHidden(filePath);
 	}
 
-	reportAdded();
-	reportChanged();
-	reportRemoved();
 	clearWorkingDir();
 }
 

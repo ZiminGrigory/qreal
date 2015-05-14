@@ -14,7 +14,7 @@
 namespace versioning
 {
 
-class DiffPluginWrapper : public QObject, public qReal::DiffPluginInterface
+class DiffPluginWrapper : public qReal::DiffPluginInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(qReal::ToolPluginInterface)
@@ -71,7 +71,9 @@ private:
 	ConflictsWindow *mConflictWidget;
 	bool mCompactMode;
 	bool solveConflicts;
+	bool mIsPull;
 	QString mTargetProject;
+	DiffModel *mDiffModel;
 };
 
 }

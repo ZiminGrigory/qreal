@@ -200,12 +200,13 @@ void ViewInteraction::pushClicked()
 
 void ViewInteraction::pullClicked()
 {
-	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
-	if (QDialog::Accepted != dialog->exec()) {
-		return;
-	}
+//	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
+//	if (QDialog::Accepted != dialog->exec()) {
+//		return;
+//	}
 
-	mPlugin->startPull(dialog->url(), dialog->branch());
+//	mPlugin->startPull(dialog->url(), dialog->branch());
+	mPlugin->startPull("https://github.com/ZiminGrigory/test2.git", "branch2");
 }
 
 void ViewInteraction::resetClicked()
@@ -446,8 +447,14 @@ void ViewInteraction::mergeBranch()
 	mPlugin->startMergeBranch(dialog->getBranchName());
 }
 
+bool ViewInteraction::isCompactMode()
+{
+	return mIsCompactMode;
+}
+
 void ViewInteraction::modeChanged(bool compactMode)
 {
+	mIsCompactMode = compactMode;
 	mMenu.first().menu()->menuAction()->setVisible(!compactMode);
 	mMenu.last().action()->setVisible(compactMode);
 	if (compactMode) {
@@ -468,7 +475,7 @@ void ViewInteraction::removeClosedTab(QWidget *widget)
 	if (mDiffWidgets.contains(widget)) {
 		mDiffWidgets.removeOne(widget);
 		if (mDiffWidgets.isEmpty()) {
-			mMainWindowIface->makeFullScreen(isFullScreen);
+			mMainWindowIface->makeFullScreen(mIsFullScreen);
 		}
 	}
 }
@@ -498,8 +505,8 @@ QString ViewInteraction::currentProject()
 
 QWidget *ViewInteraction::makeDiffTab(const QString &name)
 {
-	isFullScreen = mMainWindowIface->isFullScreen();
-	if (!isFullScreen) {
+	mIsFullScreen = mMainWindowIface->isFullScreen();
+	if (!mIsFullScreen) {
 		mMainWindowIface->makeFullScreen(true);
 	}
 

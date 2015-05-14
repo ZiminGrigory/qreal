@@ -10,10 +10,15 @@ namespace versioning
 class Q_DECL_EXPORT DiffModel
 {
 public:
-	DiffModel(qReal::models::Models *oldModel, qReal::models::Models *newModel);
+	DiffModel(
+		qReal::models::Models *oldModel
+		, qReal::models::Models *newModel
+		, qReal::models::Models *oldActiveModel = nullptr
+	);
 
 	details::Difference *difference(qReal::Id const &id) const;
 	qReal::models::Models *oldModel();
+	qReal::models::Models *oldActiveModel();
 	qReal::models::Models *newModel();
 	qReal::IdList oldGraphicalElements() const;
 	qReal::IdList newGraphicalElements() const;
@@ -22,18 +27,20 @@ public:
 	bool isModelChanged();
 
 private:
+	void findDifferences();
 	qReal::IdList graphicalElements(qReal::models::Models *model);
 	void graphicalElements(qReal::models::Models *model, qReal::IdList &result, qReal::Id const &parent);
 	qReal::IdList uniteIdLists(qReal::IdList const &list1, qReal::IdList const &list2);
-	void findDifferences();
 
 	qReal::models::Models *mOldModel;
+	qReal::models::Models *mOldActiveModel;
 	qReal::models::Models *mNewModel;
 	qReal::IdList mOldGraphicalElements;
 	qReal::IdList mNewGraphicalElements;
 	qReal::IdList mAllGraphicalElements;
 	QHash<qReal::Id, details::Difference *> mDifferences;
 	bool mModelChanged;
+
 };
 
 }
