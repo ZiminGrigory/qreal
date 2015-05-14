@@ -60,7 +60,7 @@ void ConflictsWindow::initLayout()
 
 void ConflictsWindow::initButton()
 {
-	saveButton = new QPushButton(tr("save"), this);
+	saveButton = new QPushButton(tr("resolve ours"), this);
 	connect(saveButton, SIGNAL(clicked()),SIGNAL(processWorkingCopy()));
 	mLayout->addWidget(saveButton,1,0);
 }

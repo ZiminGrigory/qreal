@@ -266,7 +266,15 @@ void GitPlugin::startMergeBranch(const QString &targetBranchName)
 	mTargetBranch = targetBranchName;
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	invokeOperationAsync(QStringList() << "merge" << targetBranchName << "-q", tagVariant, needPreparation);
+	invokeOperationAsync(
+		QStringList() << "merge" << "-q" << targetBranchName
+		, tagVariant
+		, needPreparation
+		, dummyWorkingDir
+		, dummySourceProject
+		, !checkWorkingDir
+		, false
+	);
 }
 
 QString GitPlugin::friendlyName()
@@ -499,13 +507,21 @@ void GitPlugin::startPull(const QString &remote, const QString &branch, const QS
 {
 	disconnect(mDiffInterface, SIGNAL(pullOurs()), this, SLOT(pullOurs()));
 	connect(mDiffInterface, SIGNAL(pullOurs()), this, SLOT(pullOurs()));
-	QStringList arguments{"pull", remote, branch, "-q"};
+	QStringList arguments{"pull", "-q", remote, branch};
 	mTargetBranch = branch;
 	mTargetPullUrl = remote;
 	const Tag tagStruct("pull", remote, branch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	invokeOperationAsync(arguments, tagVariant, needPreparation, targetFolder, dummySourceProject, !checkWorkingDir);
+	invokeOperationAsync(
+		arguments
+		, tagVariant
+		, needPreparation
+		, targetFolder
+		, dummySourceProject
+		, !checkWorkingDir
+		, false
+	);
 }
 
 void GitPlugin::startReset(const QString &hash, const QString &targetFolder, bool quiet)
@@ -781,14 +797,14 @@ void GitPlugin::mergeOurs()
 	const Tag tagStruct("merge", mTargetBranch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	QStringList arguments{"merge", "--no-edit", "-s", "ours", mTargetBranch , "-q"};
+	QStringList arguments{"merge", "-q", "--no-edit", "-s", "ours", mTargetBranch};
 	invokeOperationAsync(arguments, tagVariant, needPreparation);
 }
 
 void GitPlugin::pullOurs()
 {
 	startCommit("pre pull commit", "", dummyTargetProject, true);
-	QStringList arguments{"pull", "--no-edit", "-s", "ours", mTargetPullUrl, mTargetBranch, "-q"};
+	QStringList arguments{"pull", "-q", "--no-edit", "-s", "ours", mTargetPullUrl, mTargetBranch};
 	const Tag tagStruct("pull", mTargetPullUrl, mTargetBranch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);

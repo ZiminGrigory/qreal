@@ -56,9 +56,6 @@ void ViewInteraction::initActions()
 	QAction *cloneAction = gitMenu->addAction(tr("Clone..."));
 	connect(cloneAction, SIGNAL(triggered()), this, SLOT(cloneClicked()));
 
-	QAction *remoteAction = gitMenu->addAction(tr("Remote add..."));
-	connect(remoteAction, SIGNAL(triggered()), this, SLOT(remoteClicked()));
-
 	QAction *commitAction = gitMenu->addAction(tr("Commit..."));
 	connect(commitAction, SIGNAL(triggered()), this, SLOT(commitClicked()));
 
@@ -80,8 +77,12 @@ void ViewInteraction::initActions()
 	QAction *logAction = gitMenu->addAction(tr("Log"));
 	connect(logAction, SIGNAL(triggered()), this, SLOT(logClicked()));
 
-	QAction *remoteListAction = gitMenu->addAction(tr("Remote -v"));
-	connect(remoteListAction, SIGNAL(triggered()), this, SLOT(remoteListClicked()));
+	// add it in next version
+//	QAction *remoteAction = gitMenu->addAction(tr("Remote add..."));
+//	connect(remoteAction, SIGNAL(triggered()), this, SLOT(remoteClicked()));
+
+//	QAction *remoteListAction = gitMenu->addAction(tr("Remote -v"));
+//	connect(remoteListAction, SIGNAL(triggered()), this, SLOT(remoteListClicked()));
 
 	QAction *versionsAction = new QAction(tr("Versions"), this);
 	versionsAction->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_V));
@@ -200,13 +201,12 @@ void ViewInteraction::pushClicked()
 
 void ViewInteraction::pullClicked()
 {
-//	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
-//	if (QDialog::Accepted != dialog->exec()) {
-//		return;
-//	}
+	ui::PushAndPullDialog *dialog = new ui::PushAndPullDialog(mMainWindowIface->windowWidget());
+	if (QDialog::Accepted != dialog->exec()) {
+		return;
+	}
 
-//	mPlugin->startPull(dialog->url(), dialog->branch());
-	mPlugin->startPull("https://github.com/ZiminGrigory/test2.git", "branch2");
+	mPlugin->startPull(dialog->url(), dialog->branch());
 }
 
 void ViewInteraction::resetClicked()
