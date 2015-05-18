@@ -109,7 +109,7 @@ void GitPlugin::beginWorkingCopyDownloading(
 	///@to do: make it more readable and think about mass code refactoring
 	bool success = true;
 	bool remoteUrl = repoAddress.startsWith("https");
-	if (!(branch != QString() && remoteUrl)) {
+	if (branch == QString() && !remoteUrl) {
 		if (commitId.isEmpty()) {
 			success = invokeOperation(
 				QStringList() << "init"
@@ -139,9 +139,9 @@ void GitPlugin::beginWorkingCopyDownloading(
 			);
 		}
 	} else {
-		if (!remoteUrl) {
+		if (branch != QString() && !remoteUrl) {
 			success = invokeOperation(
-				QStringList() << "checkout" << branch
+				QStringList() << "checkout" << branch << "-q" << "-f"
 				, needPreparation
 				, dummyWorkingDir
 				, !checkWorkingDir
@@ -150,7 +150,7 @@ void GitPlugin::beginWorkingCopyDownloading(
 				, dummySourceProject
 				, quiet
 			);
-		} else {
+		} else if (branch != QString() && remoteUrl){
 			// problem with QProcessPrivate.
 			// If dir doesn't exist, and git clone make it , the QProcessPrivate ends with error
 			QDir dir;
@@ -262,6 +262,8 @@ QString GitPlugin::getBranchesList()
 
 void GitPlugin::startMergeBranch(const QString &targetBranchName)
 {
+	disconnect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
+	connect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
 	const Tag tagStruct("merge", targetBranchName);
 	mTargetBranch = targetBranchName;
 	QVariant tagVariant;
@@ -738,11 +740,14 @@ void GitPlugin::onPullComplete(bool result, const QString &remote, const QString
 		, !needProcessing
 	);
 	QString output = standartOutput();
-	bool res = result && !output.contains(QRegExp(".*^UU*")) && !output.contains(QRegExp(".*^U*"));
+	bool res0 = output.contains("\nUA") || output.startsWith("UA");
+	bool res1 = output.contains("\nUU") || output.startsWith("UU");
+	bool res2 = output.contains("\nU") || output.startsWith("U");
+	bool res = result && !res0 && !res1 && !res2;
 	if (res) {
 		processWorkingCopy();
-		emit pullComplete(result);
-		emit operationComplete("pull", result);
+		emit pullComplete(res);
+		emit operationComplete("pull", res);
 	} else {
 		QWidget *widget = mViewInteraction->makeDiffTab(tr("pullConflicts"));
 		mDiffInterface->solvePull(remote, branch, mViewInteraction->currentProject(), widget);
@@ -751,14 +756,24 @@ void GitPlugin::onPullComplete(bool result, const QString &remote, const QString
 
 void GitPlugin::onMergeComplete(bool result, const QString &branch)
 {
-	if (result) {
+	invokeOperation(
+		QStringList() << "status" << "--short"
+		, !needPreparation
+		, dummyWorkingDir
+		, !checkWorkingDir
+		, !needProcessing
+	);
+	QString output = standartOutput();
+	bool res0 = output.contains("\nUA") || output.startsWith("UA");
+	bool res1 = output.contains("\nUU") || output.startsWith("UU");
+	bool res2 = output.contains("\nU") || output.startsWith("U");
+	bool res = result && !res0 && !res1 && !res2;
+	if (res) {
 		processWorkingCopy();
-		emit pullComplete(result);
-		emit operationComplete("pull", result);
+		emit mergeBranchesComplete(res);
+		emit operationComplete("merge", res);
 	} else {
 		QWidget *widget = mViewInteraction->makeDiffTab(tr("mergeConflicts"));
-		disconnect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
-		connect(mDiffInterface, SIGNAL(mergeOurs()), this, SLOT(mergeOurs()));
 		mDiffInterface->solveMerge(branch, mViewInteraction->currentProject(), widget);
 	}
 }
@@ -793,18 +808,18 @@ void GitPlugin::showDiff(const QString &oldhash, const QString &targetProject, Q
 
 void GitPlugin::mergeOurs()
 {
-	startCommit("pre merge commit", "", dummyTargetProject, true);
+	startCommit("merge commit", "", dummyTargetProject, true);
 	const Tag tagStruct("merge", mTargetBranch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);
-	QStringList arguments{"merge", "-q", "--no-edit", "-s", "ours", mTargetBranch};
+	QStringList arguments{"merge", "-q", "-s", "ours", mTargetBranch};
 	invokeOperationAsync(arguments, tagVariant, needPreparation);
 }
 
 void GitPlugin::pullOurs()
 {
-	startCommit("pre pull commit", "", dummyTargetProject, true);
-	QStringList arguments{"pull", "-q", "--no-edit", "-s", "ours", mTargetPullUrl, mTargetBranch};
+	startCommit("pull commit", "", dummyTargetProject, true);
+	QStringList arguments{"pull", "-q", "-s", "ours", mTargetPullUrl, mTargetBranch};
 	const Tag tagStruct("pull", mTargetPullUrl, mTargetBranch);
 	QVariant tagVariant;
 	tagVariant.setValue(tagStruct);

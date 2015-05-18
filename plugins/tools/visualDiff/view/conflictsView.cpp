@@ -29,7 +29,6 @@ ConflictsView::ConflictsView(
 	, mModel(!isTheirs ? mDiffModel->oldModel() : mDiffModel->newModel())
 {
 	this->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	//setScene(&mScene);
 	mMVIface.configure(mModel->graphicalModelAssistApi(), mModel->logicalModelAssistApi(), mModel->exploser());
 	mMVIface.setModel(mModel->graphicalModel());
 	mMVIface.setLogicalModel(mModel->logicalModel());

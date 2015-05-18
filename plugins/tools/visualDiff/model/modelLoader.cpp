@@ -171,7 +171,7 @@ void ModelLoader::onOldModelLoaded(qReal::models::Models *model)
 		emit modelLoaded(nullptr);
 		mOldActiveModel = nullptr;
 	} else if (mIsForConflicts) {
-		mOldActiveModel = loadFromDisk(mTargetProject);
+		mOldActiveModel = loadFromDisk(tempProject());
 	}
 
 	qReal::FileSystemUtils::removeFile(tempProject());

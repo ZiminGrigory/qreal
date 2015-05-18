@@ -60,7 +60,7 @@ void ConflictsWindow::initLayout()
 
 void ConflictsWindow::initButton()
 {
-	saveButton = new QPushButton(tr("resolve ours"), this);
+	saveButton = new QPushButton(tr("Resolve ours"), this);
 	connect(saveButton, SIGNAL(clicked()),SIGNAL(processWorkingCopy()));
 	mLayout->addWidget(saveButton,1,0);
 }
@@ -70,6 +70,9 @@ void ConflictsWindow::initViews()
 {
 	QSplitter *verticalSplitter = new QSplitter(Qt::Vertical, this);
 	verticalSplitter->setFrameStyle(QFrame::Sunken);
+
+	QSplitter *horizontalSplitter = new QSplitter(Qt::Horizontal, this);
+	horizontalSplitter->setFrameStyle(QFrame::Sunken);
 
 	QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
 	QList<int> sizes;
@@ -94,6 +97,8 @@ void ConflictsWindow::initViews()
 
 	splitter->setSizes(sizes);
 
+	horizontalSplitter->setSizes(sizes);
+
 	verticalSplitter->addWidget(splitter);
 
 	mDiffDetailsWidget = new details::DiffDetailsWidget(mDiffModel, this);
@@ -116,20 +121,22 @@ void ConflictsWindow::initViews()
 	mSolveView->mutableMvIface().setModel(solveModel->graphicalModel());
 	mSolveView->mutableMvIface().setLogicalModel(solveModel->logicalModel());
 	mSolveView->mutableMvIface().setRootIndex(rootSolveIndex);
-	verticalSplitter->addWidget(mSolveView);
+
+	QList<int> sizesForVerticalSplitter{1,1};
+	verticalSplitter->setSizes(sizesForVerticalSplitter);
+	verticalSplitter->setStretchFactor(0, 9);
+	verticalSplitter->setStretchFactor(1, 0);
+
+	horizontalSplitter->addWidget(mSolveView);
+	horizontalSplitter->addWidget(verticalSplitter);
+	horizontalSplitter->setStretchFactor(0, 1);
+	horizontalSplitter->setStretchFactor(1, 9);
 
 	QWidget *tmp = new QWidget;
 	QGridLayout *layoutTmp = new QGridLayout;
-	layoutTmp->addWidget(verticalSplitter);
+	layoutTmp->addWidget(horizontalSplitter);
 	tmp->setLayout(layoutTmp);
 	mDiagrams->addTab(tmp, "conflicts");
-
-	QList<int> sizesForCopySplitter;
-	sizesForCopySplitter << 1 << 1 << 1;
-	verticalSplitter->setSizes(sizesForCopySplitter);
-	verticalSplitter->setStretchFactor(0, 9);
-	verticalSplitter->setStretchFactor(1, 0);
-	verticalSplitter->setStretchFactor(2, 9);
 
 	mController->setActiveDiagram(rootId);
 
