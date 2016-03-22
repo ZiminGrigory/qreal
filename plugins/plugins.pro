@@ -18,14 +18,16 @@ include(common.pri)
 
 # editor plugins
 SUBDIRS += \
-	$$PWD/ains/ains.pro \
-	$$PWD/blockDiagram/blockDiagram.pro \
-	$$PWD/deployment/deploymentEditor.pro \
-	$$PWD/domainAnalysis/domainAnalysis.pro \
-	$$PWD/dragonDiagram/dragonDiagram.pro \
-	$$PWD/hascol/hascol.pro \
+#	$$PWD/ains/ains.pro \
+#	$$PWD/blockDiagram/blockDiagram.pro \
+#	$$PWD/deployment/deploymentEditor.pro \
+#	$$PWD/domainAnalysis/domainAnalysis.pro \
+#	$$PWD/dragonDiagram/dragonDiagram.pro \
+#	$$PWD/hascol/hascol.pro \
 	$$PWD/metaEditor/metaEditor.pro \
-	$$PWD/requirements/requirements.pro \
+#	$$PWD/requirements/requirements.pro \
+	$$PWD/robotsDataFlowDiagram/robotDataFlowEditor.pro \
+
 
 # interpreted plugins
 SUBDIRS += \
