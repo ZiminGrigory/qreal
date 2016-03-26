@@ -15,6 +15,6 @@ SUBDIRS = \
 robots/utils.depends = robots/thirdparty
 robots/common.depends = robots/thirdparty robots/utils
 robots/interpreters.depends = robots/common robots/thirdparty robots/utils
-robots/dataFlowInterpreters.depends = robots/common robots/thirdparty robots/utils
+robots/dataFlowInterpreters.depends = robots/common robots/thirdparty robots/utils robots/interpreters
 robots/generators.depends = robots/common robots/utils
 robots/checker.depends = robots/interpreters
