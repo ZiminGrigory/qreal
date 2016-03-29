@@ -18,8 +18,12 @@ include(../../../../global.pri)
 
 TEMPLATE = lib
 CONFIG += plugin widgets
+QT += widgets
 
 DESTDIR = $$DESTDIR/plugins/tools/kitPlugins/
 
 include(src/DFInterpreter.pri)
+
+RESOURCES += \
+    dataflowinterpreter.qrc
 

@@ -7,7 +7,7 @@ using namespace kitBase::blocksBase;
 using namespace dataFlowBlocks;
 
 
-qReal::interpretation::Block *dataFlowBlocks::dataFlowFactoryBase::produceBlock(const qReal::Id &element)
+qReal::interpretation::Block *dataFlowBlocks::DFFactoryBase::produceBlock(const qReal::Id &element)
 {
 	if (elementDFMetatypeIs(element, "Motors")) {
 		return new details::DFMotorsBlock(mRobotModelManager->model());
@@ -18,7 +18,7 @@ qReal::interpretation::Block *dataFlowBlocks::dataFlowFactoryBase::produceBlock(
 	return nullptr;
 }
 
-qReal::IdList dataFlowBlocks::dataFlowFactoryBase::providedBlocks() const
+qReal::IdList dataFlowBlocks::DFFactoryBase::providedBlocks() const
 {
 	qReal::IdList result;
 
@@ -28,7 +28,7 @@ qReal::IdList dataFlowBlocks::dataFlowFactoryBase::providedBlocks() const
 	return result;
 }
 
-qReal::IdList dataFlowBlocks::dataFlowFactoryBase::blocksToDisable() const
+qReal::IdList dataFlowBlocks::DFFactoryBase::blocksToDisable() const
 {
 	qReal::IdList result;
 
@@ -39,12 +39,12 @@ qReal::IdList dataFlowBlocks::dataFlowFactoryBase::blocksToDisable() const
 	return result;
 }
 
-qReal::Id dataFlowBlocks::dataFlowFactoryBase::dataFlowId(const QString &metatype) const
+qReal::Id dataFlowBlocks::DFFactoryBase::dataFlowId(const QString &metatype) const
 {
 	return qReal::Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", metatype);
 }
 
-bool dataFlowFactoryBase::elementDFMetatypeIs(const qReal::Id &element, const QString &metatype) const
+bool DFFactoryBase::elementDFMetatypeIs(const qReal::Id &element, const QString &metatype) const
 {
 	return element.type() == dataFlowId(metatype);
 }

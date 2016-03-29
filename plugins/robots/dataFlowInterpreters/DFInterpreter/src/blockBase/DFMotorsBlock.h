@@ -16,44 +16,47 @@
 
 #include <kitBase/robotModel/robotModelInterface.h>
 #include <kitBase/robotModel/robotModelUtils.h>
+#include <kitBase/robotModel/robotParts/motor.h>
 
-#include "plugins/robots/dataFlowInterpreters/superCosmoInterpreter/src/dataFlowRobotsBlock.h"
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
+
 
 namespace dataFlowBlocks {
 namespace details {
 
-
-/// A base for all blocks that work with some robot`s device. This block will
-/// perform search of some device of the given type and call doJob() from it if it was found
-/// or display an error otherwise.
-template<typename Device>
-class DFDeviceBlock : public interpreterCore::interpreter::dataFlowInterpretation::DataFlowRobotsBlock
+/// A base for all blocks that work with motors.
+class DFMotorsBlock : public interpreterCore::interpreter::dataFlowInterpretation::DFRobotsBlock
 {
+	Q_OBJECT
 
 public:
-	explicit DFDeviceBlock(kitBase::robotModel::RobotModelInterface &robotModel)
-		: mRobotModel(robotModel)
-	{
-	}
+	/// Constructor, takes current robot model as parameter.
+	explicit DFMotorsBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
-	void run() override
-	{
-		const kitBase::robotModel::DeviceInfo deviceInfo = kitBase::robotModel::DeviceInfo::create<Device>();
-		const QString port = deviceInfo.name()[0].toUpper() + deviceInfo.name().mid(1) + "Port";
-		Device * const device = kitBase::robotModel::RobotModelUtils::findDevice<Device>(mRobotModel, port);
-		if (device) {
-			doJob(*device);
-		} else {
-			error(QObject::tr("%1 is not configured.").arg(deviceInfo.friendlyName()));
-		}
-	}
+	QMap<kitBase::robotModel::PortInfo, kitBase::robotModel::DeviceInfo> usedDevices() override;
+	void run() override;
 
 protected:
-	/// Implementation may consider that the device is configured and ready to work.
-	virtual void doJob(Device &display) = 0;
+	kitBase::robotModel::RobotModelInterface &mRobotModel;
 
 private:
-	kitBase::robotModel::RobotModelInterface &mRobotModel;
+	template<class MotorType>
+	QList<MotorType *> parsePorts(ReportErrors reportErrors = ReportErrors::report)
+	{
+		QList<MotorType *> result;
+		const QList<kitBase::robotModel::PortInfo> ports = parsePorts(reportErrors);
+
+		for (const kitBase::robotModel::PortInfo &port : ports) {
+			MotorType * const motor = kitBase::robotModel::RobotModelUtils::findDevice<MotorType>(mRobotModel, port);
+			if (motor) {
+				result << motor;
+			}
+		}
+
+		return result;
+	}
+
+	QList<kitBase::robotModel::PortInfo> parsePorts(ReportErrors reportErrors = ReportErrors::report);
 };
 
 }

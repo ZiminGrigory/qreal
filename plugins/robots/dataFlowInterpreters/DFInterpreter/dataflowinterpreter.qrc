@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>icons/dataflow_run.svg</file>
+    </qresource>
+</RCC>

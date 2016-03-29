@@ -88,7 +88,7 @@ private:
 	details::BlocksTable *mBlocksTable;
 	const qReal::Id mInitialDiagram;
 	QString mId;
-	QList<DataFlowRobotsBlock *> mInitialNodes;
+	QList<DFRobotsBlock *> mInitialNodes;
 	QQueue<QString> mMessages;
 };
 

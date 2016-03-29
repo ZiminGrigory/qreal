@@ -18,14 +18,14 @@
 #include <kitBase/robotModel/robotModelUtils.h>
 #include <kitBase/robotModel/robotParts/motor.h>
 
-#include "plugins/robots/dataFlowInterpreters/superCosmoInterpreter/src/dataFlowRobotsBlock.h"
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
 
 namespace dataFlowBlocks {
 namespace details {
 
 /// block for data, that sends data one time
-class DFValueEmitter : public interpreterCore::interpreter::dataFlowInterpretation::DataFlowRobotsBlock
+class DFValueEmitter : public interpreterCore::interpreter::dataFlowInterpretation::DFRobotsBlock
 {
 	Q_OBJECT
 

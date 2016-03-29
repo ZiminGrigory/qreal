@@ -12,7 +12,6 @@ using namespace dataFlowBlocks::details;
 //using namespace kitBase::blocksBase::common;
 //using namespace kitBase::robotModel;
 
-
 DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
 {

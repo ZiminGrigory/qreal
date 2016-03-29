@@ -15,6 +15,8 @@
 includes(plugins/robots/common/kitBase \
 		plugins/robots/common/ \
 		plugins/robots/common/twoDModel \
+		plugins/robots/common/trikKit \
+		plugins/robots/common/trikKit/include \
 		plugins/robots/interpreters/interpreterCore \
 		plugins/robots/utils \
 		plugins/robots/interpreters \
@@ -57,6 +59,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
+    $$PWD/DFRobotsBlock.cpp \
     $$PWD/DFThread.cpp \
     $$PWD/DFTrikKitV62InterpreterPlugin.cpp \
     $$PWD/blockBase/DFMotorsBlock.cpp \

@@ -31,7 +31,7 @@ DFThread::DFThread(const GraphicalModelAssistInterface *graphicalModelApi
 void DFThread::init(const IdList &initialNodeIds)
 {
 	for (auto &id: initialNodeIds) {
-		mInitialNodes.append(dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(id)));
+		mInitialNodes.append(dynamic_cast<DFRobotsBlock *>(mBlocksTable->block(id)));
 	}
 
 	for (auto &node: mInitialNodes) {

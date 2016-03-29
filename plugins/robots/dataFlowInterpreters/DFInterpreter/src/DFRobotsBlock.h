@@ -28,7 +28,7 @@ namespace interpreter {
 namespace dataFlowInterpretation {
 
 /// Base class for all blocks implementations used in robots interpreter.
-class DataFlowRobotsBlock : public kitBase::blocksBase::RobotsBlock
+class DFRobotsBlock : public kitBase::blocksBase::RobotsBlock
 {
 	Q_OBJECT
 
@@ -40,7 +40,7 @@ signals:
 	void newDataInFlow(const QVariant &data, int port);
 
 protected:
-	DataFlowRobotsBlock();
+	DFRobotsBlock();
 
 	QVariant property(int portNumber);
 	QVariant propertyFromPort(const QString &name);

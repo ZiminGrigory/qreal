@@ -30,25 +30,10 @@ using namespace qReal;
 
 const Id robotDiagramType = Id("RobotsMetamodel", "RobotsDiagram", "RobotsDiagramNode");
 const Id subprogramDiagramType = Id("RobotsMetamodel", "RobotsDiagram", "SubprogramDiagram");
-const QString kitIdString = "trikV62Kit";
+const QString kitIdString = "DFTrikV62Kit";
 
 
 DFTrikKitV62InterpreterPLugin::DFTrikKitV62InterpreterPLugin()
-{
-}
-
-DFTrikKitV62InterpreterPLugin::~DFTrikKitV62InterpreterPLugin()
-{
-	if (mOwnsAdditionalPreferences) {
-		delete mAdditionalPreferences;
-	}
-
-	if (mOwnsBlocksFactory) {
-		delete mBlocksFactory;
-	}
-}
-
-void DFTrikKitV62InterpreterPLugin::init(const kitBase::KitPluginConfigurator &configurer)
 {
 	mStartInterpretationAction = new QAction(QIcon(":/icons/dataflow_run.svg")
 											 , tr("Run DataFlow Interpretation")
@@ -65,7 +50,21 @@ void DFTrikKitV62InterpreterPLugin::init(const kitBase::KitPluginConfigurator &c
 	mTwoDModel.reset(modelEngine);
 
 	mAdditionalPreferences = new TrikAdditionalPreferences({ mRealRobotModel->name() });
+}
 
+DFTrikKitV62InterpreterPLugin::~DFTrikKitV62InterpreterPLugin()
+{
+	if (mOwnsAdditionalPreferences) {
+		delete mAdditionalPreferences;
+	}
+
+	if (mOwnsBlocksFactory) {
+		delete mBlocksFactory;
+	}
+}
+
+void DFTrikKitV62InterpreterPLugin::init(const kitBase::KitPluginConfigurator &configurer)
+{
 	qReal::gui::MainWindowInterpretersInterface &interpretersInterface
 			= configurer.qRealConfigurator().mainWindowInterpretersInterface();
 
@@ -178,5 +177,5 @@ QString DFTrikKitV62InterpreterPLugin::kitId() const
 
 QString DFTrikKitV62InterpreterPLugin::friendlyKitName() const
 {
-	return tr("TRIK (model-2015)");
+	return tr("TRIK (DF-2016)");
 }
