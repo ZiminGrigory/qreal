@@ -26,6 +26,7 @@
 #include <trikKitInterpreterCommon/robotModel/twoD/trikTwoDRobotModel.h>
 
 #include "DFFactoryBase.h"
+#include "robotModel/DFTrikRobotModelBase.h"
 
 #include "declSpec.h"
 
@@ -74,7 +75,7 @@ private slots:
 
 private:
 	QScopedPointer<twoDModel::TwoDModelControlInterface> mTwoDModel;
-	QScopedPointer<trik::robotModel::TrikRobotModelBase> mRealRobotModel;
+	QScopedPointer<trik::robotModel::dataFlow::DFTrikRobotModelBase> mRealRobotModel;
 	QScopedPointer<trik::robotModel::twoD::TrikTwoDRobotModel> mTwoDRobotModel;
 
 	/// @todo Use shared pointers instead of this sh~.

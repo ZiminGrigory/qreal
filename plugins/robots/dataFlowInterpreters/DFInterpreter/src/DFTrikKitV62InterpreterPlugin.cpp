@@ -21,15 +21,15 @@
 #include <qrkernel/settingsManager.h>
 #include <qrkernel/settingsListener.h>
 
-#include <trikV62KitInterpreter/src/robotModel/real/trikV62RealRobotModel.h>
-#include <trikV62KitInterpreter/src/robotModel/twoD/trikV62TwoDRobotModel.h>
+#include "robotModel/DFRealRobotModelV62.h"
+#include "robotModel/DFTwoDRobotModelV62.h"
 
 using namespace trik;
 using namespace trik::dataFlow;
 using namespace qReal;
 
-const Id robotDiagramType = Id("RobotsMetamodel", "RobotsDiagram", "RobotsDiagramNode");
-const Id subprogramDiagramType = Id("RobotsMetamodel", "RobotsDiagram", "SubprogramDiagram");
+const Id robotDiagramType = Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourDiagram");
+const Id subprogramDiagramType = Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourSubprogram");
 const QString kitIdString = "DFTrikV62Kit";
 
 
@@ -40,8 +40,8 @@ DFTrikKitV62InterpreterPLugin::DFTrikKitV62InterpreterPLugin()
 											 , nullptr
 	);
 
-	mRealRobotModel.reset(new trik::robotModel::real::RealRobotModel(kitIdString, "trikV62KitRobot"));
-	mTwoDRobotModel.reset(new trik::robotModel::twoD::TwoDRobotModel(*(mRealRobotModel.data())));
+	mRealRobotModel.reset(new trik::robotModel::dataFlow::real::DFRealRobotModel(kitIdString, "trikV62KitRobot"));
+	mTwoDRobotModel.reset(new trik::robotModel::dataFlow::twoD::DFTwoDRobotModel(*(mRealRobotModel.data())));
 	mBlocksFactory = new dataFlowBlocks::DFFactoryBase();
 
 	const auto modelEngine = new twoDModel::engine::TwoDModelEngineFacade(*mTwoDRobotModel);
