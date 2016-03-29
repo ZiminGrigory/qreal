@@ -1,0 +1,11 @@
+#ifndef DFTRIKKITV62INTERPRETERPLUGIN_H
+#define DFTRIKKITV62INTERPRETERPLUGIN_H
+
+
+class DFTrikKitV62InterpreterPLugin
+{
+public:
+	DFTrikKitV62InterpreterPLugin();
+};
+
+#endif // DFTRIKKITV62INTERPRETERPLUGIN_H
