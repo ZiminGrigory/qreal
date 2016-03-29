@@ -18,10 +18,10 @@
 
 namespace dataFlowBlocks {
 
-class dataFlowFactoryBase : public kitBase::blocksBase::CommonBlocksFactory
+class DFFactoryBase : public kitBase::blocksBase::CommonBlocksFactory
 {
 public:
-	dataFlowFactoryBase() = default;
+	DFFactoryBase() = default;
 	qReal::interpretation::Block *produceBlock(const qReal::Id &element) override;
 	qReal::IdList providedBlocks() const override;
 	qReal::IdList blocksToDisable() const override;

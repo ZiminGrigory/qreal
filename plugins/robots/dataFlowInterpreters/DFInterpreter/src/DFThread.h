@@ -29,7 +29,7 @@
 
 #include <interpreterCore/interpreter/details/blocksTable.h>
 
-#include "dataFlowRobotsBlock.h"
+#include "DFRobotsBlock.h"
 
 class QTimer;
 
@@ -38,7 +38,7 @@ namespace interpreter {
 namespace dataFlowInterpretation {
 
 /// Program execution thread. Has currently executed block, and its own stack.
-class CosmoThread : public QObject
+class DFThread : public QObject
 {
 	Q_OBJECT
 
@@ -49,7 +49,7 @@ public:
 	/// @param initialNodeType - the type of the element to start on diagram when stepping into it.
 	/// @param blocksTable - interpreter-wide table of blocks (map from ids to "code-behind" objects).
 	/// @param initialNode - node that shall be executed first in this thread.
-	CosmoThread(const qReal::GraphicalModelAssistInterface *graphicalModelApi
+	DFThread(const qReal::GraphicalModelAssistInterface *graphicalModelApi
 			, qReal::gui::MainWindowInterpretersInterface &interpretersInterface
 			, details::BlocksTable *blocksTable
 			, const qReal::IdList &initialNodeIds

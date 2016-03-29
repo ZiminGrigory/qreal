@@ -1,6 +1,6 @@
 include (qreal.pri)
 
-plugins.file = $$PWD/plugins/superCosmoRobots.pro
+plugins.file = $$PWD/plugins/DFRobots.pro
 
 RESOURCES += \
 	qrgui/mainwindow/qrgui.qrc

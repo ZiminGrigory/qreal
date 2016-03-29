@@ -12,7 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TEMPLATE = subdirs
+TARGET = dataflow-interpreter
 
-SUBDIRS = \
-	DFInterpreter\
+include(../../../../global.pri)
+
+TEMPLATE = lib
+CONFIG += plugin widgets
+
+DESTDIR = $$DESTDIR/plugins/tools/kitPlugins/
+
+include(src/DFInterpreter.pri)
+

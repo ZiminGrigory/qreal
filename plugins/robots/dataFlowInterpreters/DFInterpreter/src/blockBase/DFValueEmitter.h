@@ -1,4 +1,4 @@
-/* Copyright 2015 CyberTech Labs Ltd.
+/* Copyright 2007-2015 QReal Research Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,25 @@
 
 #pragma once
 
-#include <QtCore/qglobal.h>
+#include <kitBase/robotModel/robotModelInterface.h>
+#include <kitBase/robotModel/robotModelUtils.h>
+#include <kitBase/robotModel/robotParts/motor.h>
 
-#ifndef ROBOTS_TRIK_KIT_INTERPRETER_DATA_FLOW_EXPORT
-#  if defined(ROBOTS_TRIK_KIT_INTERPRETER_DATA_FLOW_LIBRARY)
-#    define ROBOTS_TRIK_KIT_INTERPRETER_DATA_FLOW_EXPORT Q_DECL_EXPORT
-#  else
-#    define ROBOTS_TRIK_KIT_INTERPRETER_DATA_FLOW_EXPORT Q_DECL_IMPORT
-#  endif
-#endif
+#include "plugins/robots/dataFlowInterpreters/superCosmoInterpreter/src/dataFlowRobotsBlock.h"
+
+
+namespace dataFlowBlocks {
+namespace details {
+
+/// block for data, that sends data one time
+class DFValueEmitter : public interpreterCore::interpreter::dataFlowInterpretation::DataFlowRobotsBlock
+{
+	Q_OBJECT
+
+public:
+	DFValueEmitter();
+	void run() override;
+};
+
+}
+}
