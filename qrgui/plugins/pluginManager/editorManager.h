@@ -33,8 +33,6 @@
 
 namespace qReal {
 
-class Metamodel;
-
 namespace gui {
 namespace editor {
 class Element;
@@ -63,6 +61,8 @@ public:
 
 	QString loadPlugin(const QString &pluginName) override;
 	QString unloadPlugin(const QString &pluginName) override;
+	bool unloadAllPlugins() override;
+	void loadMetamodel(Metamodel &metamodel) override;
 
 	QString mouseGesture(const Id &id) const override;
 	QString friendlyName(const Id &id) const override;
@@ -107,7 +107,10 @@ public:
 			, const QString &childDiagram, const QString &childElement) const override;
 	QString diagramName(const QString &editor, const QString &diagram) const override;
 	QString diagramNodeName(const QString &editor, const QString &diagram) const override;
+
 	bool isInterpretationMode() const override;
+	void setInterpretationMode(bool enabled) override;
+
 	bool isParentProperty(const Id &id, const QString &propertyName) const override;
 	void deleteProperty(const QString &propDisplayedName) const override;
 	void addProperty(const Id &id, const QString &propDisplayedName) const override;
@@ -116,21 +119,20 @@ public:
 	QString propertyNameByDisplayedName(const Id &id, const QString &displayedPropertyName) const override;
 	IdList children(const Id &parent) const override;
 	QString shape(const Id &id) const override;
-	void updateShape(const Id &id, const QString &graphics) const override;
-	virtual void resetIsHidden(const Id &id) const;
-	virtual QString getIsHidden(const Id &id) const;
+	void updateShape(const Id &id, const QDomElement &graphicsSdf) const override;
+	void resetIsHidden(const Id &id) const override;
+	bool isHidden(const Id &id) const override;
 	void deleteElement(const Id &id) const override;
-	bool isRootDiagramNode(const Id &id) const override;
 	void addNodeElement(const Id &diagram, const QString &name, const QString &displayedName
 			, bool isRootDiagramNode) const override;
 	void addEdgeElement(const Id &diagram, const QString &name, const QString &displayedName, const QString &labelText
 			, const QString &labelType, const QString &lineType, const QString &beginType
 			, const QString &endType) const override;
-	QPair<Id, Id> createEditorAndDiagram(const QString &name) const override;
+	void createEditorAndDiagram(const QString &name) override;
 	void saveMetamodel(const QString &newMetamodelFileName) override;
 	QString saveMetamodelFilePath() const override;
 
-	IdList elementsWithTheSameName(const Id &diagram, const QString &name, const QString type) const override;
+	IdList elementsWithTheSameName(const Id &diagram, const QString &name, const QString &type) const override;
 	IdList propertiesWithTheSameName(const Id &id
 			, const QString &propertyCurrentName, const QString &propertyNewName) const override;
 
@@ -164,6 +166,9 @@ private:
 	PluginManager mPluginManager;
 
 	QSet<Id> mDisabledElements;
+
+	bool mInterterpretationMode;
+	QString mMetamodelFile;
 };
 
 }

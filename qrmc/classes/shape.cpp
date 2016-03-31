@@ -76,15 +76,13 @@ void Shape::initLabels(const QDomElement &graphics)
 		element = element.nextSiblingElement("label"))
 	{
 		Label *label = new Label();
-		if (!label->init(element, count, true, mWidth, mHeight))
+		if (!label->init(element, count, true, mWidth, mHeight)) {
 			delete label;
-		else {
+		} else {
 			mLabels.append(label);
 			++count;
 		}
 	}
-	return;
-
 }
 
 void Shape::initPorts(const QDomElement &graphics)
@@ -139,7 +137,7 @@ void Shape::changeDir(QDir &dir) const
 	}
 
 	dir.cd(mTargetDirectory);
-	QString editorName = mNode->diagram()->editor()->name();
+	QString editorName = mNode->diagram().editor()->name();
 	if (!dir.exists(editorName)) {
 		dir.mkdir(editorName);
 	}
@@ -164,7 +162,7 @@ void Shape::generate(QString &classTemplate) const
 
 	generateSdf();
 
-	MetaCompiler *compiler = mNode->diagram()->editor()->metaCompiler();
+	MetaCompiler &compiler = mNode->diagram().editor()->metaCompiler();
 	QString unused;
 	if (!hasPointPorts()) {
 		unused += nodeIndent + "Q_UNUSED(pointPorts)" + endline;
@@ -174,25 +172,25 @@ void Shape::generate(QString &classTemplate) const
 	}
 
 	QString shapeRendererLine = hasPicture()
-								? compiler->getTemplateUtils(nodeLoadShapeRendererTag)
+								? compiler.getTemplateUtils(nodeLoadShapeRendererTag)
 								: "";
 	QString portRendererLine = (hasLinePorts() || hasPointPorts())
-								? compiler->getTemplateUtils(nodeLoadPortsRendererTag)
+								? compiler.getTemplateUtils(nodeLoadPortsRendererTag)
 								: nodeIndent +  "mRenderer->setElementRepo(elementRepo);";
-	QString nodeContentsLine = compiler->getTemplateUtils(nodeContentsTag)
+	QString nodeContentsLine = compiler.getTemplateUtils(nodeContentsTag)
 							.replace(nodeWidthTag, QString::number(mWidth))
 							.replace(nodeHeightTag, QString::number(mHeight));
 	QString portsInitLine;
 	for (Port *port : mPorts) {
-		port->generatePortList(this->mNode->diagram()->editor()->getAllPortNames());
-		portsInitLine += port->generateInit(compiler) + endline;
+		port->generatePortList(this->mNode->diagram().editor()->getAllPortNames());
+		portsInitLine += port->generateInit(&compiler) + endline;
 	}
 
 	QString labelsInitLine;
 	QString labelsUpdateLine;
 	QString labelsDefinitionLine;
 
-	foreach(Label *label, mLabels) {
+	for (const Label * const label : mLabels) {
 		labelsInitLine += label->generateInit(compiler, true) + endline;
 		labelsUpdateLine += label->generateUpdate(compiler) + endline;
 		labelsDefinitionLine += label->generateDefinition(compiler) + endline;

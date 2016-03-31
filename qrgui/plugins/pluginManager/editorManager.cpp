@@ -22,16 +22,20 @@
 #include <qrkernel/platformInfo.h>
 #include <qrkernel/exception/exception.h>
 #include <qrrepo/repoApi.h>
+#include <qrgraph/queries.h>
 #include <metaMetaModel/metamodel.h>
 #include <metaMetaModel/nodeElementType.h>
+#include <metaMetaModel/edgeElementType.h>
 #include <metaMetaModel/patternType.h>
 
 #include "qrgui/plugins/pluginManager/sdfRenderer.h"
+#include "qrgui/plugins/pluginManager/qrsMetamodelSaver.h"
 
 using namespace qReal;
 
 EditorManager::EditorManager(const QString &path)
 	: mPluginManager(path)
+	, mInterterpretationMode(false)
 {
 	init();
 }
@@ -39,15 +43,14 @@ EditorManager::EditorManager(const QString &path)
 EditorManager::EditorManager(QObject *parent)
 	: QObject(parent)
 	, mPluginManager(PlatformInfo::invariantSettingsPath("pathToEditorPlugins"))
+	, mInterterpretationMode(false)
 {
 	init();
 }
 
 EditorManager::~EditorManager()
 {
-	for (const QString &pluginName : mMetamodels.keys()) {
-		unloadPlugin(pluginName);
-	}
+	unloadAllPlugins();
 }
 
 void EditorManager::init()
@@ -117,10 +120,29 @@ QString EditorManager::unloadPlugin(const QString &pluginName)
 	return resultOfUnloading;
 }
 
+bool EditorManager::unloadAllPlugins()
+{
+	bool result = true;
+	for (const QString &pluginName : mMetamodels.keys()) {
+		result &= unloadPlugin(pluginName).isEmpty();
+	}
+
+	return result;
+}
+
+void EditorManager::loadMetamodel(Metamodel &metamodel)
+{
+	if (mMetamodels.contains(metamodel.id())) {
+		return;
+	}
+
+	mMetamodels[metamodel.id()] = &metamodel;
+}
+
 IdList EditorManager::editors() const
 {
 	IdList editors;
-	for (const QString &editor : mPluginsLoaded) {
+	for (const QString &editor : mMetamodels.keys()) {
 		editors.append(Id(editor));
 	}
 
@@ -130,7 +152,7 @@ IdList EditorManager::editors() const
 IdList EditorManager::diagrams(const Id &editor) const
 {
 	IdList diagrams;
-	Q_ASSERT(mPluginsLoaded.contains(editor.editor()));
+	Q_ASSERT(mMetamodels.contains(editor.editor()));
 
 	for (const QString &diagram : mMetamodels[editor.editor()]->diagrams()) {
 		diagrams.append(Id(editor, diagram));
@@ -141,7 +163,7 @@ IdList EditorManager::diagrams(const Id &editor) const
 
 QStringList EditorManager::paletteGroups(const Id &editor, const Id &diagram) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(diagram.editor()));
+	Q_ASSERT(mMetamodels.contains(diagram.editor()));
 	return mMetamodels[editor.editor()]->diagramPaletteGroups(diagram.diagram());
 }
 
@@ -163,7 +185,7 @@ bool EditorManager::shallPaletteBeSorted(const Id &editor, const Id &diagram) co
 IdList EditorManager::elements(const Id &diagram) const
 {
 	IdList elements;
-	Q_ASSERT(mPluginsLoaded.contains(diagram.editor()));
+	Q_ASSERT(mMetamodels.contains(diagram.editor()));
 
 	for (const ElementType *type : mMetamodels[diagram.editor()]->elements(diagram.diagram())) {
 		const Id candidate(diagram.editor(), diagram.diagram(), type->name());
@@ -177,37 +199,37 @@ IdList EditorManager::elements(const Id &diagram) const
 
 Version EditorManager::version(const Id &editor) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(editor.editor()));
+	Q_ASSERT(mMetamodels.contains(editor.editor()));
 	return Version::fromString(mMetamodels[editor.editor()]->version());
 }
 
 bool EditorManager::isEditor(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	return id.idSize() == 1;
 }
 
 bool EditorManager::isDiagram(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	return id.idSize() == 2;
 }
 
 bool EditorManager::isElement(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	return id.idSize() == 3;
 }
 
 QString EditorManager::friendlyName(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 
 	switch (id.idSize()) {
 	case 1:
-		return mMetamodels[id.editor()]->editorName();
+		return mMetamodels[id.editor()]->friendlyName();
 	case 2:
-		return mMetamodels[id.editor()]->diagramName(id.diagram());
+		return mMetamodels[id.editor()]->diagramFriendlyName(id.diagram());
 	case 3:
 		if (mGroups.keys().contains(id.element())) {
 			return id.element();
@@ -222,7 +244,7 @@ QString EditorManager::friendlyName(const Id &id) const
 
 QString EditorManager::description(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	if (id.idSize() != 3) {
 		return "";
 	}
@@ -236,7 +258,7 @@ QString EditorManager::description(const Id &id) const
 
 QString EditorManager::propertyDescription(const Id &id, const QString &propertyName) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 
 	if (id.idSize() < 3) {
 		return QString();
@@ -247,7 +269,7 @@ QString EditorManager::propertyDescription(const Id &id, const QString &property
 
 QString EditorManager::propertyDisplayedName(const Id &id, const QString &propertyName) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 
 	if (id.idSize() != 4) {
 		return QString();
@@ -258,33 +280,34 @@ QString EditorManager::propertyDisplayedName(const Id &id, const QString &proper
 
 QString EditorManager::mouseGesture(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	if (id.idSize() != 3) {
 		return QString();
 	}
 
 	const NodeElementType *node = dynamic_cast<const NodeElementType *>(&elementType(id));
-	return node ? node->elementMouseGesture() : QString();
+	return node ? node->mouseGesture() : QString();
 }
 
 QIcon EditorManager::icon(const Id &id) const
 {
-	if (!mPluginsLoaded.contains(id.editor())) {
+	if (!mMetamodels.contains(id.editor())) {
 		return QIcon();
 	}
 
-	return SdfIconLoader::iconOf(":/generated/shapes/" + id.element() + "Class.sdf");
+	return SdfIconLoader::iconOf(id, elementType(id).sdf());
 }
 
 QSize EditorManager::iconSize(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
-	return SdfIconLoader::preferedSizeOf(":/generated/shapes/" + id.element() + "Class.sdf");
+	Q_ASSERT(mMetamodels.contains(id.editor()));
+
+	return SdfIconLoader::preferedSizeOf(id, elementType(id).sdf());
 }
 
 ElementType &EditorManager::elementType(const Id &id) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(id.editor()));
+	Q_ASSERT(mMetamodels.contains(id.editor()));
 	return mMetamodels[id.editor()]->elementType(id.diagram(), id.element());
 }
 
@@ -342,7 +365,7 @@ QString EditorManager::defaultPropertyValue(const Id &id, QString name) const
 bool EditorManager::hasElement(const Id &elementId) const
 {
 	Q_ASSERT(elementId.idSize() == 3);
-	if (!mPluginsLoaded.contains(elementId.editor()))
+	if (!mMetamodels.contains(elementId.editor()))
 		return false;
 	Metamodel *editor = mMetamodels[elementId.editor()];
 	for (const QString &diagram : editor->diagrams()) {
@@ -422,7 +445,7 @@ QStringList EditorManager::allChildrenTypesOf(const Id &parent) const
 
 QList<const Explosion *> EditorManager::explosions(const Id &source) const
 {
-	Q_ASSERT(mPluginsLoaded.contains(source.editor()));
+	Q_ASSERT(mMetamodels.contains(source.editor()));
 	return elementType(source).explosions();
 }
 
@@ -456,11 +479,6 @@ Pattern EditorManager::parsePattern(const Id &id) const
 	return parser.pattern();
 }
 
-//QList<StringPossibleEdge> EditorManager::possibleEdges(const QString &editor, const QString &element) const
-//{
-//	return metamodel(editor)->getPossibleEdges(element);
-//}
-
 int EditorManager::isNodeOrEdge(const Id &id) const
 {
 	const ElementType::Type type = elementType(id).type();
@@ -477,7 +495,7 @@ bool EditorManager::isParentOf(const QString &editor, const QString &parentDiagr
 
 QString EditorManager::diagramName(const QString &editor, const QString &diagram) const
 {
-	return metamodel(editor)->diagramName(diagram);
+	return metamodel(editor)->diagramFriendlyName(diagram);
 }
 
 QString EditorManager::diagramNodeName(const QString &editor, const QString &diagram) const
@@ -488,7 +506,12 @@ QString EditorManager::diagramNodeName(const QString &editor, const QString &dia
 
 bool EditorManager::isInterpretationMode() const
 {
-	return false;
+	return mInterterpretationMode;
+}
+
+void EditorManager::setInterpretationMode(bool enabled)
+{
+	mInterterpretationMode = enabled;
 }
 
 bool EditorManager::isParentProperty(const Id &id, const QString &propertyName) const
@@ -505,8 +528,7 @@ void EditorManager::deleteProperty(const QString &propDisplayedName) const
 
 void EditorManager::addProperty(const Id &id, const QString &propDisplayedName) const
 {
-	Q_UNUSED(id);
-	Q_UNUSED(propDisplayedName);
+	elementType(id).addProperty(propDisplayedName, "string", QString(), propDisplayedName, QString(), false);
 }
 
 void EditorManager::updateProperties(const Id &id, const QString &property, const QString &propertyType
@@ -521,96 +543,191 @@ void EditorManager::updateProperties(const Id &id, const QString &property, cons
 
 QString EditorManager::propertyNameByDisplayedName(const Id &id, const QString &displayedPropertyName) const
 {
-	Q_UNUSED(id);
-	Q_UNUSED(displayedPropertyName);
-	return "";
+	const ElementType &element = elementType(id);
+	for (const QString &name : element.propertyNames()) {
+		if (element.propertyDisplayedName(name) == displayedPropertyName) {
+			return name;
+		}
+	}
+
+	return QString();
 }
 
 IdList EditorManager::children(const Id &parent) const
 {
-	Q_UNUSED(parent);
-	return IdList();
+	const QList<const qrgraph::Node *> childNodes = qrgraph::Queries::immediatePredecessors(elementType(parent)
+			, ElementType::generalizationLinkType);
+	IdList result;
+	for (const qrgraph::Node * const node : childNodes) {
+		if (auto child = dynamic_cast<const ElementType *>(node)) {
+			result << child->typeId();
+		}
+	}
+
+	return result;
 }
 
 QString EditorManager::shape(const Id &id) const
 {
-	Q_UNUSED(id);
-	return "";
+	const ElementType &element = elementType(id);
+	QString result;
+	QTextStream stream(&result);
+	element.sdf().save(stream, 4);
+	return result;
 }
 
-void EditorManager::updateShape(const Id &id, const QString &graphics) const
+void EditorManager::updateShape(const Id &id, const QDomElement &graphicsSdf) const
 {
-	Q_UNUSED(id);
-	Q_UNUSED(graphics);
+	/// @todo: support ports and labels.
+	ElementType &element = elementType(id);
+	/// @todo: picture will be appended to existing. Make it overwriting it.
+	element.loadSdf(graphicsSdf.firstChildElement("picture"));
 }
 
 void EditorManager::resetIsHidden(const Id &id) const
 {
-	Q_UNUSED(id);
+	elementType(id).setHidden(false);
 }
 
-QString EditorManager::getIsHidden(const Id &id) const
+bool EditorManager::isHidden(const Id &id) const
 {
-	Q_UNUSED(id);
-	return "false";
+	return elementType(id).isHidden();
 }
 
 void EditorManager::deleteElement(const Id &id) const
 {
-	Q_UNUSED(id);
-}
-
-bool EditorManager::isRootDiagramNode(const Id &id) const
-{
-	Q_UNUSED(id);
-	return false;
+	elementType(id).setHidden(true);
 }
 
 void EditorManager::addNodeElement(const Id &diagram, const QString &name, const QString &displayedName
 		, bool isRootDiagramNode) const
 {
-	Q_UNUSED(diagram);
-	Q_UNUSED(name);
-	Q_UNUSED(displayedName);
-	Q_UNUSED(isRootDiagramNode);
+	const QString shape =
+			"<picture sizex=\"50\" sizey=\"50\">\n"
+			"    <image y1=\"0\" name=\"\" x1=\"0\" y2=\"50\" x2=\"50\"/>\n"
+			"</picture>\n";
+	QDomDocument document;
+	document.setContent(shape);
+
+	Metamodel *metamodel = this->metamodel(diagram.editor());
+	if (!metamodel) {
+		return;
+	}
+
+	NodeElementType *node = new NodeElementType(*metamodel);
+	node->setDiagram(diagram.diagram());
+	node->setName(name);
+	node->setFriendlyName(displayedName);
+	node->loadSdf(document.documentElement());
+	node->setResizable(true);
+	node->setCreateChildrenFromMenu(false);
+	node->setHidden(false);
+	if (isRootDiagramNode) {
+		metamodel->setDiagramNode(diagram.diagram(), name);
+	}
+
+	node->addLabel(LabelProperties(0, -10, 60, "name", false, 0));
+	node->addPointPort(PointPortInfo(QPointF(0, 25), false, false, 50, 50, "NonTyped"));
+	node->addPointPort(PointPortInfo(QPointF(50, 25), false, false, 50, 50, "NonTyped"));
+	node->addPointPort(PointPortInfo(QPointF(25, 0), false, false, 50, 50, "NonTyped"));
+	node->addPointPort(PointPortInfo(QPointF(25, 50), false, false, 50, 50, "NonTyped"));
+
+	metamodel->addElement(*node);
+	ElementType &abstractNode = metamodel->elementType(diagram.diagram(), "AbstractNode");
+	metamodel->produceEdge(*node, abstractNode, ElementType::generalizationLinkType);
+	metamodel->produceEdge(*node, abstractNode, ElementType::containmentLinkType);
 }
 
 void EditorManager::addEdgeElement(const Id &diagram, const QString &name, const QString &displayedName
 		, const QString &labelText, const QString &labelType, const QString &lineType
 		, const QString &beginType, const QString &endType) const
 {
-	Q_UNUSED(diagram);
-	Q_UNUSED(name);
-	Q_UNUSED(displayedName);
-	Q_UNUSED(labelText);
-	Q_UNUSED(labelType);
-	Q_UNUSED(lineType);
-	Q_UNUSED(beginType);
-	Q_UNUSED(endType);
+	Metamodel *metamodel = this->metamodel(diagram.editor());
+	if (!metamodel) {
+		return;
+	}
+
+	const Qt::PenStyle style = lineType == "dashLine" ? Qt::DashLine :
+			(lineType == "dotLine" ? Qt::DotLine : Qt::SolidLine);
+
+	EdgeElementType *edge = new EdgeElementType(*metamodel);
+	edge->setDiagram(diagram.diagram());
+	edge->setName(name);
+	edge->setFriendlyName(displayedName);
+	edge->setHidden(false);
+	edge->setShapeType(LinkShape::broken);
+	edge->setPenStyle(style);
+	edge->setPenColor(Qt::black);
+	edge->setPenWidth(1);
+
+	LabelProperties label;
+	if (labelType.contains("static", Qt::CaseInsensitive)) {
+		label = LabelProperties(0, 0, 0, labelText, 0);
+	} else {
+		label = LabelProperties(0, 0, 0, labelText, false, 0);
+	}
+
+	edge->addLabel(label);
+	metamodel->addElement(*edge);
+
+	/// @todo: beginType and endType are currently not supported.
+	/// They should be supported when drawing code generated by qrxc will be moved to engine.
+	Q_UNUSED(beginType)
+	Q_UNUSED(endType)
 }
 
-QPair<Id, Id> EditorManager::createEditorAndDiagram(const QString &name) const
+void EditorManager::createEditorAndDiagram(const QString &name)
 {
-	Q_UNUSED(name);
-	return QPair<Id, Id>();
+	Metamodel * const interpretedMetamodel = new Metamodel(name);
+	interpretedMetamodel->setFriendlyName(name);
+	interpretedMetamodel->addDiagram(name);
+	interpretedMetamodel->setDiagramFriendlyName(name, name);
+
+	NodeElementType * const diagramNode = new NodeElementType(*interpretedMetamodel);
+	diagramNode->setDiagram(name);
+	diagramNode->setName(name);
+	diagramNode->setFriendlyName(name);
+	NodeElementType * const abstractNode = new NodeElementType(*interpretedMetamodel);
+	abstractNode->setDiagram(name);
+	abstractNode->setName("AbstractNode");
+	abstractNode->setFriendlyName("AbstractNode");
+	abstractNode->setResizable(true);
+
+	interpretedMetamodel->addElement(*abstractNode);
+	interpretedMetamodel->addElement(*diagramNode);
+	interpretedMetamodel->setDiagramNode(name, name);
+	interpretedMetamodel->produceEdge(*abstractNode, *abstractNode, ElementType::containmentLinkType);
+	loadMetamodel(*interpretedMetamodel);
 }
 
 void EditorManager::saveMetamodel(const QString &newMetamodelFileName)
 {
-	Q_UNUSED(newMetamodelFileName);
+	if (mInterterpretationMode) {
+		if (!newMetamodelFileName.isEmpty()) {
+			mMetamodelFile = newMetamodelFileName;
+		}
+
+		QrsMetamodelSaver saver;
+		saver.save(mMetamodels.values(), mMetamodelFile);
+	}
 }
 
 QString EditorManager::saveMetamodelFilePath() const
 {
-	return "";
+	return mMetamodelFile;
 }
 
-IdList EditorManager::elementsWithTheSameName(const Id &diagram, const QString &name, const QString type) const
+IdList EditorManager::elementsWithTheSameName(const Id &diagram, const QString &name, const QString &type) const
 {
-	Q_UNUSED(diagram);
-	Q_UNUSED(name);
-	Q_UNUSED(type);
-	return IdList();
+	IdList result;
+	for (const Id &element : elements(diagram)) {
+		const ElementType &typeInfo = elementType(element);
+		if (typeInfo.friendlyName() == name && typeInfo.name() == type) {
+			result << typeInfo.typeId();
+		}
+	}
+
+	return result;
 }
 
 IdList EditorManager::propertiesWithTheSameName(const Id &id, const QString &propertyCurrentName
@@ -636,8 +753,16 @@ QString EditorManager::generationRule(const Id &id) const
 
 QStringList EditorManager::getPropertiesInformation(const Id &id) const
 {
-	Q_UNUSED(id);
-	return QStringList();
+	QStringList result;
+	const ElementType &element = elementType(id);
+	const QStringList propertyNamesList = element.propertyNames();
+	for (const QString &property : propertyNamesList) {
+		result << element.propertyDisplayedName(property);
+		result << element.propertyType(property);
+		result << element.propertyDefaultValue(property);
+	}
+
+	return result;
 }
 
 QStringList EditorManager::getSameNamePropertyParams(const Id &propertyId, const QString &propertyName) const
@@ -652,6 +777,7 @@ void EditorManager::restoreRemovedProperty(const Id &propertyId, const QString &
 	Q_UNUSED(propertyId);
 	Q_UNUSED(previousName);
 }
+
 void EditorManager::restoreRenamedProperty(const Id &propertyId, const QString &previousName) const
 {
 	Q_UNUSED(propertyId);

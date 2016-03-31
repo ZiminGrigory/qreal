@@ -28,6 +28,7 @@ namespace qReal {
 
 class ElementType;
 class Explosion;
+class Metamodel;
 
 namespace gui {
 namespace editor {
@@ -47,8 +48,16 @@ public:
 
 	/// @returns Error message if something went wrong or empty string if everything was ok.
 	virtual QString loadPlugin(const QString &pluginName) = 0;
+
 	/// @returns Error message if something went wrong or empty string if everything was ok.
 	virtual QString unloadPlugin(const QString &pluginName) = 0;
+
+	/// @returns True if plugins unloading was successfull or false otherwise.
+	virtual bool unloadAllPlugins() = 0;
+
+	/// Appends \a metamodel to a list of loaded ones.
+	/// Takes ownership on \a metamodel.
+	virtual void loadMetamodel(Metamodel &metamodel) = 0;
 
 	virtual QString mouseGesture(const Id &id) const = 0;
 	virtual QString friendlyName(const Id &id) const = 0;
@@ -101,7 +110,10 @@ public:
 			, const QString &childDiagram, const QString &childElement) const = 0;
 	virtual QString diagramName(const QString &editor, const QString &diagram) const = 0;
 	virtual QString diagramNodeName(const QString &editor, const QString &diagram) const = 0;
+
 	virtual bool isInterpretationMode() const = 0;
+	virtual void setInterpretationMode(bool enabled) = 0;
+
 	virtual bool isParentProperty(const Id &id, const QString &propertyName) const = 0;
 	virtual void deleteProperty(const QString &propDisplayedName) const = 0;
 	virtual void addProperty(const Id &id, const QString &propDisplayedName) const = 0;
@@ -110,17 +122,16 @@ public:
 	virtual QString propertyNameByDisplayedName(const Id &id, const QString &displayedPropertyName) const = 0;
 	virtual IdList children(const Id &parent) const = 0;
 	virtual QString shape(const Id &id) const = 0;
-	virtual void updateShape(const Id &id, const QString &graphics) const = 0;
+	virtual void updateShape(const Id &id, const QDomElement &graphicsSdf) const = 0;
 	virtual void resetIsHidden(const Id &id) const = 0;
-	virtual QString getIsHidden(const Id &id) const = 0;
+	virtual bool isHidden(const Id &id) const = 0;
 	virtual void deleteElement(const Id &id) const = 0;
-	virtual bool isRootDiagramNode(const Id &id) const = 0;
 	virtual void addNodeElement(const Id &diagram, const QString &name, const QString &displayedName
 			, bool isRootDiagramNode) const = 0;
 	virtual void addEdgeElement(const Id &diagram, const QString &name, const QString &displayedName
 			, const QString &labelText, const QString &labelType, const QString &lineType
 			, const QString &beginType, const QString &endType) const = 0;
-	virtual QPair<Id, Id> createEditorAndDiagram(const QString &name) const = 0;
+	virtual void createEditorAndDiagram(const QString &name) = 0;
 	virtual void saveMetamodel(const QString &newMetamodelFileName) = 0;
 	virtual QString saveMetamodelFilePath() const = 0;
 	virtual QStringList paletteGroups(const Id &editor, const Id &diagram) const = 0;
@@ -131,7 +142,7 @@ public:
 	virtual Pattern parsePattern(const Id &id) const = 0;
 	virtual QSize iconSize(const Id &id) const = 0;
 
-	virtual IdList elementsWithTheSameName(const Id &diagram, const QString &name, const QString type) const = 0;
+	virtual IdList elementsWithTheSameName(const Id &diagram, const QString &name, const QString &type) const = 0;
 	virtual IdList propertiesWithTheSameName(const Id &id, const QString &propCurrentName
 			, const QString &propNewName) const = 0;
 

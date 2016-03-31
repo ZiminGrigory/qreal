@@ -68,13 +68,14 @@ NodeElement::NodeElement(const NodeElementType &type, const Id &id, const models
 	setFlag(ItemClipsChildrenToShape, false);
 	setFlag(QGraphicsItem::ItemDoesntPropagateOpacityToChildren);
 
-	mRenderer.load(mType.sdfFile());
+	mRenderer.load(mType.sdf());
 	mRenderer.setElementRepo(this);
 
 	PortFactory portFactory;
 	mPortHandler = new PortHandler(this, mGraphicalAssistApi
 			, portFactory.createPorts(mType.pointPorts())
-			, portFactory.createPorts(mType.linePorts()));
+			, portFactory.createPorts(mType.linePorts())
+			, portFactory.createPorts(mType.circularPorts()));
 
 	const QList<LabelProperties> labelInfos = mType.labels();
 	for (const LabelProperties &labelInfo : labelInfos) {
@@ -280,19 +281,19 @@ void NodeElement::mousePressEvent(QGraphicsSceneMouseEvent *event)
 	if (isSelected()) {
 		int dragArea = SettingsManager::instance()->value("DragArea").toInt();
 		if (QRectF(mContents.topLeft(), QSizeF(dragArea, dragArea)).contains(event->pos())
-				&& mType.isResizeable())
+				&& mType.isResizable())
 		{
 			mDragState = TopLeft;
 		} else if (QRectF(mContents.topRight(), QSizeF(-dragArea, dragArea)).contains(event->pos())
-				&& mType.isResizeable())
+				&& mType.isResizable())
 		{
 			mDragState = TopRight;
 		} else if (QRectF(mContents.bottomRight(), QSizeF(-dragArea, -dragArea)).contains(event->pos())
-				&& mType.isResizeable())
+				&& mType.isResizable())
 		{
 			mDragState = BottomRight;
 		} else if (QRectF(mContents.bottomLeft(), QSizeF(dragArea, -dragArea)).contains(event->pos())
-				&& mType.isResizeable())
+				&& mType.isResizable())
 		{
 			mDragState = BottomLeft;
 		} else if (QRectF(QPointF(-20, 0), QPointF(0, 20)).contains(event->pos())
@@ -413,7 +414,7 @@ void NodeElement::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 		mGrid->mouseMoveEvent(event);
 		newPos = pos();
-	} else if (mType.isResizeable()) {
+	} else if (mType.isResizable()) {
 		setVisibleEmbeddedLinkers(false);
 
 		needResizeParent = true;
@@ -848,7 +849,7 @@ void NodeElement::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 			painter->setBrush(b);
 			painter->setPen(Qt::blue);
 
-			if (mType.isResizeable()) {
+			if (mType.isResizable()) {
 				drawLinesForResize(painter);
 			} else {
 				painter->drawRect(QRectF(mContents.bottomRight(), QSizeF(-4, -4)));
@@ -1253,10 +1254,9 @@ AbstractCommand *NodeElement::changeParentCommand(const Id &newParent, const QPo
 	return result;
 }
 
-void NodeElement::updateShape(const QString &shape) const
+void NodeElement::updateShape(const QDomElement &graphicsSdf)
 {
-	int FIX_IT_BACK_BITCH = 100500;
-//	mType.updateRendererContent(shape);
+	mRenderer.load(graphicsSdf);
 }
 
 IdList NodeElement::sortedChildren() const
