@@ -84,6 +84,20 @@ void DFTrikKitV62InterpreterPLugin::init(const kitBase::KitPluginConfigurator &c
 
 	connect(mAdditionalPreferences, &TrikAdditionalPreferences::settingsChanged
 			, mTwoDRobotModel.data(), &robotModel::twoD::TrikTwoDRobotModel::rereadSettings);
+
+
+
+	mInterpreter = new interpreterCore::interpreter::dataFlowInterpretation::DFInterpeter
+			(configurer.qRealConfigurator().graphicalModelApi()
+			 , configurer.qRealConfigurator().logicalModelApi()
+			 , configurer.qRealConfigurator().mainWindowInterpretersInterface()
+			 , configurer.qRealConfigurator().projectManager()
+			 , // atatat и что делать? я бы вынес в фасад интерпретатор и добавил возможность конфигурировать двумя
+			  // чтобы сами решали китплагины. либо добавить геттеры у интерпретатора
+			 , configurer.robotModelManager()
+			 , configurer.textLanguage()
+			 , configurer.
+				);
 }
 
 QList<kitBase::robotModel::RobotModelInterface *> DFTrikKitV62InterpreterPLugin::robotModels()

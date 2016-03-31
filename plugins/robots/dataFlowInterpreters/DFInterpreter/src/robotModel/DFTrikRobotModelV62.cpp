@@ -38,5 +38,5 @@ DFTrikRobotModelV62::DFTrikRobotModelV62(const QString &kitId, const QString &ro
 
 QString DFTrikRobotModelV62::robotConfigFileVersion() const
 {
-	return "model-2015";
+	return "DFModel-2016";
 }

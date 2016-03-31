@@ -27,6 +27,7 @@
 
 #include "DFFactoryBase.h"
 #include "robotModel/DFTrikRobotModelBase.h"
+#include "DFInterpreter.h"
 
 #include "declSpec.h"
 
@@ -74,8 +75,8 @@ private slots:
 	QWidget *produceIpAddressConfigurer();  // Transfers ownership
 
 private:
-	QScopedPointer<twoDModel::TwoDModelControlInterface> mTwoDModel;
 	QScopedPointer<trik::robotModel::dataFlow::DFTrikRobotModelBase> mRealRobotModel;
+	QScopedPointer<twoDModel::TwoDModelControlInterface> mTwoDModel;
 	QScopedPointer<trik::robotModel::twoD::TrikTwoDRobotModel> mTwoDRobotModel;
 
 	/// @todo Use shared pointers instead of this sh~.
@@ -91,6 +92,8 @@ private:
 	QString mCurrentlySelectedModelName;
 
 	QAction *mStartInterpretationAction;
+
+	interpreterCore::interpreter::dataFlowInterpretation::DFInterpeter *mInterpreter;
 };
 
 }

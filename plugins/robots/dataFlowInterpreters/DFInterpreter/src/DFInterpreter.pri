@@ -77,6 +77,7 @@ HEADERS += \
     $$PWD/robotModel/DFTrikRobotModelV62.h \
     $$PWD/robotModel/DFTwoDRobotModelV62.h \
     $$PWD/robotModel/DFRealRobotModelV62.h \
+    $$PWD/DFInterpreter.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -106,3 +107,4 @@ SOURCES += \
     $$PWD/robotModel/DFTrikRobotModelV62.cpp \
     $$PWD/robotModel/DFTwoDRobotModelV62.cpp \
     $$PWD/robotModel/DFRealRobotModelV62.cpp \
+    $$PWD/DFInterpreter.cpp
