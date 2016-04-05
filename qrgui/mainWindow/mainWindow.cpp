@@ -2106,7 +2106,7 @@ void MainWindow::setElementInPaletteVisible(const Id &metatype, bool visible)
 
 void MainWindow::setVisibleForAllElementsInPalette(const Id &diagram, bool visible)
 {
-	mUi->paletteTree->setVisibleForAllElements(visible);
+	mUi->paletteTree->setVisibleForAllElements(diagram, visible);
 	for (const Id &element : editorManager().elements(diagram)) {
 		editorManager().setElementEnabled(element, visible);
 	}
@@ -2120,7 +2120,7 @@ void MainWindow::setElementInPaletteEnabled(const Id &metatype, bool enabled)
 
 void MainWindow::setEnabledForAllElementsInPalette(const Id &diagram, bool enabled)
 {
-	mUi->paletteTree->setEnabledForAllElements(enabled);
+	mUi->paletteTree->setEnabledForAllElements(diagram, enabled);
 	for (const Id &element : editorManager().elements(diagram)) {
 		editorManager().setElementEnabled(element, enabled);
 	}

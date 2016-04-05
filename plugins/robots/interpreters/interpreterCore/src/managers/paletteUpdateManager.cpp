@@ -46,7 +46,6 @@ void PaletteUpdateManager::updatePalette(robotModel::RobotModelInterface &curren
 
 void PaletteUpdateManager::disableAll()
 {
-	qDebug() << Q_FUNC_INFO;
 	mPaletteProvider.beginPaletteModification();
 	mPaletteProvider.setEnabledForAllElementsInPalette(robotsDiagram, false);
 	mPaletteProvider.setVisibleForAllElementsInPalette(robotsDiagram, false);
