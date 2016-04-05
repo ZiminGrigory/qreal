@@ -14,20 +14,36 @@
 
 #pragma once
 
-#include <kitBase/blocksBase/commonBlocksFactory.h>
+#include "DFRobotsBlock.h"
+#include "DFRobotBlocksFactoryInterface.h"
 
-namespace dataFlowBlocks {
+namespace dataFlow {
+namespace blocksBase {
 
-class DFFactoryBase : public kitBase::blocksBase::CommonBlocksFactory
+class DFFactoryBase : public DFRobotBlocksFactoryInterface
 {
 public:
-	DFFactoryBase() = default;
-	qReal::interpretation::Block *produceBlock(const qReal::Id &element) override;
+	void configure(const qReal::GraphicalModelAssistInterface &graphicalModelApi
+			, const qReal::LogicalModelAssistInterface &logicalModelApi
+			, kitBase::robotModel::RobotModelManagerInterface &robotModelManager
+			, qReal::ErrorReporterInterface &errorReporter
+			, qrtext::LanguageToolboxInterface &textLanguageToolbox
+			) final;
+
+	interpretation::DFRobotsBlockInterface *block(const qReal::Id &element) override;
 	qReal::IdList providedBlocks() const override;
 	qReal::IdList blocksToDisable() const override;
+
 protected:
 	qReal::Id dataFlowId(const QString &metatype) const;
 	bool elementDFMetatypeIs(const qReal::Id &element, const QString &metatype) const;
+
+	kitBase::robotModel::RobotModelManagerInterface *mRobotModelManager = nullptr;  // Does not have ownership.
+	const qReal::GraphicalModelAssistInterface *mGraphicalModelApi = nullptr;  // Does not have ownership.
+	const qReal::LogicalModelAssistInterface *mLogicalModelApi = nullptr;  // Does not have ownership.
+	qReal::ErrorReporterInterface *mErrorReporter = nullptr;  // Does not have ownership.
+	qrtext::LanguageToolboxInterface *mParser = nullptr;  // Does not have ownership.
 };
 
+}
 }

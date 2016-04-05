@@ -12,25 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#pragma once
+#include "DFRobotBlocksTable.h"
 
-#include <kitBase/robotModel/robotParts/scalarSensor.h>
 
-namespace trik {
-namespace robotModel {
-namespace parts {
+using namespace dataFlow::interpretation;
 
-class TrikMotionSensor : public kitBase::robotModel::robotParts::ScalarSensor
+DFRobotBlocksTable::DFRobotBlocksTable(blocksBase::DFRobotBlocksFactoryInterface &blocksFactory
+		, const kitBase::robotModel::RobotModelManagerInterface &robotModelManager)
+	: mBlocksFactory(blocksFactory)
+	, mRobotModelManager(robotModelManager)
 {
-	Q_OBJECT
-	Q_CLASSINFO("name", "motion")
-	Q_CLASSINFO("friendlyName", tr("Motion Sensor"))
-
-public:
-	TrikMotionSensor(const kitBase::robotModel::DeviceInfo &info
-			, const kitBase::robotModel::PortInfo &port);
-};
-
 }
-}
+
+DFRobotsBlockInterface *DFRobotBlocksTable::produceBlock(const qReal::Id &element)
+{
+	return mBlocksFactory.block(element/*, mRobotModelManager.model()*/);
 }

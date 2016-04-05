@@ -1,8 +1,7 @@
 #include "DFMotorsBlock.h"
 
-using namespace interpreterCore;
-using namespace interpreter;
-using namespace dataFlowInterpretation;
+
+using namespace dataFlow::interpretation;
 using namespace kitBase;
 using namespace kitBase::blocksBase;
 using namespace kitBase::robotModel;
@@ -19,21 +18,14 @@ DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 //	QMap<QString, int> portAssociatedWithProperty;
 //	QSet<int> synchronisedPorts;
 	// associate port number and port name
-	portAssociatedWithProperty["M1"] = 1;
-	portAssociatedWithProperty["M2"] = 2;
-	portAssociatedWithProperty["M3"] = 4;
-	portAssociatedWithProperty["M4"] = 5;
-	portAssociatedWithProperty["CF_OUT"] = 3;
-
-	if (Block::property("synch").toBool()) {
-		qReal::IdList localIncomingLinks = mGraphicalModelApi->graphicalRepoApi().incomingLinks(mGraphicalId);
-		for (auto &id : localIncomingLinks) {
-			synchronisedPorts.insert(qRound64(mGraphicalModelApi->toPort(id)));
-		}
-	}
+	portAssociatedWithProperty["M1"] = 0;
+	portAssociatedWithProperty["M2"] = 1;
+	portAssociatedWithProperty["M3"] = 3;
+	portAssociatedWithProperty["M4"] = 4;
+	portAssociatedWithProperty["CF_OUT"] = 2;
 }
 
-void DFMotorsBlock::run()
+void DFMotorsBlock::handleData()
 {
 	auto motors = usedDevices();
 	auto keys = motors.keys();
@@ -52,7 +44,7 @@ void DFMotorsBlock::run()
 }
 
 
-QList<PortInfo> DFMotorsBlock::parsePorts(qReal::interpretation::Block::ReportErrors reportErrors)
+QList<PortInfo> DFMotorsBlock::parsePorts(ReportErrors reportErrors)
 {
 	Q_UNUSED(reportErrors);
 	QList<PortInfo> result;

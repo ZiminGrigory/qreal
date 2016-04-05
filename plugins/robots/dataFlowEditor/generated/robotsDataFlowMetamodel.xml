@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<metamodel version="1.0.0" xmlns="http://schema.real.com/schema/">
+<metamodel xmlns="http://schema.real.com/schema/" version="1.0.0">
     <namespace>UML 2.0</namespace>
-    <diagram name="RobotsDataFlowDiagram" displayedName="robots editor diagram" nodeName="RobotsBehaviourDiagram">
+    <diagram displayedName="robots editor diagram" nodeName="RobotsBehaviourDiagram" name="RobotsDataFlowDiagram">
         <nonGraphicTypes>
-            <enum name="TrikV6DigitalSensorPort" editable="false">
+            <enum editable="false" name="TrikV6DigitalSensorPort">
                 <value name="D1"/>
                 <value name="D2"/>
             </enum>
-            <enum name="TrikV6AnalogSensorPort" editable="false">
+            <enum editable="false" name="TrikV6AnalogSensorPort">
                 <value name="A1"/>
                 <value name="A2"/>
                 <value name="A3"/>
@@ -15,60 +15,60 @@
                 <value name="A5"/>
                 <value name="A6"/>
             </enum>
-            <enum name="TrikV6EncoderPort" editable="false">
+            <enum editable="false" name="TrikV6EncoderPort">
                 <value name="B1"/>
                 <value name="B4"/>
                 <value name="B2"/>
                 <value name="B3"/>
             </enum>
-            <enum name="TrikV62EncoderPort" editable="false">
+            <enum editable="false" name="TrikV62EncoderPort">
                 <value name="E1"/>
                 <value name="E2"/>
                 <value name="E3"/>
                 <value name="E4"/>
             </enum>
-            <enum name="Color" editable="false">
+            <enum editable="false" name="Color">
                 <value name="black"/>
-                <value name="green" displayedName="green"/>
-                <value name="yellow" displayedName="yellow"/>
-                <value name="blue" displayedName="blue"/>
-                <value name="white" displayedName="white"/>
-                <value name="red" displayedName="red"/>
+                <value displayedName="green" name="green"/>
+                <value displayedName="yellow" name="yellow"/>
+                <value displayedName="blue" name="blue"/>
+                <value displayedName="white" name="white"/>
+                <value displayedName="red" name="red"/>
             </enum>
-            <enum name="TrikLedColor" editable="false">
-                <value name="off" displayedName="off"/>
-                <value name="green" displayedName="green"/>
-                <value name="orange" displayedName="orange"/>
-                <value name="red" displayedName="red"/>
+            <enum editable="false" name="TrikLedColor">
+                <value displayedName="off" name="off"/>
+                <value displayedName="green" name="green"/>
+                <value displayedName="orange" name="orange"/>
+                <value displayedName="red" name="red"/>
             </enum>
-            <enum name="BackgroundColor" editable="false">
-                <value name="red" displayedName="red"/>
-                <value name="white" displayedName="white"/>
-                <value name="black" displayedName="black"/>
-                <value name="light gray" displayedName="lightGray"/>
-                <value name="gray" displayedName="gray"/>
-                <value name="dark yellow" displayedName="darkYellow"/>
-                <value name="dark magenta" displayedName="darkMagenta"/>
-                <value name="yellow" displayedName="yellow"/>
-                <value name="dark cyan" displayedName="darkCyan"/>
-                <value name="magenta" displayedName="magenta"/>
-                <value name="dark blue" displayedName="darkBlue"/>
-                <value name="cyan" displayedName="cyan"/>
-                <value name="dark green" displayedName="darkGreen"/>
-                <value name="blue" displayedName="blue"/>
-                <value name="dark red" displayedName="darkRed"/>
-                <value name="green" displayedName="green"/>
+            <enum editable="false" name="BackgroundColor">
+                <value displayedName="red" name="red"/>
+                <value displayedName="white" name="white"/>
+                <value displayedName="black" name="black"/>
+                <value displayedName="lightGray" name="light gray"/>
+                <value displayedName="gray" name="gray"/>
+                <value displayedName="darkYellow" name="dark yellow"/>
+                <value displayedName="darkMagenta" name="dark magenta"/>
+                <value displayedName="yellow" name="yellow"/>
+                <value displayedName="darkCyan" name="dark cyan"/>
+                <value displayedName="magenta" name="magenta"/>
+                <value displayedName="darkBlue" name="dark blue"/>
+                <value displayedName="cyan" name="cyan"/>
+                <value displayedName="darkGreen" name="dark green"/>
+                <value displayedName="blue" name="blue"/>
+                <value displayedName="darkRed" name="dark red"/>
+                <value displayedName="green" name="green"/>
             </enum>
-            <enum name="VideoSensor" editable="false">
-                <value name="color" displayedName="Color sensor"/>
-                <value name="object" displayedName="Object sensor"/>
-                <value name="line" displayedName="Line sensor"/>
+            <enum editable="false" name="VideoSensor">
+                <value displayedName="Color sensor" name="color"/>
+                <value displayedName="Object sensor" name="object"/>
+                <value displayedName="Line sensor" name="line"/>
             </enum>
-            <enum name="DetectableVideoSensor" editable="false">
-                <value name="line" displayedName="Line sensor"/>
-                <value name="object" displayedName="Object sensor"/>
+            <enum editable="false" name="DetectableVideoSensor">
+                <value displayedName="Line sensor" name="line"/>
+                <value displayedName="Object sensor" name="object"/>
             </enum>
-            <enum name="TrikButtons" editable="false">
+            <enum editable="false" name="TrikButtons">
                 <value name="Up"/>
                 <value name="Down"/>
                 <value name="Left"/>
@@ -76,7 +76,7 @@
                 <value name="Enter"/>
                 <value name="Esc"/>
             </enum>
-            <enum name="AllPorts" editable="false">
+            <enum editable="false" name="AllPorts">
                 <value name="B3"/>
                 <value name="M4"/>
                 <value name="M2"/>
@@ -98,32 +98,73 @@
                 <value name="A3"/>
                 <value name="A1"/>
             </enum>
-            <enum name="TrikMotorPort" editable="false">
+	    <enum editable="false" name="SensorVars">
+                <value name="accelerometer"/>
+                <value name="colorSensorR"/>
+                <value name="colorSensorG"/>
+                <value name="colorSensorB"/>
+                <value name="encoder1"/>
+                <value name="encoder2"/>
+                <value name="encoder3"/>
+                <value name="encoder4"/>
+                <value name="buttonDown"/>
+                <value name="buttonEnter"/>
+                <value name="buttonEsc"/>
+                <value name="buttonLeft"/>
+                <value name="buttonRight"/>
+                <value name="buttonUp"/>
+                <value name="gamepadButton1"/>
+                <value name="gamepadButton2"/>
+                <value name="gamepadButton3"/>
+                <value name="gamepadButton4"/>
+                <value name="gamepadButton5"/>
+                <value name="gamepadConnected"/>
+                <value name="gamepadPad1"/>
+                <value name="gamepadPad2"/>
+                <value name="gamepadPad1Pressed"/>
+                <value name="gamepadPad2Pressed"/>
+                <value name="gamepadWheel"/>
+                <value name="gyroscope"/>
+                <value name="lineSensor"/>
+                <value name="objectSensorX"/>
+                <value name="objectSensorY"/>
+                <value name="objectSensorSize"/>
+                <value name="sensorA1"/>
+                <value name="sensorA2"/>
+                <value name="sensorA3"/>
+                <value name="sensorA4"/>
+                <value name="sensorA5"/>
+                <value name="sensorA6"/>
+                <value name="sensorD1"/>
+                <value name="sensorD2"/>
+                <value name="sensorF1"/>
+            </enum>
+            <enum editable="false" name="TrikMotorPort">
                 <value name="M4"/>
                 <value name="M2"/>
                 <value name="M3"/>
                 <value name="M1"/>
             </enum>
-            <enum name="ShapeType" editable="false">
-                <value name="arc" displayedName="arc"/>
-                <value name="ellipse" displayedName="ellipse"/>
-                <value name="rectangle" displayedName="rectangle"/>
-                <value name="line" displayedName="line"/>
-                <value name="point" displayedName="point"/>
+            <enum editable="false" name="ShapeType">
+                <value displayedName="arc" name="arc"/>
+                <value displayedName="ellipse" name="ellipse"/>
+                <value displayedName="rectangle" name="rectangle"/>
+                <value displayedName="line" name="line"/>
+                <value displayedName="point" name="point"/>
             </enum>
         </nonGraphicTypes>
         <graphicTypes>
-            <node name="Final Node" displayedName="end_point" description="при приходе любых данных на порт программа завершается">
+            <node description="при приходе любых данных на порт программа завершается" displayedName="end_point" name="Final Node">
                 <graphics>
                     <picture sizex="101" sizey="103">
-                        <image y2="100" y1="2" name="images/exit1.png" x2="99" x1="0"/>
+                        <image y2="100" name="images/exit1.png" x2="99" x1="0" y1="2"/>
                     </picture>
                     <labels/>
                     <ports>
-                        <pointPort type="NonTyped" y="100" x="52"/>
-                        <pointPort type="NonTyped" y="52" x="2"/>
-                        <pointPort type="NonTyped" y="2" x="50"/>
-                        <pointPort type="NonTyped" y="53" x="98"/>
+                        <pointPort y="100" type="NonTyped" x="52"/>
+                        <pointPort y="52" type="NonTyped" x="2"/>
+                        <pointPort y="2" type="NonTyped" x="50"/>
+                        <pointPort y="53" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -135,7 +176,7 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <edge name="Edge" path="" description="связывает блоки передачей данных, либо пустых данных в качестве потока управления">
+            <edge description="связывает блоки передачей данных, либо пустых данных в качестве потока управления" path="" name="Edge">
                 <graphics>
                     <lineType type="solidLine"/>
                     <shape type="broken"/>
@@ -150,50 +191,56 @@
                     <dividability isDividable="false"/>
                 </logic>
             </edge>
-            <node name="Function" displayedName="Function">
+            <node displayedName="Function" name="Function">
                 <graphics>
-                    <picture sizex="286" sizey="342">
-                        <image y2="340" y1="20" name="images/function switch long11.png" x2="282" x1="33"/>
+                    <picture sizex="284" sizey="340">
+                        <image y2="338" name="images/function switch long11.png" x2="278" x1="31" y1="20"/>
                     </picture>
                     <labels>
-                        <label textBinded="some formula" y="253" x="48"/>
-                        <label textBinded="some formula" y="202" x="49"/>
-                        <label textBinded="some formula" y="105" x="50"/>
-                        <label textBinded="some formula" y="301" x="49"/>
-                        <label textBinded="some formula" y="154" x="51"/>
-                        <label textBinded="some formula" y="57" x="50"/>
-                        <label textBinded="name" y="0" x="101"/>
-                        <label y="35" text="I0" x="4"/>
-                        <label y="84" text="I1" x="2"/>
-                        <label y="141" text="I2" x="6"/>
-                        <label y="185" text="I3" x="4"/>
-                        <label y="234" text="I4" x="2"/>
-                        <label y="282" text="I5" x="0"/>
+                        <label y="35" text="I0" x="0"/>
+                        <label y="89" text="I1" x="0"/>
+                        <label y="140" text="I2" x="0"/>
+                        <label y="187" text="I3" x="0"/>
+                        <label y="234" text="I4" x="0"/>
+                        <label y="283" text="I5" x="0"/>
+                        <label textBinded="name" y="0" x="100"/>
+                        <label textBinded="IO3" y="202" x="45"/>
+                        <label textBinded="IO5" y="301" x="45"/>
+                        <label textBinded="IO4" y="253" x="45"/>
+                        <label textBinded="IO0" y="57" x="45"/>
+                        <label textBinded="IO1" y="105" x="45"/>
+                        <label textBinded="IO2" y="154" x="45"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="69" x="35"/>
-                        <pointPort type="NonTyped" y="315a" x="283"/>
-                        <pointPort type="NonTyped" y="41" x="52"/>
-                        <pointPort type="NonTyped" y="168" x="37a"/>
-                        <pointPort type="NonTyped" y="68" x="283"/>
-                        <pointPort type="NonTyped" y="119" x="34"/>
-                        <pointPort type="NonTyped" y="319" x="36"/>
-                        <pointPort type="NonTyped" y="216" x="283"/>
-                        <pointPort type="NonTyped" y="266" x="281"/>
-                        <pointPort type="NonTyped" y="165" x="282"/>
-                        <pointPort type="NonTyped" y="42" x="268"/>
-                        <pointPort type="NonTyped" y="219" x="36"/>
-                        <pointPort type="NonTyped" y="266" x="36"/>
-                        <pointPort type="NonTyped" y="118" x="282"/>
+                        <pointPort y="42" type="NonTyped" x="50"/>
+                        <pointPort y="42" type="NonTyped" x="266"/>
+                        <pointPort y="70" type="NonTyped" x="33"/>
+                        <pointPort y="70" type="NonTyped" x="280"/>
+                        <pointPort y="120" type="NonTyped" x="33"/>
+                        <pointPort y="120" type="NonTyped" x="280"/>
+                        <pointPort y="165" type="NonTyped" x="33"/>
+                        <pointPort y="165" type="NonTyped" x="280"/>
+                        <pointPort y="215" type="NonTyped" x="33"/>
+                        <pointPort y="215" type="NonTyped" x="280"/>
+                        <pointPort y="266" type="NonTyped" x="33"/>
+                        <pointPort y="266" type="NonTyped" x="280"/>
+                        <pointPort y="315" type="NonTyped" x="33"/>
+                        <pointPort y="315" type="NonTyped" x="280"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="bool" name="synchronized" displayedName="synchronized">
+                        <property displayedName="synchronized" name="synch" type="bool">
                             <default>true</default>
                         </property>
+                        <property name="IO5" type="string"/>
+                        <property name="IO3" type="string"/>
+                        <property name="IO4" type="string"/>
+                        <property name="IO1" type="string"/>
+                        <property name="IO2" type="string"/>
+                        <property name="IO0" type="string"/>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -201,23 +248,23 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="If_node" displayedName="Condition">
+            <node displayedName="Condition" name="If_node">
                 <graphics>
                     <picture sizex="195" sizey="125">
-                        <image y2="99" y1="0" name="images/condition.png" x2="142" x1="43"/>
+                        <image y2="99" name="images/condition.png" x2="142" x1="43" y1="0"/>
                     </picture>
                     <labels>
-                        <label y="56" text="FALSE" x="145"/>
-                        <label y="3" text="TRUE" x="145"/>
-                        <label y="9" text="data" x="0"/>
+                        <label text="FALSE" y="56" x="145"/>
+                        <label text="TRUE" y="3" x="145"/>
+                        <label text="data" y="9" x="0"/>
                         <label textBinded="condition" y="36" x="49"/>
-                        <label y="99" text="vars[]" x="45"/>
+                        <label text="vars[]" y="99" x="45"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="97" x="96"/>
-                        <pointPort type="NonTyped" y="36" x="141"/>
-                        <pointPort type="NonTyped" y="88" x="141"/>
-                        <pointPort type="NonTyped" y="48" x="44"/>
+                        <pointPort y="97" type="NonTyped" x="96"/>
+                        <pointPort y="36" type="NonTyped" x="141"/>
+                        <pointPort y="88" type="NonTyped" x="141"/>
+                        <pointPort y="48" type="NonTyped" x="44"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -229,50 +276,64 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Switch" displayedName="Switch">
+            <node displayedName="Switch" name="Switch">
                 <graphics>
-                    <picture sizex="254" sizey="343">
-                        <image y2="341" y1="21" name="images/function switch long11.png" x2="251" x1="2"/>
+                    <picture sizex="284" sizey="340">
+                        <image y2="338" name="images/function switch long11.png" x2="278" x1="31" y1="20"/>
                     </picture>
                     <labels>
-                        <label textBinded="some formula" y="253" x="16"/>
-                        <label textBinded="some formula" y="57" x="18"/>
-                        <label textBinded="some formula" y="202" x="17"/>
-                        <label textBinded="some formula" y="301" x="17"/>
-                        <label textBinded="name" y="0" x="69"/>
-                        <label textBinded="some formula" y="105" x="18"/>
-                        <label textBinded="some formula" y="154" x="19"/>
+                        <label y="35" text="I0" x="0"/>
+                        <label y="89" text="I1" x="0"/>
+                        <label y="140" text="I2" x="0"/>
+                        <label y="187" text="I3" x="0"/>
+                        <label y="234" text="I4" x="0"/>
+                        <label y="283" text="I5" x="0"/>
+                        <label textBinded="name" y="0" x="100"/>
+                        <label textBinded="IO3" y="202" x="45"/>
+                        <label textBinded="IO5" y="301" x="45"/>
+                        <label textBinded="IO4" y="253" x="45"/>
+                        <label textBinded="IO0" y="57" x="45"/>
+                        <label textBinded="IO1" y="105" x="45"/>
+                        <label textBinded="IO2" y="154" x="45"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="165" x="250"/>
-                        <pointPort type="NonTyped" y="42" x="236"/>
-                        <pointPort type="NonTyped" y="219" x="4"/>
-                        <pointPort type="NonTyped" y="266" x="4"/>
-                        <pointPort type="NonTyped" y="118" x="250"/>
-                        <pointPort type="NonTyped" y="68" x="251"/>
-                        <pointPort type="NonTyped" y="119" x="2"/>
-                        <pointPort type="NonTyped" y="319" x="4"/>
-                        <pointPort type="NonTyped" y="216" x="251"/>
-                        <pointPort type="NonTyped" y="266" x="249"/>
-                        <pointPort type="NonTyped" y="315a" x="251"/>
-                        <pointPort type="NonTyped" y="41" x="20"/>
-                        <pointPort type="NonTyped" y="69" x="3"/>
-                        <pointPort type="NonTyped" y="168" x="5a"/>
+                        <pointPort y="42" type="NonTyped" x="50"/>
+                        <pointPort y="42" type="NonTyped" x="266"/>
+                        <pointPort y="70" type="NonTyped" x="33"/>
+                        <pointPort y="70" type="NonTyped" x="280"/>
+                        <pointPort y="120" type="NonTyped" x="33"/>
+                        <pointPort y="120" type="NonTyped" x="280"/>
+                        <pointPort y="165" type="NonTyped" x="33"/>
+                        <pointPort y="165" type="NonTyped" x="280"/>
+                        <pointPort y="215" type="NonTyped" x="33"/>
+                        <pointPort y="215" type="NonTyped" x="280"/>
+                        <pointPort y="266" type="NonTyped" x="33"/>
+                        <pointPort y="266" type="NonTyped" x="280"/>
+                        <pointPort y="315" type="NonTyped" x="33"/>
+                        <pointPort y="315" type="NonTyped" x="280"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
+                    <properties>
+                        <property name="IO1" type="string"/>
+                        <property name="IO0" type="string"/>
+                        <property name="IO2" type="string"/>
+                        <property name="IO3" type="string"/>
+                        <property name="IO4" type="string"/>
+                        <property name="IO5" type="string"/>
+                    </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
                     </generalizations>
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Loop" displayedName="Loop">
+            <node displayedName="Loop" name="Loop">
                 <graphics>
                     <picture sizex="106" sizey="116">
-                        <image y2="114" y1="0" name="images/loop.png" x2="102" x1="3"/>
+                        <image y2="114" name="images/loop.png" x2="102" x1="3" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="increment" y="56" x="12"/>
@@ -280,25 +341,25 @@
                         <label textBinded="end_border" y="85" x="12"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="68" x="3"/>
-                        <pointPort type="NonTyped" y="95" x="2"/>
-                        <pointPort type="NonTyped" y="34" x="3"/>
-                        <pointPort type="NonTyped" y="15" x="15"/>
-                        <pointPort type="NonTyped" y="15" x="89"/>
-                        <pointPort type="NonTyped" y="68" x="102"/>
+                        <pointPort y="68" type="NonTyped" x="3"/>
+                        <pointPort y="95" type="NonTyped" x="2"/>
+                        <pointPort y="34" type="NonTyped" x="3"/>
+                        <pointPort y="15" type="NonTyped" x="15"/>
+                        <pointPort y="15" type="NonTyped" x="89"/>
+                        <pointPort y="68" type="NonTyped" x="102"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="start_border" displayedName="start_index">
+                        <property displayedName="start_index" name="start_border" type="int">
                             <default>0</default>
                         </property>
-                        <property type="int" name="increment" displayedName="increment">
+                        <property displayedName="increment" name="increment" type="int">
                             <default>1</default>
                         </property>
-                        <property type="int" name="end_border" displayedName="border">
+                        <property displayedName="border" name="end_border" type="int">
                             <default>10</default>
                         </property>
                     </properties>
@@ -308,55 +369,55 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="SubprogramCall" displayedName="subprogram call">
+            <node displayedName="subprogram call" name="SubprogramCall">
                 <graphics>
                     <picture sizex="144" sizey="140">
-                        <text b="0" i="0" y1="74" font-size="15" x1="123" font-name="Ubuntu" font-fill="#000000" u="0">O1
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="123" font-size="15" y1="74" u="0">O1
 </text>
-                        <text b="0" i="0" y1="71a" font-size="15" x1="1" font-name="Ubuntu" font-fill="#000000" u="0">I1</text>
-                        <text b="0" i="0" y1="31" font-size="15" x1="122" font-name="Ubuntu" font-fill="#000000" u="0">O0</text>
-                        <text b="0" i="0" y1="26" font-size="15" x1="0" font-name="Ubuntu" font-fill="#000000" u="0">I0</text>
-                        <image y2="114" y1="0" name="images/subprogramCall.png" x2="118" x1="19"/>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="1" font-size="15" y1="71a" u="0">I1</text>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="122" font-size="15" y1="31" u="0">O0</text>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="0" font-size="15" y1="26" u="0">I0</text>
+                        <image y2="114" name="images/subprogramCall.png" x2="118" x1="19" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="114a" x="34a"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="16" x="103"/>
-                        <pointPort type="NonTyped" y="99" x="117"/>
-                        <pointPort type="NonTyped" y="95" x="19"/>
-                        <pointPort type="NonTyped" y="50" x="17"/>
-                        <pointPort type="NonTyped" y="50" x="119"/>
-                        <pointPort type="NonTyped" y="17" x="33"/>
+                        <pointPort y="16" type="NonTyped" x="103"/>
+                        <pointPort y="99" type="NonTyped" x="117"/>
+                        <pointPort y="95" type="NonTyped" x="19"/>
+                        <pointPort y="50" type="NonTyped" x="17"/>
+                        <pointPort y="50" type="NonTyped" x="119"/>
+                        <pointPort y="17" type="NonTyped" x="33"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <explodesTo>
-                        <target makeReusable="true" type="RobotsBehaviourSubprogram" requireImmediateLinkage="true"/>
+                        <target makeReusable="true" requireImmediateLinkage="true" type="RobotsBehaviourSubprogram"/>
                     </explodesTo>
                 </logic>
             </node>
-            <node name="IOPort" displayedName="I/O port">
+            <node displayedName="I/O port" name="IOPort">
                 <graphics>
                     <picture sizex="103" sizey="137">
-                        <image y2="100" y1="0" name="images/io_1.png" x2="101" x1="2"/>
+                        <image y2="100" name="images/io_1.png" x2="101" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="identifier" y="11" x="18"/>
                         <label textBinded="name" y="111" x="29"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="47" x="100"/>
-                        <pointPort type="NonTyped" y="45" x="2"/>
+                        <pointPort y="47" type="NonTyped" x="100"/>
+                        <pointPort y="45" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="identifier" displayedName="id"/>
+                        <property displayedName="id" name="identifier" type="string"/>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -364,25 +425,25 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ValueEmitter" displayedName="const_value">
+            <node displayedName="const_value" name="ValueEmitter">
                 <graphics>
                     <picture sizex="103" sizey="163">
-                        <image y2="130" y1="16" name="images/const data1.png" x2="99" x1="0"/>
+                        <image y2="130" name="images/const data1.png" x2="99" x1="0" y1="16"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="39"/>
                         <label textBinded="varValue" y="137" x="9"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="32" x="9"/>
-                        <pointPort type="NonTyped" y="81" x="100"/>
+                        <pointPort y="32" type="NonTyped" x="9"/>
+                        <pointPort y="81" type="NonTyped" x="100"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="varValue" displayedName="data">
+                        <property displayedName="data" name="varValue" type="string">
                             <default>42</default>
                         </property>
                     </properties>
@@ -392,27 +453,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="GetSetVariable" displayedName="variable">
+            <node displayedName="variable" name="GetSetVariable">
                 <graphics>
                     <picture sizex="102" sizey="151">
-                        <image y2="114" y1="0" name="images/getsetvar.png" x2="100" x1="1"/>
+                        <image y2="114" name="images/getsetvar.png" x2="100" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="variable" y="75" x="18"/>
                         <label textBinded="name" y="125" x="26"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="67" x="2"/>
-                        <pointPort type="NonTyped" y="16" x="13"/>
-                        <pointPort type="NonTyped" y="16" x="88"/>
-                        <pointPort type="NonTyped" y="66" x="99"/>
+                        <pointPort y="67" type="NonTyped" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="13"/>
+                        <pointPort y="16" type="NonTyped" x="88"/>
+                        <pointPort y="66" type="NonTyped" x="99"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="variable" displayedName="variable">
+                        <property displayedName="variable" name="variable" type="string">
                             <default>var_name</default>
                         </property>
                     </properties>
@@ -422,28 +483,28 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="RandomVar" displayedName="random value">
+            <node displayedName="random value" name="RandomVar">
                 <graphics>
                     <picture sizex="102" sizey="116">
-                        <image y2="114" y1="0" name="images/random var.png" x2="99" x1="0"/>
+                        <image y2="114" name="images/random var.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="from" y="49" x="8"/>
                         <label textBinded="to" y="81a" x="10"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="68" x="99"/>
-                        <pointPort type="NonTyped" y="15" x="10"/>
+                        <pointPort y="68" type="NonTyped" x="99"/>
+                        <pointPort y="15" type="NonTyped" x="10"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="double" name="from" displayedName="lower border">
+                        <property displayedName="lower border" name="from" type="double">
                             <default>0.0</default>
                         </property>
-                        <property type="double" name="to" displayedName="upper border">
+                        <property displayedName="upper border" name="to" type="double">
                             <default>10.0</default>
                         </property>
                     </properties>
@@ -453,30 +514,30 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Supressor" displayedName="replacer">
+            <node displayedName="replacer" name="Supressor">
                 <graphics>
                     <picture sizex="200" sizey="163">
-                        <image y2="134" y1="35" name="images/supressing.png" x2="197" x1="98"/>
+                        <image y2="134" name="images/supressing.png" x2="197" x1="98" y1="35"/>
                     </picture>
                     <labels>
-                        <label y="137" text="time" x="117"/>
+                        <label text="time" y="137" x="117"/>
                         <label textBinded="time" y="102" x="150"/>
                         <label textBinded="name" y="0" x="136"/>
-                        <label y="36" text="replacement" x="0"/>
-                        <label y="82" text="data" x="52"/>
+                        <label text="replacement" y="36" x="0"/>
+                        <label text="data" y="82" x="52"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="82" x="197"/>
-                        <pointPort type="NonTyped" y="67" x="100"/>
-                        <pointPort type="NonTyped" y="111" x="98"/>
-                        <pointPort type="NonTyped" y="132" x="167"/>
+                        <pointPort y="82" type="NonTyped" x="197"/>
+                        <pointPort y="67" type="NonTyped" x="100"/>
+                        <pointPort y="111" type="NonTyped" x="98"/>
+                        <pointPort y="132" type="NonTyped" x="167"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="time" displayedName="time">
+                        <property displayedName="time" name="time" type="int">
                             <default>10</default>
                         </property>
                     </properties>
@@ -486,30 +547,30 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Inhibitor" displayedName="stopper">
+            <node displayedName="stopper" name="Inhibitor">
                 <graphics>
                     <picture sizex="171" sizey="163">
-                        <image y2="135" y1="36" name="images/inhibition.png" x2="168" x1="69"/>
-                        <text b="0" i="0" y1="89" font-size="15" x1="2" font-name="Ubuntu" font-fill="#000000" u="0">data port</text>
-                        <text b="0" i="0" y1="145" font-size="15" x1="100" font-name="Ubuntu" font-fill="#000000" u="0">time</text>
-                        <text b="0" i="0" y1="32" font-size="15" x1="0" font-name="Ubuntu" font-fill="#000000" u="0">stop port</text>
+                        <image y2="135" name="images/inhibition.png" x2="168" x1="69" y1="36"/>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="2" font-size="15" y1="89" u="0">data port</text>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="100" font-size="15" y1="145" u="0">time</text>
+                        <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="0" font-size="15" y1="32" u="0">stop port</text>
                     </picture>
                     <labels>
                         <label textBinded="time" y="105" x="102"/>
                         <label textBinded="name" y="0" x="80"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="62" x="70"/>
-                        <pointPort type="NonTyped" y="119" x="70"/>
-                        <pointPort type="NonTyped" y="133" x="121"/>
-                        <pointPort type="NonTyped" y="87" x="168"/>
+                        <pointPort y="62" type="NonTyped" x="70"/>
+                        <pointPort y="119" type="NonTyped" x="70"/>
+                        <pointPort y="133" type="NonTyped" x="121"/>
+                        <pointPort y="87" type="NonTyped" x="168"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="time" displayedName="time">
+                        <property displayedName="time" name="time" type="int">
                             <default>10</default>
                         </property>
                     </properties>
@@ -519,25 +580,25 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Port" description="concrete port">
+            <node description="concrete port" name="Port">
                 <graphics>
                     <picture sizex="102" sizey="131">
-                        <image y2="129" y1="31" name="images/portVar.png" x2="99" x1="0"/>
+                        <image y2="129" name="images/portVar.png" x2="99" x1="0" y1="31"/>
                     </picture>
                     <labels>
                         <label textBinded="portName" y="93" x="12"/>
                         <label textBinded="name" y="0" x="2"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="81" x="99"/>
-                        <pointPort type="NonTyped" y="82" x="2"/>
+                        <pointPort y="81" type="NonTyped" x="99"/>
+                        <pointPort y="82" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="allPorts" name="portName" displayedName="port name"/>
+                        <property displayedName="port name" name="portName" type="allPorts"/>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -545,25 +606,25 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="PlayTone" displayedName="PlayTone">
+            <node displayedName="PlayTone" name="PlayTone">
                 <graphics>
                     <picture sizex="103" sizey="116">
-                        <image y2="114" y1="0" x2="101" name="images/playTone.png" x1="2"/>
+                        <image y2="114" x2="101" name="images/playTone.png" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="file" y="85" x="9"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="97" x="2"/>
-                        <pointPort type="NonTyped" y="15" x="14"/>
-                        <pointPort type="NonTyped" y="18" x="88"/>
+                        <pointPort y="97" type="NonTyped" x="2"/>
+                        <pointPort y="15" type="NonTyped" x="14"/>
+                        <pointPort y="18" type="NonTyped" x="88"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="file" displayedName="file name"/>
+                        <property displayedName="file name" name="file" type="string"/>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -571,27 +632,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Motors" displayedName="Motors">
+            <node displayedName="Motors" name="Motors">
                 <graphics>
                     <picture sizex="101" sizey="150">
-                        <image y2="114" y1="0" x2="99" name="images/motors_.png" x1="0"/>
+                        <image y2="114" x2="99" name="images/motors_.png" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="124" x="28"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="26" x="2"/>
-                        <pointPort type="NonTyped" y="53" x="2"/>
-                        <pointPort type="NonTyped" y="16" x="91"/>
-                        <pointPort type="NonTyped" y="76" x="2"/>
-                        <pointPort type="NonTyped" y="101" x="3"/>
+                        <pointPort y="26" type="NonTyped" x="2"/>
+                        <pointPort y="53" type="NonTyped" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="90"/>
+                        <pointPort y="76" type="NonTyped" x="2"/>
+                        <pointPort y="101" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="bool" name="synch" displayedName="synchronized">
+                        <property displayedName="synchronized" name="synch" type="bool">
                             <default>false</default>
                         </property>
                     </properties>
@@ -601,27 +662,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Servo" displayedName="servo">
+            <node displayedName="servo" name="Servo">
                 <graphics>
                     <picture sizex="102" sizey="151">
-                        <image y2="114" y1="0" x2="100" name="images/servo.png" x1="1"/>
+                        <image y2="114" x2="100" name="images/servo.png" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="125" x="31"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="26" x="3"/>
-                        <pointPort type="NonTyped" y="56" x="4"/>
-                        <pointPort type="NonTyped" y="102" x="3"/>
-                        <pointPort type="NonTyped" y="81" x="2"/>
-                        <pointPort type="NonTyped" y="15" x="89"/>
+                        <pointPort y="26" type="NonTyped" x="3"/>
+                        <pointPort y="56" type="NonTyped" x="4"/>
+                        <pointPort y="102" type="NonTyped" x="3"/>
+                        <pointPort y="81" type="NonTyped" x="2"/>
+                        <pointPort y="15" type="NonTyped" x="89"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="bool" name="synch" displayedName="synchronized">
+                        <property displayedName="synchronized" name="synch" type="bool">
                             <default>false</default>
                         </property>
                     </properties>
@@ -631,20 +692,20 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ClearEncoders" displayedName="clear_encoders">
+            <node displayedName="clear_encoders" name="ClearEncoders">
                 <graphics>
                     <picture sizex="103" sizey="147">
-                        <image y2="114" y1="0" x2="101" name="images/clear encoders.png" x1="2"/>
+                        <image y2="114" x2="101" name="images/clear encoders.png" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="27"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="99" x="3"/>
-                        <pointPort type="NonTyped" y="16" x="91"/>
-                        <pointPort type="NonTyped" y="76" x="4"/>
-                        <pointPort type="NonTyped" y="53" x="4"/>
-                        <pointPort type="NonTyped" y="29" x="2"/>
+                        <pointPort y="99" type="NonTyped" x="3"/>
+                        <pointPort y="16" type="NonTyped" x="91"/>
+                        <pointPort y="76" type="NonTyped" x="4"/>
+                        <pointPort y="53" type="NonTyped" x="4"/>
+                        <pointPort y="29" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -656,18 +717,18 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="SayNode" displayedName="say smth.">
+            <node displayedName="say smth." name="SayNode">
                 <graphics>
                     <picture sizex="144" sizey="145">
-                        <image y2="114" y1="0" name="images/say.png" x2="142" x1="43"/>
+                        <image y2="114" name="images/say.png" x2="142" x1="43" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="119" x="71"/>
-                        <label y="28" text="text" x="0a"/>
+                        <label text="text" y="28" x="0a"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="62a" x="44"/>
-                        <pointPort type="NonTyped" y="16" x="133"/>
+                        <pointPort y="62a" type="NonTyped" x="44"/>
+                        <pointPort y="16" type="NonTyped" x="133"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -679,18 +740,18 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="LedNode" displayedName="turn_on_led">
+            <node displayedName="turn_on_led" name="LedNode">
                 <graphics>
                     <picture sizex="156" sizey="151">
-                        <image y2="114" y1="0" x2="154" name="images/diod.png" x1="55"/>
+                        <image y2="114" x2="154" name="images/diod.png" x1="55" y1="0"/>
                     </picture>
                     <labels>
                         <label y="22" text="color" x="0"/>
                         <label textBinded="name" y="125" x="79"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="63a" x="56"/>
-                        <pointPort type="NonTyped" y="16" x="145"/>
+                        <pointPort y="63a" type="NonTyped" x="56"/>
+                        <pointPort y="16" type="NonTyped" x="145"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -702,35 +763,35 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="SystemCallNode" displayedName="system_call">
+            <node displayedName="system_call" name="SystemCallNode">
                 <graphics>
                     <picture sizex="180" sizey="157">
-                        <image y2="122" y1="8" name="images/code and ev.png" x2="177" x1="78"/>
+                        <image y2="122" name="images/code and ev.png" x2="177" x1="78" y1="8"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="131" x="123"/>
-                        <label y="43" text="isCode" x="15"/>
+                        <label text="isCode" y="43" x="15"/>
                         <label textBinded="code" y="60" x="94"/>
-                        <label y="78" text="evaluate" x="9"/>
+                        <label text="evaluate" y="78" x="9"/>
                         <label textBinded="evaluate" y="90" x="93"/>
-                        <label y="0" text="command" x="0"/>
+                        <label text="command" y="0" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="110" x="80"/>
-                        <pointPort type="NonTyped" y="39" x="80"/>
-                        <pointPort type="NonTyped" y="76" x="177"/>
-                        <pointPort type="NonTyped" y="73" x="80"/>
-                        <pointPort type="NonTyped" y="24" x="167"/>
+                        <pointPort y="110" type="NonTyped" x="80"/>
+                        <pointPort y="39" type="NonTyped" x="80"/>
+                        <pointPort y="76" type="NonTyped" x="177"/>
+                        <pointPort y="73" type="NonTyped" x="80"/>
+                        <pointPort y="24" type="NonTyped" x="167"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="bool" name="evaluate" displayedName="evaluate">
+                        <property displayedName="evaluate" name="evaluate" type="bool">
                             <default>false</default>
                         </property>
-                        <property type="bool" name="code" displayedName="code">
+                        <property displayedName="code" name="code" type="bool">
                             <default>false</default>
                         </property>
                     </properties>
@@ -740,17 +801,17 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="InitCamera" displayedName="camera initialization">
+            <node displayedName="camera initialization" name="InitCamera">
                 <graphics>
                     <picture sizex="101" sizey="147">
-                        <image y2="114" y1="0" x2="99" name="images/cameraOn.png" x1="0"/>
+                        <image y2="114" x2="99" name="images/cameraOn.png" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="23"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="16" x="89"/>
-                        <pointPort type="NonTyped" y="15a" x="8"/>
+                        <pointPort y="16" type="NonTyped" x="89"/>
+                        <pointPort y="15a" type="NonTyped" x="8"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -762,18 +823,18 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="DetectByVideo" displayedName="object detector">
+            <node displayedName="object detector" name="DetectByVideo">
                 <graphics>
                     <picture sizex="203" sizey="133">
-                        <image y2="100" y1="0" x2="201" name="images/detectByCamera.png" x1="102"/>
+                        <image y2="100" x2="201" name="images/detectByCamera.png" x1="102" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="107" x="129"/>
                         <label y="9" text="line or object" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="51" x="200"/>
-                        <pointPort type="NonTyped" y="48" x="102"/>
+                        <pointPort y="51" type="NonTyped" x="200"/>
+                        <pointPort y="48" type="NonTyped" x="102"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -785,32 +846,32 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="MessageToRobot" displayedName="talk to others">
+            <node displayedName="talk to others" name="MessageToRobot">
                 <graphics>
                     <picture sizex="173" sizey="172">
-                        <image y2="139" y1="25" name="images/msgSend.png" x2="160" x1="61"/>
+                        <image y2="139" name="images/msgSend.png" x2="160" x1="61" y1="25"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="76"/>
-                        <label y="81" text="send to" x="0"/>
+                        <label text="send to" y="81" x="0"/>
                         <label textBinded="robot numbe" y="102" x="75"/>
-                        <label y="29" text="msg" x="18"/>
+                        <label text="msg" y="29" x="18"/>
                         <label textBinded="synch" y="146" x="66"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="68" x="64"/>
-                        <pointPort type="NonTyped" y="114" x="64"/>
-                        <pointPort type="NonTyped" y="41" x="156"/>
+                        <pointPort y="68" type="NonTyped" x="64"/>
+                        <pointPort y="114" type="NonTyped" x="64"/>
+                        <pointPort y="41" type="NonTyped" x="156"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="robotNum" displayedName="robot number">
+                        <property displayedName="robot number" name="robotNum" type="int">
                             <default>0</default>
                         </property>
-                        <property type="bool" name="synch" displayedName="synchronized port">
+                        <property displayedName="synchronized port" name="synch" type="bool">
                             <default>true</default>
                         </property>
                     </properties>
@@ -820,26 +881,26 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="StreamingNode" displayedName="video stream">
+            <node displayedName="video stream" name="StreamingNode">
                 <graphics>
                     <picture sizex="101" sizey="152">
-                        <image y2="114" y1="0" x2="99" name="images/streaming.png" x1="0"/>
+                        <image y2="114" x2="99" name="images/streaming.png" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="streamTo" y="77" x="9"/>
                         <label textBinded="name" y="126" x="25"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="15" x="9"/>
-                        <pointPort type="NonTyped" y="16" x="89"/>
-                        <pointPort type="NonTyped" y="92" x="2"/>
+                        <pointPort y="15" type="NonTyped" x="9"/>
+                        <pointPort y="16" type="NonTyped" x="89"/>
+                        <pointPort y="92" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="streamTo" displayedName="stream to:">
+                        <property displayedName="stream to:" name="streamTo" type="string">
                             <default>""</default>
                         </property>
                     </properties>
@@ -849,11 +910,11 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="WriteToFile" displayedName="write to file">
+            <node displayedName="write to file" name="WriteToFile">
                 <graphics>
                     <picture sizex="103" sizey="148">
-                        <image y2="113" y1="0" name="images/write to file2.png" x2="101" x1="3"/>
-                        <image y2="114" y1="0" name="images/write to file2.png" x2="100" x1="1"/>
+                        <image y2="113" name="images/write to file2.png" x2="101" x1="3" y1="0"/>
+                        <image y2="114" name="images/write to file2.png" x2="100" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="fileName" y="57" x="10"/>
@@ -861,23 +922,23 @@
                         <label textBinded="text" y="89" x="11"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="97" x="2"/>
-                        <pointPort type="NonTyped" y="16" x="14"/>
-                        <pointPort type="NonTyped" y="62" x="3"/>
-                        <pointPort type="NonTyped" y="16" x="87"/>
+                        <pointPort y="97" type="NonTyped" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="14"/>
+                        <pointPort y="62" type="NonTyped" x="3"/>
+                        <pointPort y="16" type="NonTyped" x="87"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="fileName" displayedName="file name">
+                        <property displayedName="file name" name="fileName" type="string">
                             <default>fileName</default>
                         </property>
-                        <property type="bool" name="synch" displayedName="synchronized port">
+                        <property displayedName="synchronized port" name="synch" type="bool">
                             <default>true</default>
                         </property>
-                        <property type="string" name="text" displayedName="text"/>
+                        <property displayedName="text" name="text" type="string"/>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -885,26 +946,26 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="RemoveFile" displayedName="remove file">
+            <node displayedName="remove file" name="RemoveFile">
                 <graphics>
                     <picture sizex="101" sizey="148">
-                        <image y2="114" y1="0" x2="99" name="images/filetotrash.png" x1="0"/>
+                        <image y2="114" x2="99" name="images/filetotrash.png" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="122" x="30"/>
                         <label textBinded="file" y="82" x="9"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="96" x="2"/>
-                        <pointPort type="NonTyped" y="17" x="92"/>
-                        <pointPort type="NonTyped" y="17" x="11"/>
+                        <pointPort y="96" type="NonTyped" x="2"/>
+                        <pointPort y="17" type="NonTyped" x="92"/>
+                        <pointPort y="17" type="NonTyped" x="11"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="file" displayedName="file for remove">
+                        <property displayedName="file for remove" name="file" type="string">
                             <default>file.txt</default>
                         </property>
                     </properties>
@@ -914,46 +975,46 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="DelayNode" displayedName="delay filter">
+            <node displayedName="delay filter" name="DelayNode">
                 <graphics>
                     <picture sizex="289" sizey="175">
-                        <image y2="137" y1="38" name="images/delay.png" x2="197" x1="98"/>
+                        <image y2="137" name="images/delay.png" x2="197" x1="98" y1="38"/>
                     </picture>
                     <labels>
-                        <label y="10" text="dispatch time" x="0"/>
-                        <label y="60" text="count filter" x="10"/>
-                        <label y="149" text="vars[]" x="126"/>
-                        <label y="101" text="data" x="60"/>
+                        <label text="dispatch time" y="10" x="0"/>
+                        <label text="count filter" y="60" x="10"/>
+                        <label text="vars[]" y="149" x="126"/>
+                        <label text="data" y="101" x="60"/>
                         <label textBinded="name" y="0" x="115"/>
                         <label textBinded="condition" y="103" x="106"/>
-                        <label y="80" text="data" x="196"/>
+                        <label text="data" y="80" x="196"/>
                         <label textBinded="dispatchTime" y="43" x="104"/>
-                        <label y="16" text="failuere out" x="201"/>
+                        <label text="failuere out" y="16" x="201"/>
                         <label textBinded="count" y="71" x="108"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="123" x="99"/>
-                        <pointPort type="NonTyped" y="89" x="99"/>
-                        <pointPort type="NonTyped" y="111" x="196"/>
-                        <pointPort type="NonTyped" y="52" x="99"/>
-                        <pointPort type="NonTyped" y="59" x="197"/>
-                        <pointPort type="NonTyped" y="135" x="184"/>
+                        <pointPort y="123" type="NonTyped" x="99"/>
+                        <pointPort y="89" type="NonTyped" x="99"/>
+                        <pointPort y="111" type="NonTyped" x="196"/>
+                        <pointPort y="52" type="NonTyped" x="99"/>
+                        <pointPort y="59" type="NonTyped" x="197"/>
+                        <pointPort y="135" type="NonTyped" x="184"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="preSendTime" displayedName="value before first send">
+                        <property displayedName="value before first send" name="preSendTime" type="int">
                             <default>0</default>
                         </property>
-                        <property type="bool" name="condition" displayedName="condition">
+                        <property displayedName="condition" name="condition" type="bool">
                             <default>true</default>
                         </property>
-                        <property type="int" name="count" displayedName="count filter">
+                        <property displayedName="count filter" name="count" type="int">
                             <default>100</default>
                         </property>
-                        <property type="int" name="dispatchTime" displayedName="dispatch time">
+                        <property displayedName="dispatch time" name="dispatchTime" type="int">
                             <default>30</default>
                         </property>
                     </properties>
@@ -963,27 +1024,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="WaitNode" displayedName="wait for">
+            <node displayedName="wait for" name="WaitNode">
                 <graphics>
                     <picture sizex="143" sizey="149">
-                        <image y2="114" y1="0" name="images/wait.png" x2="141" x1="42"/>
+                        <image y2="114" name="images/wait.png" x2="141" x1="42" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="123" x="68"/>
                         <label textBinded="time" y="76" x="58"/>
-                        <label y="57" text="time" x="0"/>
+                        <label text="time" y="57" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="91" x="42"/>
-                        <pointPort type="NonTyped" y="16a" x="51a"/>
-                        <pointPort type="NonTyped" y="15a" x="131"/>
+                        <pointPort y="91" type="NonTyped" x="42"/>
+                        <pointPort y="16a" type="NonTyped" x="51a"/>
+                        <pointPort y="15a" type="NonTyped" x="131"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="int" name="time" displayedName="time">
+                        <property displayedName="time" name="time" type="int">
                             <default>300</default>
                         </property>
                     </properties>
@@ -993,16 +1054,16 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ReceiveMsg" displayedName="message receiver">
+            <node displayedName="message receiver" name="ReceiveMsg">
                 <graphics>
                     <picture sizex="101" sizey="130">
-                        <image y2="99" y1="0" name="images/msg.png" x2="99" x1="0"/>
+                        <image y2="99" name="images/msg.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="104" x="29"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="48" x="98"/>
+                        <pointPort y="48" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1014,20 +1075,20 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Pult" displayedName="pult controller">
+            <node displayedName="pult controller" name="Pult">
                 <graphics>
                     <picture sizex="157" sizey="147">
-                        <image y2="114" y1="0" name="images/pult1.png" x2="99" x1="0"/>
+                        <image y2="114" name="images/pult1.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
-                        <label y="13" text="stick" x="108"/>
+                        <label text="stick" y="13" x="108"/>
                         <label textBinded="name" y="121" x="26"/>
-                        <label y="51" text="button" x="102"/>
+                        <label text="button" y="51" x="102"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="90" x="99"/>
-                        <pointPort type="NonTyped" y="16" x="11"/>
-                        <pointPort type="NonTyped" y="41" x="97"/>
+                        <pointPort y="90" type="NonTyped" x="99"/>
+                        <pointPort y="16" type="NonTyped" x="11"/>
+                        <pointPort y="41" type="NonTyped" x="97"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1039,10 +1100,10 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="PaintSettings" displayedName="paintSettings">
+            <node displayedName="paintSettings" name="PaintSettings">
                 <graphics>
                     <picture sizex="136" sizey="116">
-                        <image y2="114" y1="0" name="images/paintSettings.png" x2="101" x1="2"/>
+                        <image y2="114" name="images/paintSettings.png" x2="101" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="width" y="54" x="11"/>
@@ -1050,24 +1111,24 @@
                         <label textBinded="color" y="22" x="13"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="96" x="2"/>
-                        <pointPort type="NonTyped" y="17" x="16"/>
-                        <pointPort type="NonTyped" y="68" x="3"/>
-                        <pointPort type="NonTyped" y="35" x="2"/>
-                        <pointPort type="NonTyped" y="16" x="89"/>
+                        <pointPort y="96" type="NonTyped" x="2"/>
+                        <pointPort y="17" type="NonTyped" x="16"/>
+                        <pointPort y="68" type="NonTyped" x="3"/>
+                        <pointPort y="35" type="NonTyped" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="89"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="color" name="color" displayedName="brush color">
+                        <property displayedName="brush color" name="color" type="color">
                             <default>black</default>
                         </property>
-                        <property type="int" name="width" displayedName="brush width">
+                        <property displayedName="brush width" name="width" type="int">
                             <default>1</default>
                         </property>
-                        <property type="color" name="backgroundColor" displayedName="background color">
+                        <property displayedName="background color" name="backgroundColor" type="color">
                             <default>white</default>
                         </property>
                     </properties>
@@ -1077,26 +1138,26 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ShapePainter" displayedName="shape">
+            <node displayedName="shape" name="ShapePainter">
                 <graphics>
                     <picture sizex="169" sizey="116">
-                        <image y2="114" y1="0" name="images/shape.png" x2="167" x1="68"/>
+                        <image y2="114" name="images/shape.png" x2="167" x1="68" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="shapeType" y="78" x="73"/>
-                        <label y="12" text="config[]" x="0"/>
+                        <label text="config[]" y="12" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="46" x="69"/>
-                        <pointPort type="NonTyped" y="14" x="156"/>
-                        <pointPort type="NonTyped" y="93" x="69"/>
+                        <pointPort y="46" type="NonTyped" x="69"/>
+                        <pointPort y="14" type="NonTyped" x="156"/>
+                        <pointPort y="93" type="NonTyped" x="69"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="ShapeType" name="shapeType" displayedName="shape type">
+                        <property displayedName="shape type" name="shapeType" type="ShapeType">
                             <default>point</default>
                         </property>
                     </properties>
@@ -1106,25 +1167,25 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="SmilePainter" displayedName="smilePainter">
+            <node displayedName="smilePainter" name="SmilePainter">
                 <graphics>
                     <picture sizex="101" sizey="116">
-                        <image y2="114" y1="0" name="images/smile.png" x2="99" x1="0"/>
+                        <image y2="114" name="images/smile.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="isHappy" y="75" x="11"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="16" x="88"/>
-                        <pointPort type="NonTyped" y="18" x="10"/>
-                        <pointPort type="NonTyped" y="88" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="88"/>
+                        <pointPort y="18" type="NonTyped" x="10"/>
+                        <pointPort y="88" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="bool" name="isHappy" displayedName="happy smile:">
+                        <property displayedName="happy smile:" name="isHappy" type="bool">
                             <default>true</default>
                         </property>
                     </properties>
@@ -1134,27 +1195,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Text" displayedName="text">
+            <node displayedName="text" name="Text">
                 <graphics>
                     <picture sizex="170" sizey="145">
-                        <image y2="114" y1="0" name="images/text.png" x2="168" x1="69"/>
+                        <image y2="114" name="images/text.png" x2="168" x1="69" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="text" y="77" x="77"/>
                         <label textBinded="name" y="119" x="92"/>
-                        <label y="14" text="coords[]" x="0"/>
+                        <label text="coords[]" y="14" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="91" x="70"/>
-                        <pointPort type="NonTyped" y="51" x="71"/>
-                        <pointPort type="NonTyped" y="16" x="160"/>
+                        <pointPort y="91" type="NonTyped" x="70"/>
+                        <pointPort y="51" type="NonTyped" x="71"/>
+                        <pointPort y="16" type="NonTyped" x="160"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="text" displayedName="text">
+                        <property displayedName="text" name="text" type="string">
                             <default>default text</default>
                         </property>
                     </properties>
@@ -1164,17 +1225,17 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ClearNode" displayedName="clear screen">
+            <node displayedName="clear screen" name="ClearNode">
                 <graphics>
                     <picture sizex="101" sizey="147">
-                        <image y2="114" y1="0" name="images/clearScreen.png" x2="99" x1="0"/>
+                        <image y2="114" name="images/clearScreen.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="25"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="15" x="89"/>
-                        <pointPort type="NonTyped" y="17" x="9"/>
+                        <pointPort y="15" type="NonTyped" x="89"/>
+                        <pointPort y="17" type="NonTyped" x="9"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1186,27 +1247,27 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Pen" displayedName="pen up or down">
+            <node displayedName="pen up or down" name="Pen">
                 <graphics>
                     <picture sizex="176" sizey="151">
-                        <image y2="114" y1="0" name="images/pen up down.png" x2="174" x1="75"/>
+                        <image y2="114" name="images/pen up down.png" x2="174" x1="75" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="125" x="99"/>
                         <label textBinded="color" y="74" x="84"/>
-                        <label y="2" text="up/down" x="0"/>
+                        <label text="up/down" y="2" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="17" x="164"/>
-                        <pointPort type="NonTyped" y="37" x="77"/>
-                        <pointPort type="NonTyped" y="91" x="75"/>
+                        <pointPort y="17" type="NonTyped" x="164"/>
+                        <pointPort y="37" type="NonTyped" x="77"/>
+                        <pointPort y="91" type="NonTyped" x="75"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="Color" name="color" displayedName="pen color">
+                        <property displayedName="pen color" name="color" type="Color">
                             <default>black</default>
                         </property>
                     </properties>
@@ -1216,17 +1277,17 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="ForkNode" displayedName="fork">
+            <node displayedName="fork" name="ForkNode">
                 <graphics>
                     <picture sizex="117" sizey="139">
-                        <image y2="115" y1="0" name="images/fork.png" x2="115" x1="0"/>
+                        <image y2="115" name="images/fork.png" x2="115" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="113" x="34"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="57" x="107"/>
-                        <pointPort type="NonTyped" y="9" x="17"/>
+                        <pointPort y="57" type="NonTyped" x="107"/>
+                        <pointPort y="9" type="NonTyped" x="17"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1238,17 +1299,17 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="EndFork" displayedName="end fork">
+            <node displayedName="end fork" name="EndFork">
                 <graphics>
                     <picture sizex="100" sizey="142">
-                        <image y2="113" y1="0" name="images/join.png" x2="98" x1="0"/>
+                        <image y2="113" name="images/join.png" x2="98" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="116" x="28"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="64" x="2"/>
-                        <pointPort type="NonTyped" y="16" x="88"/>
+                        <pointPort y="64" type="NonTyped" x="2"/>
+                        <pointPort y="16" type="NonTyped" x="88"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1260,7 +1321,7 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="AbstactPainter" abstract="true">
+            <node abstract="true" name="AbstactPainter">
                 <logic>
                     <container/>
                     <generalizations>
@@ -1269,10 +1330,10 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="RobotsBehaviourDiagram" displayedName="Robots behaviour diagram">
+            <node displayedName="Robots behaviour diagram" name="RobotsBehaviourDiagram">
                 <graphics>
                     <picture sizex="101" sizey="100">
-                        <image y2="98" y1="0" name="images/robotDiagram.png" x2="99" x1="0"/>
+                        <image y2="98" name="images/robotDiagram.png" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels/>
                     <ports/>
@@ -1289,8 +1350,8 @@
             <node name="RobotsBehaviourSubprogram">
                 <graphics>
                     <picture sizex="217" sizey="129">
-                        <rectangle stroke="#ff000000" y2="127" y1="0" x2="215" fill-style="none" x1="0" fill="#ffffffff" stroke-width="0" stroke-style="solid"/>
-                        <line stroke="#ff000000" y2="30" y1="29" x2="215" fill-style="none" x1="0" fill="#ffffffff" stroke-width="0" stroke-style="solid"/>
+                        <rectangle y2="127" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="0"/>
+                        <line y2="30" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="29"/>
                     </picture>
                     <labels/>
                     <ports/>
@@ -1304,31 +1365,33 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="AbstractNode" abstract="true">
+            <node abstract="true" name="AbstractNode">
                 <logic>
                     <container/>
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="SensorVar" displayedName="sensor variable">
+            <node displayedName="sensor variable" name="SensorVar">
                 <graphics>
                     <picture sizex="101" sizey="163">
-                        <image y2="131" y1="17" name="images/sensorVar.png" x2="99" x1="0"/>
+                        <image y2="131" name="images/sensorVar.png" x2="99" x1="0" y1="17"/>
                     </picture>
                     <labels>
-                        <label textBinded="varName" y="137" x="12"/>
+                        <label textBinded="VarName" y="137" x="12"/>
                         <label textBinded="name" y="0" x="42"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="32" x="12"/>
-                        <pointPort type="NonTyped" y="80" x="98"/>
+                        <pointPort y="32" type="NonTyped" x="12"/>
+                        <pointPort y="80" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property type="string" name="varName" displayedName="var name"/>
+			<property displayedName="var name" name="VarName" type="SensorVars">
+                            <default>accelerometer</default>
+                        </property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -1336,19 +1399,18 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Interflowing" displayedName="interflowing">
+            <node displayedName="interflowing" name="Interflowing">
                 <graphics>
-                    <picture sizex="103" sizey="135">
-                        <image y2="127" y1="28" name="images/intersect.png" x2="100" x1="2"/>
-                        <image y2="133" y1="32" name="images/intersect.png" x2="101" x1="2"/>
+                    <picture sizex="102" sizey="133">
+                        <image y2="131" name="images/intersect.png" x2="100" x1="1" y1="30"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="26"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="54" x="2"/>
-                        <pointPort type="NonTyped" y="78" x="99"/>
-                        <pointPort type="NonTyped" y="109" x="4"/>
+                        <pointPort y="54" type="NonTyped" x="2"/>
+                        <pointPort y="78" type="NonTyped" x="99"/>
+                        <pointPort y="109" type="NonTyped" x="4"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1360,19 +1422,18 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node name="Separator" displayedName="Separator">
+            <node displayedName="Separator" name="Separator">
                 <graphics>
                     <picture sizex="102" sizey="132">
-                        <image y2="129" y1="30" name="images/divide.png" x2="100" x1="2"/>
-                        <image y2="130" y1="29" name="images/div.png" x2="99" x1="0"/>
+                        <image y2="130" name="images/div.png" x2="99" x1="0" y1="29"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="29"/>
                     </labels>
                     <ports>
-                        <pointPort type="NonTyped" y="101" x="99"/>
-                        <pointPort type="NonTyped" y="80" x="2"/>
-                        <pointPort type="NonTyped" y="56" x="98"/>
+                        <pointPort y="101" type="NonTyped" x="98"/>
+                        <pointPort y="80" type="NonTyped" x="2"/>
+                        <pointPort y="56" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>

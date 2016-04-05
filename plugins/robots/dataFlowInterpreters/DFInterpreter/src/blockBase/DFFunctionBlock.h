@@ -14,24 +14,26 @@
 
 #pragma once
 
-#include <kitBase/robotModel/robotParts/speaker.h>
-#include <utils/robotCommunication/robotCommunicator.h>
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
-namespace trik {
-namespace robotModel {
-namespace parts {
 
-class TrikSpeaker : public kitBase::robotModel::robotParts::Speaker
+namespace dataFlowBlocks {
+namespace details {
+
+/// block for data, that sends data one time
+class DFFunctionBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
 
 public:
-	TrikSpeaker(const kitBase::robotModel::DeviceInfo &info
-			, const kitBase::robotModel::PortInfo &port);
+	DFFunctionBlock();
 
-	virtual void play(const QString &filePath) = 0;
+protected:
+	void handleData() override;
+
+private:
+	QString prepareCode(const QString &port, const QString &propertyName);
 };
 
-}
 }
 }

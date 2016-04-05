@@ -10,40 +10,42 @@
 #include <utils/timelineInterface.h>
 #include <kitBase/robotModel/robotModelInterface.h>
 
+#include "DFRobotBlocksTable.h"
+
 
 using namespace qReal;
 using namespace interpretation;
 using namespace interpreterCore;
 using namespace interpreterCore::interpreter;
 using namespace interpreterCore::interpreter::dataFlowInterpretation;
-using namespace dataFlowInterpretation;
+using namespace dataFlow::interpretation;
 using namespace kitBase::robotModel;
 
 const int maxThreadsCount = 100;
+const IdList supportedDiagramTypes = {Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourDiagram")
+		, Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourSubprogram")
+		};
+
 
 DFInterpeter::DFInterpeter(const GraphicalModelAssistInterface &graphicalModelApi
 		, LogicalModelAssistInterface &logicalModelApi
 		, qReal::gui::MainWindowInterpretersInterface &interpretersInterface
 		, const qReal::ProjectManagementInterface &projectManager
-		, BlocksFactoryManagerInterface &blocksFactoryManager
+		, dataFlow::blocksBase::DFRobotBlocksFactoryInterface &factory
 		, const kitBase::robotModel::RobotModelManagerInterface &robotModelManager
 		, qrtext::LanguageToolboxInterface &languageToolbox
-		, QAction &connectToRobotAction
 		)
 	: mGraphicalModelApi(graphicalModelApi)
 	, mLogicalModelApi(logicalModelApi)
 	, mInterpretersInterface(interpretersInterface)
 	, mState(idle)
 	, mRobotModelManager(robotModelManager)
-	, mBlocksTable(new details::BlocksTable(blocksFactoryManager, robotModelManager))
-	, mActionConnectToRobot(connectToRobotAction)
+	, mFactory(factory)
+	, mBlocksTable(new DFRobotBlocksTable(mFactory, mRobotModelManager))
+//	, mBlocksTable(new details::BlocksTable(blocksFactoryManager, robotModelManager))
 	, mSensorVariablesUpdater(robotModelManager, languageToolbox)
-	, mAutoconfigurer(mGraphicalModelApi, *mBlocksTable, *mInterpretersInterface.errorReporter())
 	, mLanguageToolbox(languageToolbox)
 {
-	// Other components may want to subscribe to allDevicesConfigured() signal because
-	// it seems to be the only way to perform robot devices additional initialization.
-	// We must let them work out before interpretation starts, so creating queued connection.
 	connect(
 			&mRobotModelManager
 			, &kitBase::robotModel::RobotModelManagerInterface::allDevicesConfigured
@@ -61,13 +63,19 @@ DFInterpeter::DFInterpeter(const GraphicalModelAssistInterface &graphicalModelAp
 
 	connect(&projectManager, &qReal::ProjectManagementInterface::beforeOpen, this, &DFInterpeter::userStopRobot);
 
-	connectDevicesConfigurationProvider(&mAutoconfigurer);
+//	connectDevicesConfigurationProvider(&mAutoconfigurer);
+
 }
 
 DFInterpeter::~DFInterpeter()
 {
 	qDeleteAll(mThreads);
 	delete mBlocksTable;
+}
+
+IdList DFInterpeter::supportedDiagrams() const
+{
+	return supportedDiagramTypes;
 }
 
 void DFInterpeter::interpret()
@@ -88,17 +96,18 @@ void DFInterpeter::interpret()
 	mBlocksTable->clear();
 	mState = waitingForDevicesConfiguredToLaunch;
 
-	if (!mAutoconfigurer.configure(mGraphicalModelApi.children(Id::rootId()), mRobotModelManager.model().robotId())) {
-		mState = idle;
-		return;
-	}
+//	if (!mAutoconfigurer.configure(mGraphicalModelApi.children(Id::rootId()), mRobotModelManager.model().robotId())) {
+//		mState = idle;
+//		return;
+//	}
 
 	mLanguageToolbox.clear();
 
 	/// @todo Temporarily loading initial configuration from a network of SensorConfigurationProviders.
 	///       To be done more adequately.
 	const QString modelName = mRobotModelManager.model().robotId();
-	for (const PortInfo &port : mRobotModelManager.model().configurablePorts()) {
+	QList<PortInfo> localConfigurablePorts = mRobotModelManager.model().configurablePorts();
+	for (const PortInfo &port : localConfigurablePorts) {
 		const DeviceInfo deviceInfo = currentConfiguration(modelName, port);
 		mRobotModelManager.model().configureDevice(port, deviceInfo);
 	}
@@ -113,7 +122,6 @@ void DFInterpeter::stopRobot(qReal::interpretation::StopReason reason)
 	mState = idle;
 	qDeleteAll(mThreads);
 	mThreads.clear();
-	mBlocksTable->setFailure();
 	emit stopped(reason);
 }
 
@@ -138,7 +146,7 @@ void DFInterpeter::connectedSlot(bool success, const QString &errorString)
 		}
 	}
 
-	mActionConnectToRobot.setChecked(success);
+	emit connected(success);
 }
 
 void DFInterpeter::devicesConfiguredSlot()
@@ -164,7 +172,7 @@ IdList DFInterpeter::findStartChildrens(const Id &currentDiagramId)
 	auto childrens = mGraphicalModelApi.children(currentDiagramId);
 	IdList startElements;
 	for (auto &id : childrens) {
-		if (mGraphicalModelApi.graphicalRepoApi().incomingLinks(id).empty()) {
+		if (id.element() != "Edge" && mGraphicalModelApi.graphicalRepoApi().incomingLinks(id).empty()) {
 			startElements << id;
 		}
 	}
@@ -192,6 +200,7 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 	while (!nextBlocks.empty()) {
 		Id curId = nextBlocks.dequeue();
 		auto curBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(curId));
+		curBlock->configure();
 		Id localOutgoingExplosion = mLogicalModelApi.logicalRepoApi().outgoingExplosion(curId);
 		if (!localOutgoingExplosion.isNull()) {
 			// explosion handle add and connect to start points
@@ -203,6 +212,7 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 		for (auto &linkId : outgoingLinks) {
 			auto nextBlockId = mGraphicalModelApi.to(linkId);
 			auto nextBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(nextBlockId));
+			nextBlock->configure();
 			if (!handledElements.contains(nextBlockId)) {
 				nextBlocks.enqueue(nextBlockId);
 			}
@@ -241,10 +251,10 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 void DFInterpeter::handleDataInFlow(const QVariant &data, int port)
 {
 	QList<QPair<DataFlowRobotsBlock *, int>> localValues =
-			connectResolver[static_cast<DataFlowRobotsBlock *>(sender())].values(port);
+			connectResolver[dynamic_cast<DataFlowRobotsBlock *>(sender())].values(port);
 
 	for (QPair<DataFlowRobotsBlock *, int> &pair: localValues) {
-		pair.first->handleDataFromFlow(data, pair.second);
+		pair.first->handleNewDataFromFlow(data, pair.second);
 	}
 }
 
@@ -342,8 +352,7 @@ void DFInterpeter::connectToRobot()
 		mRobotModelManager.model().connectToRobot();
 	}
 
-	mActionConnectToRobot.setChecked(
-			mRobotModelManager.model().connectionState() == RobotModelInterface::connectedState);
+	emit connected(mRobotModelManager.model().connectionState() == RobotModelInterface::connectedState);
 }
 
 void DFInterpeter::reportError(const QString &message)

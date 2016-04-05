@@ -27,14 +27,16 @@
 
 #include <kitBase/robotModel/robotModelManagerInterface.h>
 #include <kitBase/devicesConfigurationProvider.h>
+#include <kitBase/interpreterInterface.h>
 
 #include "interpreterCore/interpreter/details/blocksTable.h"
 #include "interpreterCore/interpreter/details/sensorVariablesUpdater.h"
 #include "interpreterCore/interpreter/details/autoconfigurer.h"
-#include "DFThread.h"
 
-#include "interpreterCore/interpreter/interpreterInterface.h"
+#include "DFThread.h"
 #include "DFRobotsBlock.h"
+#include "DFFactoryBase.h"
+#include "DFRobotBlocksTableInterface.h"
 
 
 
@@ -45,7 +47,7 @@ namespace dataFlowInterpretation {
 /// Interprets robot diagram by executing blocks and sending commands to robot model. Manages models, connection,
 /// threads, parser, can automatically configure robot by used blocks on diagram. It is the main class for
 /// all interpretation subsystem.
-class DFInterpeter : public InterpreterInterface, public kitBase::DevicesConfigurationProvider
+class DFInterpeter : public kitBase::InterpreterInterface, public kitBase::DevicesConfigurationProvider
 {
 	Q_OBJECT
 
@@ -65,14 +67,15 @@ public:
 			, qReal::LogicalModelAssistInterface &logicalModelApi
 			, qReal::gui::MainWindowInterpretersInterface &interpretersInterface
 			, const qReal::ProjectManagementInterface &projectManager
-			, BlocksFactoryManagerInterface &blocksFactoryManager
+			, dataFlow::blocksBase::DFRobotBlocksFactoryInterface &factory
+//			, BlocksFactoryManagerInterface &blocksFactoryManager
 			, const kitBase::robotModel::RobotModelManagerInterface &robotModelManager
 			, qrtext::LanguageToolboxInterface &languageToolbox
-			, QAction &connectToRobotAction
 			);
 
 	~DFInterpeter() override;
 
+	qReal::IdList supportedDiagrams() const;
 public slots:
 	void connectToRobot() override;
 	void interpret() override;
@@ -91,7 +94,7 @@ private slots:
 	void handleDataInFlow(const QVariant &data, int port);
 
 signals:
-	void dataToBlock(const QVariant &data, int port);
+	void dataToBlock(const QVector<QVariant> &data, int port);
 
 private:
 	enum InterpreterState {
@@ -117,18 +120,14 @@ private:
 	quint64 mInterpretationStartedTimestamp;
 	QHash<QString, DFThread *> mThreads;  // Has ownership
 	const kitBase::robotModel::RobotModelManagerInterface &mRobotModelManager;
-	details::BlocksTable *mBlocksTable;  // Has ownership
+	dataFlow::blocksBase::DFRobotBlocksFactoryInterface &mFactory;
+	dataFlow::interpretation::DFRobotBlocksTableInterface *mBlocksTable;  // Has ownership
 
-	using DataFlowRobotsBlock = dataFlowInterpretation::DFRobotsBlock;
+	using DataFlowRobotsBlock = dataFlow::interpretation::DFRobotsBlock;
 	QMap<DataFlowRobotsBlock *, QMultiMap<int, QPair<DataFlowRobotsBlock *, int>>> connectResolver;
 	QSet<qReal::Id> handledElements;
 
-	/// Action responsible for the connection to the robot
-	QAction &mActionConnectToRobot;
-
 	details::SensorVariablesUpdater mSensorVariablesUpdater;
-	details::Autoconfigurer mAutoconfigurer;
-
 	/// Reference to a parser to be able to clear parser state when starting interpretation.
 	qrtext::LanguageToolboxInterface &mLanguageToolbox;
 };

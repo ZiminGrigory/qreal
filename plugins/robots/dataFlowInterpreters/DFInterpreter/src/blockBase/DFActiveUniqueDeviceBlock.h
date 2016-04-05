@@ -17,7 +17,7 @@
 #include <kitBase/robotModel/robotModelInterface.h>
 #include <kitBase/robotModel/robotModelUtils.h>
 
-#include "plugins/robots/dataFlowInterpreters/superCosmoInterpreter/src/DFRobotsBlock.h"
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
 
 namespace dataFlowBlocks {
@@ -28,7 +28,7 @@ namespace details {
 /// perform search of some device of the given type and call doJob() from it if it was found
 /// or display an error otherwise.
 template<typename Device>
-class DFActiveUniqueDeviceBlock : public interpreterCore::interpreter::dataFlowInterpretation::DFRobotsBlock
+class DFActiveUniqueDeviceBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 
 public:

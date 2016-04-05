@@ -19,6 +19,7 @@ includes(plugins/robots/common/kitBase \
 		plugins/robots/common/trikKit/include \
 		plugins/robots/interpreters/interpreterCore \
 		plugins/robots/utils \
+		plugins/robots/dataFlowInterpreters \
 		plugins/robots/interpreters \
 		plugins/robots/interpreters/trikKitInterpreterCommon \
 		plugins/robots/interpreters/trikV62KitInterpreter \
@@ -51,60 +52,27 @@ HEADERS += \
     $$PWD/DFFactoryBase.h \
     $$PWD/DFRobotsBlock.h \
     $$PWD/DFThread.h \
-    $$PWD/DFTrikKitV62InterpreterPlugin.h \
     $$PWD/blockBase/DFActiveUniqueDeviceBlock.h \
     $$PWD/blockBase/DFDeviceBlock.h \
     $$PWD/blockBase/DFMotorsBlock.h \
     $$PWD/blockBase/DFValueEmitter.h \
-    $$PWD/robotModel/DFTrikRobotModelBase.h \
-    $$PWD/robotModel/parts/DFTrikColorSensor.h \
-    $$PWD/robotModel/parts/DFTrikDisplay.h \
-    $$PWD/robotModel/parts/DFTrikGamepadButton.h \
-    $$PWD/robotModel/parts/DFTrikGamepadConnectionIndicator.h \
-    $$PWD/robotModel/parts/DFTrikGamepadPad.h \
-    $$PWD/robotModel/parts/DFTrikGamepadPadPressSensor.h \
-    $$PWD/robotModel/parts/DFTrikGamepadWheel.h \
-    $$PWD/robotModel/parts/DFTrikInfraredSensor.h \
-    $$PWD/robotModel/parts/DFTrikLed.h \
-    $$PWD/robotModel/parts/DFTrikLineSensor.h \
-    $$PWD/robotModel/parts/DFTrikMotionSensor.h \
-    $$PWD/robotModel/parts/DFTrikObjectSensor.h \
-    $$PWD/robotModel/parts/DFTrikServoMotor.h \
-    $$PWD/robotModel/parts/DFTrikShell.h \
-    $$PWD/robotModel/parts/DFTrikSonarSensor.h \
-    $$PWD/robotModel/parts/DFTrikSpeaker.h \
-    $$PWD/robotModel/parts/DFTrikPowerMotor.h \
-    $$PWD/robotModel/DFTrikRobotModelV62.h \
-    $$PWD/robotModel/DFTwoDRobotModelV62.h \
-    $$PWD/robotModel/DFRealRobotModelV62.h \
-    $$PWD/DFInterpreter.h
+    $$PWD/DFInterpreter.h \
+    $$PWD/blockBase/DFFunctionBlock.h \
+    $$PWD/blockBase/DFSensorVariableEmitter.h \
+    $$PWD/DFRobotsBlockInterface.h \
+    $$PWD/DFRobotBlocksFactoryInterface.h \
+    $$PWD/DFRobotBlocksTableInterface.h \
+    $$PWD/DFRobotBlocksTableBase.h \
+    $$PWD/DFRobotBlocksTable.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
     $$PWD/DFRobotsBlock.cpp \
     $$PWD/DFThread.cpp \
-    $$PWD/DFTrikKitV62InterpreterPlugin.cpp \
     $$PWD/blockBase/DFMotorsBlock.cpp \
     $$PWD/blockBase/DFValueEmitter.cpp \
-    $$PWD/robotModel/DFTrikRobotModelBase.cpp \
-    $$PWD/robotModel/parts/DFTrikColorSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikDisplay.cpp \
-    $$PWD/robotModel/parts/DFTrikGamepadButton.cpp \
-    $$PWD/robotModel/parts/DFTrikGamepadConnectionIndicator.cpp \
-    $$PWD/robotModel/parts/DFTrikGamepadPad.cpp \
-    $$PWD/robotModel/parts/DFTrikGamepadPadPressSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikGamepadWheel.cpp \
-    $$PWD/robotModel/parts/DFTrikInfraredSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikLed.cpp \
-    $$PWD/robotModel/parts/DFTrikLineSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikMotionSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikObjectSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikPowerMotor.cpp \
-    $$PWD/robotModel/parts/DFTrikServoMotor.cpp \
-    $$PWD/robotModel/parts/DFTrikShell.cpp \
-    $$PWD/robotModel/parts/DFTrikSonarSensor.cpp \
-    $$PWD/robotModel/parts/DFTrikSpeaker.cpp \
-    $$PWD/robotModel/DFTrikRobotModelV62.cpp \
-    $$PWD/robotModel/DFTwoDRobotModelV62.cpp \
-    $$PWD/robotModel/DFRealRobotModelV62.cpp \
-    $$PWD/DFInterpreter.cpp
+    $$PWD/DFInterpreter.cpp \
+    $$PWD/blockBase/DFFunctionBlock.cpp \
+    $$PWD/blockBase/DFSensorVariableEmitter.cpp \
+    $$PWD/DFRobotBlocksTableBase.cpp \
+    $$PWD/DFRobotBlocksTable.cpp

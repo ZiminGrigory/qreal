@@ -25,7 +25,7 @@ namespace dataFlowBlocks {
 namespace details {
 
 /// A base for all blocks that work with motors.
-class DFMotorsBlock : public interpreterCore::interpreter::dataFlowInterpretation::DFRobotsBlock
+class DFMotorsBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
 
@@ -33,10 +33,10 @@ public:
 	/// Constructor, takes current robot model as parameter.
 	explicit DFMotorsBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
-	QMap<kitBase::robotModel::PortInfo, kitBase::robotModel::DeviceInfo> usedDevices() override;
-	void run() override;
+	QMap<kitBase::robotModel::PortInfo, kitBase::robotModel::DeviceInfo> usedDevices();
 
 protected:
+	void handleData() override;
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 
 private:

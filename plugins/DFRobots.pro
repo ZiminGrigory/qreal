@@ -1,20 +1,32 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-	robots/editor \
-	robots/dataFlowEditor \
-	robots/examples \
-	robots/common \
-	robots/interpreters \
-	robots/dataFlowInterpreters \
-	robots/generators \
-	robots/utils \
-	robots/checker \
-	robots/thirdparty \
+	editor \
+	dataFlowEditor \
+	examples \
+	common \
+	interpreters \
+	dataFlowInterpreters \
+	generators \
+	utils \
+	checker \
+	thirdparty \
 
-robots/utils.depends = robots/thirdparty
-robots/common.depends = robots/thirdparty robots/utils
-robots/interpreters.depends = robots/common robots/thirdparty robots/utils
-robots/dataFlowInterpreters.depends = robots/common robots/thirdparty robots/utils robots/interpreters
-robots/generators.depends = robots/common robots/utils
-robots/checker.depends = robots/interpreters
+editor.subdir = $$PWD/robots/editor
+dataFlowEditor.subdir = $$PWD/robots/dataFlowEditor
+examples.subdir = $$PWD/robots/examples
+common.subdir = $$PWD/robots/common
+interpreters.subdir = $$PWD/robots/interpreters
+dataFlowInterpreters.subdir = $$PWD/robots/dataFlowInterpreters
+generators.subdir = $$PWD/robots/generators
+utils.subdir = $$PWD/robots/utils
+checker.subdir = $$PWD/robots/checker
+thirdparty.subdir = $$PWD/robots/thirdparty
+
+utils.depends = thirdparty
+common.depends = thirdparty utils
+interpreters.depends = common thirdparty utils
+dataFlowInterpreters.depends = common thirdparty utils interpreters
+generators.depends = common utils
+checker.depends = interpreters
+

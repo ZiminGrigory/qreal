@@ -12,12 +12,15 @@ using namespace interpretation;
 using namespace interpreterCore;
 using namespace interpreterCore::interpreter;
 using namespace interpreterCore::interpreter::dataFlowInterpretation;
+using namespace dataFlow::interpretation;
 
 const int timeBeforeStart = 25;
+const int dummyPortForStarting = -1;
+
 
 DFThread::DFThread(const GraphicalModelAssistInterface *graphicalModelApi
 		, gui::MainWindowInterpretersInterface &interpretersInterface
-		, details::BlocksTable *blocksTable
+		, dataFlow::interpretation::DFRobotBlocksTableInterface *blocksTable
 		, const IdList &initialNodeIds
 		, const QString &threadId)
 	: mGraphicalModelApi(graphicalModelApi)
@@ -31,11 +34,11 @@ DFThread::DFThread(const GraphicalModelAssistInterface *graphicalModelApi
 void DFThread::init(const IdList &initialNodeIds)
 {
 	for (auto &id: initialNodeIds) {
-		mInitialNodes.append(dynamic_cast<DFRobotsBlock *>(mBlocksTable->block(id)));
+		mInitialNodes.append(mBlocksTable->block(id));
 	}
 
 	for (auto &node: mInitialNodes) {
-		QTimer::singleShot(timeBeforeStart, this, [&]{node->interpretThis();});
+		QTimer::singleShot(timeBeforeStart, [&](){node->handleNewDataFromFlow(QVariant(), dummyPortForStarting);});
 	}
 }
 

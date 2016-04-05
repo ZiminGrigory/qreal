@@ -12,12 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#include "DFTrikDisplay.h"
+#pragma once
 
-using namespace trik::robotModel::parts;
-using namespace kitBase::robotModel;
+#include "DFRobotsBlockInterface.h"
 
-TrikDisplay::TrikDisplay(const DeviceInfo &info, const PortInfo &port)
-	: kitBase::robotModel::robotParts::Display(info, port)
+namespace dataFlow {
+namespace interpretation {
+
+/// Centralized blocks storage. Provides mapping from block ids to objects that implement logic of block.
+/// @todo Seems to be unneeded here.
+class DFRobotBlocksTableInterface
 {
+public:
+	virtual ~DFRobotBlocksTableInterface() {}
+
+	/// Returns object that implement logic of block by given id.
+	virtual DFRobotsBlockInterface *block(const qReal::Id &element) = 0;
+
+	/// Clears blocks table.
+	virtual void clear() = 0;
+};
+
+}
 }

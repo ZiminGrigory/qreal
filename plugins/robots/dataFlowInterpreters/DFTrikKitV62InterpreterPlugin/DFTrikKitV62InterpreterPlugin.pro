@@ -12,16 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET = dataflow-interpreter
+TARGET = robots-trik-v62-dataflow-interpreter
+
+TEMPLATE = lib
+CONFIG += plugin
 
 include(../../../../global.pri)
 
-TEMPLATE = lib
-CONFIG += plugin widgets
-QT += widgets
+DESTDIR = $$DESTDIR/plugins/tools/kitPlugins/
 
-include(src/DFInterpreter.pri)
+include(src/DFTrikKitV62InterpreterPlugin.pri)
 
-RESOURCES += \
-    dataflowinterpreter.qrc
 

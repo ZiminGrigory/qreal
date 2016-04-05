@@ -30,6 +30,8 @@
 #include <interpreterCore/interpreter/details/blocksTable.h>
 
 #include "DFRobotsBlock.h"
+#include "DFRobotBlocksFactoryInterface.h"
+#include "DFRobotBlocksTableInterface.h"
 
 class QTimer;
 
@@ -51,7 +53,7 @@ public:
 	/// @param initialNode - node that shall be executed first in this thread.
 	DFThread(const qReal::GraphicalModelAssistInterface *graphicalModelApi
 			, qReal::gui::MainWindowInterpretersInterface &interpretersInterface
-			, details::BlocksTable *blocksTable
+			, dataFlow::interpretation::DFRobotBlocksTableInterface *blocksTable
 			, const qReal::IdList &initialNodeIds
 			, const QString &threadId);
 
@@ -85,10 +87,10 @@ private:
 
 	const qReal::GraphicalModelAssistInterface *mGraphicalModelApi;  // Doesn't have ownership
 	qReal::gui::MainWindowInterpretersInterface &mInterpretersInterface;
-	details::BlocksTable *mBlocksTable;
+	dataFlow::interpretation::DFRobotBlocksTableInterface *mBlocksTable;
 	const qReal::Id mInitialDiagram;
 	QString mId;
-	QList<DFRobotsBlock *> mInitialNodes;
+	QList<dataFlow::interpretation::DFRobotsBlockInterface *> mInitialNodes;
 	QQueue<QString> mMessages;
 };
 
