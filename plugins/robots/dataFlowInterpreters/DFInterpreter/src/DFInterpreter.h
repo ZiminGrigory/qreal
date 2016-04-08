@@ -37,7 +37,7 @@
 #include "DFRobotsBlock.h"
 #include "DFFactoryBase.h"
 #include "DFRobotBlocksTableInterface.h"
-
+#include "blockBase/DFSubprogramCall.h"
 
 
 namespace interpreterCore {
@@ -93,6 +93,10 @@ private slots:
 
 	void handleDataInFlow(const QVariant &data, int port);
 
+	void handleStopRobot();
+
+	qReal::IdList handleSubprogram(const qReal::Id &id, const qReal::Id &explosion);
+
 signals:
 	void dataToBlock(const QVector<QVariant> &data, int port);
 
@@ -126,6 +130,7 @@ private:
 	using DataFlowRobotsBlock = dataFlow::interpretation::DFRobotsBlock;
 	QMap<DataFlowRobotsBlock *, QMultiMap<int, QPair<DataFlowRobotsBlock *, int>>> connectResolver;
 	QSet<qReal::Id> handledElements;
+	QList<dataFlowBlocks::details::DFSubprogramCall *> mSubprograms;
 
 	details::SensorVariablesUpdater mSensorVariablesUpdater;
 	/// Reference to a parser to be able to clear parser state when starting interpretation.

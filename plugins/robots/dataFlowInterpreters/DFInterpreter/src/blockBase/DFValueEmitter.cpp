@@ -10,9 +10,9 @@ dataFlowBlocks::details::DFValueEmitter::DFValueEmitter()
 
 void dataFlowBlocks::details::DFValueEmitter::handleData()
 {
-	QVector<QVariant> data;
 	QString dataFromProperty = DFRobotsBlock::stringProperty(mGraphicalId, "varValue");
 	if (dataFromProperty.contains('[')) {
+		QVariantList data;
 		dataFromProperty.trimmed();
 		dataFromProperty.remove('[');
 		dataFromProperty.remove(']');
@@ -20,12 +20,11 @@ void dataFlowBlocks::details::DFValueEmitter::handleData()
 		for (auto &s : localSplit) {
 			data << QVariant(s);
 		}
+
+
+		emit newDataInFlow(data, portAssociatedWithProperty["OUT"]);
+
 	} else {
-		data.push_back(QVariant(dataFromProperty));
+		emit newDataInFlow(dataFromProperty, portAssociatedWithProperty["OUT"]);
 	}
-
-	QVariant dataToSend;
-	dataToSend.setValue(data);
-
-	emit newDataInFlow(dataToSend, portAssociatedWithProperty["OUT"]);
 }

@@ -54,7 +54,7 @@ public:
 	DFThread(const qReal::GraphicalModelAssistInterface *graphicalModelApi
 			, qReal::gui::MainWindowInterpretersInterface &interpretersInterface
 			, dataFlow::interpretation::DFRobotBlocksTableInterface *blocksTable
-			, const qReal::IdList &initialNodeIds
+			, qReal::IdList initialNodeIds
 			, const QString &threadId);
 
 
@@ -63,6 +63,9 @@ public:
 
 	/// Returns string id of a thread.
 	QString id() const;
+
+public slots:
+	void start();
 
 signals:
 	/// Emitted when interpretation process was terminated (correctly or due to errors).
@@ -89,6 +92,7 @@ private:
 	qReal::gui::MainWindowInterpretersInterface &mInterpretersInterface;
 	dataFlow::interpretation::DFRobotBlocksTableInterface *mBlocksTable;
 	const qReal::Id mInitialDiagram;
+	qReal::IdList mInitialNodeIds;
 	QString mId;
 	QList<dataFlow::interpretation::DFRobotsBlockInterface *> mInitialNodes;
 	QQueue<QString> mMessages;

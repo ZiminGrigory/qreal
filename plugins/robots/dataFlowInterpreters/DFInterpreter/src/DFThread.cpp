@@ -21,14 +21,19 @@ const int dummyPortForStarting = -1;
 DFThread::DFThread(const GraphicalModelAssistInterface *graphicalModelApi
 		, gui::MainWindowInterpretersInterface &interpretersInterface
 		, dataFlow::interpretation::DFRobotBlocksTableInterface *blocksTable
-		, const IdList &initialNodeIds
+		, IdList initialNodeIds
 		, const QString &threadId)
 	: mGraphicalModelApi(graphicalModelApi)
 	, mInterpretersInterface(interpretersInterface)
 	, mBlocksTable(blocksTable)
+	, mInitialNodeIds(initialNodeIds)
 	, mId(threadId)
 {
-	init(initialNodeIds);
+}
+
+void DFThread::start()
+{
+	init(mInitialNodeIds);
 }
 
 void DFThread::init(const IdList &initialNodeIds)

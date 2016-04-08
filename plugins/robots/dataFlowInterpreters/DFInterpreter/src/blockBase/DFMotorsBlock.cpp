@@ -27,13 +27,14 @@ DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 
 void DFMotorsBlock::handleData()
 {
-	auto motors = usedDevices();
-	auto keys = motors.keys();
+	const QList<PortInfo> keys = usedDevices().keys();
 
-	for (auto &key : keys) {
-		QVariant power = valueOnPort[portAssociatedWithProperty[key.name()]];
+	for (const PortInfo &key : keys) {
+		QVariant power = property(portAssociatedWithProperty[key.name()]);
+
 		auto *motor = robotModel::RobotModelUtils::findDevice<robotParts::Motor>(mRobotModel, key);
 		if (power != QVariant()) {
+			qDebug() << key.name() << power.toInt() << "\n";
 			motor->on(power.toInt());
 		}
 	}

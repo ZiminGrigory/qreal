@@ -63,7 +63,16 @@ HEADERS += \
     $$PWD/DFRobotBlocksFactoryInterface.h \
     $$PWD/DFRobotBlocksTableInterface.h \
     $$PWD/DFRobotBlocksTableBase.h \
-    $$PWD/DFRobotBlocksTable.h
+    $$PWD/DFRobotBlocksTable.h \
+    $$PWD/blockBase/DFInhibitionBlock.h \
+    $$PWD/blockBase/DFSupressorBlock.h \
+    $$PWD/blockBase/DFInterflowingBlock.h \
+    $$PWD/blockBase/DFExitExecutionBlock.h \
+    $$PWD/blockBase/DFDelayAndConditionFilter.h \
+    $$PWD/blockBase/DFInputSubProgramPort.h \
+    $$PWD/blockBase/DFOutputSubProgramPort.h \
+    $$PWD/blockBase/DFGamepadBlock.h \
+    $$PWD/blockBase/DFSubprogramCall.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -75,4 +84,13 @@ SOURCES += \
     $$PWD/blockBase/DFFunctionBlock.cpp \
     $$PWD/blockBase/DFSensorVariableEmitter.cpp \
     $$PWD/DFRobotBlocksTableBase.cpp \
-    $$PWD/DFRobotBlocksTable.cpp
+    $$PWD/DFRobotBlocksTable.cpp \
+    $$PWD/blockBase/DFInhibitionBlock.cpp \
+    $$PWD/blockBase/DFSupressorBlock.cpp \
+    $$PWD/blockBase/DFInterflowingBlock.cpp \
+    $$PWD/blockBase/DFExitExecutionBlock.cpp \
+    $$PWD/blockBase/DFDelayAndConditionFilter.cpp \
+    $$PWD/blockBase/DFInputSubProgramPort.cpp \
+    $$PWD/blockBase/DFOutputSubProgramPort.cpp \
+    $$PWD/blockBase/DFGamepadBlock.cpp \
+    $$PWD/blockBase/DFSubprogramCall.cpp

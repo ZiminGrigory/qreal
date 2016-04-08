@@ -32,6 +32,9 @@ signals:
 	/// Emitted each time when the block stops its execution due to some error.
 	void failure();
 
+	/// Emitted when we need stop the execution
+	void stopExecution();
+
 };
 
 }

@@ -12,6 +12,10 @@
 
 #include "DFRobotBlocksTable.h"
 
+#include "blockBase/DFInputSubProgramPort.h"
+#include "blockBase/DFOutputSubProgramPort.h"
+
+
 
 using namespace qReal;
 using namespace interpretation;
@@ -63,8 +67,6 @@ DFInterpeter::DFInterpeter(const GraphicalModelAssistInterface &graphicalModelAp
 
 	connect(&projectManager, &qReal::ProjectManagementInterface::beforeOpen, this, &DFInterpeter::userStopRobot);
 
-//	connectDevicesConfigurationProvider(&mAutoconfigurer);
-
 }
 
 DFInterpeter::~DFInterpeter()
@@ -95,11 +97,6 @@ void DFInterpeter::interpret()
 	mRobotModelManager.model().stopRobot();
 	mBlocksTable->clear();
 	mState = waitingForDevicesConfiguredToLaunch;
-
-//	if (!mAutoconfigurer.configure(mGraphicalModelApi.children(Id::rootId()), mRobotModelManager.model().robotId())) {
-//		mState = idle;
-//		return;
-//	}
 
 	mLanguageToolbox.clear();
 
@@ -172,7 +169,8 @@ IdList DFInterpeter::findStartChildrens(const Id &currentDiagramId)
 	auto childrens = mGraphicalModelApi.children(currentDiagramId);
 	IdList startElements;
 	for (auto &id : childrens) {
-		if (id.element() != "Edge" && mGraphicalModelApi.graphicalRepoApi().incomingLinks(id).empty()) {
+		if (id.element() != "Edge"
+				&& mGraphicalModelApi.graphicalRepoApi().incomingLinks(id).empty()) {
 			startElements << id;
 		}
 	}
@@ -199,28 +197,36 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 
 	while (!nextBlocks.empty()) {
 		Id curId = nextBlocks.dequeue();
+		const Id logicalIdForCurId = mGraphicalModelApi.logicalId(curId);
 		auto curBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(curId));
 		curBlock->configure();
-		Id localOutgoingExplosion = mLogicalModelApi.logicalRepoApi().outgoingExplosion(curId);
-		if (!localOutgoingExplosion.isNull()) {
-			// explosion handle add and connect to start points
+		Id outgoingExplosion = mLogicalModelApi.logicalRepoApi().outgoingExplosion(logicalIdForCurId);
+		if (!outgoingExplosion.isNull()) {
+			for (auto &id : handleSubprogram(curId, outgoingExplosion)) {
+				nextBlocks.enqueue(id);
+			}
 		}
 
-		/// @todo: here check if block is IOblock then it connect to map for subprogram-diagramId connect to "resolver"
-
 		IdList outgoingLinks = mGraphicalModelApi.graphicalRepoApi().outgoingLinks(curId);
-		for (auto &linkId : outgoingLinks) {
-			auto nextBlockId = mGraphicalModelApi.to(linkId);
+		for (const Id &linkId : outgoingLinks) {
+			const Id &nextBlockId = mGraphicalModelApi.to(linkId);
 			auto nextBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(nextBlockId));
-			nextBlock->configure();
 			if (!handledElements.contains(nextBlockId)) {
+				nextBlock->configure();
 				nextBlocks.enqueue(nextBlockId);
 			}
 
-			//	QMap<DataFlowRobotsBlock *, QMultiMap<int, QPair<DataFlowRobotsBlock *, int>>> connectResolver;
 			connectResolver[curBlock].insert(
 					qRound64(mGraphicalModelApi.fromPort(linkId))
 					, QPair<DataFlowRobotsBlock *, int>(nextBlock, qRound64(mGraphicalModelApi.toPort(linkId)))
+			);
+
+			connect(
+					curBlock
+					, &DataFlowRobotsBlock::stopExecution
+					, this
+					, &DFInterpeter::handleStopRobot
+					, Qt::QueuedConnection
 			);
 
 			connect(
@@ -244,8 +250,73 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 			, threadId
 	);
 
-	emit started();
 	addThread(initialThread, threadId);
+	initialThread->start();
+	emit started();
+}
+
+IdList DFInterpeter::handleSubprogram(const Id &id, const Id &explosion)
+{
+	DFRobotsBlockInterface *localBlock = mBlocksTable->block(id);
+	auto subProg = dynamic_cast<dataFlowBlocks::details::DFSubprogramCall *>(localBlock);
+
+	Id subProgDiagram;
+	const IdList &diagrams = mGraphicalModelApi.graphicalIdsByLogicalId(explosion);
+	if (!diagrams.isEmpty()) {
+		subProgDiagram = diagrams[0];
+	}
+
+	QList<dataFlowBlocks::details::DFInputSubProgramPort *> inputPorts;
+	QList<dataFlowBlocks::details::DFOutputSubProgramPort *> outputPorts;
+
+	const IdList &localChildrenOfDiagram = mGraphicalModelApi.children(subProgDiagram);
+	for (const Id &child : localChildrenOfDiagram) {
+		DFRobotsBlockInterface *childBlock = mBlocksTable->block(child);
+		if (auto input = dynamic_cast<dataFlowBlocks::details::DFInputSubProgramPort *>(childBlock)) {
+			inputPorts.push_back(input);
+		}
+
+		if (auto output = dynamic_cast<dataFlowBlocks::details::DFOutputSubProgramPort *>(childBlock)) {
+			outputPorts.push_back(output);
+		}
+	}
+
+	for (dataFlowBlocks::details::DFOutputSubProgramPort *output : outputPorts) {
+		connect(output, &DFRobotsBlockInterface::newDataInFlow, subProg
+				, &DFRobotsBlockInterface::newDataInFlow, Qt::QueuedConnection);
+	}
+
+	for (dataFlowBlocks::details::DFInputSubProgramPort *input : inputPorts) {
+		int portFrom = subProg->getPortAssociatedWithProperty(input->idToPort());
+		int toPort = input->getPortAssociatedWithProperty("OUT");
+		connectResolver[subProg].insert(portFrom, QPair<DataFlowRobotsBlock *, int>(input, toPort));
+	}
+
+	IdList localFindStartChildrens = findStartChildrens(subProgDiagram);
+
+	IdList startElems;
+	for (const Id &elem : localFindStartChildrens) {
+		if (elem.element() != "InPort" && elem.element() != "OutPort") {
+			startElems << elem;
+		}
+	}
+
+	QString theadId = subProgDiagram.id();
+	auto activator = new DFThread(
+			&mGraphicalModelApi
+			, mInterpretersInterface
+			, mBlocksTable
+			, startElems
+			, theadId
+	);
+
+	connect(subProg, &dataFlowBlocks::details::DFSubprogramCall::firstActivation
+			, activator, &DFThread::start, Qt::QueuedConnection);
+
+	mSubprograms << subProg;
+	addThread(activator, theadId);
+
+	return localFindStartChildrens;
 }
 
 void DFInterpeter::handleDataInFlow(const QVariant &data, int port)
@@ -257,6 +328,12 @@ void DFInterpeter::handleDataInFlow(const QVariant &data, int port)
 		pair.first->handleNewDataFromFlow(data, pair.second);
 	}
 }
+
+void DFInterpeter::handleStopRobot()
+{
+	stopRobot();
+}
+
 
 void DFInterpeter::threadStopped(qReal::interpretation::StopReason reason)
 {

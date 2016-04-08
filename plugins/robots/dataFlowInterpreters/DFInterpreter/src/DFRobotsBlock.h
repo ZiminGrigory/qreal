@@ -19,6 +19,7 @@
 #include <QtCore/QSet>
 #include <QtGui/QColor>
 #include <QtCore/QObject>
+#include <QtCore/QQueue>
 
 #include <kitBase/robotModel/robotModelManagerInterface.h>
 #include <qrkernel/ids.h>
@@ -56,6 +57,8 @@ public:
 
 	const qReal::Id id() const override;
 
+	int getPortAssociatedWithProperty(const QString &propertyName);
+
 protected:
 	DFRobotsBlock();
 
@@ -69,11 +72,18 @@ protected:
 		, doNotReport
 	};
 
+
+	/// check for existing property associated with given port.
+	bool hasNewProperty(int portNumber);
+
+	/// check for existing property associated with given name which associated with some port.
+	bool hasNewProperty(const QString &propertyName);
+
 	/// returns a property associated with given port.
 	QVariant property(int portNumber);
 
 	/// returns a property associated with given name which associated with some port.
-	QVariant propertyFromPort(const QString &name);
+	QVariant propertyFromPort(const QString &propertyName);
 
 	/// Returns a property of current block with given name as QVariant.
 	QVariant property(const QString &propertyName);
@@ -141,6 +151,9 @@ protected:
 		return result;
 	}
 
+	/// Parse list to {<..>,...,<..>} structure
+	QString qVariantListToLuaArrayInitializeList(const QVariantList &list);
+
 	/// Evaluates given code using text language interpreter.
 	void evalCode(const QString &code);
 
@@ -157,7 +170,7 @@ protected:
 	virtual void handleData() = 0;
 
 
-	QMap<int, QVariant> valueOnPort;
+	QMap<int, QQueue<QVariant>> valueOnPort;
 	QMap<QString, int> portAssociatedWithProperty;
 	QSet<int> synchronisedPorts;
 

@@ -24,18 +24,38 @@ const qReal::Id DFRobotsBlock::id() const
 	return mGraphicalId;
 }
 
+int DFRobotsBlock::getPortAssociatedWithProperty(const QString &propertyName)
+{
+	return portAssociatedWithProperty[propertyName];
+}
+
 DFRobotsBlock::DFRobotsBlock()
 {
 }
 
-QVariant DFRobotsBlock::property(int portNumber)
+bool DFRobotsBlock::hasNewProperty(int portNumber)
 {
-	return valueOnPort.value(portNumber);
+	return !valueOnPort.value(portNumber).isEmpty();
 }
 
-QVariant DFRobotsBlock::propertyFromPort(const QString& name)
+bool DFRobotsBlock::hasNewProperty(const QString &propertyName)
 {
-	return property(portAssociatedWithProperty.value(name));
+	return hasNewProperty(portAssociatedWithProperty[propertyName]);
+}
+
+QVariant DFRobotsBlock::property(int portNumber)
+{
+	QQueue<QVariant> &localValue = valueOnPort[portNumber];
+	if (localValue.isEmpty()) {
+		return QVariant();
+	}
+
+	return localValue.dequeue();
+}
+
+QVariant DFRobotsBlock::propertyFromPort(const QString& propertyName)
+{
+	return property(portAssociatedWithProperty.value(propertyName));
 }
 
 
@@ -62,7 +82,7 @@ void DFRobotsBlock::init(const qReal::Id &graphicalId
 
 void dataFlow::interpretation::DFRobotsBlock::handleNewDataFromFlow(const QVariant &data, int port)
 {
-	valueOnPort[port] = data;
+	valueOnPort[port].enqueue(data);
 	synchronisedPorts.remove(port);
 	if (synchronisedPorts.empty()) {
 		handleData();
@@ -135,6 +155,20 @@ void DFRobotsBlock::error(const QString &message)
 void DFRobotsBlock::warning(const QString &message)
 {
 	mErrorReporter->addWarning(message, id());
+}
+
+QString DFRobotsBlock::qVariantListToLuaArrayInitializeList(const QVariantList &list)
+{
+	QString res("{");
+	for (const QVariant &elem : list) {
+		QString var = elem.toString();
+		res += var != "" ? (var + ",") : "";
+	}
+
+	res += "}";
+	res.replace(",}", "}");
+
+	return res;
 }
 
 void DFRobotsBlock::evalCode(const QString &code)
