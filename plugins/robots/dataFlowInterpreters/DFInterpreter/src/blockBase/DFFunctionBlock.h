@@ -20,7 +20,7 @@
 namespace dataFlowBlocks {
 namespace details {
 
-/// block for data, that sends data one time
+
 class DFFunctionBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT

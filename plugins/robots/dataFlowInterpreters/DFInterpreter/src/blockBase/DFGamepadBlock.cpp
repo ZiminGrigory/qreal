@@ -18,7 +18,7 @@ DFGamepadBlock::DFGamepadBlock(kitBase::robotModel::RobotModelInterface &robotMo
 		portAssociatedWithProperty["WHEEL"] = 3;
 }
 
-void DFGamepadBlock::configure()
+void DFGamepadBlock::init()
 {
 	QList<QPair<QString, int>> padButtons = {
 			qMakePair<QString, int>("GamepadButton1Port", 1)

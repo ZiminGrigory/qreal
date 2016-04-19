@@ -14,37 +14,26 @@
 
 #pragma once
 
-#include <kitBase/robotModel/robotModelInterface.h>
-#include <kitBase/robotModel/robotParts/scalarSensor.h>
-#include <kitBase/robotModel/robotParts/vectorSensor.h>
-
-
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
-
 
 namespace dataFlowBlocks {
 namespace details {
 
-/// block for data from sensors
-class DFSensorVariableEmitter : public dataFlow::interpretation::DFRobotsBlock
-{
-	Q_OBJECT
 
+class DFLoopBlock: public dataFlow::interpretation::DFRobotsBlock
+{
 public:
-	DFSensorVariableEmitter(kitBase::robotModel::RobotModelInterface &robotModel);
+	DFLoopBlock();
 
 protected:
 	void init() override;
 	void handleData() override;
 
-private slots:
-	void newIntDataReceived(int data);
-	void newVectorDataReceived(QVector<int> data);
-
 private:
-	kitBase::robotModel::RobotModelInterface &mRobotModel;
-	kitBase::robotModel::robotParts::ScalarSensor *mScalarSensor;
-	kitBase::robotModel::robotParts::VectorSensor *mVectorSensor;
+	int from = 0;
+	int to = 0;
+	int step = 0;
+	int currentCounter = 0;
 };
 
 }

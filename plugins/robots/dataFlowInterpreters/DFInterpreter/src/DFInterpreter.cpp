@@ -199,7 +199,14 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 		Id curId = nextBlocks.dequeue();
 		const Id logicalIdForCurId = mGraphicalModelApi.logicalId(curId);
 		auto curBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(curId));
-		curBlock->configure();
+		connect(
+				curBlock
+				, &DataFlowRobotsBlock::stopExecution
+				, this
+				, &DFInterpeter::handleStopRobot
+				, Qt::DirectConnection
+		);
+
 		Id outgoingExplosion = mLogicalModelApi.logicalRepoApi().outgoingExplosion(logicalIdForCurId);
 		if (!outgoingExplosion.isNull()) {
 			for (auto &id : handleSubprogram(curId, outgoingExplosion)) {
@@ -212,21 +219,12 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 			const Id &nextBlockId = mGraphicalModelApi.to(linkId);
 			auto nextBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(nextBlockId));
 			if (!handledElements.contains(nextBlockId)) {
-				nextBlock->configure();
 				nextBlocks.enqueue(nextBlockId);
 			}
 
 			connectResolver[curBlock].insert(
 					qRound64(mGraphicalModelApi.fromPort(linkId))
 					, QPair<DataFlowRobotsBlock *, int>(nextBlock, qRound64(mGraphicalModelApi.toPort(linkId)))
-			);
-
-			connect(
-					curBlock
-					, &DataFlowRobotsBlock::stopExecution
-					, this
-					, &DFInterpeter::handleStopRobot
-					, Qt::QueuedConnection
 			);
 
 			connect(

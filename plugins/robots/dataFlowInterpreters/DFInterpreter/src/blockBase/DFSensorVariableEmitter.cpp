@@ -1,5 +1,6 @@
 #include "DFSensorVariableEmitter.h"
 
+#include <QApplication>
 
 #include <kitBase/robotModel/robotModelUtils.h>
 
@@ -29,7 +30,7 @@ void DFSensorVariableEmitter::handleData()
 	}
 }
 
-void DFSensorVariableEmitter::configure()
+void DFSensorVariableEmitter::init()
 {
 	const QList<PortInfo> localAvailablePorts = mRobotModel.configurablePorts();
 	const QString selectedVar = stringProperty("VarName");
@@ -46,6 +47,7 @@ void DFSensorVariableEmitter::configure()
 void DFSensorVariableEmitter::newIntDataReceived(int data)
 {
 	emit newDataInFlow(QVariant(data), portAssociatedWithProperty["OUT"]);
+	QCoreApplication::processEvents();
 }
 
 void DFSensorVariableEmitter::newVectorDataReceived(QVector<int> data)
@@ -54,4 +56,6 @@ void DFSensorVariableEmitter::newVectorDataReceived(QVector<int> data)
 	temp.setValue(data);
 
 	emit newDataInFlow(temp, portAssociatedWithProperty["OUT"]);
+
+	QCoreApplication::processEvents();
 }

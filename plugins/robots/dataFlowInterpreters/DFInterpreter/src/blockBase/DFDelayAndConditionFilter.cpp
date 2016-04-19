@@ -8,11 +8,8 @@ using namespace dataFlowBlocks::details;
 const int noCounterFilter = -1;
 
 DFDelayAndConditionFilter::DFDelayAndConditionFilter()
-	: delayTime(intProperty("dispatchTime"))
-	, count(intProperty("count"))
-	, condition(intProperty("condition"))
+	: condition()
 	, vars("vars = {}")
-	, mTime()
 {
 	//	QMap<int, QVariant> valueOnPort;
 	//	QMap<QString, int> portAssociatedWithProperty;
@@ -22,6 +19,13 @@ DFDelayAndConditionFilter::DFDelayAndConditionFilter()
 		portAssociatedWithProperty["OUT"] = 3;
 		portAssociatedWithProperty["DATA"] = 4;
 		portAssociatedWithProperty["VARS"] = 5;
+}
+
+void DFDelayAndConditionFilter::init()
+{
+	delayTime = intProperty("dispatchTime");
+	count = intProperty("count");
+	condition = stringProperty("condition");
 }
 
 void DFDelayAndConditionFilter::handleData()
@@ -42,10 +46,11 @@ void DFDelayAndConditionFilter::handleData()
 
 		if (count == 0) {
 			flushData();
+			emit newDataInFlow(QVariant(), portAssociatedWithProperty["FAILURE"]);
 			return;
 		}
 
-		if (mTime.isNull() && QTime::currentTime().msecsTo(mTime) < delayTime) {
+		if (!mTime.isNull() && mTime.msecsTo(QTime::currentTime()) < delayTime) {
 			flushData();
 			return;
 		}

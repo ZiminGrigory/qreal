@@ -32,9 +32,9 @@ class DFGamepadBlock : public dataFlow::interpretation::DFRobotsBlock
 
 public:
 	DFGamepadBlock(kitBase::robotModel::RobotModelInterface &robotModel);
-	void configure() override;
 
 protected:
+	void init() override;
 	void handleData() override;
 
 private:

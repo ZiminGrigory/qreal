@@ -28,6 +28,7 @@ dataFlowBlocks::details::DFFunctionBlock::DFFunctionBlock()
 
 void DFFunctionBlock::handleData()
 {
+	/// @todo: check if it sends array
 	QVariant expression0 = evalCode<QVariant>(prepareCode("I0", "IO0"), "IO0");
 	QVariant expression1 = evalCode<QVariant>(prepareCode("I1", "IO1"), "IO1");
 	QVariant expression2 = evalCode<QVariant>(prepareCode("I2", "IO2"), "IO2");
@@ -47,7 +48,15 @@ void DFFunctionBlock::handleData()
 
 QString DFFunctionBlock::prepareCode(const QString &port, const QString &propertyName)
 {
-	const auto &value = propertyFromPort(port).toString();
+	QVariant rawData = propertyFromPort(port);
+	QString value = "";
+
+	if (rawData.canConvert<QVariantList>()) {
+		value += qVariantListToLuaArrayInitializeList(rawData.value<QVariantList>());
+	} else {
+		value += rawData.toString();
+	}
+
 	QString res = port + "=" + (value != "" ? value : dummyValue) + ";" + stringProperty(propertyName);
 	return res;
 }

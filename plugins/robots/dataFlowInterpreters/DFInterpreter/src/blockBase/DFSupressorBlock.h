@@ -30,6 +30,7 @@ public:
 	DFSupressorBlock();
 
 protected:
+	void init() override;
 	void handleData() override;
 
 private:

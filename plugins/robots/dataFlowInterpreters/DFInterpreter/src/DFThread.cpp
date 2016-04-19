@@ -43,7 +43,8 @@ void DFThread::init(const IdList &initialNodeIds)
 	}
 
 	for (auto &node: mInitialNodes) {
-		QTimer::singleShot(timeBeforeStart, [&](){node->handleNewDataFromFlow(QVariant(), dummyPortForStarting);});
+		QTimer::singleShot(timeBeforeStart, [&](){
+			node->handleNewDataFromFlow(QVariant(), dummyPortForStarting);});
 	}
 }
 

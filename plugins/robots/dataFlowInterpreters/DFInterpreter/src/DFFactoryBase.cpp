@@ -14,6 +14,12 @@
 #include "blockBase/DFInputSubProgramPort.h"
 #include "blockBase/DFOutputSubProgramPort.h"
 #include "blockBase/DFSubprogramCall.h"
+#include "blockBase/DFVariable.h"
+#include "blockBase/DFWaitNode.h"
+#include "blockBase/DFRandomValue.h"
+#include "blockBase/DFConditionBlock.h"
+#include "blockBase/DFSwitchBlock.h"
+
 
 
 
@@ -64,6 +70,16 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFOutputSubProgramPort();
 	} else if (elementDFMetatypeIs(element, "SubprogramCall")) {
 		res = new details::DFSubprogramCall();
+	} else if (elementDFMetatypeIs(element, "GetSetVariable")) {
+		res = new details::DFVariable();
+	} else if (elementDFMetatypeIs(element, "WaitNode")) {
+		res = new details::DFWaitNode();
+	} else if (elementDFMetatypeIs(element, "RandomValue")) {
+		res = new details::DFRandomValue(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "IfNode")) {
+		res = new details::DFConditionBlock();
+	} else if (elementDFMetatypeIs(element, "Switch")) {
+		res = new details::DFSwitchBlock();
 	}
 
 
@@ -75,7 +91,10 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 				, *mRobotModelManager
 				, *mParser
 				);
+
+		res->configureSynchronizedPorts();
 	}
+
 
 	return res ? res : nullptr;
 }
@@ -96,8 +115,12 @@ qReal::IdList DFFactoryBase::providedBlocks() const
 			<< dataFlowId("Gamepad")
 			<< dataFlowId("InPort")
 			<< dataFlowId("OutPort")
-			<< dataFlowId("SubprogramCall");
-
+			<< dataFlowId("SubprogramCall")
+			<< dataFlowId("GetSetVariable")
+			<< dataFlowId("WaitNode")
+			<< dataFlowId("RandomValue")
+			<< dataFlowId("IfNode")
+			<< dataFlowId("Switch");
 	return result;
 }
 

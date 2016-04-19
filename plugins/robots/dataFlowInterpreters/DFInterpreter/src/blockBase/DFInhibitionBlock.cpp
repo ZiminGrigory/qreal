@@ -11,11 +11,14 @@ DFInhibitionBlock::DFInhibitionBlock()
 		portAssociatedWithProperty["DATA"] = 1;
 		portAssociatedWithProperty["OUT"] = 2;
 		portAssociatedWithProperty["TIME"] = 3;
+}
 
-		int time = intProperty("time");
-		if (time) {
-			timeToInhibit = time;
-		}
+void DFInhibitionBlock::init()
+{
+	int time = intProperty("time");
+	if (time) {
+		timeToInhibit = time;
+	}
 }
 
 void DFInhibitionBlock::handleData()

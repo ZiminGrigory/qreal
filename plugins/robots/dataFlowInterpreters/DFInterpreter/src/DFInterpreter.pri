@@ -72,7 +72,13 @@ HEADERS += \
     $$PWD/blockBase/DFInputSubProgramPort.h \
     $$PWD/blockBase/DFOutputSubProgramPort.h \
     $$PWD/blockBase/DFGamepadBlock.h \
-    $$PWD/blockBase/DFSubprogramCall.h
+    $$PWD/blockBase/DFSubprogramCall.h \
+    $$PWD/blockBase/DFVariable.h \
+    $$PWD/blockBase/DFWaitNode.h \
+    $$PWD/blockBase/DFRandomValue.h \
+    $$PWD/blockBase/DFConditionBlock.h \
+    $$PWD/blockBase/DFLoopBlock.h \
+    $$PWD/blockBase/DFSwitchBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -93,4 +99,10 @@ SOURCES += \
     $$PWD/blockBase/DFInputSubProgramPort.cpp \
     $$PWD/blockBase/DFOutputSubProgramPort.cpp \
     $$PWD/blockBase/DFGamepadBlock.cpp \
-    $$PWD/blockBase/DFSubprogramCall.cpp
+    $$PWD/blockBase/DFSubprogramCall.cpp \
+    $$PWD/blockBase/DFVariable.cpp \
+    $$PWD/blockBase/DFWaitNode.cpp \
+    $$PWD/blockBase/DFRandomValue.cpp \
+    $$PWD/blockBase/DFConditionBlock.cpp \
+    $$PWD/blockBase/DFLoopBlock.cpp \
+    $$PWD/blockBase/DFSwitchBlock.cpp

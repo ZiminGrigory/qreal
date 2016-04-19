@@ -10,7 +10,7 @@ DFInterflowingBlock::DFInterflowingBlock()
 	portAssociatedWithProperty["OUT"] = 1;
 }
 
-void DFInterflowingBlock::configure()
+void DFInterflowingBlock::configureSynchronizedPorts()
 {
 	synchronisedPorts.insert(portAssociatedWithProperty["DATA1"]);
 	synchronisedPorts.insert(portAssociatedWithProperty["DATA2"]);

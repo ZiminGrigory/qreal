@@ -14,37 +14,32 @@
 
 #pragma once
 
-#include <kitBase/robotModel/robotModelInterface.h>
-#include <kitBase/robotModel/robotParts/scalarSensor.h>
-#include <kitBase/robotModel/robotParts/vectorSensor.h>
-
-
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
+#include <QtCore/QTime>
 
 namespace dataFlowBlocks {
 namespace details {
 
-/// block for data from sensors
-class DFSensorVariableEmitter : public dataFlow::interpretation::DFRobotsBlock
+class DFWaitNode : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
 
 public:
-	DFSensorVariableEmitter(kitBase::robotModel::RobotModelInterface &robotModel);
+	DFWaitNode();
 
 protected:
 	void init() override;
 	void handleData() override;
 
-private slots:
-	void newIntDataReceived(int data);
-	void newVectorDataReceived(QVector<int> data);
-
 private:
-	kitBase::robotModel::RobotModelInterface &mRobotModel;
-	kitBase::robotModel::robotParts::ScalarSensor *mScalarSensor;
-	kitBase::robotModel::robotParts::VectorSensor *mVectorSensor;
+	void flushData();
+
+	QVariant mData;
+	int timeToWait = 0;
+	bool wait = false;
+	QTime startWaitingTime;
+
 };
 
 }

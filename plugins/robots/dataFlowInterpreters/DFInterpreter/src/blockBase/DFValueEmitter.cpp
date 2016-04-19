@@ -21,7 +21,6 @@ void dataFlowBlocks::details::DFValueEmitter::handleData()
 			data << QVariant(s);
 		}
 
-
 		emit newDataInFlow(data, portAssociatedWithProperty["OUT"]);
 
 	} else {

@@ -21,7 +21,6 @@
 namespace dataFlowBlocks {
 namespace details {
 
-/// block for data, that sends data one time
 class DFInhibitionBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
@@ -30,6 +29,7 @@ public:
 	DFInhibitionBlock();
 
 protected:
+	void init() override;
 	void handleData() override;
 
 private:

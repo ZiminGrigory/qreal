@@ -30,6 +30,7 @@ public:
 	DFDelayAndConditionFilter();
 
 protected:
+	void init() override;
 	void handleData() override;
 
 private:

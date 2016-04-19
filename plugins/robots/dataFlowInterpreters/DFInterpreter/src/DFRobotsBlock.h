@@ -50,10 +50,11 @@ public:
 			, qrtext::LanguageToolboxInterface &textLanguageToolbox
 			);
 
+
 	void handleNewDataFromFlow(const QVariant &data, int port) override;
 
 	/// We need synchronize some ports of DFBlock or etc.
-	virtual void configure();
+	virtual void configureSynchronizedPorts();
 
 	const qReal::Id id() const override;
 
@@ -61,6 +62,7 @@ public:
 
 protected:
 	DFRobotsBlock();
+	virtual void init(){}
 
 	/// Enum with flags whether to report parser errors or let the language toolbox fail silently.
 	enum class ReportErrors {

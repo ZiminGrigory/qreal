@@ -5,7 +5,7 @@
 using namespace dataFlow::interpretation;
 using namespace qReal;
 
-void DFRobotsBlock::configure()
+void DFRobotsBlock::configureSynchronizedPorts()
 {
 	if (property(mGraphicalId, "synch").toBool()) {
 		qReal::IdList localIncomingLinks = mGraphicalModelApi->graphicalRepoApi().incomingLinks(mGraphicalId);
@@ -78,6 +78,8 @@ void DFRobotsBlock::init(const qReal::Id &graphicalId
 	}
 
 	mRobotModelManager = &robotModelManager;
+
+	init();
 }
 
 void dataFlow::interpretation::DFRobotsBlock::handleNewDataFromFlow(const QVariant &data, int port)
@@ -86,7 +88,7 @@ void dataFlow::interpretation::DFRobotsBlock::handleNewDataFromFlow(const QVaria
 	synchronisedPorts.remove(port);
 	if (synchronisedPorts.empty()) {
 		handleData();
-		configure();
+		configureSynchronizedPorts();
 	}
 }
 
@@ -162,6 +164,9 @@ QString DFRobotsBlock::qVariantListToLuaArrayInitializeList(const QVariantList &
 	QString res("{");
 	for (const QVariant &elem : list) {
 		QString var = elem.toString();
+		//{data} -> data
+		var.remove(0,1);
+		var.chop(1);
 		res += var != "" ? (var + ",") : "";
 	}
 
