@@ -117,6 +117,7 @@ void DFInterpeter::stopRobot(qReal::interpretation::StopReason reason)
 	mSensorVariablesUpdater.suspend();
 	mRobotModelManager.model().stopRobot();
 	mState = idle;
+	mBlocksTable->clear();
 	qDeleteAll(mThreads);
 	mThreads.clear();
 	emit stopped(reason);

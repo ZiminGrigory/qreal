@@ -16,26 +16,22 @@ DFConditionBlock::DFConditionBlock()
 
 void DFConditionBlock::init()
 {
+	setVariable(vars, QVariantList());
 	condition = stringProperty("condition");
 }
 
 void DFConditionBlock::handleData()
 {
 	if (hasNewProperty("VARS")) {
-		vars.replace("{}", qVariantListToLuaArrayInitializeList(propertyFromPort("VARS").value<QVariantList>()));
+		setVariable(vars, propertyFromPort("VARS"));
 	}
 
 	if (hasNewProperty("DATA")) {
 		QVariant rawData = propertyFromPort("DATA");
-		QString data = "data = ";
+		QString data = "data";
+		setVariable(data, rawData);
 
-		if (rawData.canConvert<QVariantList>()) {
-			data += qVariantListToLuaArrayInitializeList(rawData.value<QVariantList>());
-		} else {
-			data += rawData.toString();
-		}
-
-		bool cond = evalCode<bool>(data + ";" + vars + ";" + condition, "condition");
+		bool cond = evalCode<bool>(condition, "condition");
 
 		if (cond) {
 			emit newDataInFlow(rawData, portAssociatedWithProperty["TRUE"]);

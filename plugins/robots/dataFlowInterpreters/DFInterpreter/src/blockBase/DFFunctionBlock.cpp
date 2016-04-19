@@ -4,7 +4,8 @@
 using namespace dataFlowBlocks::details;
 
 const QString dummyValue = "42";
-const QStringList expressions = {"IO0", "IO1", "IO3", "IO4", "IO5"};
+const QStringList expressions = {"IO0", "IO1", "IO2", "IO3", "IO4", "IO5"};
+const QStringList inputDataPorts = {"I0", "I1", "I2", "I3", "I4", "I5"};
 
 dataFlowBlocks::details::DFFunctionBlock::DFFunctionBlock()
 {
@@ -26,38 +27,45 @@ dataFlowBlocks::details::DFFunctionBlock::DFFunctionBlock()
 		portAssociatedWithProperty["O5"] = 13;
 }
 
+void DFFunctionBlock::init()
+{
+	isSynchronized = boolProperty("synch");
+
+	mExpressions.append({"I0", "O0", "IO0", stringProperty("IO0")});
+	mExpressions.append({"I1", "O1", "IO1", stringProperty("IO1")});
+	mExpressions.append({"I2", "O2", "IO2", stringProperty("IO2")});
+	mExpressions.append({"I3", "O3", "IO3", stringProperty("IO3")});
+	mExpressions.append({"I4", "O4", "IO4", stringProperty("IO4")});
+	mExpressions.append({"I5", "O5", "IO5", stringProperty("IO5")});
+}
+
 void DFFunctionBlock::handleData()
 {
 	/// @todo: check if it sends array
-	QVariant expression0 = evalCode<QVariant>(prepareCode("I0", "IO0"), "IO0");
-	QVariant expression1 = evalCode<QVariant>(prepareCode("I1", "IO1"), "IO1");
-	QVariant expression2 = evalCode<QVariant>(prepareCode("I2", "IO2"), "IO2");
-	QVariant expression3 = evalCode<QVariant>(prepareCode("I3", "IO3"), "IO3");
-	QVariant expression4 = evalCode<QVariant>(prepareCode("I3", "IO4"), "IO4");
-	QVariant expression5 = evalCode<QVariant>(prepareCode("I5", "IO5"), "IO5");
 
+	if (!isSynchronized) {
+		for (const Bucket &b : mExpressions) {
+			if (hasNewProperty(b.input)) {
+				setVariable(b.input, propertyFromPort(b.input));
+				QVariant data = evalCode<QVariant>(b.expressionText, b.expression);
+				emit newDataInFlow(data, portAssociatedWithProperty[b.output]);
+				break;
+			}
+		}
 
-	emit newDataInFlow(expression0, portAssociatedWithProperty["O0"]);
-	emit newDataInFlow(expression1, portAssociatedWithProperty["O1"]);
-	emit newDataInFlow(expression2, portAssociatedWithProperty["O2"]);
-	emit newDataInFlow(expression3, portAssociatedWithProperty["O3"]);
-	emit newDataInFlow(expression4, portAssociatedWithProperty["O4"]);
-	emit newDataInFlow(expression5, portAssociatedWithProperty["O5"]);
-}
-
-
-QString DFFunctionBlock::prepareCode(const QString &port, const QString &propertyName)
-{
-	QVariant rawData = propertyFromPort(port);
-	QString value = "";
-
-	if (rawData.canConvert<QVariantList>()) {
-		value += qVariantListToLuaArrayInitializeList(rawData.value<QVariantList>());
-	} else {
-		value += rawData.toString();
+		return;
 	}
 
-	QString res = port + "=" + (value != "" ? value : dummyValue) + ";" + stringProperty(propertyName);
-	return res;
+	for (const Bucket &b : mExpressions) {
+		if (hasNewProperty(b.input)) {
+			setVariable(b.input, propertyFromPort(b.input));
+		} else {
+			setVariable(b.input, dummyValue);
+		}
+
+		QVariant data = evalCode<QVariant>(b.expressionText, b.expression);
+		emit newDataInFlow(data, portAssociatedWithProperty[b.output]);
+	}
 }
+
 

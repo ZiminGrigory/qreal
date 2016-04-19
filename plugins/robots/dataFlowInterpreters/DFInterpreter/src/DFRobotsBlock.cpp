@@ -176,6 +176,15 @@ QString DFRobotsBlock::qVariantListToLuaArrayInitializeList(const QVariantList &
 	return res;
 }
 
+void DFRobotsBlock::setVariable(const QString &varName, QVariant value)
+{
+	if (value.canConvert<QVariantList>()) {
+		mParser->setVectorVariableValue(varName, value.value<QVariantList>());
+	} else {
+		mParser->setVariableValue(varName, value);
+	}
+}
+
 void DFRobotsBlock::evalCode(const QString &code)
 {
 	evalCode<int>(code);

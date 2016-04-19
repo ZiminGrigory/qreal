@@ -156,6 +156,8 @@ protected:
 	/// Parse list to {<..>,...,<..>} structure
 	QString qVariantListToLuaArrayInitializeList(const QVariantList &list);
 
+	void setVariable(const QString &varName, QVariant value);
+
 	/// Evaluates given code using text language interpreter.
 	void evalCode(const QString &code);
 

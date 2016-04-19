@@ -7,9 +7,9 @@ using namespace kitBase::blocksBase;
 using namespace kitBase::robotModel;
 using namespace dataFlowBlocks::details;
 
+/// @todo: rewrite this SH~
 
-//using namespace kitBase::blocksBase::common;
-//using namespace kitBase::robotModel;
+const QStringList ports = {"M1", "M2", "M3", "M4"};
 
 DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
@@ -27,47 +27,46 @@ DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 
 void DFMotorsBlock::handleData()
 {
+	for (const QString &port : ports) {
+		if (hasNewProperty(portAssociatedWithProperty[port])) {
+			QVariant power = property(portAssociatedWithProperty[port]);
+			motors[port]->on(power.toInt());
+		}
+	}
+
+	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
+
+}
+
+void DFMotorsBlock::init()
+{
 	const QList<PortInfo> keys = usedDevices().keys();
 
 	for (const PortInfo &key : keys) {
-		QVariant power = property(portAssociatedWithProperty[key.name()]);
-
-		auto *motor = robotModel::RobotModelUtils::findDevice<robotParts::Motor>(mRobotModel, key);
-		if (power != QVariant()) {
-			qDebug() << key.name() << power.toInt() << "\n";
-			motor->on(power.toInt());
-		}
-	}
-
-	if (!mGraphicalModelApi->graphicalRepoApi().outgoingLinks(mGraphicalId).empty()) {
-		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
+		motors.insert(key.name(), robotModel::RobotModelUtils::findDevice<robotParts::Motor>(mRobotModel, key));
 	}
 }
-
-
-QList<PortInfo> DFMotorsBlock::parsePorts(ReportErrors reportErrors)
-{
-	Q_UNUSED(reportErrors);
-	QList<PortInfo> result;
-	QList<QString> ports;
-	ports << "M1" << "M2" << "M3" << "M4";
-
-	for (const QString &port : ports) {
-		PortInfo const portInfo = robotModel::RobotModelUtils::findPort(mRobotModel, port, output);
-		if (portInfo.isValid()) {
-			result << portInfo;
-		}
-	}
-
-	return result;
-}
-
 
 QMap<PortInfo, DeviceInfo> DFMotorsBlock::usedDevices()
 {
 	QMap<PortInfo, DeviceInfo> result;
 	for (const PortInfo &port : parsePorts(ReportErrors::doNotReport)) {
 		result[port] = DeviceInfo::create<robotParts::Motor>();
+	}
+
+	return result;
+}
+
+QList<PortInfo> DFMotorsBlock::parsePorts(ReportErrors reportErrors)
+{
+	Q_UNUSED(reportErrors);
+	QList<PortInfo> result;
+
+	for (const QString &port : ports) {
+		PortInfo const portInfo = robotModel::RobotModelUtils::findPort(mRobotModel, port, output);
+		if (portInfo.isValid()) {
+			result << portInfo;
+		}
 	}
 
 	return result;

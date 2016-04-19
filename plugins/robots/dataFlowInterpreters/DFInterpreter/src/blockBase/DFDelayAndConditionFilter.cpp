@@ -9,7 +9,7 @@ const int noCounterFilter = -1;
 
 DFDelayAndConditionFilter::DFDelayAndConditionFilter()
 	: condition()
-	, vars("vars = {}")
+	, vars("vars")
 {
 	//	QMap<int, QVariant> valueOnPort;
 	//	QMap<QString, int> portAssociatedWithProperty;
@@ -23,6 +23,7 @@ DFDelayAndConditionFilter::DFDelayAndConditionFilter()
 
 void DFDelayAndConditionFilter::init()
 {
+	setVariable(vars, QVariantList());
 	delayTime = intProperty("dispatchTime");
 	count = intProperty("count");
 	condition = stringProperty("condition");
@@ -39,7 +40,7 @@ void DFDelayAndConditionFilter::handleData()
 	}
 
 	if (hasNewProperty("VARS")) {
-		vars.replace("{}", qVariantListToLuaArrayInitializeList(propertyFromPort("VARS").value<QVariantList>()));
+		setVariable(vars, propertyFromPort("VARS"));
 	}
 
 	if (hasNewProperty("DATA")) {
@@ -56,14 +57,10 @@ void DFDelayAndConditionFilter::handleData()
 		}
 
 		QVariant rawData = propertyFromPort("DATA");
-		QString data = "data = ";
-		if (rawData.canConvert<QVariantList>()) {
-			data += qVariantListToLuaArrayInitializeList(rawData.value<QVariantList>());
-		} else {
-			data += rawData.toString();
-		}
+		QString data = "data";
+		setVariable(data, rawData);
 
-		bool cond = evalCode<bool>(data + ";" + vars + ";" + condition, "condition");
+		bool cond = evalCode<bool>(condition, "condition");
 
 		if (cond) {
 			count = count != noCounterFilter ? count - 1 : count;

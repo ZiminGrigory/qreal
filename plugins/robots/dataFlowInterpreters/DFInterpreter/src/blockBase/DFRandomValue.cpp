@@ -22,7 +22,6 @@ void dataFlowBlocks::details::DFRandomValue::handleData()
 	const auto random = RobotModelUtils::findDevice<robotParts::Random>(mRobotModel, "RandomPort");
 
 	const int result = random->random(from, to);
-	qDebug () << "random " << result << " " << QTime::currentTime();
 
 	emit newDataInFlow(result, portAssociatedWithProperty["OUT"]);
 }

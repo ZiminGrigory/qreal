@@ -78,7 +78,8 @@ HEADERS += \
     $$PWD/blockBase/DFRandomValue.h \
     $$PWD/blockBase/DFConditionBlock.h \
     $$PWD/blockBase/DFLoopBlock.h \
-    $$PWD/blockBase/DFSwitchBlock.h
+    $$PWD/blockBase/DFSwitchBlock.h \
+    $$PWD/blockBase/DFSeparatorBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -105,4 +106,5 @@ SOURCES += \
     $$PWD/blockBase/DFRandomValue.cpp \
     $$PWD/blockBase/DFConditionBlock.cpp \
     $$PWD/blockBase/DFLoopBlock.cpp \
-    $$PWD/blockBase/DFSwitchBlock.cpp
+    $$PWD/blockBase/DFSwitchBlock.cpp \
+    $$PWD/blockBase/DFSeparatorBlock.cpp

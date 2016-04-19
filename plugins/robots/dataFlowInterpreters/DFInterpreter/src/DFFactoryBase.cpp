@@ -19,6 +19,7 @@
 #include "blockBase/DFRandomValue.h"
 #include "blockBase/DFConditionBlock.h"
 #include "blockBase/DFSwitchBlock.h"
+#include "blockBase/DFSeparatorBlock.h"
 
 
 
@@ -80,6 +81,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFConditionBlock();
 	} else if (elementDFMetatypeIs(element, "Switch")) {
 		res = new details::DFSwitchBlock();
+	} else if (elementDFMetatypeIs(element, "Separator")) {
+		res = new details::DFSeparatorBlock();
 	}
 
 
@@ -120,7 +123,8 @@ qReal::IdList DFFactoryBase::providedBlocks() const
 			<< dataFlowId("WaitNode")
 			<< dataFlowId("RandomValue")
 			<< dataFlowId("IfNode")
-			<< dataFlowId("Switch");
+			<< dataFlowId("Switch")
+			<< dataFlowId("Separator");
 	return result;
 }
 

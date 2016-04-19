@@ -41,15 +41,9 @@ void DFSwitchBlock::handleData()
 
 	if (hasNewProperty("DATA")) {
 		QVariant rawData = propertyFromPort("DATA");
-		QString data = "data = ";
+		QString data = "data";
 
-		if (rawData.canConvert<QVariantList>()) {
-			data += qVariantListToLuaArrayInitializeList(rawData.value<QVariantList>());
-		} else {
-			data += rawData.toString();
-		}
-
-		evalCode(data);
+		setVariable(data, rawData);
 	}
 
 	for (const Bucket &b : mConditions) {

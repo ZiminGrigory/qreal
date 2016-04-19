@@ -36,6 +36,7 @@ public:
 	QMap<kitBase::robotModel::PortInfo, kitBase::robotModel::DeviceInfo> usedDevices();
 
 protected:
+	void init() override;
 	void handleData() override;
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 
@@ -57,6 +58,8 @@ private:
 	}
 
 	QList<kitBase::robotModel::PortInfo> parsePorts(ReportErrors reportErrors = ReportErrors::report);
+
+	QMap<QString ,kitBase::robotModel::robotParts::Motor *> motors;
 };
 
 }

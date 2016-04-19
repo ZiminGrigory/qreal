@@ -16,33 +16,19 @@
 
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
-
 namespace dataFlowBlocks {
 namespace details {
 
-
-class DFFunctionBlock : public dataFlow::interpretation::DFRobotsBlock
+class DFSeparatorBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
 
 public:
-	DFFunctionBlock();
+	DFSeparatorBlock();
 
 protected:
-	void init() override;
 	void handleData() override;
 
-private:
-	bool isSynchronized = true;
-
-	struct Bucket {
-		QString input = "";
-		QString output = "";
-		QString expression = "";
-		QString expressionText = "";
-	};
-
-	QList<Bucket> mExpressions;
 };
 
 }

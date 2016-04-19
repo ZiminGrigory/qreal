@@ -1507,9 +1507,9 @@
                         <label textBinded="name" y="0" x="29"/>
                     </labels>
                     <ports>
+			<pointPort y="80" type="NonTyped" x="2"/>
+			<pointPort y="56" type="NonTyped" x="98"/>
                         <pointPort y="101" type="NonTyped" x="98"/>
-                        <pointPort y="80" type="NonTyped" x="2"/>
-                        <pointPort y="56" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
