@@ -175,7 +175,7 @@
 	    <node description="при приходе любых данных на порт программа завершается" displayedName="end_point" name="FinalNode">
                 <graphics>
                     <picture sizex="101" sizey="103">
-                        <image y2="100" name="images/exit1.png" x2="99" x1="0" y1="2"/>
+			<image y2="100" name="images/exit1.svg" x2="99" x1="0" y1="2"/>
                     </picture>
                     <labels/>
                     <ports>
@@ -212,7 +212,7 @@
             <node displayedName="Function" name="Function">
                 <graphics>
                     <picture sizex="284" sizey="340">
-                        <image y2="338" name="images/function switch long11.png" x2="278" x1="31" y1="20"/>
+			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
                     </picture>
 		    <labels>
                         <label y="35" text="I0" x="0"/>
@@ -269,7 +269,7 @@
 	    <node displayedName="Condition" name="IfNode">
                 <graphics>
                     <picture sizex="195" sizey="125">
-                        <image y2="99" name="images/condition.png" x2="142" x1="43" y1="0"/>
+			<image y2="99" name="images/condition.svg" x2="142" x1="43" y1="0"/>
                     </picture>
                     <labels>
                         <label text="FALSE" y="56" x="145"/>
@@ -302,7 +302,7 @@
             <node displayedName="Switch" name="Switch">
                 <graphics>
                     <picture sizex="284" sizey="340">
-                        <image y2="338" name="images/function switch long11.png" x2="278" x1="31" y1="20"/>
+			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
                     </picture>
                     <labels>
 			<label y="35" text="data" x="-20"/>
@@ -371,7 +371,7 @@
             <node displayedName="Loop" name="Loop">
                 <graphics>
                     <picture sizex="106" sizey="116">
-                        <image y2="114" name="images/loop.png" x2="102" x1="3" y1="0"/>
+			<image y2="114" name="images/loop.svg" x2="102" x1="3" y1="0"/>
                     </picture>
                     <labels>
 			<label text="from" y="9" x="-40"/>
@@ -413,7 +413,7 @@
             <node displayedName="subprogram call" name="SubprogramCall">
                 <graphics>
 		    <picture sizex="144" sizey="140">
-                        <image y2="114" name="images/subprogramCall.png" x2="118" x1="19" y1="0"/>
+			<image y2="114" name="images/subprogramCall.svg" x2="118" x1="19" y1="0"/>
                     </picture>
 		    <labels>
 			<label textBinded="name" y="114" x="35"/>
@@ -442,7 +442,7 @@
 	    <node displayedName="Input port" name="InPort">
                 <graphics>
                     <picture sizex="103" sizey="137">
-                        <image y2="100" name="images/io_1.png" x2="101" x1="2" y1="0"/>
+			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="identifier" y="11" x="18"/>
@@ -469,7 +469,7 @@
 	    <node displayedName="Output port" name="OutPort">
 		<graphics>
 		    <picture sizex="103" sizey="137">
-			<image y2="100" name="images/io_1.png" x2="101" x1="2" y1="0"/>
+			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
 		    </picture>
 		    <labels>
 			<label textBinded="identifier" y="11" x="18"/>
@@ -496,7 +496,7 @@
             <node displayedName="const_value" name="ValueEmitter">
                 <graphics>
                     <picture sizex="103" sizey="163">
-                        <image y2="130" name="images/const data1.png" x2="99" x1="0" y1="16"/>
+			<image y2="130" name="images/const data1.svg" x2="99" x1="0" y1="16"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="39"/>
@@ -524,7 +524,7 @@
             <node displayedName="variable" name="GetSetVariable">
                 <graphics>
                     <picture sizex="102" sizey="151">
-                        <image y2="114" name="images/getsetvar.png" x2="100" x1="1" y1="0"/>
+			<image y2="114" name="images/getsetvar.svg" x2="100" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="variable" y="75" x="18"/>
@@ -554,7 +554,7 @@
 	    <node displayedName="random value" name="RandomValue">
                 <graphics>
                     <picture sizex="102" sizey="116">
-                        <image y2="114" name="images/random var.png" x2="99" x1="0" y1="0"/>
+			<image y2="114" name="images/random var.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
 			<label textBinded="fromNumber" y="50" x="8"/>
@@ -585,7 +585,7 @@
 	    <node displayedName="replace data in flow" name="Supressor">
                 <graphics>
                     <picture sizex="200" sizey="163">
-                        <image y2="134" name="images/supressing.png" x2="197" x1="98" y1="35"/>
+			<image y2="134" name="images/supressing.svg" x2="197" x1="98" y1="35"/>
                     </picture>
                     <labels>
                         <label text="time" y="137" x="117"/>
@@ -618,7 +618,7 @@
 	    <node displayedName="stop the flow block" name="Inhibitor">
                 <graphics>
                     <picture sizex="171" sizey="163">
-                        <image y2="135" name="images/inhibition.png" x2="168" x1="69" y1="36"/>
+			<image y2="135" name="images/inhibition.svg" x2="168" x1="69" y1="36"/>
                         <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="2" font-size="15" y1="89" u="0">data port</text>
                         <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="100" font-size="15" y1="145" u="0">time</text>
                         <text font-name="Ubuntu" i="0" b="0" font-fill="#000000" x1="0" font-size="15" y1="32" u="0">stop port</text>
@@ -651,7 +651,7 @@
             <node description="concrete port" name="Port">
                 <graphics>
                     <picture sizex="102" sizey="131">
-                        <image y2="129" name="images/portVar.png" x2="99" x1="0" y1="31"/>
+			<image y2="129" name="images/portVar.svg" x2="99" x1="0" y1="31"/>
                     </picture>
                     <labels>
                         <label textBinded="portName" y="93" x="12"/>
@@ -677,7 +677,7 @@
             <node displayedName="PlayTone" name="PlayTone">
                 <graphics>
                     <picture sizex="103" sizey="116">
-                        <image y2="114" x2="101" name="images/playTone.png" x1="2" y1="0"/>
+			<image y2="114" x2="101" name="images/playTone.svg" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="file" y="85" x="9"/>
@@ -703,7 +703,7 @@
             <node displayedName="Motors" name="Motors">
                 <graphics>
                     <picture sizex="101" sizey="150">
-                        <image y2="114" x2="99" name="images/motors_.png" x1="0" y1="0"/>
+			<image y2="114" x2="99" name="images/motors_.svg" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="124" x="28"/>
@@ -737,7 +737,7 @@
             <node displayedName="servo" name="Servo">
                 <graphics>
                     <picture sizex="102" sizey="151">
-                        <image y2="114" x2="100" name="images/servo.png" x1="1" y1="0"/>
+			<image y2="114" x2="100" name="images/servo.svg" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="125" x="31"/>
@@ -767,7 +767,7 @@
 	    <node displayedName="Encoders" name="Encoders">
                 <graphics>
 		    <picture sizex="100" sizey="100">
-			<image y2="100" x2="100" name="images/encoders.png" x1="0" y1="0"/>
+			<image y2="100" x2="100" name="images/encoders.svg" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="27"/>
@@ -795,7 +795,7 @@
             <node displayedName="say smth." name="SayNode">
                 <graphics>
                     <picture sizex="144" sizey="145">
-                        <image y2="114" name="images/say.png" x2="142" x1="43" y1="0"/>
+			<image y2="114" name="images/say.svg" x2="142" x1="43" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="119" x="71"/>
@@ -818,7 +818,7 @@
             <node displayedName="turn_on_led" name="LedNode">
                 <graphics>
                     <picture sizex="156" sizey="151">
-                        <image y2="114" x2="154" name="images/diod.png" x1="55" y1="0"/>
+			<image y2="114" x2="154" name="images/diod.svg" x1="55" y1="0"/>
                     </picture>
                     <labels>
                         <label y="22" text="color" x="0"/>
@@ -841,7 +841,7 @@
             <node displayedName="system_call" name="SystemCallNode">
                 <graphics>
                     <picture sizex="180" sizey="157">
-                        <image y2="122" name="images/code and ev.png" x2="177" x1="78" y1="8"/>
+			<image y2="122" name="images/code and ev.svg" x2="177" x1="78" y1="8"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="131" x="123"/>
@@ -879,7 +879,7 @@
             <node displayedName="camera initialization" name="InitCamera">
                 <graphics>
                     <picture sizex="101" sizey="147">
-                        <image y2="114" x2="99" name="images/cameraOn.png" x1="0" y1="0"/>
+			<image y2="114" x2="99" name="images/cameraOn.svg" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="23"/>
@@ -901,7 +901,7 @@
             <node displayedName="object detector" name="DetectByVideo">
                 <graphics>
                     <picture sizex="203" sizey="133">
-                        <image y2="100" x2="201" name="images/detectByCamera.png" x1="102" y1="0"/>
+			<image y2="100" x2="201" name="images/detectByCamera.svg" x1="102" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="107" x="129"/>
@@ -924,7 +924,7 @@
             <node displayedName="talk to others" name="MessageToRobot">
                 <graphics>
                     <picture sizex="173" sizey="172">
-                        <image y2="139" name="images/msgSend.png" x2="160" x1="61" y1="25"/>
+			<image y2="139" name="images/msgSend.svg" x2="160" x1="61" y1="25"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="76"/>
@@ -959,7 +959,7 @@
             <node displayedName="video stream" name="StreamingNode">
                 <graphics>
                     <picture sizex="101" sizey="152">
-                        <image y2="114" x2="99" name="images/streaming.png" x1="0" y1="0"/>
+			<image y2="114" x2="99" name="images/streaming.svg" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="streamTo" y="77" x="9"/>
@@ -988,8 +988,8 @@
             <node displayedName="write to file" name="WriteToFile">
                 <graphics>
                     <picture sizex="103" sizey="148">
-                        <image y2="113" name="images/write to file2.png" x2="101" x1="3" y1="0"/>
-                        <image y2="114" name="images/write to file2.png" x2="100" x1="1" y1="0"/>
+			<image y2="113" name="images/write to file2.svg" x2="101" x1="3" y1="0"/>
+			<image y2="114" name="images/write to file2.svg" x2="100" x1="1" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="fileName" y="57" x="10"/>
@@ -1024,7 +1024,7 @@
             <node displayedName="remove file" name="RemoveFile">
                 <graphics>
                     <picture sizex="101" sizey="148">
-                        <image y2="114" x2="99" name="images/filetotrash.png" x1="0" y1="0"/>
+			<image y2="114" x2="99" name="images/filetotrash.svg" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="122" x="30"/>
@@ -1053,7 +1053,7 @@
 	    <node displayedName="delay filter" name="DelayFilterNode">
                 <graphics>
 		    <picture sizex="100" sizey="100">
-			<image y2="100" name="images/delay.png" x2="100" x1="0" y1="0"/>
+			<image y2="100" name="images/delay.svg" x2="100" x1="0" y1="0"/>
 		    </picture>
 		    <labels>
 			<label text="dispatch time" y="-28" x="-98"/>
@@ -1102,7 +1102,7 @@
             <node displayedName="wait for" name="WaitNode">
                 <graphics>
                     <picture sizex="143" sizey="149">
-                        <image y2="114" name="images/wait.png" x2="141" x1="42" y1="0"/>
+			<image y2="114" name="images/wait.svg" x2="141" x1="42" y1="0"/>
                     </picture>
                     <labels>
 			<label text="time" y="123" x="30"/>
@@ -1134,7 +1134,7 @@
             <node displayedName="message receiver" name="ReceiveMsg">
                 <graphics>
                     <picture sizex="101" sizey="130">
-                        <image y2="99" name="images/msg.png" x2="99" x1="0" y1="0"/>
+			<image y2="99" name="images/msg.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="104" x="29"/>
@@ -1155,7 +1155,7 @@
 	    <node displayedName="gamepad" name="Gamepad">
                 <graphics>
                     <picture sizex="157" sizey="147">
-                        <image y2="114" name="images/pult1.png" x2="99" x1="0" y1="0"/>
+			<image y2="114" name="images/pult1.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
 			<label text="pad" y="0" x="105"/>
@@ -1182,7 +1182,7 @@
             <node displayedName="paintSettings" name="PaintSettings">
                 <graphics>
                     <picture sizex="136" sizey="116">
-                        <image y2="114" name="images/paintSettings.png" x2="101" x1="2" y1="0"/>
+			<image y2="114" name="images/paintSettings.svg" x2="101" x1="2" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="width" y="54" x="11"/>
@@ -1220,7 +1220,7 @@
             <node displayedName="shape" name="ShapePainter">
                 <graphics>
                     <picture sizex="169" sizey="116">
-                        <image y2="114" name="images/shape.png" x2="167" x1="68" y1="0"/>
+			<image y2="114" name="images/shape.svg" x2="167" x1="68" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="shapeType" y="78" x="73"/>
@@ -1249,7 +1249,7 @@
             <node displayedName="smilePainter" name="SmilePainter">
                 <graphics>
                     <picture sizex="101" sizey="116">
-                        <image y2="114" name="images/smile.png" x2="99" x1="0" y1="0"/>
+			<image y2="114" name="images/smile.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="isHappy" y="75" x="11"/>
@@ -1277,7 +1277,7 @@
             <node displayedName="text" name="Text">
                 <graphics>
                     <picture sizex="170" sizey="145">
-                        <image y2="114" name="images/text.png" x2="168" x1="69" y1="0"/>
+			<image y2="114" name="images/text.svg" x2="168" x1="69" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="text" y="77" x="77"/>
@@ -1307,7 +1307,7 @@
             <node displayedName="clear screen" name="ClearNode">
                 <graphics>
                     <picture sizex="101" sizey="147">
-                        <image y2="114" name="images/clearScreen.png" x2="99" x1="0" y1="0"/>
+			<image y2="114" name="images/clearScreen.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="121" x="25"/>
@@ -1329,7 +1329,7 @@
             <node displayedName="pen up or down" name="Pen">
                 <graphics>
                     <picture sizex="176" sizey="151">
-                        <image y2="114" name="images/pen up down.png" x2="174" x1="75" y1="0"/>
+			<image y2="114" name="images/pen up down.svg" x2="174" x1="75" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="125" x="99"/>
@@ -1359,7 +1359,7 @@
             <node displayedName="fork" name="ForkNode">
                 <graphics>
                     <picture sizex="117" sizey="139">
-			<image y2="117" name="images/fork.png" x2="100" x1="0" y1="0"/>
+			<image y2="117" name="images/fork.svg" x2="100" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="113" x="34"/>
@@ -1381,7 +1381,7 @@
             <node displayedName="end fork" name="EndFork">
                 <graphics>
                     <picture sizex="100" sizey="142">
-                        <image y2="113" name="images/join.png" x2="98" x1="0" y1="0"/>
+			<image y2="113" name="images/join.svg" x2="98" x1="0" y1="0"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="116" x="28"/>
@@ -1412,7 +1412,7 @@
             <node displayedName="Robots behaviour diagram" name="RobotsBehaviourDiagram">
                 <graphics>
                     <picture sizex="101" sizey="100">
-                        <image y2="98" name="images/robotDiagram.png" x2="99" x1="0" y1="0"/>
+			<image y2="98" name="images/robotDiagram.svg" x2="99" x1="0" y1="0"/>
                     </picture>
                     <labels/>
                     <ports/>
@@ -1453,7 +1453,7 @@
             <node displayedName="sensor variable" name="SensorVar">
                 <graphics>
                     <picture sizex="101" sizey="163">
-                        <image y2="131" name="images/sensorVar.png" x2="99" x1="0" y1="17"/>
+			<image y2="131" name="images/sensorVar.svg" x2="99" x1="0" y1="17"/>
                     </picture>
                     <labels>
                         <label textBinded="VarName" y="137" x="12"/>
@@ -1481,7 +1481,7 @@
             <node displayedName="interflowing" name="Interflowing">
                 <graphics>
                     <picture sizex="102" sizey="133">
-                        <image y2="131" name="images/intersect.png" x2="100" x1="1" y1="30"/>
+			<image y2="131" name="images/intersect.svg" x2="100" x1="1" y1="30"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="26"/>
@@ -1504,7 +1504,7 @@
             <node displayedName="Separator" name="Separator">
                 <graphics>
                     <picture sizex="102" sizey="132">
-                        <image y2="130" name="images/div.png" x2="99" x1="0" y1="29"/>
+			<image y2="130" name="images/div.svg" x2="99" x1="0" y1="29"/>
                     </picture>
                     <labels>
                         <label textBinded="name" y="0" x="29"/>
