@@ -153,6 +153,7 @@
                 <value name="M1"/>
 	    </enum>
 	    <enum editable="false" name="SubProgramInputPorts">
+		<value name="CF_IN"/>
 		<value name="I0"/>
 		<value name="I1"/>
 <!--		<value name="I2"/>
@@ -161,6 +162,7 @@
 		<value name="I5"/> -->
 	    </enum>
 	    <enum editable="false" name="SubProgramOutputPorts">
+		<value name="CF_OUT"/>
 		<value name="O0"/>
 		<value name="O1"/>
 <!--		<value name="O2"/>
@@ -426,6 +428,7 @@
 			<pointPort y="50" type="NonTyped" x="120"/>
 			<pointPort y="95" type="NonTyped" x="20"/>
 			<pointPort y="95" type="NonTyped" x="120"/>
+			<pointPort y="15" type="NonTyped" x="105"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>

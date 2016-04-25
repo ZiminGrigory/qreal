@@ -99,6 +99,7 @@ int TwoDModelEngineApi::readTouchSensor(const PortInfo &port) const
 
 int TwoDModelEngineApi::readSonarSensor(const PortInfo &port) const
 {
+	qDebug() << "requesting new data";
 	QPair<QPointF, qreal> neededPosDir = countPositionAndDirection(port);
 	const int res = mModel.worldModel().sonarReading(neededPosDir.first, neededPosDir.second);
 
