@@ -68,4 +68,9 @@ void DFFunctionBlock::handleData()
 	}
 }
 
+bool DFFunctionBlock::isSynchronizationNeeded()
+{
+	return property("synch").toBool();
+}
+
 

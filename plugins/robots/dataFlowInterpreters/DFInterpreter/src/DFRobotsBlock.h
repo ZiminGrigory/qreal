@@ -53,6 +53,8 @@ public:
 
 	void handleNewDataFromFlow(const QVariant &data, int port) override;
 
+	virtual bool isSynchronizationNeeded();
+
 	/// We need synchronize some ports of DFBlock or etc.
 	virtual void configureSynchronizedPorts();
 

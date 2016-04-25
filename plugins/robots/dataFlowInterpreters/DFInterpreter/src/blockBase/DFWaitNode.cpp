@@ -7,11 +7,12 @@ using namespace dataFlowBlocks::details;
 
 DFWaitNode::DFWaitNode()
 {
-		portAssociatedWithProperty["CF_IN"] = 0;
-		portAssociatedWithProperty["CF_OUT"] = 1;
-		portAssociatedWithProperty["DATA"] = 2;
-		portAssociatedWithProperty["OUT"] = 3;
-		portAssociatedWithProperty["TIME"] = 4;
+	/// @ todo: add oportunity to doesn't flush data
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["DATA"] = 2;
+	portAssociatedWithProperty["OUT"] = 3;
+	portAssociatedWithProperty["TIME"] = 4;
 }
 
 void DFWaitNode::init()

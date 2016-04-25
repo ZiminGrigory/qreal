@@ -7,7 +7,7 @@ using namespace qReal;
 
 void DFRobotsBlock::configureSynchronizedPorts()
 {
-	if (property(mGraphicalId, "synch").toBool()) {
+	if (isSynchronizationNeeded()) {
 		qReal::IdList localIncomingLinks = mGraphicalModelApi->graphicalRepoApi().incomingLinks(mGraphicalId);
 		for (auto &id : localIncomingLinks) {
 			synchronisedPorts.insert(qRound64(mGraphicalModelApi->toPort(id)));
@@ -90,6 +90,11 @@ void dataFlow::interpretation::DFRobotsBlock::handleNewDataFromFlow(const QVaria
 		handleData();
 		configureSynchronizedPorts();
 	}
+}
+
+bool DFRobotsBlock::isSynchronizationNeeded()
+{
+	return false;
 }
 
 

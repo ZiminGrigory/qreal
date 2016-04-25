@@ -10,6 +10,11 @@ DFInterflowingBlock::DFInterflowingBlock()
 	portAssociatedWithProperty["OUT"] = 1;
 }
 
+bool DFInterflowingBlock::isSynchronizationNeeded()
+{
+	return true;
+}
+
 void DFInterflowingBlock::configureSynchronizedPorts()
 {
 	synchronisedPorts.insert(portAssociatedWithProperty["DATA1"]);

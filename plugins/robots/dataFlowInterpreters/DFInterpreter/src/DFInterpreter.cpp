@@ -118,6 +118,7 @@ void DFInterpeter::stopRobot(qReal::interpretation::StopReason reason)
 	mRobotModelManager.model().stopRobot();
 	mState = idle;
 	mBlocksTable->clear();
+	connectResolver.clear();
 	qDeleteAll(mThreads);
 	mThreads.clear();
 	emit stopped(reason);
@@ -219,7 +220,7 @@ void DFInterpeter::prepareDiagramInterpretation(const IdList &startElements, con
 		for (const Id &linkId : outgoingLinks) {
 			const Id &nextBlockId = mGraphicalModelApi.to(linkId);
 			auto nextBlock = dynamic_cast<DataFlowRobotsBlock *>(mBlocksTable->block(nextBlockId));
-			if (!handledElements.contains(nextBlockId)) {
+			if (!handledElements.contains(nextBlockId) && !nextBlocks.contains(nextBlockId)) {
 				nextBlocks.enqueue(nextBlockId);
 			}
 
@@ -320,6 +321,7 @@ IdList DFInterpeter::handleSubprogram(const Id &id, const Id &explosion)
 
 void DFInterpeter::handleDataInFlow(const QVariant &data, int port)
 {
+//	qDebug() << Q_FUNC_INFO;
 	QList<QPair<DataFlowRobotsBlock *, int>> localValues =
 			connectResolver[dynamic_cast<DataFlowRobotsBlock *>(sender())].values(port);
 

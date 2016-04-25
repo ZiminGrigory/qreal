@@ -20,11 +20,15 @@ DFSensorVariableEmitter::DFSensorVariableEmitter(RobotModelInterface &robotModel
 void DFSensorVariableEmitter::handleData()
 {
 	if (mScalarSensor) {
+		disconnect(mScalarSensor, &robotParts::ScalarSensor::newData
+				, this, &DFSensorVariableEmitter::newIntDataReceived);
 		connect(mScalarSensor, &robotParts::ScalarSensor::newData
 				, this, &DFSensorVariableEmitter::newIntDataReceived, Qt::QueuedConnection);
 	}
 
 	if (mVectorSensor) {
+		disconnect(mVectorSensor, &robotParts::VectorSensor::newData
+				, this, &DFSensorVariableEmitter::newVectorDataReceived);
 		connect(mVectorSensor, &robotParts::VectorSensor::newData
 				, this, &DFSensorVariableEmitter::newVectorDataReceived, Qt::QueuedConnection);
 	}
@@ -47,6 +51,7 @@ void DFSensorVariableEmitter::init()
 void DFSensorVariableEmitter::newIntDataReceived(int data)
 {
 	emit newDataInFlow(QVariant(data), portAssociatedWithProperty["OUT"]);
+	qDebug() << Q_FUNC_INFO;
 	QCoreApplication::processEvents();
 }
 

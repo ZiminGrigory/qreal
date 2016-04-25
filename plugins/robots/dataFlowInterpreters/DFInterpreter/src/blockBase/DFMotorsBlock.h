@@ -38,6 +38,7 @@ public:
 protected:
 	void init() override;
 	void handleData() override;
+	bool isSynchronizationNeeded() override;
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 
 private:

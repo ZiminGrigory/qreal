@@ -26,8 +26,8 @@ class DFInterflowingBlock : public dataFlow::interpretation::DFRobotsBlock
 public:
 	DFInterflowingBlock();
 
+	bool isSynchronizationNeeded() override;
 	void configureSynchronizedPorts() override;
-
 protected:
 	void handleData() override;
 

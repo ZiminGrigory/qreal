@@ -38,6 +38,11 @@ void DFMotorsBlock::handleData()
 
 }
 
+bool DFMotorsBlock::isSynchronizationNeeded()
+{
+	return property("synch").toBool();
+}
+
 void DFMotorsBlock::init()
 {
 	const QList<PortInfo> keys = usedDevices().keys();

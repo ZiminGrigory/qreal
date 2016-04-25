@@ -10,6 +10,7 @@ DFSubprogramCall::DFSubprogramCall()
 	portAssociatedWithProperty["O0"] = 2;
 	portAssociatedWithProperty["I1"] = 3;
 	portAssociatedWithProperty["O1"] = 4;
+	portAssociatedWithProperty["CF_OUT"] = 5;
 }
 
 void DFSubprogramCall::handleData()

@@ -31,7 +31,7 @@ public:
 protected:
 	void init() override;
 	void handleData() override;
-
+	bool isSynchronizationNeeded() override;
 private:
 	bool isSynchronized = true;
 

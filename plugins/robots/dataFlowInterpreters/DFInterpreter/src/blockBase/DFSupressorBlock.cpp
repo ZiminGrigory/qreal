@@ -40,7 +40,7 @@ void DFSupressorBlock::handleData()
 		}
 
 	} else {
-		if (QTime::currentTime().msecsTo(startSupressionTime) >= timeToSupress) {
+		if (startSupressionTime.msecsTo(QTime::currentTime()) >= timeToSupress) {
 			supressionStarted = false;
 			handleData();
 		} else if (hasNewProperty("REPLACE_DATA")) {

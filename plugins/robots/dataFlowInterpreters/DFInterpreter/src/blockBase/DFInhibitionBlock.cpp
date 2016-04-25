@@ -39,7 +39,7 @@ void DFInhibitionBlock::handleData()
 			emit newDataInFlow(propertyFromPort("DATA"), portAssociatedWithProperty["OUT"]);
 		}
 	} else {
-		if (QTime::currentTime().msecsTo(startInhibitionTime) >= timeToInhibit) {
+		if (startInhibitionTime.msecsTo(QTime::currentTime()) >= timeToInhibit) {
 			inhibitionStarted = false;
 			handleData();
 		} else {
