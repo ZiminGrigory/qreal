@@ -15,7 +15,6 @@ using namespace interpreterCore::interpreter::dataFlowInterpretation;
 using namespace dataFlow::interpretation;
 
 const int timeBeforeStart = 25;
-const int dummyPortForStarting = -1;
 
 
 DFThread::DFThread(const GraphicalModelAssistInterface *graphicalModelApi
@@ -44,7 +43,7 @@ void DFThread::init(const IdList &initialNodeIds)
 
 	for (auto &node: mInitialNodes) {
 		QTimer::singleShot(timeBeforeStart, [&](){
-			node->handleNewDataFromFlow(QVariant(), dummyPortForStarting);});
+			node->handleNewDataFromFlow(QVariant(), node->activationPortNumber());});
 	}
 }
 

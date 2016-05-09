@@ -34,11 +34,13 @@ public:
 	DFGamepadBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	void init() override;
 	void handleData() override;
 
 private:
+	void handlePadUpOrDown(int padNumber, int isPressed);
+
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
+	bool isActivated = false;
 };
 
 }

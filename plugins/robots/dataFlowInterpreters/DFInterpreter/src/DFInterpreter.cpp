@@ -321,7 +321,6 @@ IdList DFInterpeter::handleSubprogram(const Id &id, const Id &explosion)
 
 void DFInterpeter::handleDataInFlow(const QVariant &data, int port)
 {
-//	qDebug() << Q_FUNC_INFO;
 	QList<QPair<DataFlowRobotsBlock *, int>> localValues =
 			connectResolver[dynamic_cast<DataFlowRobotsBlock *>(sender())].values(port);
 

@@ -20,6 +20,7 @@
 #include "blockBase/DFConditionBlock.h"
 #include "blockBase/DFSwitchBlock.h"
 #include "blockBase/DFSeparatorBlock.h"
+#include "blockBase/DFServoMotorsBlock.h"
 
 
 
@@ -47,6 +48,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 
 	if (elementDFMetatypeIs(element, "Motors")) {
 		res = new details::DFMotorsBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "Servo")) {
+		res = new details::DFServoMotorsBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ValueEmitter")) {
 		res = new details::DFValueEmitter();
 	} else if (elementDFMetatypeIs(element, "Function")) {
@@ -124,7 +127,8 @@ qReal::IdList DFFactoryBase::providedBlocks() const
 			<< dataFlowId("RandomValue")
 			<< dataFlowId("IfNode")
 			<< dataFlowId("Switch")
-			<< dataFlowId("Separator");
+			<< dataFlowId("Separator")
+			<< dataFlowId("Servo");
 	return result;
 }
 

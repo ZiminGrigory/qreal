@@ -60,6 +60,8 @@ public:
 
 	const qReal::Id id() const override;
 
+	int activationPortNumber() const override;
+
 	int getPortAssociatedWithProperty(const QString &propertyName);
 
 protected:

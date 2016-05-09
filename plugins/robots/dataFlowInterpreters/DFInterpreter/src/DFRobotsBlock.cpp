@@ -24,6 +24,11 @@ const qReal::Id DFRobotsBlock::id() const
 	return mGraphicalId;
 }
 
+int DFRobotsBlock::activationPortNumber() const
+{
+	return portAssociatedWithProperty.value("CF_IN", -1);
+}
+
 int DFRobotsBlock::getPortAssociatedWithProperty(const QString &propertyName)
 {
 	return portAssociatedWithProperty[propertyName];
@@ -87,8 +92,9 @@ void dataFlow::interpretation::DFRobotsBlock::handleNewDataFromFlow(const QVaria
 	valueOnPort[port].enqueue(data);
 	synchronisedPorts.remove(port);
 	if (synchronisedPorts.empty()) {
-		handleData();
+		// sequence is important, because handleDare method can stopping interpretation
 		configureSynchronizedPorts();
+		handleData();
 	}
 }
 

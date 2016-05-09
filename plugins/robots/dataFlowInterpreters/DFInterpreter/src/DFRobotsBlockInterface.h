@@ -23,6 +23,9 @@ public:
 	/// Returns the diagram`s id of the block whitch is impemented by this object.
 	virtual const qReal::Id id() const = 0;
 
+	/// Returns port number for activation with dummy data. Needs to DFThreads to starting interpretation.
+	virtual int activationPortNumber() const = 0;
+
 signals:
 	/// Emitted each time when block sends data to others.
 	/// @param data - any data produced by block.

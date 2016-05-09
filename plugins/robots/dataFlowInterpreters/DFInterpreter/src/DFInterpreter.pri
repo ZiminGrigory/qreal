@@ -79,7 +79,8 @@ HEADERS += \
     $$PWD/blockBase/DFConditionBlock.h \
     $$PWD/blockBase/DFLoopBlock.h \
     $$PWD/blockBase/DFSwitchBlock.h \
-    $$PWD/blockBase/DFSeparatorBlock.h
+    $$PWD/blockBase/DFSeparatorBlock.h \
+    $$PWD/blockBase/DFServoMotorsBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -107,4 +108,5 @@ SOURCES += \
     $$PWD/blockBase/DFConditionBlock.cpp \
     $$PWD/blockBase/DFLoopBlock.cpp \
     $$PWD/blockBase/DFSwitchBlock.cpp \
-    $$PWD/blockBase/DFSeparatorBlock.cpp
+    $$PWD/blockBase/DFSeparatorBlock.cpp \
+    $$PWD/blockBase/DFServoMotorsBlock.cpp
