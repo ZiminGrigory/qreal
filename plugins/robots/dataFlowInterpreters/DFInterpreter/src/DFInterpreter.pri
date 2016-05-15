@@ -80,7 +80,8 @@ HEADERS += \
     $$PWD/blockBase/DFLoopBlock.h \
     $$PWD/blockBase/DFSwitchBlock.h \
     $$PWD/blockBase/DFSeparatorBlock.h \
-    $$PWD/blockBase/DFServoMotorsBlock.h
+    $$PWD/blockBase/DFServoMotorsBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFSmileBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -109,4 +110,5 @@ SOURCES += \
     $$PWD/blockBase/DFLoopBlock.cpp \
     $$PWD/blockBase/DFSwitchBlock.cpp \
     $$PWD/blockBase/DFSeparatorBlock.cpp \
-    $$PWD/blockBase/DFServoMotorsBlock.cpp
+    $$PWD/blockBase/DFServoMotorsBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFSmileBlock.cpp

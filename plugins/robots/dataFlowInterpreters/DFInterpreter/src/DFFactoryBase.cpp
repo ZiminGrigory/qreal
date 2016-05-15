@@ -21,9 +21,10 @@
 #include "blockBase/DFSwitchBlock.h"
 #include "blockBase/DFSeparatorBlock.h"
 #include "blockBase/DFServoMotorsBlock.h"
+#include "blockBase/deviceBlocks/DFSmileBlock.h"
 
 
-
+///@todo: split to factories (ex common, trik, etc)
 
 using namespace dataFlow::blocksBase;
 using namespace dataFlowBlocks;
@@ -86,6 +87,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFSwitchBlock();
 	} else if (elementDFMetatypeIs(element, "Separator")) {
 		res = new details::DFSeparatorBlock();
+	} else if (elementDFMetatypeIs(element, "SmilePainter")) {
+		res = new details::DFSmileBlock(mRobotModelManager->model());
 	}
 
 

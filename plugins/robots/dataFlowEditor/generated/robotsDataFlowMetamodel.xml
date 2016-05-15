@@ -1330,9 +1330,9 @@
                         <label textBinded="isHappy" y="75" x="11"/>
                     </labels>
                     <ports>
-                        <pointPort y="16" type="NonTyped" x="88"/>
-                        <pointPort y="18" type="NonTyped" x="10"/>
-                        <pointPort y="88" type="NonTyped" x="2"/>
+			<pointPort y="18" type="NonTyped" x="10"/>
+			<pointPort y="16" type="NonTyped" x="88"/>
+			<pointPort y="88" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>

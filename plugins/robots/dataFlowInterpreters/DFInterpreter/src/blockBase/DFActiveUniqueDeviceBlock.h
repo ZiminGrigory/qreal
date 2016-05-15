@@ -25,7 +25,7 @@ namespace details {
 
 /// A base for all blocks that work with some robot`s device. Block which can be represented by many instance,
 /// but only one is actually may be active on diagram. This block will
-/// perform search of some device of the given type and call doJob() from it if it was found
+/// perform search of some device of the given type and call handleData() from it if it was found
 /// or display an error otherwise.
 template<typename Device>
 class DFActiveUniqueDeviceBlock : public dataFlow::interpretation::DFRobotsBlock
@@ -37,7 +37,7 @@ public:
 	{
 	}
 
-	void run() override
+	void handleData() override
 	{
 		const kitBase::robotModel::DeviceInfo deviceInfo = kitBase::robotModel::DeviceInfo::create<Device>();
 		const QString port = deviceInfo.name()[0].toUpper() + deviceInfo.name().mid(1) + "Port";
@@ -45,7 +45,7 @@ public:
 		if (device) {
 			// property allow use all representation of device block sequantally
 			this->setProperty("owner", this);
-			doJob(*device);
+			handleData(*device);
 		} else {
 			error(QObject::tr("%1 is not configured.").arg(deviceInfo.friendlyName()));
 		}
@@ -53,7 +53,7 @@ public:
 
 protected:
 	/// Implementation may consider that the device is configured and ready to work.
-	virtual void doJob(Device &display) = 0;
+	virtual void handleData(Device &device) = 0;
 
 private:
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
