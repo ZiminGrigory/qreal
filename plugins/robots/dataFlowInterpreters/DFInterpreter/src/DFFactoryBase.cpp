@@ -22,6 +22,7 @@
 #include "blockBase/DFSeparatorBlock.h"
 #include "blockBase/DFServoMotorsBlock.h"
 #include "blockBase/deviceBlocks/DFSmileBlock.h"
+#include "blockBase/deviceBlocks/DFClearScreenBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -89,6 +90,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFSeparatorBlock();
 	} else if (elementDFMetatypeIs(element, "SmilePainter")) {
 		res = new details::DFSmileBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "ClearNode")) {
+		res = new details::DFClearScreenBlock(mRobotModelManager->model());
 	}
 
 

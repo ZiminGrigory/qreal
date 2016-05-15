@@ -1388,8 +1388,8 @@
                         <label textBinded="name" y="121" x="25"/>
                     </labels>
                     <ports>
+			<pointPort y="17" type="NonTyped" x="9"/>
                         <pointPort y="15" type="NonTyped" x="89"/>
-                        <pointPort y="17" type="NonTyped" x="9"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
