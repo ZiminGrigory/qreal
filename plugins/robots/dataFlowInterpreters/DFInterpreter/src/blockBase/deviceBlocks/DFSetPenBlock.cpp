@@ -12,9 +12,9 @@ DFSetPenBlock::DFSetPenBlock(kitBase::robotModel::RobotModelInterface &robotMode
 	portAssociatedWithProperty["COLOR"] = 2;
 }
 
-int DFSetPenBlock::activationPortNumber()
+int DFSetPenBlock::activationPortNumber() const
 {
-	portAssociatedWithProperty["UP_DOWN"];
+	return portAssociatedWithProperty["UP_DOWN"];
 }
 
 void DFSetPenBlock::init()
@@ -47,4 +47,6 @@ void DFSetPenBlock::handleData(Marker &marker)
 			marker.up();
 		}
 	}
+
+	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 }

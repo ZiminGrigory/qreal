@@ -83,7 +83,8 @@ HEADERS += \
     $$PWD/blockBase/DFServoMotorsBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSmileBlock.h \
     $$PWD/blockBase/deviceBlocks/DFClearScreenBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFSetPenBlock.h
+    $$PWD/blockBase/deviceBlocks/DFSetPenBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -115,4 +116,5 @@ SOURCES += \
     $$PWD/blockBase/DFServoMotorsBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSmileBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFClearScreenBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFSetPenBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFSetPenBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.cpp

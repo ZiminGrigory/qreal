@@ -1265,11 +1265,11 @@
                         <label textBinded="color" y="22" x="13"/>
                     </labels>
                     <ports>
-                        <pointPort y="96" type="NonTyped" x="2"/>
-                        <pointPort y="17" type="NonTyped" x="16"/>
-                        <pointPort y="68" type="NonTyped" x="3"/>
-                        <pointPort y="35" type="NonTyped" x="2"/>
-                        <pointPort y="16" type="NonTyped" x="89"/>
+			<pointPort y="17" type="NonTyped" x="16"/>
+			<pointPort y="16" type="NonTyped" x="89"/>
+			<pointPort y="35" type="NonTyped" x="2"/>
+			<pointPort y="68" type="NonTyped" x="2"/>
+			<pointPort y="96" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1285,6 +1285,9 @@
 			<property displayedName="background color" name="backgroundColor" type="BackgroundColor">
                             <default>white</default>
                         </property>
+			<property displayedName="redraw" name="Redraw" type="bool">
+			    <default>true</default>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstactPainter"/>

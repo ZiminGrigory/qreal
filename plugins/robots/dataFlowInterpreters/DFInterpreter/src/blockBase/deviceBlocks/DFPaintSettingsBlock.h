@@ -16,28 +16,29 @@
 
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/blockBase/DFDeviceBlock.h"
 
-#include <twoDModel/robotModel/parts/marker.h>
+#include <kitBase/robotModel/robotParts/display.h>
 
 namespace dataFlowBlocks {
 namespace details {
 
-using Marker = twoDModel::robotModel::parts::Marker;
-using MarkerDevice = DFDeviceBlock<Marker>;
+using DisplayDevice = DFDeviceBlock<kitBase::robotModel::robotParts::Display>;
+using Display = kitBase::robotModel::robotParts::Display;
 
-class DFSetPenBlock : public MarkerDevice
+class DFPaintSettingsBlock : public DisplayDevice
 {
 	Q_OBJECT
 
 public:
-	explicit DFSetPenBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+	explicit DFPaintSettingsBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void init() override;
-	void handleData(Marker &marker) override;
+	void handleData(Display &display) override;
 
 private:
-	QColor mColor = QColor(Qt::black);
+	QColor mBrushColor = QColor(Qt::black);
+	int mBrushWidth = 0;
+	QColor mBackgroundColor = QColor(Qt::white);
 };
 
 }
