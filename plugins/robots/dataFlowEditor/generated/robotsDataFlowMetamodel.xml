@@ -1254,7 +1254,7 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node displayedName="paintSettings" name="PaintSettings">
+	    <node displayedName="paintSettings" name="PaintSettings">
                 <graphics>
                     <picture sizex="136" sizey="116">
 			<image y2="114" name="images/paintSettings.svg" x2="101" x1="2" y1="0"/>
@@ -1352,7 +1352,7 @@
                     <explodesTo/>
                 </logic>
             </node>
-            <node displayedName="text" name="Text">
+	    <node displayedName="text" name="TextOnScreen">
                 <graphics>
                     <picture sizex="170" sizey="145">
 			<image y2="114" name="images/text.svg" x2="168" x1="69" y1="0"/>
@@ -1363,9 +1363,9 @@
                         <label text="coords[]" y="14" x="0"/>
                     </labels>
                     <ports>
+			<pointPort y="16" type="NonTyped" x="160"/>
+			<pointPort y="51" type="NonTyped" x="70"/>
                         <pointPort y="91" type="NonTyped" x="70"/>
-                        <pointPort y="51" type="NonTyped" x="71"/>
-                        <pointPort y="16" type="NonTyped" x="160"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1375,6 +1375,12 @@
                         <property displayedName="text" name="text" type="string">
                             <default>default text</default>
                         </property>
+			<property displayedName="Evaluate" name="Evaluate" type="bool">
+			    <default>false</default>
+			</property>
+			<property displayedName="Redraw" name="Redraw" type="bool">
+			    <default>true</default>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstactPainter"/>
@@ -1650,7 +1656,7 @@
 			<group name="Drawing">
 				<element name="Pen"/>
 				<element name="PaintSettings"/>
-				<element name="Text"/>
+				<element name="TextOnScreen"/>
 				<element name="ClearNode"/>
 				<element name="ShapePainter"/>
 				<element name="SmilePainter"/>

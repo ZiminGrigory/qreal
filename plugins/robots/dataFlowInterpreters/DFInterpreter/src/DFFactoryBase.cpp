@@ -25,6 +25,7 @@
 #include "blockBase/deviceBlocks/DFClearScreenBlock.h"
 #include "blockBase/deviceBlocks/DFSetPenBlock.h"
 #include "blockBase/deviceBlocks/DFPaintSettingsBlock.h"
+#include "blockBase/deviceBlocks/DFTextOnScreenBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -98,6 +99,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFSetPenBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "PaintSettings")) {
 		res = new details::DFPaintSettingsBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "TextOnScreen")) {
+		res = new details::DFTextOnScreenBlock(mRobotModelManager->model());
 	}
 
 
