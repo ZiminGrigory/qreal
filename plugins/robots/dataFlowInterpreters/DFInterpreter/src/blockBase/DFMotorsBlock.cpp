@@ -28,7 +28,7 @@ DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 void DFMotorsBlock::handleData()
 {
 	for (const QString &port : ports) {
-		if (hasNewProperty(portAssociatedWithProperty[port])) {
+		if (hasNewData(portAssociatedWithProperty[port])) {
 			QVariant power = property(portAssociatedWithProperty[port]);
 			motors[port]->on(power.toInt());
 		}

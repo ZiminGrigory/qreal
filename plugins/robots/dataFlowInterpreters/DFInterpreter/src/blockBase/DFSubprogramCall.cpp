@@ -20,16 +20,16 @@ void DFSubprogramCall::handleData()
 		emit firstActivation();
 	}
 
-	if (hasNewProperty(portAssociatedWithProperty["CF_IN"]) || hasNewProperty(portAssociatedWithProperty["DUMMY"])) {
+	if (hasNewData(portAssociatedWithProperty["CF_IN"]) || hasNewData(portAssociatedWithProperty["DUMMY"])) {
 		propertyFromPort("DUMMY");
 		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_IN"]);
 	}
 
-	if (hasNewProperty(portAssociatedWithProperty["I0"])) {
+	if (hasNewData(portAssociatedWithProperty["I0"])) {
 		emit newDataInFlow(propertyFromPort("I0"), portAssociatedWithProperty["I0"]);
 	}
 
-	if (hasNewProperty(portAssociatedWithProperty["I1"])) {
+	if (hasNewData(portAssociatedWithProperty["I1"])) {
 		emit newDataInFlow(propertyFromPort("I1"), portAssociatedWithProperty["I1"]);
 	}
 }

@@ -31,19 +31,19 @@ void DFDelayAndConditionFilter::init()
 
 void DFDelayAndConditionFilter::handleData()
 {
-	if (hasNewProperty("DISPATCH_TIME")) {
+	if (hasNewData("DISPATCH_TIME")) {
 		delayTime = propertyFromPort("DISPATCH_TIME").toInt();
 	}
 
-	if (hasNewProperty("COUNT")) {
+	if (hasNewData("COUNT")) {
 		count = propertyFromPort("COUNT").toInt();
 	}
 
-	if (hasNewProperty("VARS")) {
+	if (hasNewData("VARS")) {
 		setVariable(vars, propertyFromPort("VARS"));
 	}
 
-	if (hasNewProperty("DATA")) {
+	if (hasNewData("DATA")) {
 
 		if (count == 0) {
 			flushData();

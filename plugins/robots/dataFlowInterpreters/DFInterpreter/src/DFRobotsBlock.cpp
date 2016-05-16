@@ -38,14 +38,14 @@ DFRobotsBlock::DFRobotsBlock()
 {
 }
 
-bool DFRobotsBlock::hasNewProperty(int portNumber)
+bool DFRobotsBlock::hasNewData(int portNumber)
 {
 	return !valueOnPort.value(portNumber).isEmpty();
 }
 
-bool DFRobotsBlock::hasNewProperty(const QString &propertyName)
+bool DFRobotsBlock::hasNewData(const QString &propertyName)
 {
-	return hasNewProperty(portAssociatedWithProperty[propertyName]);
+	return hasNewData(portAssociatedWithProperty[propertyName]);
 }
 
 QVariant DFRobotsBlock::property(int portNumber)

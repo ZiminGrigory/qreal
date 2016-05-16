@@ -24,19 +24,19 @@ void DFLoopBlock::init()
 
 void DFLoopBlock::handleData()
 {
-	if (hasNewProperty("FROM")) {
+	if (hasNewData("FROM")) {
 		from = propertyFromPort("FROM").toInt();
 	}
 
-	if (hasNewProperty("TO")) {
+	if (hasNewData("TO")) {
 		to = propertyFromPort("TO").toInt();
 	}
 
-	if (hasNewProperty("STEP")) {
+	if (hasNewData("STEP")) {
 		step = propertyFromPort("STEP").toInt();
 	}
 
-	if (hasNewProperty("CF_IN")) {
+	if (hasNewData("CF_IN")) {
 		currentCounter = from;
 		while (currentCounter <= to) {
 			emit newDataInFlow(currentCounter, portAssociatedWithProperty["OUT"]);

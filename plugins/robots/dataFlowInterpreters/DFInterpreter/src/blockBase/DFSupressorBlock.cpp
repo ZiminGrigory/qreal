@@ -23,7 +23,7 @@ void DFSupressorBlock::init()
 void DFSupressorBlock::handleData()
 {
 	if (!supressionStarted) {
-		if (hasNewProperty("REPLACE_DATA")) {
+		if (hasNewData("REPLACE_DATA")) {
 			supressionStarted = true;
 			startSupressionTime = QTime::currentTime();
 			emit newDataInFlow(propertyFromPort("REPLACE_DATA"), portAssociatedWithProperty["OUT"]);
@@ -31,11 +31,11 @@ void DFSupressorBlock::handleData()
 			return;
 		}
 
-		if (hasNewProperty("TIME")) {
+		if (hasNewData("TIME")) {
 			timeToSupress = propertyFromPort("TIME").toInt();
 		}
 
-		if (hasNewProperty("DATA")) {
+		if (hasNewData("DATA")) {
 			emit newDataInFlow(propertyFromPort("DATA"), portAssociatedWithProperty["OUT"]);
 		}
 
@@ -43,7 +43,7 @@ void DFSupressorBlock::handleData()
 		if (startSupressionTime.msecsTo(QTime::currentTime()) >= timeToSupress) {
 			supressionStarted = false;
 			handleData();
-		} else if (hasNewProperty("REPLACE_DATA")) {
+		} else if (hasNewData("REPLACE_DATA")) {
 			emit newDataInFlow(propertyFromPort("REPLACE_DATA"), portAssociatedWithProperty["OUT"]);
 			flushData();
 		}

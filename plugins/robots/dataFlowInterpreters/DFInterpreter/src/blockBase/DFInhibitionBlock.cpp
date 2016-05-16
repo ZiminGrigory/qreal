@@ -24,18 +24,18 @@ void DFInhibitionBlock::init()
 void DFInhibitionBlock::handleData()
 {
 	if (!inhibitionStarted) {
-		if (hasNewProperty("STOP")) {
+		if (hasNewData("STOP")) {
 			inhibitionStarted = true;
 			startInhibitionTime = QTime::currentTime();
 			flushData();
 			return;
 		}
 
-		if (hasNewProperty("TIME")) {
+		if (hasNewData("TIME")) {
 			timeToInhibit = propertyFromPort("TIME").toInt();
 		}
 
-		if (hasNewProperty("DATA")) {
+		if (hasNewData("DATA")) {
 			emit newDataInFlow(propertyFromPort("DATA"), portAssociatedWithProperty["OUT"]);
 		}
 	} else {

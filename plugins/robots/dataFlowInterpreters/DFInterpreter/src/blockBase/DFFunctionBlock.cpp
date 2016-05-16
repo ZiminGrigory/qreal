@@ -45,7 +45,7 @@ void DFFunctionBlock::handleData()
 
 	if (!isSynchronized) {
 		for (const Bucket &b : mExpressions) {
-			if (hasNewProperty(b.input)) {
+			if (hasNewData(b.input)) {
 				setVariable(b.input, propertyFromPort(b.input));
 				QVariant data = evalCode<QVariant>(b.expressionText, b.expression);
 				emit newDataInFlow(data, portAssociatedWithProperty[b.output]);
@@ -57,7 +57,7 @@ void DFFunctionBlock::handleData()
 	}
 
 	for (const Bucket &b : mExpressions) {
-		if (hasNewProperty(b.input)) {
+		if (hasNewData(b.input)) {
 			setVariable(b.input, propertyFromPort(b.input));
 		} else {
 			setVariable(b.input, dummyValue);

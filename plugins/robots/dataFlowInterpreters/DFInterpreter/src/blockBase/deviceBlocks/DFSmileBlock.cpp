@@ -35,7 +35,7 @@ void DFSmileBlock::handleData(Display &display)
 {
 	auto trikDisplay = static_cast<trik::robotModel::parts::TrikDisplay *>(&display);
 
-	if (hasNewProperty("DATA")) {
+	if (hasNewData("DATA")) {
 		mIsHappy = property(portAssociatedWithProperty["DATA"]).toBool();
 	}
 

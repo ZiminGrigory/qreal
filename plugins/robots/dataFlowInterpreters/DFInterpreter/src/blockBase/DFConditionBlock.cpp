@@ -22,11 +22,11 @@ void DFConditionBlock::init()
 
 void DFConditionBlock::handleData()
 {
-	if (hasNewProperty("VARS")) {
+	if (hasNewData("VARS")) {
 		setVariable(vars, propertyFromPort("VARS"));
 	}
 
-	if (hasNewProperty("DATA")) {
+	if (hasNewData("DATA")) {
 		QVariant rawData = propertyFromPort("DATA");
 		QString data = "data";
 		setVariable(data, rawData);

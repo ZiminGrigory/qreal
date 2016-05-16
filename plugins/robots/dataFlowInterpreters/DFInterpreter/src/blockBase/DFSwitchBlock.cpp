@@ -33,13 +33,13 @@ void DFSwitchBlock::init()
 
 void DFSwitchBlock::handleData()
 {
-	if (!hasNewProperty("DATA") && !hasNewProperty("CF_IN")) {
+	if (!hasNewData("DATA") && !hasNewData("CF_IN")) {
 		return;
 	}
 
 	/// @todo: check if activation by CF, but data is needed
 
-	if (hasNewProperty("DATA")) {
+	if (hasNewData("DATA")) {
 		QVariant rawData = propertyFromPort("DATA");
 		QString data = "data";
 

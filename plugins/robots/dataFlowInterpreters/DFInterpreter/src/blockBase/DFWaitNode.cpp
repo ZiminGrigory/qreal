@@ -26,14 +26,14 @@ void DFWaitNode::init()
 void DFWaitNode::handleData()
 {
 	if (!wait) {
-		if (hasNewProperty("TIME")) {
+		if (hasNewData("TIME")) {
 			timeToWait = propertyFromPort("TIME").toInt();
 		}
 
-		if (hasNewProperty("CF_IN") || hasNewProperty("DATA")) {
+		if (hasNewData("CF_IN") || hasNewData("DATA")) {
 			wait = true;
 			startWaitingTime = QTime::currentTime();
-			if (hasNewProperty("CF_IN")) {
+			if (hasNewData("CF_IN")) {
 				QTimer::singleShot(timeToWait, this, [&](){
 								newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 								wait = false;

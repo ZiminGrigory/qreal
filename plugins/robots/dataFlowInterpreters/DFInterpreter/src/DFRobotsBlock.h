@@ -80,10 +80,10 @@ protected:
 
 
 	/// check for existing property associated with given port.
-	bool hasNewProperty(int portNumber);
+	bool hasNewData(int portNumber);
 
 	/// check for existing property associated with given name which associated with some port.
-	bool hasNewProperty(const QString &propertyName);
+	bool hasNewData(const QString &propertyName);
 
 	/// returns a property associated with given port.
 	QVariant property(int portNumber);

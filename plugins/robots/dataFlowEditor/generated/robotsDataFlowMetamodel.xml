@@ -1276,13 +1276,13 @@
                 <logic>
                     <container/>
                     <properties>
-                        <property displayedName="brush color" name="color" type="color">
+			<property displayedName="brush color" name="color" type="Color">
                             <default>black</default>
                         </property>
                         <property displayedName="brush width" name="width" type="int">
                             <default>1</default>
                         </property>
-                        <property displayedName="background color" name="backgroundColor" type="color">
+			<property displayedName="background color" name="backgroundColor" type="BackgroundColor">
                             <default>white</default>
                         </property>
                     </properties>
@@ -1412,9 +1412,9 @@
                         <label text="up/down" y="2" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort y="17" type="NonTyped" x="164"/>
-                        <pointPort y="37" type="NonTyped" x="77"/>
-                        <pointPort y="91" type="NonTyped" x="75"/>
+			<pointPort y="17" type="NonTyped" x="164"/>
+			<pointPort y="35" type="NonTyped" x="77"/>
+			<pointPort y="90" type="NonTyped" x="77"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
