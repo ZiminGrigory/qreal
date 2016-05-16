@@ -23,20 +23,20 @@ namespace details {
 using Shell = trik::robotModel::parts::TrikShell;
 using ShellDevice = DFDeviceBlock<Shell>;
 
-class DFSayBlock : public ShellDevice
+class DFWriteToFileBlock : public ShellDevice
 {
 	Q_OBJECT
 
 public:
-	explicit DFSayBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+	explicit DFWriteToFileBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
 	void init() override;
-	int activationPortNumber() const override;
 	void handleData(Shell &shell) override;
 
 private:
-	bool mIsEvaluate = false;
+	QString mFileName = QString();
+	QString mText = QString();
 };
 
 }

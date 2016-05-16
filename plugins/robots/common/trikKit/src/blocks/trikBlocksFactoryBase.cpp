@@ -178,7 +178,7 @@ qReal::IdList TrikBlocksFactoryBase::providedBlocks() const
 			<< id("TrikSystem")
 			<< id("TrikInitCamera")
 			<< id("TrikDetect")
-			<< id("TrikDetectorToVariable")
+			<< id("TrikDetectorToVariable")<< id("TrikPlayTone")
 			<< id("TrikInitVideoStreaming")
 			<< id("TrikSendMessage")
 			<< id("TrikWaitForMessage")
@@ -228,11 +228,10 @@ qReal::IdList TrikBlocksFactoryBase::providedBlocks() const
 
 qReal::IdList TrikBlocksFactoryBase::blocksToDisable() const
 {
-	qReal::IdList result;
+	qReal::IdList result = {id("TrikPlayTone")};
 
 	if (mRobotModelManager->model().name().contains("TwoD")) {
 		result
-				<< id("TrikPlayTone")
 				<< id("TrikWaitForGyroscope")
 				<< id("TrikWaitForAccelerometer")
 				<< id("TrikSystem")

@@ -29,7 +29,7 @@
 #include "blockBase/deviceBlocks/DFShapeOnScreen.h"
 #include "blockBase/deviceBlocks/DFLedBlock.h"
 #include "blockBase/deviceBlocks/DFSayBlock.h"
-
+#include "blockBase/deviceBlocks/DFWriteToFileBlock.h"
 
 ///@todo: split to factories (ex common, trik, etc)
 
@@ -110,6 +110,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFLedBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "SayNode")) {
 		res = new details::DFSayBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "WriteToFile")) {
+		res = new details::DFWriteToFileBlock(mRobotModelManager->model());
 	}
 
 

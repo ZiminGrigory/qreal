@@ -1044,10 +1044,10 @@
 			<label textBinded="text" y="85" x="10"/>
                     </labels>
                     <ports>
+			<pointPort y="16" type="NonTyped" x="14"/>
+			<pointPort y="16" type="NonTyped" x="87"/>
+			<pointPort y="62" type="NonTyped" x="3"/>
                         <pointPort y="97" type="NonTyped" x="2"/>
-                        <pointPort y="16" type="NonTyped" x="14"/>
-                        <pointPort y="62" type="NonTyped" x="3"/>
-                        <pointPort y="16" type="NonTyped" x="87"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1056,11 +1056,10 @@
                     <properties>
                         <property displayedName="file name" name="fileName" type="string">
                             <default>fileName</default>
-                        </property>
-                        <property displayedName="synchronized port" name="synch" type="bool">
-                            <default>true</default>
-                        </property>
-                        <property displayedName="text" name="text" type="string"/>
+			</property>
+			<property displayedName="text" name="text" type="string">
+			    <default>text</default>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
