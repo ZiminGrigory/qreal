@@ -89,7 +89,8 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.h \
     $$PWD/blockBase/deviceBlocks/DFLedBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.h
+    $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -127,4 +128,5 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.cpp \
     $$PWD/blockBase/deviceBlocks/DFLedBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.cpp

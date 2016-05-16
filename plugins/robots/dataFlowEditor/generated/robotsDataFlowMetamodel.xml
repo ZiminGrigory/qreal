@@ -1107,19 +1107,19 @@
                     </picture>
                     <labels>
                         <label textBinded="name" y="122" x="30"/>
-                        <label textBinded="file" y="82" x="9"/>
+			<label textBinded="fileName" y="82" x="9"/>
                     </labels>
                     <ports>
+			<pointPort y="17" type="NonTyped" x="11"/>
+			<pointPort y="17" type="NonTyped" x="92"/>
                         <pointPort y="96" type="NonTyped" x="2"/>
-                        <pointPort y="17" type="NonTyped" x="92"/>
-                        <pointPort y="17" type="NonTyped" x="11"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property displayedName="file for remove" name="file" type="string">
+			<property displayedName="file for remove" name="fileName" type="string">
                             <default>file.txt</default>
                         </property>
                     </properties>
