@@ -1305,8 +1305,8 @@
                         <label text="config[]" y="12" x="0"/>
                     </labels>
                     <ports>
+			<pointPort y="14" type="NonTyped" x="156"/>
                         <pointPort y="46" type="NonTyped" x="69"/>
-                        <pointPort y="14" type="NonTyped" x="156"/>
                         <pointPort y="93" type="NonTyped" x="69"/>
                     </ports>
                     <nonResizeable/>
@@ -1317,6 +1317,9 @@
                         <property displayedName="shape type" name="shapeType" type="ShapeType">
                             <default>point</default>
                         </property>
+			<property displayedName="redraw" name="Redraw" type="bool">
+			    <default>true</default>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstactPainter"/>
