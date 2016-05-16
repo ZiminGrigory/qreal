@@ -87,7 +87,8 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.h \
     $$PWD/blockBase/deviceBlocks/DFTextOnScreenBlock.h \
     $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.h \
-    $$PWD/blockBase/deviceBlocks/DFLedBlock.h
+    $$PWD/blockBase/deviceBlocks/DFLedBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFSayBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -123,4 +124,5 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFTextOnScreenBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.cpp \
-    $$PWD/blockBase/deviceBlocks/DFLedBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFLedBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFSayBlock.cpp

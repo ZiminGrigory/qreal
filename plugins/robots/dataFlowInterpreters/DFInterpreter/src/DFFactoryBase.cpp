@@ -28,6 +28,7 @@
 #include "blockBase/deviceBlocks/DFTextOnScreenBlock.h"
 #include "blockBase/deviceBlocks/DFShapeOnScreen.h"
 #include "blockBase/deviceBlocks/DFLedBlock.h"
+#include "blockBase/deviceBlocks/DFSayBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -107,7 +108,10 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFShapeOnScreen(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "LedNode")) {
 		res = new details::DFLedBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "SayNode")) {
+		res = new details::DFSayBlock(mRobotModelManager->model());
 	}
+
 
 
 	if (res) {

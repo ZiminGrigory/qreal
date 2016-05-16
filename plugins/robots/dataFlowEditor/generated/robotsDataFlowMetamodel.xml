@@ -832,16 +832,21 @@
                     </picture>
                     <labels>
                         <label textBinded="name" y="119" x="71"/>
-                        <label text="text" y="28" x="0a"/>
+			<label text="text" y="28" x="0"/>
                     </labels>
                     <ports>
-                        <pointPort y="62a" type="NonTyped" x="44"/>
-                        <pointPort y="16" type="NonTyped" x="133"/>
+			<pointPort y="16" type="NonTyped" x="133"/>
+			<pointPort y="62" type="NonTyped" x="44"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
+		    <properties>
+			<property displayedName="Evaluate" name="Evaluate" type="bool">
+			    <default>false</default>
+			</property>
+		    </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
                     </generalizations>
