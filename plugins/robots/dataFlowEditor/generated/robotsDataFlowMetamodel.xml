@@ -858,8 +858,8 @@
                         <label textBinded="name" y="125" x="79"/>
                     </labels>
                     <ports>
-                        <pointPort y="63a" type="NonTyped" x="56"/>
                         <pointPort y="16" type="NonTyped" x="145"/>
+			<pointPort y="63" type="NonTyped" x="56"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>

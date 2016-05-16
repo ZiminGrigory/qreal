@@ -27,6 +27,7 @@
 #include "blockBase/deviceBlocks/DFPaintSettingsBlock.h"
 #include "blockBase/deviceBlocks/DFTextOnScreenBlock.h"
 #include "blockBase/deviceBlocks/DFShapeOnScreen.h"
+#include "blockBase/deviceBlocks/DFLedBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -104,6 +105,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFTextOnScreenBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ShapePainter")) {
 		res = new details::DFShapeOnScreen(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "LedNode")) {
+		res = new details::DFLedBlock(mRobotModelManager->model());
 	}
 
 
