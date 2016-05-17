@@ -19,8 +19,8 @@ using namespace dataFlowBlocks::details;
 DFWriteToFileBlock::DFWriteToFileBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: ShellDevice(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["CF_IN"] = 1;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
 	portAssociatedWithProperty["FILE"] = 2;
 	portAssociatedWithProperty["TEXT"] = 3;
 }

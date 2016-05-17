@@ -31,6 +31,7 @@
 #include "blockBase/deviceBlocks/DFSayBlock.h"
 #include "blockBase/deviceBlocks/DFWriteToFileBlock.h"
 #include "blockBase/deviceBlocks/DFRemoveFileBlock.h"
+#include "blockBase/deviceBlocks/DFReadFileBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -116,6 +117,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFWriteToFileBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "RemoveFile")) {
 		res = new details::DFRemoveFileBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "ReadFile")) {
+		res = new details::DFReadFileBlock(mRobotModelManager->model());
 	}
 
 

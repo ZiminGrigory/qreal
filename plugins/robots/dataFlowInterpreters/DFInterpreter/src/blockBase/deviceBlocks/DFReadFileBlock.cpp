@@ -12,30 +12,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#include "DFRemoveFileBlock.h"
+#include "DFReadFileBlock.h"
+
+#include <QtWidgets/QApplication>
 
 using namespace dataFlowBlocks::details;
 
-DFRemoveFileBlock::DFRemoveFileBlock(kitBase::robotModel::RobotModelInterface &robotModel)
+DFReadFileBlock::DFReadFileBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: ShellDevice(robotModel)
 {
 	portAssociatedWithProperty["CF_IN"] = 0;
 	portAssociatedWithProperty["CF_OUT"] = 1;
 	portAssociatedWithProperty["FILE"] = 2;
+	portAssociatedWithProperty["OUT"] = 3;
 }
 
-void DFRemoveFileBlock::init()
+void DFReadFileBlock::init()
 {
 	mFileName = stringProperty("fileName");
+	mIsGenerateByWords = boolProperty("isbyWords");
 }
 
-void DFRemoveFileBlock::handleData(Shell &shell)
+void DFReadFileBlock::handleData(Shell &shell)
 {
+	disconnect(&shell, &Shell::fileContents, this, &DFReadFileBlock::handleText);
+	connect(&shell, &Shell::fileContents, this, &DFReadFileBlock::handleText, Qt::QueuedConnection);
+
 	if (hasNewData("CF_IN")) {
-		shell.removeFile(mFileName);
+		shell.readFile(mFileName);
 	} else if (hasNewData("FILE")) {
 		mFileName = propertyFromPort("FILE").toString();
-		shell.removeFile(mFileName);
+		shell.readFile(mFileName);
+	}
+}
+
+void DFReadFileBlock::handleText(QString text)
+{
+	QStringList textToGenerate;
+	if (mIsGenerateByWords) {
+		textToGenerate = text.split(" ");
+	} else {
+		textToGenerate = text.split("\n");
+	}
+
+	for (const QString &str : textToGenerate) {
+		emit newDataInFlow(str, portAssociatedWithProperty["OUT"]);
+		QApplication::processEvents();
 	}
 
 	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
