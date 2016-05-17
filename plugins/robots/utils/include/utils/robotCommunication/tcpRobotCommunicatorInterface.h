@@ -106,6 +106,9 @@ signals:
 
 	/// Emitted when new error message arrives from robot.
 	void errorFromRobot(const QString &message);
+
+	/// Emitted when new message with "file contents" arrives from robot.
+	void fileContentsFromRobot(const QString &message);
 };
 
 }
