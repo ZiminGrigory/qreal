@@ -882,31 +882,28 @@
 			<image y2="122" name="images/code and ev.svg" x2="177" x1="78" y1="8"/>
                     </picture>
                     <labels>
-                        <label textBinded="name" y="131" x="123"/>
-                        <label text="isCode" y="43" x="15"/>
-                        <label textBinded="code" y="60" x="94"/>
-                        <label text="evaluate" y="78" x="9"/>
-                        <label textBinded="evaluate" y="90" x="93"/>
-			<label text="command" y="10" x="0"/>
+			<label text="command" y="45" x="0"/>
+			<label textBinded="Command" y="60" x="94"/>
                     </labels>
                     <ports>
-                        <pointPort y="110" type="NonTyped" x="80"/>
-                        <pointPort y="39" type="NonTyped" x="80"/>
-                        <pointPort y="76" type="NonTyped" x="177"/>
-                        <pointPort y="73" type="NonTyped" x="80"/>
-                        <pointPort y="24" type="NonTyped" x="167"/>
+			<pointPort y="24" type="NonTyped" x="87"/>
+			<pointPort y="24" type="NonTyped" x="167"/>
+			<pointPort y="73" type="NonTyped" x="80"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
                 <logic>
                     <container/>
                     <properties>
-                        <property displayedName="evaluate" name="evaluate" type="bool">
+			<property displayedName="Evaluate" name="Evaluate" type="bool">
                             <default>false</default>
                         </property>
-                        <property displayedName="code" name="code" type="bool">
+			<property displayedName="isCode" name="IsCode" type="bool">
                             <default>false</default>
                         </property>
+			<property displayedName="Command" name="Command" type="string">
+			    <default>reboot</default>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -1212,8 +1209,8 @@
             </node>
             <node displayedName="message receiver" name="ReceiveMsg">
                 <graphics>
-                    <picture sizex="101" sizey="130">
-			<image y2="120" name="images/msg.svg" x2="99" x1="0" y1="0"/>
+		    <picture sizex="101" sizey="115">
+			<image y2="115" name="images/msg.svg" x2="99" x1="0" y1="0"/>
                     </picture>
 		    <labels>
                     </labels>

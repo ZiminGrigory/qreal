@@ -91,7 +91,8 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.h \
     $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.h \
     $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFReadFileBlock.h
+    $$PWD/blockBase/deviceBlocks/DFReadFileBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -131,4 +132,5 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFReadFileBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFReadFileBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.cpp
