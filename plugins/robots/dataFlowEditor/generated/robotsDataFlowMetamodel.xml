@@ -942,8 +942,8 @@
 			<label textBinded="type" y="86" x="10"/>
                     </labels>
                     <ports>
-                        <pointPort y="16" type="NonTyped" x="89"/>
 			<pointPort y="15" type="NonTyped" x="8"/>
+			<pointPort y="16" type="NonTyped" x="89"/>
 			<pointPort y="90" type="NonTyped" x="2"/>
                     </ports>
                     <nonResizeable/>
@@ -952,7 +952,7 @@
                     <container/>
 		    <properties>
 			<property displayedName="type:" name="type" type="VideoSensor">
-			    <default>color</default>
+			    <default>Line</default>
 			</property>
 		    </properties>
                     <generalizations>
@@ -980,7 +980,7 @@
                     <container/>
 		    <properties>
 			<property displayedName="type:" name="type" type="DetectableVideoSensor">
-			    <default>color</default>
+			    <default>Line</default>
 			</property>
 		    </properties>
                     <generalizations>
@@ -1548,7 +1548,7 @@
                 <logic>
                     <container/>
                     <properties>
-			<property displayedName="var name" name="VarName" type="SensorVars">
+			<property displayedName="var name" name="VarName" type="Line">
                             <default>accelerometer</default>
                         </property>
                     </properties>

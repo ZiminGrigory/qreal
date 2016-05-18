@@ -34,6 +34,7 @@
 #include "blockBase/deviceBlocks/DFReadFileBlock.h"
 #include "blockBase/deviceBlocks/DFSystemCommandBlock.h"
 #include "blockBase/deviceBlocks/DFVideoStreamBlock.h"
+#include "blockBase/deviceBlocks/DFInitCameraBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -125,6 +126,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFSystemCommandBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "StreamingNode")) {
 		res = new details::DFVideoStreamBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "InitCamera")) {
+		res = new details::DFInitCameraBlock(mRobotModelManager->model());
 	}
 
 	if (res) {

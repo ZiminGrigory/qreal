@@ -12,22 +12,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#include "DFVideoStreamBlock.h"
+#include "DFInitCameraBlock.h"
 
 
 using namespace dataFlowBlocks::details;
 
-DFVideoStreamBlock::DFVideoStreamBlock(kitBase::robotModel::RobotModelInterface &robotModel)
-	: ShellDevice(robotModel)
+DFInitCameraBlock::DFInitCameraBlock(kitBase::robotModel::RobotModelInterface &robotModel)
+	: LineSensorDevice(robotModel)
 {
 	portAssociatedWithProperty["CF_IN"] = 0;
 	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["TYPE"] = 2;
 }
 
-void DFVideoStreamBlock::handleData(Shell &shell)
+void DFInitCameraBlock::init()
 {
-	if (hasNewData("CF_IN")) {
-		shell.initVideoStreaming();
-		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
+	mCameraMode = stringProperty("type");
+}
+
+void DFInitCameraBlock::handleData(dataFlowBlocks::details::LineSensor &lineSensor)
+{
+	if (hasNewData("CF_IN") && mCameraMode == "Line") {
+		lineSensor.init();
+	} else if (hasNewData("TYPE")) {
+		if (propertyFromPort("TYPE").toString() != "Line") {
+			error("other modes aren't available now");
+			return;
+		} else {
+			lineSensor.init();
+		}
 	}
+
+	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 }

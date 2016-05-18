@@ -93,7 +93,8 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.h \
     $$PWD/blockBase/deviceBlocks/DFReadFileBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.h
+    $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -135,4 +136,5 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFRemoveFileBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFReadFileBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.cpp

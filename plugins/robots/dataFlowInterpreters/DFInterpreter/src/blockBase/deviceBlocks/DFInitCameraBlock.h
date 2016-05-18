@@ -11,23 +11,32 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
+#pragma once
 
-#include "DFVideoStreamBlock.h"
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/blockBase/DFDeviceBlock.h"
 
+#include <trikKit/robotModel/parts/trikLineSensor.h>
 
-using namespace dataFlowBlocks::details;
+namespace dataFlowBlocks {
+namespace details {
 
-DFVideoStreamBlock::DFVideoStreamBlock(kitBase::robotModel::RobotModelInterface &robotModel)
-	: ShellDevice(robotModel)
+using LineSensor = trik::robotModel::parts::TrikLineSensor;
+using LineSensorDevice = DFDeviceBlock<LineSensor>;
+
+class DFInitCameraBlock : public LineSensorDevice
 {
-	portAssociatedWithProperty["CF_IN"] = 0;
-	portAssociatedWithProperty["CF_OUT"] = 1;
+	Q_OBJECT
+
+public:
+	explicit DFInitCameraBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+
+protected:
+	void init() override;
+	void handleData(LineSensor &lineSensor) override;
+
+private:
+	QString mCameraMode = QString();
+};
+
 }
-
-void DFVideoStreamBlock::handleData(Shell &shell)
-{
-	if (hasNewData("CF_IN")) {
-		shell.initVideoStreaming();
-		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
-	}
 }
