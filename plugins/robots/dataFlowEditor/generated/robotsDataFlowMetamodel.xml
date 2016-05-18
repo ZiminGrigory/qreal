@@ -917,23 +917,16 @@
 			<image y2="114" x2="99" name="images/streaming.svg" x1="0" y1="0"/>
 		    </picture>
 		    <labels>
-			<label textBinded="streamTo" y="77" x="9"/>
 			<label textBinded="name" y="126" x="25"/>
 		    </labels>
 		    <ports>
 			<pointPort y="15" type="NonTyped" x="9"/>
 			<pointPort y="16" type="NonTyped" x="89"/>
-			<pointPort y="92" type="NonTyped" x="2"/>
 		    </ports>
 		    <nonResizeable/>
 		</graphics>
 		<logic>
 		    <container/>
-		    <properties>
-			<property displayedName="stream to:" name="streamTo" type="string">
-			    <default>""</default>
-			</property>
-		    </properties>
 		    <generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
 		    </generalizations>

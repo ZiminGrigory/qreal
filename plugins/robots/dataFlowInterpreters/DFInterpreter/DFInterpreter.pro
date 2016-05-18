@@ -21,7 +21,3 @@ CONFIG += plugin widgets
 QT += widgets
 
 include(src/DFInterpreter.pri)
-
-RESOURCES += \
-    dataflowinterpreter.qrc
-

@@ -33,6 +33,7 @@
 #include "blockBase/deviceBlocks/DFRemoveFileBlock.h"
 #include "blockBase/deviceBlocks/DFReadFileBlock.h"
 #include "blockBase/deviceBlocks/DFSystemCommandBlock.h"
+#include "blockBase/deviceBlocks/DFVideoStreamBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -122,8 +123,9 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFReadFileBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "SystemCallNode")) {
 		res = new details::DFSystemCommandBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "StreamingNode")) {
+		res = new details::DFVideoStreamBlock(mRobotModelManager->model());
 	}
-
 
 	if (res) {
 		res->init(element
