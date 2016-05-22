@@ -77,28 +77,76 @@
                 <value name="Enter"/>
                 <value name="Esc"/>
             </enum>
-            <enum editable="false" name="AllPorts">
-                <value name="B3"/>
-                <value name="M4"/>
+	    <enum editable="false" name="allTRIKWritablePorts">
+		<value name="M1"/>
                 <value name="M2"/>
                 <value name="M3"/>
-                <value name="E4"/>
-                <value name="M1"/>
+		<value name="M4"/>
+		<value name="E1"/>
                 <value name="E2"/>
                 <value name="E3"/>
-                <value name="D2"/>
-                <value name="E1"/>
-                <value name="D1"/>
-                <value name="B2"/>
-                <value name="B4"/>
-                <value name="A6"/>
-                <value name="B1"/>
-                <value name="A4"/>
-                <value name="A5"/>
-                <value name="A2"/>
-                <value name="A3"/>
-                <value name="A1"/>
+		<value name="E4"/>
+		<value name="A6"/>
+		<value name="A5"/>
+		<value name="A4"/>
+		<value name="A3"/>
+		<value name="A2"/>
+		<value name="A1"/>
+		<value name="GamepadButton1Port"/>
+		<value name="GamepadButton2Port"/>
+		<value name="GamepadButton3Port"/>
+		<value name="GamepadButton4Port"/>
+		<value name="GamepadButton5Port"/>
+		<value name="Down"/>
+		<value name="Enter"/>
+		<value name="Esc"/>
+		<value name="Left"/>
+		<value name="Right"/>
+		<value name="Up"/>
             </enum>
+	    <enum editable="false" name="allTRIKReadPorts">
+		<value name="M1"/>
+		<value name="M2"/>
+		<value name="M3"/>
+		<value name="M4"/>
+		<value name="E1"/>
+		<value name="E2"/>
+		<value name="E3"/>
+		<value name="E4"/>
+		<value name="A6"/>
+		<value name="A5"/>
+		<value name="A4"/>
+		<value name="A3"/>
+		<value name="A2"/>
+		<value name="A1"/>
+		<value name="D1"/>
+		<value name="D2"/>
+		<value name="GamepadButton1Port"/>
+		<value name="GamepadButton2Port"/>
+		<value name="GamepadButton3Port"/>
+		<value name="GamepadButton4Port"/>
+		<value name="GamepadButton5Port"/>
+		<value name="Down"/>
+		<value name="Enter"/>
+		<value name="Esc"/>
+		<value name="Left"/>
+		<value name="Right"/>
+		<value name="Up"/>
+		<value name="GyroscopePort"/>
+		<value name="AccelerometerPort"/>
+		<value name="LineSensorPort"/>
+		<value name="ObjectSensorXPort"/>
+		<value name="ObjectSensorYPort"/>
+		<value name="ObjectSensorSizePort"/>
+		<value name="ColorSensorRPort"/>
+		<value name="ColorSensorGPort"/>
+		<value name="ColorSensorBPort"/>
+		<value name="GamepadPad1PosPort"/>
+		<value name="GamepadPad2PosPort"/>
+		<value name="GamepadPad1PressedPort"/>
+		<value name="GamepadPad2PressedPort"/>
+		<value name="GamepadConnectionIndicatorPort"/>
+	    </enum>
 	    <enum editable="false" name="SensorVars">
                 <value name="accelerometer"/>
                 <value name="colorSensorR"/>
@@ -665,8 +713,10 @@
                 </graphics>
                 <logic>
                     <container/>
-                    <properties>
-                        <property displayedName="port name" name="portName" type="allPorts"/>
+		    <properties>
+			    <property displayedName="port name" name="portName" type="allTRIKWritablePorts">
+				<default>M1</default>
+			    </property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>
@@ -683,7 +733,7 @@
 			<label textBinded="portName" y="80" x="10"/>
 		    </labels>
 		    <ports>
-			<pointPort y="16" type="NonTyped" x="90"/>
+			<pointPort y="16" type="NonTyped" x="10"/>
 			<pointPort y="65" type="NonTyped" x="98"/>
 		    </ports>
 		    <nonResizeable/>
@@ -691,7 +741,9 @@
 		<logic>
 		    <container/>
 		    <properties>
-			<property displayedName="port name" name="portName" type="allPorts"/>
+		    <property displayedName="port name" name="portName" type="allTRIKReadPorts">
+			<default>A1</default>
+		    </property>
 		    </properties>
 		    <generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
@@ -782,10 +834,10 @@
                 </graphics>
                 <logic>
                     <container/>
-                    <properties>
-                        <property displayedName="synchronized" name="synch" type="bool">
-                            <default>false</default>
-                        </property>
+			<properties>
+			    <property displayedName="synchronized" name="synch" type="bool">
+				<default>false</default>
+			    </property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>

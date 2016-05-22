@@ -94,7 +94,9 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFReadFileBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.h \
     $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.h
+    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.h \
+    $$PWD/blockBase/DFConcreteWritablePort.h \
+    $$PWD/blockBase/DFConcreteReadPort.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -137,4 +139,6 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFReadFileBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSystemCommandBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.cpp
+    $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.cpp \
+    $$PWD/blockBase/DFConcreteWritablePort.cpp \
+    $$PWD/blockBase/DFConcreteReadPort.cpp

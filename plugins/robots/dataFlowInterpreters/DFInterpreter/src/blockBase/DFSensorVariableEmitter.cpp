@@ -51,16 +51,11 @@ void DFSensorVariableEmitter::init()
 void DFSensorVariableEmitter::newIntDataReceived(int data)
 {
 	emit newDataInFlow(QVariant(data), portAssociatedWithProperty["OUT"]);
-	qDebug() << Q_FUNC_INFO;
 	QCoreApplication::processEvents();
 }
 
 void DFSensorVariableEmitter::newVectorDataReceived(QVector<int> data)
 {
-	QVariant temp;
-	temp.setValue(data);
-
-	emit newDataInFlow(temp, portAssociatedWithProperty["OUT"]);
-
+	emit newDataInFlow(QVariant(vectorToQVariantList(data)), portAssociatedWithProperty["OUT"]);
 	QCoreApplication::processEvents();
 }

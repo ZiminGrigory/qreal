@@ -187,6 +187,16 @@ QString DFRobotsBlock::qVariantListToLuaArrayInitializeList(const QVariantList &
 	return res;
 }
 
+QVariantList DFRobotsBlock::vectorToQVariantList(const QVector<int> &vector)
+{
+	QVariantList res;
+	for (const int a : vector) {
+		res.append(QVariant(a));
+	}
+
+	return res;
+}
+
 void DFRobotsBlock::setVariable(const QString &varName, QVariant value)
 {
 	if (value.canConvert<QVariantList>()) {
