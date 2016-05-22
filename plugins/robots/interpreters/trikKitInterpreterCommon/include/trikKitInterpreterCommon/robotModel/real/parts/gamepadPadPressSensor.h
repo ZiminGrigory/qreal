@@ -42,6 +42,13 @@ public:
 
 	void read() override;
 
+	/// Returns last saved value.
+	int oldValue() const;
+
+signals:
+	/// Emitted when pad pressed state was changed to opposite.
+	void stateChanged(bool down);
+
 private slots:
 	/// Called when new data arrived from robot.
 	void onIncomingData(const QString &portName, int value);

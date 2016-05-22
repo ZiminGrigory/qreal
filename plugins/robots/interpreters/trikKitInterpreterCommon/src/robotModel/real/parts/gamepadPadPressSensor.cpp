@@ -31,10 +31,19 @@ void GamepadPadPressSensor::read()
 	emit newData(mOldValue);
 }
 
+int GamepadPadPressSensor::oldValue() const
+{
+	return mOldValue;
+}
+
 void GamepadPadPressSensor::onIncomingData(const QString &portName, int value)
 {
 	if (portName == port().name()) {
+		const bool stateChanged = mOldValue != value;
 		mOldValue = value;
 		emit newData(mOldValue);
+		if (stateChanged) {
+			emit this->stateChanged(value);
+		}
 	}
 }
