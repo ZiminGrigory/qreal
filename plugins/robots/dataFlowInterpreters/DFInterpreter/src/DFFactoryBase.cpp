@@ -23,6 +23,7 @@
 #include "blockBase/DFServoMotorsBlock.h"
 #include "blockBase/DFConcreteReadPort.h"
 #include "blockBase/DFConcreteWritablePort.h"
+#include "blockBase/DFEncodersBlock.h"
 #include "blockBase/deviceBlocks/DFSmileBlock.h"
 #include "blockBase/deviceBlocks/DFClearScreenBlock.h"
 #include "blockBase/deviceBlocks/DFSetPenBlock.h"
@@ -37,6 +38,7 @@
 #include "blockBase/deviceBlocks/DFSystemCommandBlock.h"
 #include "blockBase/deviceBlocks/DFVideoStreamBlock.h"
 #include "blockBase/deviceBlocks/DFInitCameraBlock.h"
+#include "blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h"
 
 
 ///@todo: split to factories (ex common, trik, etc)
@@ -130,10 +132,14 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFVideoStreamBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "InitCamera")) {
 		res = new details::DFInitCameraBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DetectByVideo")) {
+		res = new details::DFLineDetectorEmitterBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ConcreteInputPort")) {
 		res = new details::DFConcreteWritablePort(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ConcreteOutputPort")) {
 		res = new details::DFConcreteReadPort(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "Encoders")) {
+		res = new details::DFEncodersBlock(mRobotModelManager->model());
 	}
 
 	if (res) {

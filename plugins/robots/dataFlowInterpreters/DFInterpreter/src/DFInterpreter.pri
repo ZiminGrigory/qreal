@@ -52,7 +52,6 @@ HEADERS += \
     $$PWD/DFFactoryBase.h \
     $$PWD/DFRobotsBlock.h \
     $$PWD/DFThread.h \
-    $$PWD/blockBase/DFActiveUniqueDeviceBlock.h \
     $$PWD/blockBase/DFDeviceBlock.h \
     $$PWD/blockBase/DFMotorsBlock.h \
     $$PWD/blockBase/DFValueEmitter.h \
@@ -96,7 +95,9 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.h \
     $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.h \
     $$PWD/blockBase/DFConcreteWritablePort.h \
-    $$PWD/blockBase/DFConcreteReadPort.h
+    $$PWD/blockBase/DFConcreteReadPort.h \
+    $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h \
+    $$PWD/blockBase/DFEncodersBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -141,4 +142,6 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFVideoStreamBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFInitCameraBlock.cpp \
     $$PWD/blockBase/DFConcreteWritablePort.cpp \
-    $$PWD/blockBase/DFConcreteReadPort.cpp
+    $$PWD/blockBase/DFConcreteReadPort.cpp \
+    $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.cpp \
+    $$PWD/blockBase/DFEncodersBlock.cpp

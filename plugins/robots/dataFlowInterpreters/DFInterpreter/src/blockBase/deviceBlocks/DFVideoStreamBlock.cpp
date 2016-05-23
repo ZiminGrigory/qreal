@@ -27,6 +27,7 @@ DFVideoStreamBlock::DFVideoStreamBlock(kitBase::robotModel::RobotModelInterface 
 void DFVideoStreamBlock::handleData(Shell &shell)
 {
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		shell.initVideoStreaming();
 		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 	}

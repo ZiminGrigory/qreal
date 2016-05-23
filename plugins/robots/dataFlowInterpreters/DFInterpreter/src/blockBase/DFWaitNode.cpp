@@ -34,6 +34,7 @@ void DFWaitNode::handleData()
 			wait = true;
 			startWaitingTime = QTime::currentTime();
 			if (hasNewData("CF_IN")) {
+				propertyFromPort("CF_IN");
 				QTimer::singleShot(timeToWait, this, [&](){
 								newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 								wait = false;

@@ -32,6 +32,7 @@ void DFRemoveFileBlock::init()
 void DFRemoveFileBlock::handleData(Shell &shell)
 {
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		shell.removeFile(mFileName);
 	} else if (hasNewData("FILE")) {
 		mFileName = propertyFromPort("FILE").toString();

@@ -33,6 +33,7 @@ void DFInitCameraBlock::init()
 void DFInitCameraBlock::handleData(dataFlowBlocks::details::LineSensor &lineSensor)
 {
 	if (hasNewData("CF_IN") && mCameraMode == "Line") {
+		propertyFromPort("CF_IN");
 		lineSensor.init();
 	} else if (hasNewData("TYPE")) {
 		if (propertyFromPort("TYPE").toString() != "Line") {

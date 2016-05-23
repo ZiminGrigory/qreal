@@ -39,6 +39,7 @@ void DFReadFileBlock::handleData(Shell &shell)
 	connect(&shell, &Shell::fileContents, this, &DFReadFileBlock::handleText, Qt::QueuedConnection);
 
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		shell.readFile(mFileName);
 	} else if (hasNewData("FILE")) {
 		mFileName = propertyFromPort("FILE").toString();

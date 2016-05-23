@@ -40,6 +40,7 @@ void DFPaintSettingsBlock::handleData(Display &display)
 
 
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		trikDisplay->setBackground(mBackgroundColor);
 		trikDisplay->setPainterWidth(mBrushWidth);
 		trikDisplay->setPainterColor(mBrushColor);

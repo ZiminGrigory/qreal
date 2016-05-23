@@ -39,6 +39,7 @@ void DFSystemCommandBlock::init()
 void DFSystemCommandBlock::handleData(Shell &shell)
 {
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		execute(shell);
 	} else if (hasNewData("COMMAND")) {
 		mCommandText = propertyFromPort("COMMAND").toString();

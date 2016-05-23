@@ -37,6 +37,7 @@ void DFLoopBlock::handleData()
 	}
 
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		currentCounter = from;
 		while (currentCounter <= to) {
 			emit newDataInFlow(currentCounter, portAssociatedWithProperty["OUT"]);

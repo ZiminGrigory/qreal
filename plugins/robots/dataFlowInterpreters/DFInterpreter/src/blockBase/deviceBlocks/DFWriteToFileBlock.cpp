@@ -34,6 +34,7 @@ void DFWriteToFileBlock::init()
 void DFWriteToFileBlock::handleData(Shell &shell)
 {
 	if (hasNewData("CF_IN")) {
+		propertyFromPort("CF_IN");
 		shell.writeToFile(mFileName, mText);
 	} else if (hasNewData("FILE")) {
 		mFileName = propertyFromPort("FILE").toString();
