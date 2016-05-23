@@ -45,6 +45,7 @@ private:
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 	kitBase::robotModel::robotParts::ScalarSensor *mScalarSensor;
 	kitBase::robotModel::robotParts::VectorSensor *mVectorSensor;
+	QVariant mOwner;
 };
 
 }

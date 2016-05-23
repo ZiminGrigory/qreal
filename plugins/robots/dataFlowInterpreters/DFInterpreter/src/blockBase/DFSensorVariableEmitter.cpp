@@ -15,11 +15,14 @@ DFSensorVariableEmitter::DFSensorVariableEmitter(RobotModelInterface &robotModel
 	//	QMap<QString, int> portAssociatedWithProperty;
 		portAssociatedWithProperty["CF_IN"] = 0;
 		portAssociatedWithProperty["OUT"] = 1;
+
+		mOwner.setValue<DFSensorVariableEmitter *>(this);
 }
 
 void DFSensorVariableEmitter::handleData()
 {
 	if (mScalarSensor) {
+		mScalarSensor->setProperty("owner", mOwner);
 		disconnect(mScalarSensor, &robotParts::ScalarSensor::newData
 				, this, &DFSensorVariableEmitter::newIntDataReceived);
 		connect(mScalarSensor, &robotParts::ScalarSensor::newData
@@ -27,6 +30,7 @@ void DFSensorVariableEmitter::handleData()
 	}
 
 	if (mVectorSensor) {
+		mVectorSensor->setProperty("owner", mOwner);
 		disconnect(mVectorSensor, &robotParts::VectorSensor::newData
 				, this, &DFSensorVariableEmitter::newVectorDataReceived);
 		connect(mVectorSensor, &robotParts::VectorSensor::newData
@@ -50,12 +54,16 @@ void DFSensorVariableEmitter::init()
 
 void DFSensorVariableEmitter::newIntDataReceived(int data)
 {
-	emit newDataInFlow(QVariant(data), portAssociatedWithProperty["OUT"]);
-	QCoreApplication::processEvents();
+	if (sender()->property("owner").value<DFSensorVariableEmitter *>() == this) {
+		emit newDataInFlow(QVariant(data), portAssociatedWithProperty["OUT"]);
+		QCoreApplication::processEvents();
+	}
 }
 
 void DFSensorVariableEmitter::newVectorDataReceived(QVector<int> data)
 {
-	emit newDataInFlow(QVariant(vectorToQVariantList(data)), portAssociatedWithProperty["OUT"]);
-	QCoreApplication::processEvents();
+	if (sender()->property("owner").value<DFSensorVariableEmitter *>() == this) {
+		emit newDataInFlow(QVariant(vectorToQVariantList(data)), portAssociatedWithProperty["OUT"]);
+		QCoreApplication::processEvents();
+	}
 }
