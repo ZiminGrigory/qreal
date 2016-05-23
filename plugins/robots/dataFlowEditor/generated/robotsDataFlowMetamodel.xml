@@ -1049,13 +1049,13 @@
                     <labels>
                         <label textBinded="name" y="0" x="76"/>
                         <label text="send to" y="81" x="0"/>
-                        <label textBinded="robot numbe" y="102" x="75"/>
+			<label textBinded="robotNum" y="102" x="75"/>
 			<label text="msg" y="29" x="18"/>
                     </labels>
                     <ports>
+			<pointPort y="41" type="NonTyped" x="156"/>
                         <pointPort y="68" type="NonTyped" x="64"/>
                         <pointPort y="114" type="NonTyped" x="64"/>
-                        <pointPort y="41" type="NonTyped" x="156"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1064,10 +1064,7 @@
                     <properties>
                         <property displayedName="robot number" name="robotNum" type="int">
                             <default>0</default>
-                        </property>
-                        <property displayedName="synchronized port" name="synch" type="bool">
-                            <default>true</default>
-                        </property>
+			</property>
                     </properties>
                     <generalizations>
                         <parent overrides="" parentName="AbstractNode"/>

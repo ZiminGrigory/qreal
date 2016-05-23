@@ -97,7 +97,8 @@ HEADERS += \
     $$PWD/blockBase/DFConcreteWritablePort.h \
     $$PWD/blockBase/DFConcreteReadPort.h \
     $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h \
-    $$PWD/blockBase/DFEncodersBlock.h
+    $$PWD/blockBase/DFEncodersBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -144,4 +145,5 @@ SOURCES += \
     $$PWD/blockBase/DFConcreteWritablePort.cpp \
     $$PWD/blockBase/DFConcreteReadPort.cpp \
     $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.cpp \
-    $$PWD/blockBase/DFEncodersBlock.cpp
+    $$PWD/blockBase/DFEncodersBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.cpp
