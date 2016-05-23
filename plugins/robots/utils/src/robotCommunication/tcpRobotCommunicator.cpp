@@ -155,6 +155,9 @@ void TcpRobotCommunicator::onMessageFromRobot(const MessageKind &messageKind, co
 	case MessageKind::fileContents:
 		emit fileContentsFromRobot(message);
 		break;
+	case MessageKind::mail:
+		emit mailFromRobot(message);
+		break;
 	}
 }
 
