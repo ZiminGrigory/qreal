@@ -23,23 +23,18 @@ namespace details {
 using Shell = trik::robotModel::parts::TrikShell;
 using ShellDevice = DFDeviceBlock<Shell>;
 
-class DFReadFileBlock : public ShellDevice
+class DFReceiveMessageBlock : public ShellDevice
 {
 	Q_OBJECT
 
 public:
-	explicit DFReadFileBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+	explicit DFReceiveMessageBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	void init() override;
 	void handleData(Shell &shell) override;
 
 private slots:
-	void handleText(const QString &text);
-
-private:
-	QString mFileName = QString();
-	bool mIsGenerateByWords = true;
+	void handleMail(const QString &text);
 };
 
 }

@@ -47,7 +47,7 @@ void DFReadFileBlock::handleData(Shell &shell)
 	}
 }
 
-void DFReadFileBlock::handleText(QString text)
+void DFReadFileBlock::handleText(const QString &text)
 {
 	QStringList textToGenerate;
 	if (mIsGenerateByWords) {

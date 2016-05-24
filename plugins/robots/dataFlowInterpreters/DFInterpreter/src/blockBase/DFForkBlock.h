@@ -11,35 +11,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License. */
+
 #pragma once
 
-#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/blockBase/DFDeviceBlock.h"
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
-#include <trikKit/robotModel/parts/trikShell.h>
 
 namespace dataFlowBlocks {
 namespace details {
 
-using Shell = trik::robotModel::parts::TrikShell;
-using ShellDevice = DFDeviceBlock<Shell>;
-
-class DFReadFileBlock : public ShellDevice
+class DFForkBlock : public dataFlow::interpretation::DFRobotsBlock
 {
 	Q_OBJECT
 
 public:
-	explicit DFReadFileBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+	DFForkBlock();
 
 protected:
-	void init() override;
-	void handleData(Shell &shell) override;
-
-private slots:
-	void handleText(const QString &text);
-
-private:
-	QString mFileName = QString();
-	bool mIsGenerateByWords = true;
+	void handleData() override;
 };
 
 }

@@ -1,7 +1,5 @@
 #include "DFRobotsBlock.h"
 
-
-
 using namespace dataFlow::interpretation;
 using namespace qReal;
 

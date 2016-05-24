@@ -1257,8 +1257,8 @@
 		    <labels>
                     </labels>
                     <ports>
-			<pointPort y="65" type="NonTyped" x="98"/>
 			<pointPort y="19" type="NonTyped" x="10"/>
+			<pointPort y="65" type="NonTyped" x="98"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>
@@ -1495,8 +1495,8 @@
 			<label textBinded="name" y="120" x="34"/>
                     </labels>
                     <ports>
-			<pointPort y="60" type="NonTyped" x="100"/>
 			<pointPort y="15" type="NonTyped" x="15"/>
+			<pointPort y="65" type="NonTyped" x="100"/>
                     </ports>
                     <nonResizeable/>
                 </graphics>

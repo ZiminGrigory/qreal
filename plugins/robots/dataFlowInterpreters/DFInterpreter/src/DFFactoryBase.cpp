@@ -24,6 +24,7 @@
 #include "blockBase/DFConcreteReadPort.h"
 #include "blockBase/DFConcreteWritablePort.h"
 #include "blockBase/DFEncodersBlock.h"
+#include "blockBase/DFForkBlock.h"
 #include "blockBase/deviceBlocks/DFSmileBlock.h"
 #include "blockBase/deviceBlocks/DFClearScreenBlock.h"
 #include "blockBase/deviceBlocks/DFSetPenBlock.h"
@@ -39,7 +40,8 @@
 #include "blockBase/deviceBlocks/DFVideoStreamBlock.h"
 #include "blockBase/deviceBlocks/DFInitCameraBlock.h"
 #include "blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h"
-
+#include "blockBase/deviceBlocks/DFSendMessageToRobotBlock.h"
+#include "blockBase/deviceBlocks/DFReceiveMessageBlock.h"
 
 ///@todo: split to factories (ex common, trik, etc)
 
@@ -140,6 +142,12 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFConcreteReadPort(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "Encoders")) {
 		res = new details::DFEncodersBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "ForkNode")) {
+		res = new details::DFForkBlock();
+	} else if (elementDFMetatypeIs(element, "ReceiveMsg")) {
+		res = new details::DFReceiveMessageBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "MessageToRobot")) {
+		res = new details::DFSendMessageToRobotBlock(mRobotModelManager->model());
 	}
 
 	if (res) {

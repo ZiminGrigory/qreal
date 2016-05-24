@@ -36,6 +36,7 @@ void DFSendMessageToRobotBlock::init()
 	mToRobot = intProperty("robotNum");
 }
 
+#include <QDebug>
 void DFSendMessageToRobotBlock::handleData(Shell &shell)
 {
 	if (hasNewData(dummyActivationPortNumber)) {
@@ -44,7 +45,8 @@ void DFSendMessageToRobotBlock::handleData(Shell &shell)
 		mToRobot = propertyFromPort("NUMBER").toInt();
 	} else if (hasNewData("MSG")) {
 		QString msg = propertyFromPort("MSG").toString();
-		const QString command = QString("mailbox.send(\"%1\", %2)").arg(QString(mToRobot)).arg(msg);
+		const QString command = QString("mailbox.send(%1, \"%2\")").arg(QString::number(mToRobot)).arg(msg);
+		qDebug() << command;
 		shell.runCommand(command);
 	}
 
