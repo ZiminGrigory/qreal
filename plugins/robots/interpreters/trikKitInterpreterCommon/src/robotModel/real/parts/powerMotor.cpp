@@ -31,39 +31,10 @@ void PowerMotor::on(int speed)
 	const QString pathToCommand = ":/trikQts/templates/engines/forward.t";
 	const QString directCommand = utils::InFile::readAll(pathToCommand)
 			.replace("@@PORT@@", "\"" + port().name() + "\"")
-			.replace("@@POWER@@", QString::number(speed));// + "script.run();";
+			.replace("@@POWER@@", QString::number(speed));
 
+	mRobotCommunicator.runDirectCommand(directCommand);
 
-	if (port().name().startsWith("M")) {
-		const QString directCommand1 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"M1\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		const QString directCommand2 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"M2\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		const QString directCommand3 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"M3\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		const QString directCommand4 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"M4\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		mRobotCommunicator.runDirectCommand(directCommand1+directCommand2+directCommand3+directCommand4);
-	} else {
-//		const QString directCommand1 = utils::InFile::readAll(pathToCommand)
-//				.replace("@@PORT@@", "\"S1\"")
-//				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-//		const QString directCommand2 = utils::InFile::readAll(pathToCommand)
-//				.replace("@@PORT@@", "\"S2\"")
-//				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		const QString directCommand3 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"S3\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		const QString directCommand4 = utils::InFile::readAll(pathToCommand)
-				.replace("@@PORT@@", "\"S4\"")
-				.replace("@@POWER@@", QString::number(speed));// + "script.run();";
-		mRobotCommunicator.runDirectCommand(directCommand3+directCommand4);
-//	mRobotCommunicator.runDirectCommand(directCommand);
-	}
 }
 
 void PowerMotor::stop()

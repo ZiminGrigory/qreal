@@ -63,6 +63,10 @@ void DFFunctionBlock::handleData()
 			setVariable(b.input, dummyValue);
 		}
 
+		if (b.expressionText.isEmpty()) {
+			continue;
+		}
+
 		QVariant data = evalCode<QVariant>(b.expressionText, b.expression);
 		emit newDataInFlow(data, portAssociatedWithProperty[b.output]);
 	}
