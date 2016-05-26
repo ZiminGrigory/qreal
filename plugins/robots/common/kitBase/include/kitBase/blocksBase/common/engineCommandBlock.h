@@ -1,4 +1,4 @@
-/* Copyright 2007-2015 QReal Research Group
+/* Copyright 2007-2016 QReal Research Group, Grigorii Zimin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 #include <kitBase/robotModel/robotModelInterface.h>
 #include <kitBase/robotModel/robotModelUtils.h>
 #include <kitBase/robotModel/robotParts/motor.h>
+#include <kitBase/robotModel/robotParts/motorsAggregator.h>
 
 namespace kitBase {
 namespace blocksBase {
@@ -34,11 +35,15 @@ public:
 
 	QMap<robotModel::PortInfo, robotModel::DeviceInfo> usedDevices() override;
 
+
 protected slots:
 	/// @todo Why it is needed and where it is used?
 	void timeout();
 
 protected:
+	/// Returns MotorAggregator device, if it exists, nullptr otherwise.
+	robotModel::robotParts::MotorsAggregator *getMotorsAggregator() const;
+
 	/// Splits 'Port' property for the blocks and returns motor devices on them. Implementation may consider
 	/// that devices are non-null.
 	template<class MotorType>

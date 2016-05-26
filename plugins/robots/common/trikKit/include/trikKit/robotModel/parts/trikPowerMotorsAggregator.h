@@ -1,4 +1,4 @@
-/* Copyright 2015-2016 QReal Research Group, Grigorii Zimin
+/* Copyright 2016 Grigorii Zimin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,11 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#include "kitBase/robotModel/robotParts/shell.h"
+#pragma once
 
-using namespace kitBase::robotModel::robotParts;
+#include <kitBase/robotModel/robotParts/motorsAggregator.h>
 
-Shell::Shell(const kitBase::robotModel::DeviceInfo &info, const kitBase::robotModel::PortInfo &port)
-	: Device(info, port)
+namespace trik {
+namespace robotModel {
+namespace parts {
+
+class TrikPowerMotorsAggregator : public kitBase::robotModel::robotParts::MotorsAggregator
 {
+	Q_OBJECT
+	Q_CLASSINFO("name", "powerMotorsAggregator")
+	Q_CLASSINFO("friendlyName", tr("Power Motors Aggregator"))
+
+public:
+	TrikPowerMotorsAggregator(const kitBase::robotModel::DeviceInfo &info
+			, const kitBase::robotModel::PortInfo &port);
+};
+
+}
+}
 }
