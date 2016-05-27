@@ -34,7 +34,6 @@ protected:
 	void handleData() override;
 
 private:
-	void flushData();
 	int timeToSupress = 0;
 	bool supressionStarted = false;
 	QTime startSupressionTime;

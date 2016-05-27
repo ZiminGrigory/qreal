@@ -17,6 +17,7 @@
 #include "blockBase/DFVariable.h"
 #include "blockBase/DFWaitNode.h"
 #include "blockBase/DFRandomValue.h"
+#include "blockBase/DFLoopBlock.h"
 #include "blockBase/DFConditionBlock.h"
 #include "blockBase/DFSwitchBlock.h"
 #include "blockBase/DFSeparatorBlock.h"
@@ -74,6 +75,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFValueEmitter();
 	} else if (elementDFMetatypeIs(element, "Function")) {
 		res = new details::DFFunctionBlock();
+	}  else if (elementDFMetatypeIs(element, "Loop")) {
+		res = new details::DFLoopBlock();
 	} else if (elementDFMetatypeIs(element, "SensorVar")) {
 		res = new details::DFSensorVariableEmitter(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "Inhibitor")) {

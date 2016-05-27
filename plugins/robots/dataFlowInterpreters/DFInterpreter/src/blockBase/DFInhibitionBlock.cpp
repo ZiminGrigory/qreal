@@ -23,27 +23,18 @@ void DFInhibitionBlock::init()
 
 void DFInhibitionBlock::handleData()
 {
-	if (!inhibitionStarted) {
-		if (hasNewData("STOP")) {
-			inhibitionStarted = true;
-			startInhibitionTime = QTime::currentTime();
-			flushData();
-			return;
-		}
-
-		if (hasNewData("TIME")) {
-			timeToInhibit = propertyFromPort("TIME").toInt();
-		}
-
-		if (hasNewData("DATA")) {
-			emit newDataInFlow(propertyFromPort("DATA"), portAssociatedWithProperty["OUT"]);
-		}
-	} else {
-		if (startInhibitionTime.msecsTo(QTime::currentTime()) >= timeToInhibit) {
+	if (hasNewData("STOP")) {
+		inhibitionStarted = true;
+		startInhibitionTime = QTime::currentTime();
+		flushData();
+	} else if (hasNewData("TIME")) {
+		timeToInhibit = propertyFromPort("TIME").toInt();
+	} else if (hasNewData("DATA")) {
+		if (!inhibitionStarted || startInhibitionTime.msecsTo(QTime::currentTime()) >= timeToInhibit) {
 			inhibitionStarted = false;
-			handleData();
+			emit newDataInFlow(propertyFromPort("DATA"), portAssociatedWithProperty["OUT"]);
 		} else {
-			flushData();
+			propertyFromPort("DATA");
 		}
 	}
 }
@@ -52,5 +43,4 @@ void DFInhibitionBlock::flushData()
 {
 	propertyFromPort("DATA"); // flush data
 	propertyFromPort("STOP"); // flush data
-	propertyFromPort("TIME"); // flush data
 }

@@ -42,6 +42,8 @@ class DFRobotsBlock : public DFRobotsBlockInterface
 	Q_OBJECT
 
 public:
+	virtual ~DFRobotsBlock(){}
+
 	void init(const qReal::Id &graphicalId
 			, const qReal::GraphicalModelAssistInterface &graphicalModelApi
 			, const qReal::LogicalModelAssistInterface &logicalModelApi

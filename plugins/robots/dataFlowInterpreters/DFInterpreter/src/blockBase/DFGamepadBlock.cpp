@@ -74,7 +74,7 @@ void DFGamepadBlock::handleData()
 								list.push_back(i);
 							}
 
-							qDebug() << "sends data";
+							qDebug() << "sends data" << list;
 							emit newDataInFlow(list, portAssociatedWithProperty["PAD"]);
 						}
 					}
@@ -90,11 +90,11 @@ void DFGamepadBlock::handleData()
 		}
 
 
-		const PortInfo &gamepadWheelPort = RobotModelUtils::findPort(mRobotModel, "GamepadWheelPort", input);
-		robotParts::ScalarSensor *wheel = RobotModelUtils::findDevice<robotParts::ScalarSensor>(
-				mRobotModel
-				, gamepadWheelPort
-		);
+//		const PortInfo &gamepadWheelPort = RobotModelUtils::findPort(mRobotModel, "GamepadWheelPort", input);
+//		robotParts::ScalarSensor *wheel = RobotModelUtils::findDevice<robotParts::ScalarSensor>(
+//				mRobotModel
+//				, gamepadWheelPort
+//		);
 
 //		connect(wheel, &robotParts::ScalarSensor::newData, this,
 //				[=](int data) {

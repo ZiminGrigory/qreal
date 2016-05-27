@@ -5,6 +5,8 @@
 
 using namespace dataFlowBlocks::details;
 
+static bool isDestoyed = false;
+
 DFLoopBlock::DFLoopBlock()
 {
 	portAssociatedWithProperty["FROM"] = 0;
@@ -13,6 +15,11 @@ DFLoopBlock::DFLoopBlock()
 	portAssociatedWithProperty["CF_IN"] = 3;
 	portAssociatedWithProperty["CF_OUT"] = 4;
 	portAssociatedWithProperty["OUT"] = 5;
+}
+
+dataFlowBlocks::details::DFLoopBlock::DFLoopBlock::~DFLoopBlock()
+{
+	isDestoyed = true;
 }
 
 void DFLoopBlock::init()
@@ -39,10 +46,14 @@ void DFLoopBlock::handleData()
 	if (hasNewData("CF_IN")) {
 		propertyFromPort("CF_IN");
 		currentCounter = from;
-		while (currentCounter <= to) {
+		while (!isDestoyed && currentCounter <= to) {
 			emit newDataInFlow(currentCounter, portAssociatedWithProperty["OUT"]);
-			QCoreApplication::processEvents();
 			currentCounter += step;
+			QCoreApplication::processEvents();
+		}
+
+		if (isDestoyed) {
+			return;
 		}
 
 		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);

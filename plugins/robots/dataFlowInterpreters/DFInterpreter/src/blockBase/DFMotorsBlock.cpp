@@ -1,5 +1,7 @@
 #include "DFMotorsBlock.h"
 
+#include <QtCore/QPair>
+
 
 using namespace dataFlow::interpretation;
 using namespace kitBase;
@@ -27,10 +29,31 @@ DFMotorsBlock::DFMotorsBlock(RobotModelInterface &robotModel)
 
 void DFMotorsBlock::handleData()
 {
-	for (const QString &port : ports) {
-		if (hasNewData(portAssociatedWithProperty[port])) {
-			QVariant power = property(portAssociatedWithProperty[port]);
-			motors[port]->on(power.toInt());
+	auto aggregator = robotModel::RobotModelUtils::findDevice<robotParts::MotorsAggregator>(mRobotModel, "MAll");
+	if (!aggregator) {
+		for (const QString &port : ports) {
+			if (hasNewData(portAssociatedWithProperty[port])) {
+				int power = property(portAssociatedWithProperty[port]).toInt();
+				if (power != mPreviousPower.value(port, 0)) {
+					motors[port]->on(power);
+					mPreviousPower.insert(port, power);
+				}
+			}
+		}
+	} else {
+		QList<QPair<QString, int>> powersForMotors;
+		for (const QString &port : ports) {
+			if (hasNewData(portAssociatedWithProperty[port])) {
+				int power = property(portAssociatedWithProperty[port]).toInt();
+				if (power != mPreviousPower.value(port, 0)) {
+					powersForMotors.append(qMakePair<QString, int>(port, power));
+					mPreviousPower.insert(port, power);
+				}
+			}
+		}
+
+		if (!powersForMotors.isEmpty()) {
+			aggregator->on(powersForMotors);
 		}
 	}
 

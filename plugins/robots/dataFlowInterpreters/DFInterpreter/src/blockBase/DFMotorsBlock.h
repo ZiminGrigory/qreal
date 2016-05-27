@@ -17,6 +17,7 @@
 #include <kitBase/robotModel/robotModelInterface.h>
 #include <kitBase/robotModel/robotModelUtils.h>
 #include <kitBase/robotModel/robotParts/motor.h>
+#include <kitBase/robotModel/robotParts/motorsAggregator.h>
 
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
@@ -57,6 +58,8 @@ private:
 
 		return result;
 	}
+
+	QMap<QString, int> mPreviousPower;
 
 	QList<kitBase::robotModel::PortInfo> parsePorts(ReportErrors reportErrors = ReportErrors::report);
 
