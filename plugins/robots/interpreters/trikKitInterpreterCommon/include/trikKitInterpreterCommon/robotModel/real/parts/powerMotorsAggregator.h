@@ -14,7 +14,8 @@
 
 #pragma once
 
-#include <trikKit/robotModel/parts/TrikMotorsAggregator.h>
+
+#include <trikKit/robotModel/parts/trikMotorsAggregator.h>
 #include <utils/robotCommunication/tcpRobotCommunicator.h>
 
 #include "trikKitInterpreterCommon/declSpec.h"
