@@ -36,13 +36,18 @@ void PowerMotorsAggregator::on(const QList<QPair<QString, int>> &powerForMotors)
 	QString directCommand;
 
 	for (const QPair<QString, int> &motorAndPower : powerForMotors) {
-		directCommand += command;
-		directCommand
-				.replace("@@PORT@@", "\"" + motorAndPower.first + "\"")
-				.replace("@@POWER@@", QString::number(motorAndPower.second));
+		if (power(motorAndPower.first) != motorAndPower.second) {
+			mSpeeds.insert(motorAndPower.first, motorAndPower.second);
+			directCommand += command;
+			directCommand
+					.replace("@@PORT@@", "\"" + motorAndPower.first + "\"")
+					.replace("@@POWER@@", QString::number(motorAndPower.second));
+		}
 	}
 
-	mRobotCommunicator.runDirectCommand(directCommand);
+	if (!directCommand.isEmpty()) {
+		mRobotCommunicator.runDirectCommand(directCommand);
+	}
 }
 
 void PowerMotorsAggregator::stop(const QStringList &ports)
