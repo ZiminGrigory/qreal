@@ -29,6 +29,7 @@ PowerMotor::PowerMotor(const DeviceInfo &info, const PortInfo &port
 void PowerMotor::on(int speed)
 {
 	if (speed != power()) {
+		Motor::on(speed);
 		const QString pathToCommand = ":/trikQts/templates/engines/forward.t";
 		const QString directCommand = utils::InFile::readAll(pathToCommand)
 				.replace("@@PORT@@", "\"" + port().name() + "\"")
