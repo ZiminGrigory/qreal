@@ -9,6 +9,7 @@ static bool isDestoyed = false;
 
 DFLoopBlock::DFLoopBlock()
 {
+	isDestoyed = false;
 	portAssociatedWithProperty["FROM"] = 0;
 	portAssociatedWithProperty["TO"] = 1;
 	portAssociatedWithProperty["STEP"] = 2;
