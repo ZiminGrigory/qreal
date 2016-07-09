@@ -33,6 +33,8 @@
 
 using namespace qReal;
 
+const QStringList dummyList;
+
 EditorManager::EditorManager(const QString &path)
 	: mPluginManager(path)
 	, mInterterpretationMode(false)
@@ -317,11 +319,11 @@ QStringList EditorManager::propertyNames(const Id &id) const
 	return elementType(id).propertyNames();
 }
 
-QStringList EditorManager::portTypes(const Id &id) const
+const QStringList &EditorManager::portTypes(const Id &id) const
 {
 	Q_ASSERT(id.idSize() == 3); // Applicable only to element types
 	const NodeElementType *nodeType = dynamic_cast<const NodeElementType *>(&elementType(id));
-	return nodeType ? nodeType->portTypes() : QStringList();
+	return nodeType ? nodeType->portTypes() : dummyList;
 }
 
 QStringList EditorManager::referenceProperties(const Id &id) const

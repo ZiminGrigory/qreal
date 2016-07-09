@@ -88,7 +88,7 @@ public:
 	virtual QString generationRule(const Id &id) const = 0;
 
 	virtual QStringList propertyNames(const Id &id) const = 0;
-	virtual QStringList portTypes(const Id &id) const = 0;
+	virtual const QStringList &portTypes(const Id &id) const = 0;
 	virtual QString defaultPropertyValue(const Id &id, QString name) const = 0;
 
 	virtual bool hasElement(const Id &element) const = 0;
@@ -104,7 +104,6 @@ public:
 	virtual Id theOnlyDiagram() const = 0;
 	virtual QString diagramNodeNameString(const Id &editor, const Id &diagram) const = 0;
 
-//	virtual QList<StringPossibleEdge> possibleEdges(const QString &editor, const QString &element) const = 0;
 	virtual int isNodeOrEdge(const Id &id) const = 0;
 	virtual bool isParentOf(const QString &editor, const QString &parentDiagram, const QString &parentElement
 			, const QString &childDiagram, const QString &childElement) const = 0;

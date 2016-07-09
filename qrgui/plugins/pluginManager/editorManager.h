@@ -85,7 +85,7 @@ public:
 	bool isElement(const Id &id) const override;
 
 	QStringList propertyNames(const Id &id) const override;
-	QStringList portTypes(const Id &id) const override;
+	const QStringList &portTypes(const Id &id) const override;
 	QStringList referenceProperties(const Id &id) const override;
 	QString defaultPropertyValue(const Id &id, QString name) const override;
 
