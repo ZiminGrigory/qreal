@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metamodel xmlns="http://schema.real.com/schema/" version="1.0.0">
-    <namespace>UML 2.0</namespace>
-    <diagram displayedName="robots editor diagram" nodeName="RobotsBehaviourDiagram" name="RobotsDataFlowDiagram">
+	<namespace>UML 2.0</namespace>
+	<diagram displayedName="robots editor diagram" nodeName="RobotsBehaviourDiagram" name="RobotsDataFlowDiagram">
 	<nonGraphicTypes>
-            <enum editable="false" name="TrikV6DigitalSensorPort">
-                <value name="D1"/>
-                <value name="D2"/>
-            </enum>
-            <enum editable="false" name="TrikV6AnalogSensorPort">
-                <value name="A1"/>
-                <value name="A2"/>
-                <value name="A3"/>
-                <value name="A4"/>
-                <value name="A5"/>
-                <value name="A6"/>
-            </enum>
-            <enum editable="false" name="TrikV6EncoderPort">
-                <value name="B1"/>
-                <value name="B4"/>
-                <value name="B2"/>
-                <value name="B3"/>
-            </enum>
-            <enum editable="false" name="TrikV62EncoderPort">
-                <value name="E1"/>
-                <value name="E2"/>
-                <value name="E3"/>
-                <value name="E4"/>
-            </enum>
-            <enum editable="false" name="Color">
-                <value name="black"/>
-                <value displayedName="green" name="green"/>
-                <value displayedName="yellow" name="yellow"/>
-                <value displayedName="blue" name="blue"/>
-                <value displayedName="white" name="white"/>
-                <value displayedName="red" name="red"/>
-            </enum>
-            <enum editable="false" name="TrikLedColor">
-                <value displayedName="off" name="off"/>
-                <value displayedName="green" name="green"/>
-                <value displayedName="orange" name="orange"/>
-                <value displayedName="red" name="red"/>
-            </enum>
-            <enum editable="false" name="BackgroundColor">
-                <value displayedName="red" name="red"/>
-                <value displayedName="white" name="white"/>
-                <value displayedName="black" name="black"/>
-                <value displayedName="lightGray" name="light gray"/>
-                <value displayedName="gray" name="gray"/>
-                <value displayedName="darkYellow" name="dark yellow"/>
-                <value displayedName="darkMagenta" name="dark magenta"/>
-                <value displayedName="yellow" name="yellow"/>
-                <value displayedName="darkCyan" name="dark cyan"/>
-                <value displayedName="magenta" name="magenta"/>
-                <value displayedName="darkBlue" name="dark blue"/>
-                <value displayedName="cyan" name="cyan"/>
-                <value displayedName="darkGreen" name="dark green"/>
-                <value displayedName="blue" name="blue"/>
-                <value displayedName="darkRed" name="dark red"/>
-                <value displayedName="green" name="green"/>
-            </enum>
-            <enum editable="false" name="VideoSensor">
+		<enum editable="false" name="TrikV6DigitalSensorPort">
+		<value name="D1"/>
+		<value name="D2"/>
+		</enum>
+		<enum editable="false" name="TrikV6AnalogSensorPort">
+		<value name="A1"/>
+		<value name="A2"/>
+		<value name="A3"/>
+		<value name="A4"/>
+		<value name="A5"/>
+		<value name="A6"/>
+		</enum>
+		<enum editable="false" name="TrikV6EncoderPort">
+		<value name="B1"/>
+		<value name="B4"/>
+		<value name="B2"/>
+		<value name="B3"/>
+		</enum>
+		<enum editable="false" name="TrikV62EncoderPort">
+		<value name="E1"/>
+		<value name="E2"/>
+		<value name="E3"/>
+		<value name="E4"/>
+		</enum>
+		<enum editable="false" name="Color">
+		<value name="black"/>
+		<value displayedName="green" name="green"/>
+		<value displayedName="yellow" name="yellow"/>
+		<value displayedName="blue" name="blue"/>
+		<value displayedName="white" name="white"/>
+		<value displayedName="red" name="red"/>
+		</enum>
+		<enum editable="false" name="TrikLedColor">
+		<value displayedName="off" name="off"/>
+		<value displayedName="green" name="green"/>
+		<value displayedName="orange" name="orange"/>
+		<value displayedName="red" name="red"/>
+		</enum>
+		<enum editable="false" name="BackgroundColor">
+		<value displayedName="red" name="red"/>
+		<value displayedName="white" name="white"/>
+		<value displayedName="black" name="black"/>
+		<value displayedName="lightGray" name="light gray"/>
+		<value displayedName="gray" name="gray"/>
+		<value displayedName="darkYellow" name="dark yellow"/>
+		<value displayedName="darkMagenta" name="dark magenta"/>
+		<value displayedName="yellow" name="yellow"/>
+		<value displayedName="darkCyan" name="dark cyan"/>
+		<value displayedName="magenta" name="magenta"/>
+		<value displayedName="darkBlue" name="dark blue"/>
+		<value displayedName="cyan" name="cyan"/>
+		<value displayedName="darkGreen" name="dark green"/>
+		<value displayedName="blue" name="blue"/>
+		<value displayedName="darkRed" name="dark red"/>
+		<value displayedName="green" name="green"/>
+		</enum>
+		<enum editable="false" name="VideoSensor">
 		<value displayedName="Color" name="color"/>
 		<value displayedName="Object" name="object"/>
 		<value displayedName="Line" name="line"/>
-            </enum>
-            <enum editable="false" name="DetectableVideoSensor">
+		</enum>
+		<enum editable="false" name="DetectableVideoSensor">
 		<value displayedName="Line" name="line"/>
 		<value displayedName="Object" name="object"/>
 		<value displayedName="Color" name="color"/>
-            </enum>
-            <enum editable="false" name="TrikButtons">
-                <value name="Up"/>
-                <value name="Down"/>
-                <value name="Left"/>
-                <value name="Right"/>
-                <value name="Enter"/>
-                <value name="Esc"/>
-            </enum>
-	    <enum editable="false" name="allTRIKWritablePorts">
+		</enum>
+		<enum editable="false" name="TrikButtons">
+		<value name="Up"/>
+		<value name="Down"/>
+		<value name="Left"/>
+		<value name="Right"/>
+		<value name="Enter"/>
+		<value name="Esc"/>
+		</enum>
+		<enum editable="false" name="allTRIKWritablePorts">
 		<value name="M1"/>
-                <value name="M2"/>
-                <value name="M3"/>
+		<value name="M2"/>
+		<value name="M3"/>
 		<value name="M4"/>
 		<value name="E1"/>
-                <value name="E2"/>
-                <value name="E3"/>
+		<value name="E2"/>
+		<value name="E3"/>
 		<value name="E4"/>
 		<value name="A6"/>
 		<value name="A5"/>
@@ -103,8 +103,8 @@
 		<value name="Left"/>
 		<value name="Right"/>
 		<value name="Up"/>
-            </enum>
-	    <enum editable="false" name="allTRIKReadPorts">
+		</enum>
+		<enum editable="false" name="allTRIKReadPorts">
 		<value name="M1"/>
 		<value name="M2"/>
 		<value name="M3"/>
@@ -146,62 +146,62 @@
 		<value name="GamepadPad1PressedPort"/>
 		<value name="GamepadPad2PressedPort"/>
 		<value name="GamepadConnectionIndicatorPort"/>
-	    </enum>
-	    <enum editable="false" name="SensorVars">
-                <value name="accelerometer"/>
-                <value name="colorSensorR"/>
-                <value name="colorSensorG"/>
-                <value name="colorSensorB"/>
-                <value name="encoder1"/>
-                <value name="encoder2"/>
-                <value name="encoder3"/>
-                <value name="encoder4"/>
-                <value name="buttonDown"/>
-                <value name="buttonEnter"/>
-                <value name="buttonEsc"/>
-                <value name="buttonLeft"/>
-                <value name="buttonRight"/>
-                <value name="buttonUp"/>
-                <value name="gamepadButton1"/>
-                <value name="gamepadButton2"/>
-                <value name="gamepadButton3"/>
-                <value name="gamepadButton4"/>
-                <value name="gamepadButton5"/>
-                <value name="gamepadConnected"/>
-                <value name="gamepadPad1"/>
-                <value name="gamepadPad2"/>
-                <value name="gamepadPad1Pressed"/>
-                <value name="gamepadPad2Pressed"/>
-                <value name="gamepadWheel"/>
-                <value name="gyroscope"/>
-                <value name="lineSensor"/>
-                <value name="objectSensorX"/>
-                <value name="objectSensorY"/>
-                <value name="objectSensorSize"/>
-                <value name="sensorA1"/>
-                <value name="sensorA2"/>
-                <value name="sensorA3"/>
-                <value name="sensorA4"/>
-                <value name="sensorA5"/>
-                <value name="sensorA6"/>
-                <value name="sensorD1"/>
-                <value name="sensorD2"/>
-                <value name="sensorF1"/>
-            </enum>
-	    <enum editable="false" name="ShapeType">
+		</enum>
+		<enum editable="false" name="SensorVars">
+		<value name="accelerometer"/>
+		<value name="colorSensorR"/>
+		<value name="colorSensorG"/>
+		<value name="colorSensorB"/>
+		<value name="encoder1"/>
+		<value name="encoder2"/>
+		<value name="encoder3"/>
+		<value name="encoder4"/>
+		<value name="buttonDown"/>
+		<value name="buttonEnter"/>
+		<value name="buttonEsc"/>
+		<value name="buttonLeft"/>
+		<value name="buttonRight"/>
+		<value name="buttonUp"/>
+		<value name="gamepadButton1"/>
+		<value name="gamepadButton2"/>
+		<value name="gamepadButton3"/>
+		<value name="gamepadButton4"/>
+		<value name="gamepadButton5"/>
+		<value name="gamepadConnected"/>
+		<value name="gamepadPad1"/>
+		<value name="gamepadPad2"/>
+		<value name="gamepadPad1Pressed"/>
+		<value name="gamepadPad2Pressed"/>
+		<value name="gamepadWheel"/>
+		<value name="gyroscope"/>
+		<value name="lineSensor"/>
+		<value name="objectSensorX"/>
+		<value name="objectSensorY"/>
+		<value name="objectSensorSize"/>
+		<value name="sensorA1"/>
+		<value name="sensorA2"/>
+		<value name="sensorA3"/>
+		<value name="sensorA4"/>
+		<value name="sensorA5"/>
+		<value name="sensorA6"/>
+		<value name="sensorD1"/>
+		<value name="sensorD2"/>
+		<value name="sensorF1"/>
+		</enum>
+		<enum editable="false" name="ShapeType">
 		<value displayedName="arc" name="arc"/>
 		<value displayedName="ellipse" name="ellipse"/>
 		<value displayedName="rectangle" name="rectangle"/>
 		<value displayedName="line" name="line"/>
 		<value displayedName="point" name="point"/>
-	    </enum>
-            <enum editable="false" name="TrikMotorPort">
-                <value name="M4"/>
-                <value name="M2"/>
-                <value name="M3"/>
-                <value name="M1"/>
-	    </enum>
-	    <enum editable="false" name="SubProgramInputPorts">
+		</enum>
+		<enum editable="false" name="TrikMotorPort">
+		<value name="M4"/>
+		<value name="M2"/>
+		<value name="M3"/>
+		<value name="M1"/>
+		</enum>
+		<enum editable="false" name="SubProgramInputPorts">
 		<value name="CF_IN"/>
 		<value name="I0"/>
 		<value name="I1"/>
@@ -209,8 +209,8 @@
 		<value name="I3"/>
 		<value name="I4"/>
 		<value name="I5"/> -->
-	    </enum>
-	    <enum editable="false" name="SubProgramOutputPorts">
+		</enum>
+		<enum editable="false" name="SubProgramOutputPorts">
 		<value name="CF_OUT"/>
 		<value name="O0"/>
 		<value name="O1"/>
@@ -218,144 +218,474 @@
 		<value name="O3"/>
 		<value name="O4"/>
 		<value name="O5"/> -->
-	    </enum>
-        </nonGraphicTypes>
-        <graphicTypes>
-	    <node description="при приходе любых данных на порт программа завершается" displayedName="end_point" name="FinalNode">
-                <graphics>
-                    <picture sizex="101" sizey="103">
+		</enum>
+	</nonGraphicTypes>
+	<graphicTypes>
+		<node description="при приходе любых данных на порт программа завершается" displayedName="end_point" name="FinalNode">
+		<graphics>
+			<picture sizex="101" sizey="103">
 			<image y2="100" name="images/exit1.svg" x2="99" x1="0" y1="2"/>
-                    </picture>
-                    <labels/>
-                    <ports>
-                        <pointPort y="100" type="NonTyped" x="52"/>
-                        <pointPort y="52" type="NonTyped" x="2"/>
-                        <pointPort y="2" type="NonTyped" x="50"/>
-                        <pointPort y="53" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <edge description="связывает блоки передачей данных, либо пустых данных в качестве потока управления" path="" name="Edge">
-                <graphics>
-                    <lineType type="solidLine"/>
-                    <shape type="broken"/>
-                </graphics>
-                <logic>
-                    <associations endType="empty_arrow" beginType="no_arrow">
-                        <association beginName="from" endName="to"/>
-                    </associations>
-                    <fromPorts/>
-                    <toPorts/>
-                    <explodesTo/>
-                    <dividability isDividable="false"/>
-                </logic>
-            </edge>
-            <node displayedName="Function" name="Function">
-                <graphics>
-                    <picture sizex="284" sizey="340">
+			</picture>
+			<labels/>
+			<ports>
+			<pointPort y="100" type="P1" x="52"/>
+			<pointPort y="52" type="P2" x="2"/>
+			<pointPort y="2" type="P3" x="50"/>
+			<pointPort y="53" type="P4" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<edge description="связывает блоки передачей данных, либо пустых данных в качестве потока управления" path="" name="Edge">
+		<graphics>
+			<lineType type="solidLine"/>
+			<shape type="broken"/>
+		</graphics>
+		<logic>
+			<associations endType="empty_arrow" beginType="no_arrow">
+			<association beginName="from" endName="to"/>
+			</associations>
+			<fromPorts>
+			<port type="NonTyped"/>
+			<port type="P1"/>
+			<port type="P2"/>
+			<port type="P3"/>
+			<port type="P4"/>
+			<port type="P5"/>
+			<port type="P6"/>
+			<port type="P7"/>
+			<port type="P8"/>
+			<port type="P9"/>
+			<port type="P10"/>
+			<port type="P11"/>
+			<port type="P12"/>
+			<port type="P13"/>
+			<port type="P14"/>
+			<port type="P15"/>
+			<port type="P16"/>
+			<port type="P17"/>
+			<port type="P18"/>
+			<port type="P19"/>
+			<port type="P20"/>
+			<port type="P21"/>
+			<port type="P22"/>
+			<port type="P23"/>
+			<port type="P24"/>
+			<port type="P25"/>
+			<port type="P26"/>
+			<port type="P27"/>
+			<port type="P28"/>
+			<port type="P29"/>
+			<port type="P30"/>
+			<port type="P31"/>
+			<port type="P32"/>
+			<port type="P33"/>
+			<port type="P34"/>
+			<port type="P35"/>
+			<port type="P36"/>
+			<port type="P37"/>
+			<port type="P38"/>
+			<port type="P39"/>
+			<port type="P40"/>
+			<port type="P41"/>
+			<port type="P42"/>
+			<port type="P43"/>
+			<port type="P44"/>
+			<port type="P45"/>
+			<port type="P46"/>
+			<port type="P47"/>
+			<port type="P48"/>
+			<port type="P49"/>
+			<port type="P50"/>
+			<port type="P51"/>
+			<port type="P52"/>
+			<port type="P53"/>
+			<port type="P54"/>
+			<port type="P55"/>
+			<port type="P56"/>
+			<port type="P57"/>
+			<port type="P58"/>
+			<port type="P59"/>
+			<port type="P60"/>
+			<port type="P61"/>
+			<port type="P62"/>
+			<port type="P63"/>
+			<port type="P64"/>
+			<port type="P65"/>
+			<port type="P66"/>
+			<port type="P67"/>
+			<port type="P68"/>
+			<port type="P69"/>
+			<port type="P70"/>
+			<port type="P71"/>
+			<port type="P72"/>
+			<port type="P73"/>
+			<port type="P74"/>
+			<port type="P75"/>
+			<port type="P76"/>
+			<port type="P77"/>
+			<port type="P78"/>
+			<port type="P79"/>
+			<port type="P80"/>
+			<port type="P81"/>
+			<port type="P82"/>
+			<port type="P83"/>
+			<port type="P84"/>
+			<port type="P85"/>
+			<port type="P86"/>
+			<port type="P87"/>
+			<port type="P88"/>
+			<port type="P89"/>
+			<port type="P90"/>
+			<port type="P91"/>
+			<port type="P92"/>
+			<port type="P93"/>
+			<port type="P94"/>
+			<port type="P95"/>
+			<port type="P96"/>
+			<port type="P97"/>
+			<port type="P98"/>
+			<port type="P99"/>
+			<port type="P100"/>
+			<port type="P101"/>
+			<port type="P102"/>
+			<port type="P103"/>
+			<port type="P104"/>
+			<port type="P105"/>
+			<port type="P106"/>
+			<port type="P107"/>
+			<port type="P108"/>
+			<port type="P109"/>
+			<port type="P110"/>
+			<port type="P111"/>
+			<port type="P112"/>
+			<port type="P113"/>
+			<port type="P114"/>
+			<port type="P115"/>
+			<port type="P116"/>
+			<port type="P117"/>
+			<port type="P118"/>
+			<port type="P119"/>
+			<port type="P120"/>
+			<port type="P121"/>
+			<port type="P122"/>
+			<port type="P123"/>
+			<port type="P124"/>
+			<port type="P125"/>
+			<port type="P126"/>
+			<port type="P127"/>
+			<port type="P128"/>
+			<port type="P129"/>
+			<port type="P130"/>
+			<port type="P131"/>
+			<port type="P132"/>
+			<port type="P133"/>
+			<port type="P134"/>
+			<port type="P135"/>
+			<port type="P136"/>
+			<port type="P137"/>
+			<port type="P138"/>
+			<port type="P139"/>
+			<port type="P140"/>
+			<port type="P141"/>
+			<port type="P142"/>
+			<port type="P143"/>
+			<port type="P144"/>
+			<port type="P145"/>
+			<port type="P146"/>
+			<port type="P147"/>
+			<port type="P148"/>
+			<port type="P149"/>
+			<port type="P150"/>
+			<port type="P151"/>
+			<port type="P152"/>
+			<port type="P153"/>
+			<port type="P154"/>
+			<port type="P155"/>
+			<port type="P156"/>
+			<port type="P157"/>
+			<port type="P158"/>
+			<port type="P159"/>
+			<port type="P160"/>
+			<port type="P161"/>
+			<port type="P162"/>
+			<port type="P163"/>
+			</fromPorts>
+			<toPorts>
+			<port type="NonTyped"/>
+			<port type="P1"/>
+			<port type="P2"/>
+			<port type="P3"/>
+			<port type="P4"/>
+			<port type="P5"/>
+			<port type="P6"/>
+			<port type="P7"/>
+			<port type="P8"/>
+			<port type="P9"/>
+			<port type="P10"/>
+			<port type="P11"/>
+			<port type="P12"/>
+			<port type="P13"/>
+			<port type="P14"/>
+			<port type="P15"/>
+			<port type="P16"/>
+			<port type="P17"/>
+			<port type="P18"/>
+			<port type="P19"/>
+			<port type="P20"/>
+			<port type="P21"/>
+			<port type="P22"/>
+			<port type="P23"/>
+			<port type="P24"/>
+			<port type="P25"/>
+			<port type="P26"/>
+			<port type="P27"/>
+			<port type="P28"/>
+			<port type="P29"/>
+			<port type="P30"/>
+			<port type="P31"/>
+			<port type="P32"/>
+			<port type="P33"/>
+			<port type="P34"/>
+			<port type="P35"/>
+			<port type="P36"/>
+			<port type="P37"/>
+			<port type="P38"/>
+			<port type="P39"/>
+			<port type="P40"/>
+			<port type="P41"/>
+			<port type="P42"/>
+			<port type="P43"/>
+			<port type="P44"/>
+			<port type="P45"/>
+			<port type="P46"/>
+			<port type="P47"/>
+			<port type="P48"/>
+			<port type="P49"/>
+			<port type="P50"/>
+			<port type="P51"/>
+			<port type="P52"/>
+			<port type="P53"/>
+			<port type="P54"/>
+			<port type="P55"/>
+			<port type="P56"/>
+			<port type="P57"/>
+			<port type="P58"/>
+			<port type="P59"/>
+			<port type="P60"/>
+			<port type="P61"/>
+			<port type="P62"/>
+			<port type="P63"/>
+			<port type="P64"/>
+			<port type="P65"/>
+			<port type="P66"/>
+			<port type="P67"/>
+			<port type="P68"/>
+			<port type="P69"/>
+			<port type="P70"/>
+			<port type="P71"/>
+			<port type="P72"/>
+			<port type="P73"/>
+			<port type="P74"/>
+			<port type="P75"/>
+			<port type="P76"/>
+			<port type="P77"/>
+			<port type="P78"/>
+			<port type="P79"/>
+			<port type="P80"/>
+			<port type="P81"/>
+			<port type="P82"/>
+			<port type="P83"/>
+			<port type="P84"/>
+			<port type="P85"/>
+			<port type="P86"/>
+			<port type="P87"/>
+			<port type="P88"/>
+			<port type="P89"/>
+			<port type="P90"/>
+			<port type="P91"/>
+			<port type="P92"/>
+			<port type="P93"/>
+			<port type="P94"/>
+			<port type="P95"/>
+			<port type="P96"/>
+			<port type="P97"/>
+			<port type="P98"/>
+			<port type="P99"/>
+			<port type="P100"/>
+			<port type="P101"/>
+			<port type="P102"/>
+			<port type="P103"/>
+			<port type="P104"/>
+			<port type="P105"/>
+			<port type="P106"/>
+			<port type="P107"/>
+			<port type="P108"/>
+			<port type="P109"/>
+			<port type="P110"/>
+			<port type="P111"/>
+			<port type="P112"/>
+			<port type="P113"/>
+			<port type="P114"/>
+			<port type="P115"/>
+			<port type="P116"/>
+			<port type="P117"/>
+			<port type="P118"/>
+			<port type="P119"/>
+			<port type="P120"/>
+			<port type="P121"/>
+			<port type="P122"/>
+			<port type="P123"/>
+			<port type="P124"/>
+			<port type="P125"/>
+			<port type="P126"/>
+			<port type="P127"/>
+			<port type="P128"/>
+			<port type="P129"/>
+			<port type="P130"/>
+			<port type="P131"/>
+			<port type="P132"/>
+			<port type="P133"/>
+			<port type="P134"/>
+			<port type="P135"/>
+			<port type="P136"/>
+			<port type="P137"/>
+			<port type="P138"/>
+			<port type="P139"/>
+			<port type="P140"/>
+			<port type="P141"/>
+			<port type="P142"/>
+			<port type="P143"/>
+			<port type="P144"/>
+			<port type="P145"/>
+			<port type="P146"/>
+			<port type="P147"/>
+			<port type="P148"/>
+			<port type="P149"/>
+			<port type="P150"/>
+			<port type="P151"/>
+			<port type="P152"/>
+			<port type="P153"/>
+			<port type="P154"/>
+			<port type="P155"/>
+			<port type="P156"/>
+			<port type="P157"/>
+			<port type="P158"/>
+			<port type="P159"/>
+			<port type="P160"/>
+			<port type="P161"/>
+			<port type="P162"/>
+			<port type="P163"/>
+			</toPorts>
+			<explodesTo/>
+			<dividability isDividable="false"/>
+		</logic>
+		</edge>
+		<node displayedName="Function" name="Function">
+		<graphics>
+			<picture sizex="284" sizey="340">
 			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
-                    </picture>
-		    <labels>
-                        <label y="35" text="I0" x="0"/>
-                        <label y="89" text="I1" x="0"/>
-                        <label y="140" text="I2" x="0"/>
-                        <label y="187" text="I3" x="0"/>
-                        <label y="234" text="I4" x="0"/>
-                        <label y="283" text="I5" x="0"/>
-                        <label textBinded="name" y="0" x="100"/>
-                        <label textBinded="IO3" y="202" x="45"/>
-                        <label textBinded="IO5" y="301" x="45"/>
-                        <label textBinded="IO4" y="253" x="45"/>
-                        <label textBinded="IO0" y="57" x="45"/>
-                        <label textBinded="IO1" y="105" x="45"/>
-                        <label textBinded="IO2" y="154" x="45"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="42" type="NonTyped" x="50"/>
-                        <pointPort y="42" type="NonTyped" x="266"/>
-                        <pointPort y="70" type="NonTyped" x="33"/>
-                        <pointPort y="70" type="NonTyped" x="280"/>
-                        <pointPort y="120" type="NonTyped" x="33"/>
-			<pointPort y="120" type="NonTyped" x="280"/>
-                        <pointPort y="165" type="NonTyped" x="33"/>
-                        <pointPort y="165" type="NonTyped" x="280"/>
-                        <pointPort y="215" type="NonTyped" x="33"/>
-                        <pointPort y="215" type="NonTyped" x="280"/>
-                        <pointPort y="266" type="NonTyped" x="33"/>
-                        <pointPort y="266" type="NonTyped" x="280"/>
-                        <pointPort y="315" type="NonTyped" x="33"/>
-                        <pointPort y="315" type="NonTyped" x="280"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="synchronized" name="synch" type="bool">
-                            <default>true</default>
-                        </property>
-                        <property name="IO5" type="string"/>
-                        <property name="IO3" type="string"/>
-                        <property name="IO4" type="string"/>
-                        <property name="IO1" type="string"/>
-                        <property name="IO2" type="string"/>
-                        <property name="IO0" type="string"/>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="Condition" name="IfNode">
-                <graphics>
-                    <picture sizex="195" sizey="125">
-			<image y2="99" name="images/condition.svg" x2="142" x1="43" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label text="FALSE" y="56" x="145"/>
-                        <label text="TRUE" y="3" x="145"/>
-                        <label text="data" y="9" x="0"/>
-                        <label textBinded="condition" y="36" x="49"/>
-                        <label text="vars[]" y="99" x="45"/>
-                    </labels>
-                    <ports>
-			<pointPort y="48" type="NonTyped" x="44"/>
-                        <pointPort y="97" type="NonTyped" x="96"/>
-                        <pointPort y="36" type="NonTyped" x="141"/>
-			<pointPort y="88" type="NonTyped" x="141"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
-			<property displayedName="Condition" name="condition" type="string">
-			    <default>data>0</default>
+			</picture>
+			<labels>
+			<label y="35" text="I0" x="0"/>
+			<label y="89" text="I1" x="0"/>
+			<label y="140" text="I2" x="0"/>
+			<label y="187" text="I3" x="0"/>
+			<label y="234" text="I4" x="0"/>
+			<label y="283" text="I5" x="0"/>
+			<label textBinded="name" y="0" x="100"/>
+			<label textBinded="IO3" y="202" x="45"/>
+			<label textBinded="IO5" y="301" x="45"/>
+			<label textBinded="IO4" y="253" x="45"/>
+			<label textBinded="IO0" y="57" x="45"/>
+			<label textBinded="IO1" y="105" x="45"/>
+			<label textBinded="IO2" y="154" x="45"/>
+			</labels>
+			<ports>
+			<pointPort y="42" type="P5" x="50"/>
+			<pointPort y="42" type="P6" x="266"/>
+			<pointPort y="70" type="P7" x="33"/>
+			<pointPort y="70" type="P8" x="280"/>
+			<pointPort y="120" type="P9" x="33"/>
+			<pointPort y="120" type="P10" x="280"/>
+			<pointPort y="165" type="P11" x="33"/>
+			<pointPort y="165" type="P12" x="280"/>
+			<pointPort y="215" type="P13" x="33"/>
+			<pointPort y="215" type="P14" x="280"/>
+			<pointPort y="266" type="P15" x="33"/>
+			<pointPort y="266" type="P16" x="280"/>
+			<pointPort y="315" type="P17" x="33"/>
+			<pointPort y="315" type="P18" x="280"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="synchronized" name="synch" type="bool">
+				<default>true</default>
 			</property>
-		    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="Switch" name="Switch">
-                <graphics>
-                    <picture sizex="284" sizey="340">
+			<property name="IO5" type="string"/>
+			<property name="IO3" type="string"/>
+			<property name="IO4" type="string"/>
+			<property name="IO1" type="string"/>
+			<property name="IO2" type="string"/>
+			<property name="IO0" type="string"/>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Condition" name="IfNode">
+		<graphics>
+			<picture sizex="195" sizey="125">
+			<image y2="99" name="images/condition.svg" x2="142" x1="43" y1="0"/>
+			</picture>
+			<labels>
+			<label text="FALSE" y="56" x="145"/>
+			<label text="TRUE" y="3" x="145"/>
+			<label text="data" y="9" x="0"/>
+			<label textBinded="condition" y="36" x="49"/>
+			<label text="vars[]" y="99" x="45"/>
+			</labels>
+			<ports>
+			<pointPort y="48" type="P19" x="44"/>
+			<pointPort y="97" type="P20" x="96"/>
+			<pointPort y="36" type="P21" x="141"/>
+			<pointPort y="88" type="P22" x="141"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="Condition" name="condition" type="string">
+				<default>data>0</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Switch" name="Switch">
+		<graphics>
+			<picture sizex="284" sizey="340">
 			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label y="35" text="data" x="-20"/>
-                        <label textBinded="name" y="0" x="100"/>
+			<label textBinded="name" y="0" x="100"/>
 			<label textBinded="O3" y="195" x="120"/>
 			<label textBinded="O5" y="295" x="120"/>
 			<label textBinded="O4" y="245" x="120"/>
@@ -368,28 +698,28 @@
 			<label textBinded="cond0" y="50" x="40"/>
 			<label textBinded="cond1" y="100" x="40"/>
 			<label textBinded="cond2" y="150" x="40"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="42" type="NonTyped" x="50"/>
-                        <pointPort y="42" type="NonTyped" x="266"/>
-                        <pointPort y="70" type="NonTyped" x="33"/>
-			<pointPort y="70" type="NonTyped" x="280"/>
-			<pointPort y="120" type="NonTyped" x="280"/>
-			<pointPort y="165" type="NonTyped" x="280"/>
-			<pointPort y="215" type="NonTyped" x="280"/>
-			<pointPort y="266" type="NonTyped" x="280"/>
-                        <pointPort y="315" type="NonTyped" x="280"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
+			</labels>
+			<ports>
+			<pointPort y="42" type="P23" x="50"/>
+			<pointPort y="42" type="P24" x="266"/>
+			<pointPort y="70" type="P25" x="33"/>
+			<pointPort y="70" type="P26" x="280"/>
+			<pointPort y="120" type="P27" x="280"/>
+			<pointPort y="165" type="P28" x="280"/>
+			<pointPort y="215" type="P29" x="280"/>
+			<pointPort y="266" type="P30" x="280"/>
+			<pointPort y="315" type="P31" x="280"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property name="O1" type="string">
-			    <default>data</default>
+				<default>data</default>
 			</property>
 			<property name="O0" type="string">
-			    <default>data*2</default>
+				<default>data*2</default>
 			</property>
 			<property name="O2" type="string"/>
 			<property name="O3" type="string"/>
@@ -398,782 +728,782 @@
 
 
 			<property name="cond0" type="string">
-			    <default>data>0</default>
+				<default>data>0</default>
 			</property>
 			<property name="cond1" type="string">
-			    <default>data==0</default>
+				<default>data==0</default>
 			</property>
 			<property name="cond2" type="string"/>
 			<property name="cond3" type="string"/>
 			<property name="cond4" type="string"/>
 			<property name="cond5" type="string"/>
 			<property displayedName="first match only" name="sendOnlyFirst" type="bool">
-			    <default>true</default>
+				<default>true</default>
 			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="Loop" name="Loop">
-                <graphics>
-                    <picture sizex="106" sizey="116">
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Loop" name="Loop">
+		<graphics>
+			<picture sizex="106" sizey="116">
 			<image y2="114" name="images/loop.svg" x2="102" x1="3" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label text="from" y="9" x="-40"/>
 			<label text="to" y="41" x="-20"/>
 			<label text="step" y="70" x="-40"/>
 			<label textBinded="increment" y="85" x="12"/>
-                        <label textBinded="start_border" y="24" x="11"/>
+			<label textBinded="start_border" y="24" x="11"/>
 			<label textBinded="end_border" y="56" x="12"/>
-                    </labels>
-                    <ports>
-			<pointPort y="34" type="NonTyped" x="3"/>
-                        <pointPort y="68" type="NonTyped" x="3"/>
-			<pointPort y="95" type="NonTyped" x="3"/>
-                        <pointPort y="15" type="NonTyped" x="15"/>
-                        <pointPort y="15" type="NonTyped" x="89"/>
-                        <pointPort y="68" type="NonTyped" x="102"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="start_index" name="start_border" type="int">
-                            <default>0</default>
-                        </property>
+			</labels>
+			<ports>
+			<pointPort y="34" type="P32" x="3"/>
+			<pointPort y="68" type="P33" x="3"/>
+			<pointPort y="95" type="P34" x="3"/>
+			<pointPort y="15" type="P35" x="15"/>
+			<pointPort y="15" type="P36" x="89"/>
+			<pointPort y="68" type="P37" x="102"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="start_index" name="start_border" type="int">
+				<default>0</default>
+			</property>
 			<property displayedName="increment_step" name="increment" type="int">
-                            <default>1</default>
-                        </property>
+				<default>1</default>
+			</property>
 			<property displayedName="border" name="end_border" type="int">
-                            <default>10</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-	    </node>
-            <node displayedName="subprogram call" name="SubprogramCall">
-                <graphics>
-		    <picture sizex="144" sizey="140">
+				<default>10</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="subprogram call" name="SubprogramCall">
+		<graphics>
+			<picture sizex="144" sizey="140">
 			<image y2="114" name="images/subprogramCall.svg" x2="118" x1="19" y1="0"/>
-                    </picture>
-		    <labels>
+			</picture>
+			<labels>
 			<label textBinded="name" y="114" x="35"/>
 			<label y="25" text="I0" x="0"/>
 			<label y="70" text="I1" x="0"/>
 			<label y="25" text="O0" x="122"/>
 			<label y="70" text="O1" x="122"/>
-                    </labels>
-		    <ports>
-			<pointPort y="15" type="NonTyped" x="35"/>
-			<pointPort y="50" type="NonTyped" x="20"/>
-			<pointPort y="50" type="NonTyped" x="120"/>
-			<pointPort y="95" type="NonTyped" x="20"/>
-			<pointPort y="95" type="NonTyped" x="120"/>
-			<pointPort y="15" type="NonTyped" x="105"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <explodesTo>
-                        <target makeReusable="true" requireImmediateLinkage="true" type="RobotsBehaviourSubprogram"/>
-                    </explodesTo>
-                </logic>
-            </node>
-	    <node displayedName="Input port" name="InPort">
-                <graphics>
-                    <picture sizex="103" sizey="137">
-			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="identifier" y="11" x="18"/>
-                        <label textBinded="name" y="111" x="29"/>
-                    </labels>
-                    <ports>
-			<pointPort y="47" type="NonTyped" x="100"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-			<property displayedName="input port name" name="identifier" type="SubProgramInputPorts">
-			    <default>I0</default>
-			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-	    </node>
-	    <node displayedName="Output port" name="OutPort">
-		<graphics>
-		    <picture sizex="103" sizey="137">
-			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
-		    </picture>
-		    <labels>
-			<label textBinded="identifier" y="11" x="18"/>
-			<label textBinded="name" y="111" x="29"/>
-		    </labels>
-		    <ports>
-			<pointPort y="45" type="NonTyped" x="0"/>
-		    </ports>
-		    <nonResizeable/>
+			</labels>
+			<ports>
+			<pointPort y="15" type="P38" x="35"/>
+			<pointPort y="50" type="P39" x="20"/>
+			<pointPort y="50" type="P40" x="120"/>
+			<pointPort y="95" type="P41" x="20"/>
+			<pointPort y="95" type="P42" x="120"/>
+			<pointPort y="15" type="P43" x="105"/>
+			</ports>
+			<nonResizeable/>
 		</graphics>
 		<logic>
-		    <container/>
-		    <properties>
-		    <property displayedName="output port name" name="identifier" type="SubProgramOutputPorts">
-			<default>O0</default>
-		    </property>
-		    </properties>
-		    <generalizations>
-			<parent overrides="" parentName="AbstractNode"/>
-		    </generalizations>
-		    <explodesTo/>
+			<container/>
+			<explodesTo>
+			<target makeReusable="true" requireImmediateLinkage="true" type="RobotsBehaviourSubprogram"/>
+			</explodesTo>
 		</logic>
-	    </node>
-            <node displayedName="const_value" name="ValueEmitter">
-                <graphics>
-                    <picture sizex="103" sizey="163">
+		</node>
+		<node displayedName="Input port" name="InPort">
+		<graphics>
+			<picture sizex="103" sizey="137">
+			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="identifier" y="11" x="18"/>
+			<label textBinded="name" y="111" x="29"/>
+			</labels>
+			<ports>
+			<pointPort y="47" type="P44" x="100"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="input port name" name="identifier" type="SubProgramInputPorts">
+				<default>I0</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Output port" name="OutPort">
+		<graphics>
+			<picture sizex="103" sizey="137">
+			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="identifier" y="11" x="18"/>
+			<label textBinded="name" y="111" x="29"/>
+			</labels>
+			<ports>
+			<pointPort y="45" type="P45" x="0"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="output port name" name="identifier" type="SubProgramOutputPorts">
+			<default>O0</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="const_value" name="ValueEmitter">
+		<graphics>
+			<picture sizex="103" sizey="163">
 			<image y2="130" name="images/const data1.svg" x2="99" x1="0" y1="16"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="0" x="39"/>
-                        <label textBinded="varValue" y="137" x="9"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="32" type="NonTyped" x="9"/>
-                        <pointPort y="81" type="NonTyped" x="100"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="data" name="varValue" type="string">
-                            <default>42</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="variable" name="GetSetVariable">
-                <graphics>
-                    <picture sizex="102" sizey="151">
+			</picture>
+			<labels>
+			<label textBinded="name" y="0" x="39"/>
+			<label textBinded="varValue" y="137" x="9"/>
+			</labels>
+			<ports>
+			<pointPort y="32" type="P46" x="9"/>
+			<pointPort y="81" type="P47" x="100"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="data" name="varValue" type="string">
+				<default>42</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="variable" name="GetSetVariable">
+		<graphics>
+			<picture sizex="102" sizey="151">
 			<image y2="114" name="images/getsetvar.svg" x2="100" x1="1" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="variable" y="75" x="18"/>
-                        <label textBinded="name" y="125" x="26"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="10"/>
-			<pointPort y="65" type="NonTyped" x="2"/>
-			<pointPort y="15" type="NonTyped" x="90"/>
-			<pointPort y="65" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="variable" name="variable" type="string">
-                            <default>var_name</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="random value" name="RandomValue">
-                <graphics>
-                    <picture sizex="102" sizey="116">
+			</picture>
+			<labels>
+			<label textBinded="variable" y="75" x="18"/>
+			<label textBinded="name" y="125" x="26"/>
+			</labels>
+			<ports>
+			<pointPort y="15" type="P48" x="10"/>
+			<pointPort y="65" type="P49" x="2"/>
+			<pointPort y="15" type="P50" x="90"/>
+			<pointPort y="65" type="P51" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="variable" name="variable" type="string">
+				<default>var_name</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="random value" name="RandomValue">
+		<graphics>
+			<picture sizex="102" sizey="116">
 			<image y2="114" name="images/random var.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label textBinded="fromNumber" y="50" x="8"/>
 			<label textBinded="toNumber" y="80" x="8"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="10"/>
-			<pointPort y="70" type="NonTyped" x="100"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
+			</labels>
+			<ports>
+			<pointPort y="15" type="P52" x="10"/>
+			<pointPort y="70" type="P53" x="100"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="lower border" name="fromNumber" type="int">
-			    <default>0</default>
-                        </property>
+				<default>0</default>
+			</property>
 			<property displayedName="upper border" name="toNumber" type="int">
-			    <default>10</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="replace data in flow" name="Supressor">
-                <graphics>
-                    <picture sizex="200" sizey="163">
+				<default>10</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="replace data in flow" name="Supressor">
+		<graphics>
+			<picture sizex="200" sizey="163">
 			<image y2="134" name="images/supressing.svg" x2="197" x1="98" y1="35"/>
-                    </picture>
-                    <labels>
-                        <label text="time" y="137" x="117"/>
-                        <label textBinded="time" y="102" x="150"/>
-                        <label textBinded="name" y="0" x="136"/>
-                        <label text="replacement" y="36" x="0"/>
-                        <label text="data" y="82" x="52"/>
-                    </labels>
-                    <ports>
-			<pointPort y="65" type="NonTyped" x="100"/>
-			<pointPort y="110" type="NonTyped" x="100"/>
-			<pointPort y="80" type="NonTyped" x="200"/>
-			<pointPort y="130" type="NonTyped" x="165"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="time" name="time" type="int">
-                            <default>10</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="inhibitor" name="Inhibitor">
-                <graphics>
-		    <picture sizex="100" sizey="100">
+			</picture>
+			<labels>
+			<label text="time" y="137" x="117"/>
+			<label textBinded="time" y="102" x="150"/>
+			<label textBinded="name" y="0" x="136"/>
+			<label text="replacement" y="36" x="0"/>
+			<label text="data" y="82" x="52"/>
+			</labels>
+			<ports>
+			<pointPort y="65" type="P54" x="100"/>
+			<pointPort y="110" type="P55" x="100"/>
+			<pointPort y="80" type="P56" x="200"/>
+			<pointPort y="130" type="P57" x="165"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="time" name="time" type="int">
+				<default>10</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="inhibitor" name="Inhibitor">
+		<graphics>
+			<picture sizex="100" sizey="100">
 			<image y2="100" name="images/inhibition.svg" x2="100" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label textBinded="time" y="70" x="20"/>
 			<label textBinded="name" y="-30" x="30"/>
 			<label text="data" y="50" x="-40"/>
 			<label text="time" y="105" x="50"/>
 			<label text="stop" y="5" x="-40"/>
-                    </labels>
-                    <ports>
-			<pointPort y="30" type="NonTyped" x="2"/>
-			<pointPort y="80" type="NonTyped" x="2"/>
-			<pointPort y="45" type="NonTyped" x="100"/>
-			<pointPort y="100" type="NonTyped" x="50"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="time" name="time" type="int">
-                            <default>10</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="concrete input port" name="ConcreteInputPort">
-		<graphics>
-		<picture sizex="100" sizey="115">
-		    <image y2="115" name="images/portVarIN.svg" x2="100" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-			<label textBinded="portName" y="80" x="10"/>
-                    </labels>
-                    <ports>
-			<pointPort y="16" type="NonTyped" x="90"/>
-			<pointPort y="65" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
-			    <property displayedName="port name" name="portName" type="allTRIKWritablePorts">
-				<default>M1</default>
-			    </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="concrete output port" name="ConcreteOutputPort">
-		<graphics>
-		    <picture sizex="100" sizey="115">
-			<image y2="115" name="images/portVarOUT.svg" x2="100" x1="0" y1="0"/>
-		    </picture>
-		    <labels>
-			<label textBinded="portName" y="80" x="10"/>
-		    </labels>
-		    <ports>
-			<pointPort y="16" type="NonTyped" x="10"/>
-			<pointPort y="65" type="NonTyped" x="98"/>
-		    </ports>
-		    <nonResizeable/>
+			</labels>
+			<ports>
+			<pointPort y="30" type="P58" x="2"/>
+			<pointPort y="80" type="P59" x="2"/>
+			<pointPort y="45" type="P60" x="100"/>
+			<pointPort y="100" type="P61" x="50"/>
+			</ports>
+			<nonResizeable/>
 		</graphics>
 		<logic>
-		    <container/>
-		    <properties>
-		    <property displayedName="port name" name="portName" type="allTRIKReadPorts">
-			<default>A1</default>
-		    </property>
-		    </properties>
-		    <generalizations>
+			<container/>
+			<properties>
+			<property displayedName="time" name="time" type="int">
+				<default>10</default>
+			</property>
+			</properties>
+			<generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
-		    </generalizations>
-		    <explodesTo/>
+			</generalizations>
+			<explodesTo/>
 		</logic>
-	    </node>
-            <node displayedName="PlayTone" name="PlayTone">
-                <graphics>
-                    <picture sizex="103" sizey="116">
+		</node>
+		<node displayedName="concrete input port" name="ConcreteInputPort">
+		<graphics>
+		<picture sizex="100" sizey="115">
+			<image y2="115" name="images/portVarIN.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="portName" y="80" x="10"/>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P62" x="90"/>
+			<pointPort y="65" type="P63" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+				<property displayedName="port name" name="portName" type="allTRIKWritablePorts">
+				<default>M1</default>
+				</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="concrete output port" name="ConcreteOutputPort">
+		<graphics>
+			<picture sizex="100" sizey="115">
+			<image y2="115" name="images/portVarOUT.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="portName" y="80" x="10"/>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P64" x="10"/>
+			<pointPort y="65" type="P65" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="port name" name="portName" type="allTRIKReadPorts">
+			<default>A1</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="PlayTone" name="PlayTone">
+		<graphics>
+			<picture sizex="103" sizey="116">
 			<image y2="114" x2="101" name="images/playTone.svg" x1="2" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="file" y="85" x="9"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="97" type="NonTyped" x="2"/>
-                        <pointPort y="15" type="NonTyped" x="14"/>
-                        <pointPort y="18" type="NonTyped" x="88"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="file name" name="file" type="string"/>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="Motors" name="Motors">
-                <graphics>
-                    <picture sizex="101" sizey="150">
+			</picture>
+			<labels>
+			<label textBinded="file" y="85" x="9"/>
+			</labels>
+			<ports>
+			<pointPort y="97" type="P66" x="2"/>
+			<pointPort y="15" type="P67" x="14"/>
+			<pointPort y="18" type="P68" x="88"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="file name" name="file" type="string"/>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Motors" name="Motors">
+		<graphics>
+			<picture sizex="101" sizey="150">
 			<image y2="114" x2="99" name="images/motors_.svg" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="124" x="28"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="124" x="28"/>
 			<label y="15" text="M1" x="-30"/>
 			<label y="40" text="M2" x="-30"/>
 			<label y="65" text="M3" x="-30"/>
 			<label y="90" text="M4" x="-30"/>
-                    </labels>
-                    <ports>
-			<pointPort y="25" type="NonTyped" x="2"/>
-			<pointPort y="50" type="NonTyped" x="2"/>
-                        <pointPort y="16" type="NonTyped" x="90"/>
-			<pointPort y="75" type="NonTyped" x="2"/>
-			<pointPort y="100" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="synchronized" name="synch" type="bool">
-                            <default>false</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="servo" name="Servo">
-                <graphics>
-                    <picture sizex="102" sizey="151">
+			</labels>
+			<ports>
+			<pointPort y="25" type="P69" x="2"/>
+			<pointPort y="50" type="P70" x="2"/>
+			<pointPort y="16" type="P71" x="90"/>
+			<pointPort y="75" type="P72" x="2"/>
+			<pointPort y="100" type="P73" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="synchronized" name="synch" type="bool">
+				<default>false</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="servo" name="Servo">
+		<graphics>
+			<picture sizex="102" sizey="151">
 			<image y2="114" x2="100" name="images/servo.svg" x1="1" y1="0"/>
-		    </picture>
-		    <labels>
+			</picture>
+			<labels>
 			<label textBinded="name" y="124" x="28"/>
 			<label y="15" text="S1" x="-30"/>
 			<label y="40" text="S2" x="-30"/>
 			<label y="65" text="S3" x="-30"/>
 			<label y="90" text="S4" x="-30"/>
-		    </labels>
-		    <ports>
-			<pointPort y="25" type="NonTyped" x="2"/>
-			<pointPort y="50" type="NonTyped" x="2"/>
-			<pointPort y="75" type="NonTyped" x="2"/>
-			<pointPort y="100" type="NonTyped" x="2"/>
-			<pointPort y="16" type="NonTyped" x="90"/>
-		    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
+			</labels>
+			<ports>
+			<pointPort y="25" type="P74" x="2"/>
+			<pointPort y="50" type="P75" x="2"/>
+			<pointPort y="75" type="P76" x="2"/>
+			<pointPort y="100" type="P77" x="2"/>
+			<pointPort y="16" type="P78" x="90"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
 			<properties>
-			    <property displayedName="synchronized" name="synch" type="bool">
+				<property displayedName="synchronized" name="synch" type="bool">
 				<default>false</default>
-			    </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="Encoders" name="Encoders">
-                <graphics>
-		    <picture sizex="100" sizey="100">
+				</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Encoders" name="Encoders">
+		<graphics>
+			<picture sizex="100" sizey="100">
 			<image y2="100" x2="100" name="images/encoders.svg" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="121" x="27"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="121" x="27"/>
 			<label y="-10" text="E1" x="-30"/>
 			<label y="25" text="E2" x="-30"/>
 			<label y="55" text="E3" x="-30"/>
 			<label y="85" text="E4" x="-30"/>
-                    </labels>
-                    <ports>
-			<pointPort y="5" type="NonTyped" x="2"/>
-			<pointPort y="35" type="NonTyped" x="2"/>
-			<pointPort y="65" type="NonTyped" x="2"/>
-			<pointPort y="95" type="NonTyped" x="2"/>
-			<pointPort y="5" type="NonTyped" x="98"/>
-			<pointPort y="35" type="NonTyped" x="98"/>
-			<pointPort y="65" type="NonTyped" x="98"/>
-			<pointPort y="95" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="say smth." name="SayNode">
-                <graphics>
-                    <picture sizex="144" sizey="145">
+			</labels>
+			<ports>
+			<pointPort y="5" type="P79" x="2"/>
+			<pointPort y="35" type="P80" x="2"/>
+			<pointPort y="65" type="P81" x="2"/>
+			<pointPort y="95" type="P82" x="2"/>
+			<pointPort y="5" type="P83" x="98"/>
+			<pointPort y="35" type="P84" x="98"/>
+			<pointPort y="65" type="P85" x="98"/>
+			<pointPort y="95" type="P86" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="say smth." name="SayNode">
+		<graphics>
+			<picture sizex="144" sizey="145">
 			<image y2="114" name="images/say.svg" x2="142" x1="43" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="119" x="71"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="119" x="71"/>
 			<label text="text" y="28" x="0"/>
-                    </labels>
-                    <ports>
-			<pointPort y="16" type="NonTyped" x="133"/>
-			<pointPort y="62" type="NonTyped" x="44"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P87" x="133"/>
+			<pointPort y="62" type="P88" x="44"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="Evaluate" name="Evaluate" type="bool">
-			    <default>false</default>
+				<default>false</default>
 			</property>
-		    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="turn_on_led" name="LedNode">
-                <graphics>
-                    <picture sizex="156" sizey="151">
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="turn_on_led" name="LedNode">
+		<graphics>
+			<picture sizex="156" sizey="151">
 			<image y2="114" x2="154" name="images/diod.svg" x1="55" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label y="22" text="color" x="0"/>
-                        <label textBinded="name" y="125" x="79"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="16" type="NonTyped" x="145"/>
-			<pointPort y="63" type="NonTyped" x="56"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="system_call" name="SystemCallNode">
-                <graphics>
-                    <picture sizex="180" sizey="157">
+			</picture>
+			<labels>
+			<label y="22" text="color" x="0"/>
+			<label textBinded="name" y="125" x="79"/>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P89" x="145"/>
+			<pointPort y="63" type="P90" x="56"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="system_call" name="SystemCallNode">
+		<graphics>
+			<picture sizex="180" sizey="157">
 			<image y2="122" name="images/code and ev.svg" x2="177" x1="78" y1="8"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label text="command" y="45" x="0"/>
 			<label textBinded="Command" y="60" x="94"/>
-                    </labels>
-                    <ports>
-			<pointPort y="24" type="NonTyped" x="87"/>
-			<pointPort y="24" type="NonTyped" x="167"/>
-			<pointPort y="73" type="NonTyped" x="80"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-			<property displayedName="Evaluate" name="Evaluate" type="bool">
-                            <default>false</default>
-                        </property>
-			<property displayedName="isCode" name="IsCode" type="bool">
-                            <default>false</default>
-                        </property>
-			<property displayedName="Command" name="Command" type="string">
-			    <default>reboot</default>
-			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="video stream" name="StreamingNode">
-		<graphics>
-		    <picture sizex="101" sizey="152">
-			<image y2="114" x2="99" name="images/streaming.svg" x1="0" y1="0"/>
-		    </picture>
-		    <labels>
-			<label textBinded="name" y="126" x="25"/>
-		    </labels>
-		    <ports>
-			<pointPort y="15" type="NonTyped" x="9"/>
-			<pointPort y="16" type="NonTyped" x="89"/>
-		    </ports>
-		    <nonResizeable/>
+			</labels>
+			<ports>
+			<pointPort y="24" type="P91" x="87"/>
+			<pointPort y="24" type="P92" x="167"/>
+			<pointPort y="73" type="P93" x="80"/>
+			</ports>
+			<nonResizeable/>
 		</graphics>
 		<logic>
-		    <container/>
-		    <generalizations>
+			<container/>
+			<properties>
+			<property displayedName="Evaluate" name="Evaluate" type="bool">
+				<default>false</default>
+			</property>
+			<property displayedName="isCode" name="IsCode" type="bool">
+				<default>false</default>
+			</property>
+			<property displayedName="Command" name="Command" type="string">
+				<default>reboot</default>
+			</property>
+			</properties>
+			<generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
-		    </generalizations>
-		    <explodesTo/>
+			</generalizations>
+			<explodesTo/>
 		</logic>
-	    </node>
-            <node displayedName="camera initialization" name="InitCamera">
-                <graphics>
-                    <picture sizex="101" sizey="147">
+		</node>
+		<node displayedName="video stream" name="StreamingNode">
+		<graphics>
+			<picture sizex="101" sizey="152">
+			<image y2="114" x2="99" name="images/streaming.svg" x1="0" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="126" x="25"/>
+			</labels>
+			<ports>
+			<pointPort y="15" type="P94" x="9"/>
+			<pointPort y="16" type="P95" x="89"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="camera initialization" name="InitCamera">
+		<graphics>
+			<picture sizex="101" sizey="147">
 			<image y2="116" x2="100" name="images/cameraOn.svg" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label textBinded="type" y="86" x="10"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="8"/>
-			<pointPort y="16" type="NonTyped" x="89"/>
-			<pointPort y="90" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
+			</labels>
+			<ports>
+			<pointPort y="15" type="P96" x="8"/>
+			<pointPort y="16" type="P97" x="89"/>
+			<pointPort y="90" type="P98" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="type:" name="type" type="VideoSensor">
-			    <default>Line</default>
+				<default>Line</default>
 			</property>
-		    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="object detector" name="DetectByVideo">
-                <graphics>
-		    <picture sizex="100" sizey="130">
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="object detector" name="DetectByVideo">
+		<graphics>
+			<picture sizex="100" sizey="130">
 			<image y2="116" x2="100" name="images/detectByCamera.svg" x1="0" y1="0"/>
-                    </picture>
-		    <labels>
+			</picture>
+			<labels>
 			<label y="86" textBinded="type" x="10"/>
-                    </labels>
-                    <ports>
-			<pointPort y="18" type="NonTyped" x="10"/>
-			<pointPort y="60" type="NonTyped" x="98"/>
-			<pointPort y="90" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-		    <properties>
+			</labels>
+			<ports>
+			<pointPort y="18" type="P99" x="10"/>
+			<pointPort y="60" type="P100" x="98"/>
+			<pointPort y="90" type="P101" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="type:" name="type" type="DetectableVideoSensor">
-			    <default>Line</default>
+				<default>Line</default>
 			</property>
-		    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="talk to others" name="MessageToRobot">
-                <graphics>
-                    <picture sizex="173" sizey="172">
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="talk to others" name="MessageToRobot">
+		<graphics>
+			<picture sizex="173" sizey="172">
 			<image y2="139" name="images/msgSend.svg" x2="160" x1="61" y1="25"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="0" x="76"/>
-                        <label text="send to" y="81" x="0"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="0" x="76"/>
+			<label text="send to" y="81" x="0"/>
 			<label textBinded="robotNum" y="102" x="75"/>
 			<label text="msg" y="29" x="18"/>
-                    </labels>
-                    <ports>
-			<pointPort y="41" type="NonTyped" x="156"/>
-                        <pointPort y="68" type="NonTyped" x="64"/>
-                        <pointPort y="114" type="NonTyped" x="64"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="robot number" name="robotNum" type="int">
-                            <default>0</default>
-			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="write to file" name="WriteToFile">
-                <graphics>
-                    <picture sizex="103" sizey="148">
-			<image y2="113" name="images/write to file.svg" x2="101" x1="3" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="fileName" y="57" x="10"/>
-                        <label textBinded="name" y="122" x="32"/>
-			<label textBinded="text" y="85" x="10"/>
-                    </labels>
-                    <ports>
-			<pointPort y="16" type="NonTyped" x="14"/>
-			<pointPort y="16" type="NonTyped" x="87"/>
-			<pointPort y="62" type="NonTyped" x="3"/>
-                        <pointPort y="97" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="file name" name="fileName" type="string">
-                            <default>fileName</default>
-			</property>
-			<property displayedName="text" name="text" type="string">
-			    <default>text</default>
-			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="read file" name="ReadFile">
-		<graphics>
-		    <picture sizex="101" sizey="148">
-			<image y2="114" x2="99" name="images/readFile.svg" x1="0" y1="0"/>
-		    </picture>
-		    <labels>
-			<label textBinded="name" y="122" x="30"/>
-			<label textBinded="fileName" y="82" x="9"/>
-		    </labels>
-		    <ports>
-			<pointPort y="17" type="NonTyped" x="11"/>
-			<pointPort y="17" type="NonTyped" x="92"/>
-			<pointPort y="96" type="NonTyped" x="2"/>
-			<pointPort y="62" type="NonTyped" x="99"/>
-		    </ports>
-		    <nonResizeable/>
+			</labels>
+			<ports>
+			<pointPort y="41" type="P102" x="156"/>
+			<pointPort y="68" type="P103" x="64"/>
+			<pointPort y="114" type="P104" x="64"/>
+			</ports>
+			<nonResizeable/>
 		</graphics>
 		<logic>
-		    <container/>
-		    <properties>
+			<container/>
+			<properties>
+			<property displayedName="robot number" name="robotNum" type="int">
+				<default>0</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="write to file" name="WriteToFile">
+		<graphics>
+			<picture sizex="103" sizey="148">
+			<image y2="113" name="images/write to file.svg" x2="101" x1="3" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="fileName" y="57" x="10"/>
+			<label textBinded="name" y="122" x="32"/>
+			<label textBinded="text" y="85" x="10"/>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P105" x="14"/>
+			<pointPort y="16" type="P106" x="87"/>
+			<pointPort y="62" type="P107" x="3"/>
+			<pointPort y="97" type="P108" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="file name" name="fileName" type="string">
+				<default>fileName</default>
+			</property>
+			<property displayedName="text" name="text" type="string">
+				<default>text</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="read file" name="ReadFile">
+		<graphics>
+			<picture sizex="101" sizey="148">
+			<image y2="114" x2="99" name="images/readFile.svg" x1="0" y1="0"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="122" x="30"/>
+			<label textBinded="fileName" y="82" x="9"/>
+			</labels>
+			<ports>
+			<pointPort y="17" type="P109" x="11"/>
+			<pointPort y="17" type="P110" x="92"/>
+			<pointPort y="96" type="P111" x="2"/>
+			<pointPort y="62" type="P112" x="99"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="file for read" name="fileName" type="string">
-			    <default>file.txt</default>
+				<default>file.txt</default>
 			</property>
 			<property displayedName="by words" name="isbyWords" type="bool">
-			    <default>true</default>
+				<default>true</default>
 			</property>
-		    </properties>
-		    <generalizations>
+			</properties>
+			<generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
-		    </generalizations>
-		    <explodesTo/>
+			</generalizations>
+			<explodesTo/>
 		</logic>
-	    </node>
-            <node displayedName="remove file" name="RemoveFile">
-                <graphics>
-                    <picture sizex="101" sizey="148">
+		</node>
+		<node displayedName="remove file" name="RemoveFile">
+		<graphics>
+			<picture sizex="101" sizey="148">
 			<image y2="114" x2="99" name="images/filetotrash.svg" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="122" x="30"/>
+			</picture>
+			<labels>
+			<label textBinded="name" y="122" x="30"/>
 			<label textBinded="fileName" y="82" x="9"/>
-                    </labels>
-                    <ports>
-			<pointPort y="17" type="NonTyped" x="11"/>
-			<pointPort y="17" type="NonTyped" x="92"/>
-                        <pointPort y="96" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
+			</labels>
+			<ports>
+			<pointPort y="17" type="P113" x="11"/>
+			<pointPort y="17" type="P114" x="92"/>
+			<pointPort y="96" type="P115" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="file for remove" name="fileName" type="string">
-                            <default>file.txt</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="delay filter" name="DelayFilterNode">
-                <graphics>
-		    <picture sizex="100" sizey="100">
+				<default>file.txt</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="delay filter" name="DelayFilterNode">
+		<graphics>
+			<picture sizex="100" sizey="100">
 			<image y2="100" name="images/delay.svg" x2="100" x1="0" y1="0"/>
-		    </picture>
-		    <labels>
+			</picture>
+			<labels>
 			<label text="dispatch time" y="-28" x="-98"/>
 			<label text="count filter" y="22" x="-88"/>
 			<label text="vars[]" y="110" x="28"/>
@@ -1184,476 +1514,476 @@
 			<label textBinded="dispatchTime" y="3" x="6"/>
 			<label text="failure out" y="-24" x="103"/>
 			<label textBinded="count" y="31" x="10"/>
-		    </labels>
-                    <ports>
-			<pointPort y="10" type="NonTyped" x="0"/>
-			<pointPort y="20" type="NonTyped" x="98"/>
-			<pointPort y="50" type="NonTyped" x="0"/>
-			<pointPort y="70" type="NonTyped" x="98"/>
-			<pointPort y="85" type="NonTyped" x="0"/>
-			<pointPort y="95" type="NonTyped" x="85"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
+			</labels>
+			<ports>
+			<pointPort y="10" type="P116" x="0"/>
+			<pointPort y="20" type="P117" x="98"/>
+			<pointPort y="50" type="P118" x="0"/>
+			<pointPort y="70" type="P119" x="98"/>
+			<pointPort y="85" type="P120" x="0"/>
+			<pointPort y="95" type="P121" x="85"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="time before first send" name="preSendTime" type="int">
-                            <default>0</default>
-                        </property>
+				<default>0</default>
+			</property>
 			<property displayedName="condition" name="condition" type="string">
-                            <default>true</default>
-                        </property>
-                        <property displayedName="count filter" name="count" type="int">
-                            <default>100</default>
-                        </property>
-                        <property displayedName="dispatch time" name="dispatchTime" type="int">
-                            <default>30</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="wait for" name="WaitNode">
-                <graphics>
-                    <picture sizex="143" sizey="149">
+				<default>true</default>
+			</property>
+			<property displayedName="count filter" name="count" type="int">
+				<default>100</default>
+			</property>
+			<property displayedName="dispatch time" name="dispatchTime" type="int">
+				<default>30</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="wait for" name="WaitNode">
+		<graphics>
+			<picture sizex="143" sizey="149">
 			<image y2="114" name="images/wait.svg" x2="141" x1="42" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label text="time" y="123" x="30"/>
-                        <label textBinded="time" y="76" x="58"/>
+			<label textBinded="time" y="76" x="58"/>
 			<label text="data" y="25" x="0"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="50"/>
-			<pointPort y="15" type="NonTyped" x="130"/>
-			<pointPort y="60" type="NonTyped" x="40"/>
-			<pointPort y="60" type="NonTyped" x="140"/>
-			<pointPort y="113" type="NonTyped" x="90"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="time" name="time" type="int">
-                            <default>300</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="message receiver" name="ReceiveMsg">
-                <graphics>
-		    <picture sizex="101" sizey="115">
+			</labels>
+			<ports>
+			<pointPort y="15" type="P122" x="50"/>
+			<pointPort y="15" type="P123" x="130"/>
+			<pointPort y="60" type="P124" x="40"/>
+			<pointPort y="60" type="P125" x="140"/>
+			<pointPort y="113" type="P126" x="90"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="time" name="time" type="int">
+				<default>300</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="message receiver" name="ReceiveMsg">
+		<graphics>
+			<picture sizex="101" sizey="115">
 			<image y2="115" name="images/msg.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-		    <labels>
-                    </labels>
-                    <ports>
-			<pointPort y="19" type="NonTyped" x="10"/>
-			<pointPort y="65" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="gamepad" name="Gamepad">
-                <graphics>
-                    <picture sizex="157" sizey="147">
+			</picture>
+			<labels>
+			</labels>
+			<ports>
+			<pointPort y="19" type="P127" x="10"/>
+			<pointPort y="65" type="P128" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="gamepad" name="Gamepad">
+		<graphics>
+			<picture sizex="157" sizey="147">
 			<image y2="114" name="images/pult1.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label text="pad" y="0" x="105"/>
 			<label text="button" y="35" x="105"/>
 			<label text="wheel" y="70" x="105"/>
 			<label textBinded="name" y="121" x="26"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="10"/>
-			<pointPort y="30" type="NonTyped" x="100"/>
-			<pointPort y="70" type="NonTyped" x="100"/>
-			<pointPort y="110" type="NonTyped" x="100"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="paintSettings" name="PaintSettings">
-                <graphics>
-                    <picture sizex="136" sizey="116">
+			</labels>
+			<ports>
+			<pointPort y="15" type="P129" x="10"/>
+			<pointPort y="30" type="P130" x="100"/>
+			<pointPort y="70" type="P131" x="100"/>
+			<pointPort y="110" type="P132" x="100"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="paintSettings" name="PaintSettings">
+		<graphics>
+			<picture sizex="136" sizey="116">
 			<image y2="114" name="images/paintSettings.svg" x2="101" x1="2" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="width" y="54" x="11"/>
-                        <label textBinded="backgroundColor" y="85" x="10"/>
-                        <label textBinded="color" y="22" x="13"/>
-                    </labels>
-                    <ports>
-			<pointPort y="17" type="NonTyped" x="16"/>
-			<pointPort y="16" type="NonTyped" x="89"/>
-			<pointPort y="35" type="NonTyped" x="2"/>
-			<pointPort y="68" type="NonTyped" x="2"/>
-			<pointPort y="96" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
+			</picture>
+			<labels>
+			<label textBinded="width" y="54" x="11"/>
+			<label textBinded="backgroundColor" y="85" x="10"/>
+			<label textBinded="color" y="22" x="13"/>
+			</labels>
+			<ports>
+			<pointPort y="17" type="P133" x="16"/>
+			<pointPort y="16" type="P134" x="89"/>
+			<pointPort y="35" type="P135" x="2"/>
+			<pointPort y="68" type="P136" x="2"/>
+			<pointPort y="96" type="P137" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="brush color" name="color" type="Color">
-                            <default>black</default>
-                        </property>
-                        <property displayedName="brush width" name="width" type="int">
-                            <default>1</default>
-                        </property>
+				<default>black</default>
+			</property>
+			<property displayedName="brush width" name="width" type="int">
+				<default>1</default>
+			</property>
 			<property displayedName="background color" name="backgroundColor" type="BackgroundColor">
-                            <default>white</default>
-                        </property>
-			<property displayedName="redraw" name="Redraw" type="bool">
-			    <default>true</default>
+				<default>white</default>
 			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="shape" name="ShapePainter">
-                <graphics>
-                    <picture sizex="169" sizey="116">
+			<property displayedName="redraw" name="Redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="shape" name="ShapePainter">
+		<graphics>
+			<picture sizex="169" sizey="116">
 			<image y2="114" name="images/shape.svg" x2="167" x1="68" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="shapeType" y="78" x="73"/>
-                        <label text="config[]" y="12" x="0"/>
-                    </labels>
-                    <ports>
-			<pointPort y="14" type="NonTyped" x="156"/>
-                        <pointPort y="46" type="NonTyped" x="69"/>
-                        <pointPort y="93" type="NonTyped" x="69"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="shape type" name="shapeType" type="ShapeType">
-                            <default>point</default>
-                        </property>
-			<property displayedName="redraw" name="Redraw" type="bool">
-			    <default>true</default>
+			</picture>
+			<labels>
+			<label textBinded="shapeType" y="78" x="73"/>
+			<label text="config[]" y="12" x="0"/>
+			</labels>
+			<ports>
+			<pointPort y="14" type="P138" x="156"/>
+			<pointPort y="46" type="P139" x="69"/>
+			<pointPort y="93" type="P140" x="69"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="shape type" name="shapeType" type="ShapeType">
+				<default>point</default>
 			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="smilePainter" name="SmilePainter">
-                <graphics>
-                    <picture sizex="101" sizey="116">
+			<property displayedName="redraw" name="Redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="smilePainter" name="SmilePainter">
+		<graphics>
+			<picture sizex="101" sizey="116">
 			<image y2="114" name="images/smile.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="isHappy" y="75" x="11"/>
-                    </labels>
-                    <ports>
-			<pointPort y="18" type="NonTyped" x="10"/>
-			<pointPort y="16" type="NonTyped" x="88"/>
-			<pointPort y="88" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="happy smile:" name="isHappy" type="bool">
-                            <default>true</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-	    <node displayedName="text" name="TextOnScreen">
-                <graphics>
-                    <picture sizex="170" sizey="145">
+			</picture>
+			<labels>
+			<label textBinded="isHappy" y="75" x="11"/>
+			</labels>
+			<ports>
+			<pointPort y="18" type="P141" x="10"/>
+			<pointPort y="16" type="P142" x="88"/>
+			<pointPort y="88" type="P143" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="happy smile:" name="isHappy" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="text" name="TextOnScreen">
+		<graphics>
+			<picture sizex="170" sizey="145">
 			<image y2="114" name="images/text.svg" x2="168" x1="69" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="text" y="77" x="77"/>
-                        <label textBinded="name" y="119" x="92"/>
-                        <label text="coords[]" y="14" x="0"/>
-                    </labels>
-                    <ports>
-			<pointPort y="16" type="NonTyped" x="160"/>
-			<pointPort y="51" type="NonTyped" x="70"/>
-                        <pointPort y="91" type="NonTyped" x="70"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="text" name="text" type="string">
-                            <default>default text</default>
-                        </property>
+			</picture>
+			<labels>
+			<label textBinded="text" y="77" x="77"/>
+			<label textBinded="name" y="119" x="92"/>
+			<label text="coords[]" y="14" x="0"/>
+			</labels>
+			<ports>
+			<pointPort y="16" type="P144" x="160"/>
+			<pointPort y="51" type="P145" x="70"/>
+			<pointPort y="91" type="P146" x="70"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="text" name="text" type="string">
+				<default>default text</default>
+			</property>
 			<property displayedName="Evaluate" name="Evaluate" type="bool">
-			    <default>false</default>
+				<default>false</default>
 			</property>
 			<property displayedName="Redraw" name="Redraw" type="bool">
-			    <default>true</default>
+				<default>true</default>
 			</property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="clear screen" name="ClearNode">
-                <graphics>
-                    <picture sizex="101" sizey="147">
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="clear screen" name="ClearNode">
+		<graphics>
+			<picture sizex="101" sizey="147">
 			<image y2="114" name="images/clearScreen.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="121" x="25"/>
-                    </labels>
-                    <ports>
-			<pointPort y="17" type="NonTyped" x="9"/>
-                        <pointPort y="15" type="NonTyped" x="89"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="pen up or down" name="Pen">
-                <graphics>
-                    <picture sizex="176" sizey="151">
+			</picture>
+			<labels>
+			<label textBinded="name" y="121" x="25"/>
+			</labels>
+			<ports>
+			<pointPort y="17" type="P147" x="9"/>
+			<pointPort y="15" type="P148" x="89"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="pen up or down" name="Pen">
+		<graphics>
+			<picture sizex="176" sizey="151">
 			<image y2="114" name="images/pen up down.svg" x2="174" x1="75" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="125" x="99"/>
-                        <label textBinded="color" y="74" x="84"/>
-                        <label text="up/down" y="2" x="0"/>
-                    </labels>
-                    <ports>
-			<pointPort y="17" type="NonTyped" x="164"/>
-			<pointPort y="35" type="NonTyped" x="77"/>
-			<pointPort y="90" type="NonTyped" x="77"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
-                        <property displayedName="pen color" name="color" type="Color">
-                            <default>black</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstactPainter"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="fork" name="ForkNode">
-                <graphics>
-                    <picture sizex="117" sizey="139">
+			</picture>
+			<labels>
+			<label textBinded="name" y="125" x="99"/>
+			<label textBinded="color" y="74" x="84"/>
+			<label text="up/down" y="2" x="0"/>
+			</labels>
+			<ports>
+			<pointPort y="17" type="P149" x="164"/>
+			<pointPort y="35" type="P150" x="77"/>
+			<pointPort y="90" type="P151" x="77"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="pen color" name="color" type="Color">
+				<default>black</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="fork" name="ForkNode">
+		<graphics>
+			<picture sizex="117" sizey="139">
 			<image y2="117" name="images/fork.svg" x2="100" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label textBinded="name" y="120" x="34"/>
-                    </labels>
-                    <ports>
-			<pointPort y="15" type="NonTyped" x="15"/>
-			<pointPort y="65" type="NonTyped" x="100"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="end fork" name="EndFork">
-                <graphics>
-                    <picture sizex="100" sizey="142">
+			</labels>
+			<ports>
+			<pointPort y="15" type="P152" x="15"/>
+			<pointPort y="65" type="P153" x="100"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="end fork" name="EndFork">
+		<graphics>
+			<picture sizex="100" sizey="142">
 			<image y2="113" name="images/join.svg" x2="98" x1="0" y1="0"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="116" x="28"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="64" type="NonTyped" x="2"/>
-                        <pointPort y="16" type="NonTyped" x="88"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node abstract="true" name="AbstactPainter">
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="Robots behaviour diagram" name="RobotsBehaviourDiagram">
-                <graphics>
-                    <picture sizex="101" sizey="100">
+			</picture>
+			<labels>
+			<label textBinded="name" y="116" x="28"/>
+			</labels>
+			<ports>
+			<pointPort y="64" type="P154" x="2"/>
+			<pointPort y="16" type="P155" x="88"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node abstract="true" name="AbstactPainter">
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Robots behaviour diagram" name="RobotsBehaviourDiagram">
+		<graphics>
+			<picture sizex="101" sizey="100">
 			<image y2="98" name="images/robotDiagram.svg" x2="99" x1="0" y1="0"/>
-                    </picture>
-                    <labels/>
-                    <ports/>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container>
-                        <contains type="AbstractNode"/>
-                        <properties/>
-                    </container>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node name="RobotsBehaviourSubprogram">
-                <graphics>
-                    <picture sizex="217" sizey="129">
-                        <rectangle y2="127" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="0"/>
-                        <line y2="30" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="29"/>
-                    </picture>
-                    <labels/>
-                    <ports/>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="RobotsBehaviourDiagram"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node abstract="true" name="AbstractNode">
-                <logic>
-                    <container/>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="sensor variable" name="SensorVar">
-                <graphics>
-                    <picture sizex="101" sizey="163">
+			</picture>
+			<labels/>
+			<ports/>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container>
+			<contains type="AbstractNode"/>
+			<properties/>
+			</container>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node name="RobotsBehaviourSubprogram">
+		<graphics>
+			<picture sizex="217" sizey="129">
+			<rectangle y2="127" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="0"/>
+			<line y2="30" fill-style="none" stroke-style="solid" stroke="#ff000000" stroke-width="0" x2="215" fill="#ffffffff" x1="0" y1="29"/>
+			</picture>
+			<labels/>
+			<ports/>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="RobotsBehaviourDiagram"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node abstract="true" name="AbstractNode">
+		<logic>
+			<container/>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="sensor variable" name="SensorVar">
+		<graphics>
+			<picture sizex="101" sizey="163">
 			<image y2="131" name="images/sensorVar.svg" x2="99" x1="0" y1="17"/>
-                    </picture>
-                    <labels>
+			</picture>
+			<labels>
 			<label textBinded="VarName" y="137" x="12"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="32" type="NonTyped" x="12"/>
-                        <pointPort y="80" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <properties>
+			</labels>
+			<ports>
+			<pointPort y="32" type="P156" x="12"/>
+			<pointPort y="80" type="P157" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
 			<property displayedName="var name" name="VarName" type="Line">
-                            <default>accelerometer</default>
-                        </property>
-                    </properties>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="interflowing" name="Interflowing">
-                <graphics>
-                    <picture sizex="102" sizey="133">
+				<default>accelerometer</default>
+			</property>
+			</properties>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="interflowing" name="Interflowing">
+		<graphics>
+			<picture sizex="102" sizey="133">
 			<image y2="131" name="images/intersect.svg" x2="100" x1="1" y1="30"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="0" x="26"/>
-                    </labels>
-                    <ports>
-                        <pointPort y="54" type="NonTyped" x="2"/>
-                        <pointPort y="78" type="NonTyped" x="99"/>
-			<pointPort y="109" type="NonTyped" x="2"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-            <node displayedName="Separator" name="Separator">
-                <graphics>
-                    <picture sizex="102" sizey="132">
+			</picture>
+			<labels>
+			<label textBinded="name" y="0" x="26"/>
+			</labels>
+			<ports>
+			<pointPort y="54" type="P158" x="2"/>
+			<pointPort y="78" type="P159" x="99"/>
+			<pointPort y="109" type="P160" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node displayedName="Separator" name="Separator">
+		<graphics>
+			<picture sizex="102" sizey="132">
 			<image y2="130" name="images/div.svg" x2="99" x1="0" y1="29"/>
-                    </picture>
-                    <labels>
-                        <label textBinded="name" y="0" x="29"/>
-                    </labels>
-                    <ports>
-			<pointPort y="80" type="NonTyped" x="2"/>
-			<pointPort y="56" type="NonTyped" x="98"/>
-                        <pointPort y="101" type="NonTyped" x="98"/>
-                    </ports>
-                    <nonResizeable/>
-                </graphics>
-                <logic>
-                    <container/>
-                    <generalizations>
-                        <parent overrides="" parentName="AbstractNode"/>
-                    </generalizations>
-                    <explodesTo/>
-                </logic>
-            </node>
-        </graphicTypes>
+			</picture>
+			<labels>
+			<label textBinded="name" y="0" x="29"/>
+			</labels>
+			<ports>
+			<pointPort y="80" type="P161" x="2"/>
+			<pointPort y="56" type="P162" x="98"/>
+			<pointPort y="101" type="P163" x="98"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<generalizations>
+			<parent overrides="" parentName="AbstractNode"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+	</graphicTypes>
 		<palette sorted="false">
 			<group name="ControlBlocks">
 				<element name="ForkNode"/>
@@ -1708,5 +2038,5 @@
 				<element name="SmilePainter"/>
 			</group>
 	</palette>
-    </diagram>
+	</diagram>
 </metamodel>
