@@ -1,6 +1,7 @@
 #include "DFLoopBlock.h"
 
 #include <QApplication>
+#include <QtCore/QTime>
 
 
 using namespace dataFlowBlocks::details;
@@ -28,6 +29,10 @@ void DFLoopBlock::init()
 	from = intProperty("start_border");
 	to = intProperty("end_border");
 	step = intProperty("increment");
+	timeForDispatch  = intProperty("time");
+	if (timeForDispatch <= 0) {
+		error("Dispatch time for Loop must be greater than zero");
+	}
 }
 
 void DFLoopBlock::handleData()
@@ -48,9 +53,13 @@ void DFLoopBlock::handleData()
 		propertyFromPort("CF_IN");
 		currentCounter = from;
 		while (!isDestoyed && currentCounter <= to) {
+			QTime pendingTime = QTime::currentTime().addMSecs(timeForDispatch);
+			while (!isDestoyed && QTime::currentTime() < pendingTime) {
+				QCoreApplication::processEvents(QEventLoop::AllEvents, timeForDispatch / 3);
+			}
+
 			emit newDataInFlow(currentCounter, portAssociatedWithProperty["OUT"]);
 			currentCounter += step;
-			QCoreApplication::processEvents();
 		}
 
 		if (isDestoyed) {

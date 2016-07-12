@@ -221,7 +221,7 @@
 		</enum>
 	</nonGraphicTypes>
 	<graphicTypes>
-		<node description="при приходе любых данных на порт программа завершается" displayedName="end_point" name="FinalNode">
+		<node description="При приходе любых данных на порт программа завершается" displayedName="Stop" name="DFFinalBlock">
 		<graphics>
 			<picture sizex="101" sizey="103">
 			<image y2="100" name="images/exit1.svg" x2="99" x1="0" y1="2"/>
@@ -243,7 +243,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<edge description="связывает блоки передачей данных, либо пустых данных в качестве потока управления" path="" name="Edge">
+		<edge description="Связывает блоки передачей данных, либо пустых данных в качестве потока управления" path="" name="Edge">
 		<graphics>
 			<lineType type="solidLine"/>
 			<shape type="broken"/>
@@ -588,7 +588,7 @@
 			<dividability isDividable="false"/>
 		</logic>
 		</edge>
-		<node displayedName="Function" name="Function">
+		<node description="Выполняет текстовые команды построчно, вычесления верхних строк можно переиспользовать, если выполнение не синхронно, то каждая строка выполняется независимо." displayedName="Text programming" name="DFFunctionBlock">
 		<graphics>
 			<picture sizex="284" sizey="340">
 			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
@@ -645,23 +645,22 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="Condition" name="IfNode">
+		<node description="Реализация условной развилки, данные передаются дальше по соответствующим портам, можно использовать переменные" displayedName="If" name="DFIfBlock">
 		<graphics>
-			<picture sizex="195" sizey="125">
-			<image y2="99" name="images/condition.svg" x2="142" x1="43" y1="0"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/condition.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label text="FALSE" y="56" x="145"/>
-			<label text="TRUE" y="3" x="145"/>
-			<label text="data" y="9" x="0"/>
-			<label textBinded="condition" y="36" x="49"/>
-			<label text="vars[]" y="99" x="45"/>
+			<label text="FALSE" y="50" x="101"/>
+			<label text="TRUE" y="5" x="101"/>
+			<label text="data" y="15" x="-40"/>
+			<label textBinded="condition" y="35" x="8"/>
 			</labels>
 			<ports>
-			<pointPort y="48" type="P19" x="44"/>
-			<pointPort y="97" type="P20" x="96"/>
-			<pointPort y="36" type="P21" x="141"/>
-			<pointPort y="88" type="P22" x="141"/>
+			<pointPort y="0" type="P19" x="10"/>
+			<pointPort y="48" type="P20" x="1"/>
+			<pointPort y="36" type="P21" x="99"/>
+			<pointPort y="80" type="P22" x="99"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
@@ -678,7 +677,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="Switch" name="Switch">
+		<node description="Реализация множественного выбора, можно может работать до первого успешного условия или проверять по всем" displayedName="Switch" name="DFSwitchBlock">
 		<graphics>
 			<picture sizex="284" sizey="340">
 			<image y2="338" name="images/function switch long11.svg" x2="278" x1="31" y1="20"/>
@@ -726,7 +725,6 @@
 			<property name="O4" type="string"/>
 			<property name="O5" type="string"/>
 
-
 			<property name="cond0" type="string">
 				<default>data>0</default>
 			</property>
@@ -747,7 +745,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="Loop" name="Loop">
+		<node description="Реализация цикла" displayedName="Loop" name="DFLoopBlock">
 		<graphics>
 			<picture sizex="106" sizey="116">
 			<image y2="114" name="images/loop.svg" x2="102" x1="3" y1="0"/>
@@ -782,6 +780,9 @@
 			<property displayedName="border" name="end_border" type="int">
 				<default>10</default>
 			</property>
+			<property displayedName="dispatch time (ms)" name="time" type="int">
+				<default>100</default>
+			</property>
 			</properties>
 			<generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
@@ -789,25 +790,25 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="subprogram call" name="SubprogramCall">
+		<node description="Подпрограмма -- выделение части диаграммы в новый блок, для связи с портами используются специальные блоки INPort OutPort" displayedName="User block" name="DFUserBlock">
 		<graphics>
-			<picture sizex="144" sizey="140">
-			<image y2="114" name="images/subprogramCall.svg" x2="118" x1="19" y1="0"/>
+			<picture sizex="100" sizey="115">
+			<image y2="115" name="images/subprogramCall.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label textBinded="name" y="114" x="35"/>
-			<label y="25" text="I0" x="0"/>
-			<label y="70" text="I1" x="0"/>
-			<label y="25" text="O0" x="122"/>
-			<label y="70" text="O1" x="122"/>
+			<label textBinded="name" y="114" x="20"/>
+			<label y="25" text="I0" x="-15"/>
+			<label y="70" text="I1" x="-15"/>
+			<label y="25" text="O0" x="102"/>
+			<label y="70" text="O1" x="102"/>
 			</labels>
 			<ports>
-			<pointPort y="15" type="P38" x="35"/>
-			<pointPort y="50" type="P39" x="20"/>
-			<pointPort y="50" type="P40" x="120"/>
-			<pointPort y="95" type="P41" x="20"/>
-			<pointPort y="95" type="P42" x="120"/>
-			<pointPort y="15" type="P43" x="105"/>
+			<pointPort y="15" type="P38" x="10"/>
+			<pointPort y="50" type="P39" x="1"/>
+			<pointPort y="50" type="P40" x="99"/>
+			<pointPort y="95" type="P41" x="1"/>
+			<pointPort y="95" type="P42" x="99"/>
+			<pointPort y="15" type="P43" x="90"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
@@ -818,10 +819,10 @@
 			</explodesTo>
 		</logic>
 		</node>
-		<node displayedName="Input port" name="InPort">
+		<node description="Соответсвует входным портам пользовательского блока" displayedName="Input port" name="DFInPortBlock">
 		<graphics>
-			<picture sizex="103" sizey="137">
-			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/io_1.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
 			<label textBinded="identifier" y="11" x="18"/>
@@ -845,10 +846,10 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="Output port" name="OutPort">
+		<node description="Соответсвует выходным портам пользовательского блока" displayedName="Output port" name="DFOutPortBlock">
 		<graphics>
-			<picture sizex="103" sizey="137">
-			<image y2="100" name="images/io_1.svg" x2="101" x1="2" y1="0"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/io_1.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
 			<label textBinded="identifier" y="11" x="18"/>
@@ -872,18 +873,18 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="const_value" name="ValueEmitter">
+		<node description="Генеирует указанное значение" displayedName="Value generator" name="DFValueEmitterBlock">
 		<graphics>
-			<picture sizex="103" sizey="163">
-			<image y2="130" name="images/const data1.svg" x2="99" x1="0" y1="16"/>
+			<picture sizex="100" sizey="115">
+			<image y2="115" name="images/const data1.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label textBinded="name" y="0" x="39"/>
-			<label textBinded="varValue" y="137" x="9"/>
+			<label textBinded="name" y="-15" x="39"/>
+			<label textBinded="varValue" y="122" x="10"/>
 			</labels>
 			<ports>
-			<pointPort y="32" type="P46" x="9"/>
-			<pointPort y="81" type="P47" x="100"/>
+			<pointPort y="15" type="P46" x="9"/>
+			<pointPort y="65" type="P47" x="99"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
@@ -900,10 +901,10 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="variable" name="GetSetVariable">
+		<node description="Позволяет считывать значение переменной, либо устанавливать ее, можно просто написать x = 10 и призойдет определение глоб-й переменной" displayedName="Variable" name="DFGetSetVariableBlock">
 		<graphics>
-			<picture sizex="102" sizey="151">
-			<image y2="114" name="images/getsetvar.svg" x2="100" x1="1" y1="0"/>
+			<picture sizex="100" sizey="115">
+			<image y2="115" name="images/getsetvar.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
 			<label textBinded="variable" y="75" x="18"/>
@@ -911,7 +912,7 @@
 			</labels>
 			<ports>
 			<pointPort y="15" type="P48" x="10"/>
-			<pointPort y="65" type="P49" x="2"/>
+			<pointPort y="65" type="P49" x="1"/>
 			<pointPort y="15" type="P50" x="90"/>
 			<pointPort y="65" type="P51" x="98"/>
 			</ports>
@@ -930,10 +931,10 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="random value" name="RandomValue">
+		<node description= "Генерирует случайные числа 1 раз или с каким-то интервалом" displayedName="Random generator" name="DFRandomValueBlock">
 		<graphics>
-			<picture sizex="102" sizey="116">
-			<image y2="114" name="images/random var.svg" x2="99" x1="0" y1="0"/>
+			<picture sizex="100" sizey="115">
+			<image y2="115" name="images/random var.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
 			<label textBinded="fromNumber" y="50" x="8"/>
@@ -954,6 +955,12 @@
 			<property displayedName="upper border" name="toNumber" type="int">
 				<default>10</default>
 			</property>
+			<property displayedName="is repeatedly" name="repeatedly" type="bool">
+				<default>false</default>
+			</property>
+			<property displayedName="sending interval" name="time" type="int">
+				<default>100</default>
+			</property>
 			</properties>
 			<generalizations>
 			<parent overrides="" parentName="AbstractNode"/>
@@ -961,30 +968,30 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="replace data in flow" name="Supressor">
+		<node description= "Заменяет данные в потоке одного потока данными другого" displayedName="Flow replacer" name="DFSupressorBlock">
 		<graphics>
-			<picture sizex="200" sizey="163">
-			<image y2="134" name="images/supressing.svg" x2="197" x1="98" y1="35"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/supressing.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label text="time" y="137" x="117"/>
-			<label textBinded="time" y="102" x="150"/>
-			<label textBinded="name" y="0" x="136"/>
-			<label text="replacement" y="36" x="0"/>
-			<label text="data" y="82" x="52"/>
+			<label text="time" y="100" x="17"/>
+			<label textBinded="time" y="67" x="50"/>
+			<label textBinded="name" y="-35" x="36"/>
+			<label text="replacement" y="1" x="-100"/>
+			<label text="data" y="47" x="-48"/>
 			</labels>
 			<ports>
-			<pointPort y="65" type="P54" x="100"/>
-			<pointPort y="110" type="P55" x="100"/>
-			<pointPort y="80" type="P56" x="200"/>
-			<pointPort y="130" type="P57" x="165"/>
+			<pointPort y="30" type="P54" x="1"/>
+			<pointPort y="75" type="P55" x="1"/>
+			<pointPort y="45" type="P56" x="100"/>
+			<pointPort y="95" type="P57" x="65"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
 		<logic>
 			<container/>
 			<properties>
-			<property displayedName="time" name="time" type="int">
+			<property displayedName="replacing time" name="time" type="int">
 				<default>10</default>
 			</property>
 			</properties>
@@ -994,7 +1001,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="inhibitor" name="Inhibitor">
+		<node displayedName="Flow delay" name="DFInhibitorBlock">
 		<graphics>
 			<picture sizex="100" sizey="100">
 			<image y2="100" name="images/inhibition.svg" x2="100" x1="0" y1="0"/>
@@ -1017,7 +1024,7 @@
 		<logic>
 			<container/>
 			<properties>
-			<property displayedName="time" name="time" type="int">
+			<property displayedName="delay time" name="time" type="int">
 				<default>10</default>
 			</property>
 			</properties>
@@ -1547,7 +1554,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="wait for" name="WaitNode">
+		<node displayedName="Wait and send" name="DFWaitBlock">
 		<graphics>
 			<picture sizex="143" sizey="149">
 			<image y2="114" name="images/wait.svg" x2="141" x1="42" y1="0"/>
@@ -1937,18 +1944,18 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="interflowing" name="Interflowing">
+		<node displayedName="Zip flows" name="DFInterflowingBlock">
 		<graphics>
-			<picture sizex="102" sizey="133">
-			<image y2="131" name="images/intersect.svg" x2="100" x1="1" y1="30"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/intersect.svg" x2="100" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label textBinded="name" y="0" x="26"/>
+			<label textBinded="name" y="-30" x="26"/>
 			</labels>
 			<ports>
-			<pointPort y="54" type="P158" x="2"/>
-			<pointPort y="78" type="P159" x="99"/>
-			<pointPort y="109" type="P160" x="2"/>
+			<pointPort y="24" type="P158" x="2"/>
+			<pointPort y="48" type="P159" x="99"/>
+			<pointPort y="79" type="P160" x="2"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
@@ -1960,18 +1967,18 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node displayedName="Separator" name="Separator">
+		<node displayedName="Unzip flows" name="DFSeparatorBlock">
 		<graphics>
-			<picture sizex="102" sizey="132">
-			<image y2="130" name="images/div.svg" x2="99" x1="0" y1="29"/>
+			<picture sizex="100" sizey="100">
+			<image y2="100" name="images/div.svg" x2="99" x1="0" y1="0"/>
 			</picture>
 			<labels>
-			<label textBinded="name" y="0" x="29"/>
+			<label textBinded="name" y="-30" x="29"/>
 			</labels>
 			<ports>
-			<pointPort y="80" type="P161" x="2"/>
-			<pointPort y="56" type="P162" x="98"/>
-			<pointPort y="101" type="P163" x="98"/>
+			<pointPort y="50" type="P161" x="2"/>
+			<pointPort y="26" type="P162" x="98"/>
+			<pointPort y="71" type="P163" x="98"/>
 			</ports>
 			<nonResizeable/>
 		</graphics>
@@ -1986,27 +1993,26 @@
 	</graphicTypes>
 		<palette sorted="false">
 			<group name="ControlBlocks">
-				<element name="ForkNode"/>
-				<!--<element name="EndFork"/> -->
-				<element name="RandomValue"/>
-				<element name="GetSetVariable"/>
-				<element name="ValueEmitter"/>
-				<element name="Loop"/>
-				<element name="IfNode"/>
-				<element name="Switch"/>
-				<element name="Function"/>
-				<element name="FinalNode"/>
-				<element name="SubprogramCall"/>
+				<element name="DFFinalBlock"/>
+				<element name="DFFunctionBlock"/>
+				<element name="DFIfBlock"/>
+				<element name="DFSwitchBlock"/>
+				<element name="DFLoopBlock"/>
+				<element name="DFUserBlock"/>
+				<element name="DFValueEmitterBlock"/>
+				<element name="DFGetSetVariableBlock"/>
+				<element name="DFRandomValueBlock"/>
+				<!--  -->
 				<element name="DelayFilterNode"/>
 				<element name="WaitNode"/>
 			</group>
 			<group name="FlowManipulation">
-				<element name="InPort"/>
-				<element name="OutPort"/>
-				<element name="Supressor"/>
-				<element name="Inhibitor"/>
-				<element name="Interflowing"/>
-				<element name="Separator"/>
+				<element name="DFInPortBlock"/>
+				<element name="DFOutPortBlock"/>
+				<element name="DFSupressorBlock"/>
+				<element name="DFInhibitorBlock"/>
+				<element name="DFInterflowingBlock"/>
+				<element name="DFSeparatorBlock"/>
 			</group>
 			<group name="Actions">
 				<element name="ConcreteInputPort"/>

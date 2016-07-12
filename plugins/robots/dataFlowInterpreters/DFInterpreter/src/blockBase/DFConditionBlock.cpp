@@ -4,26 +4,31 @@ using namespace dataFlowBlocks::details;
 
 DFConditionBlock::DFConditionBlock()
 	: condition()
-	, vars("vars = {}")
 {
-//	QMap<int, QVariant> valueOnPort;
-//	QMap<QString, int> portAssociatedWithProperty;
-	portAssociatedWithProperty["DATA"] = 0;
-	portAssociatedWithProperty["VARS"] = 1;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["DATA"] = 1;
 	portAssociatedWithProperty["TRUE"] = 2;
 	portAssociatedWithProperty["FALSE"] = 3;
 }
 
 void DFConditionBlock::init()
 {
-	setVariable(vars, QVariantList());
 	condition = stringProperty("condition");
 }
 
 void DFConditionBlock::handleData()
 {
-	if (hasNewData("VARS")) {
-		setVariable(vars, propertyFromPort("VARS"));
+	if (hasNewData("CF_IN")) {
+		bool cond = evalCode<bool>(condition, "condition");
+		if (errorsOccured()) {
+			error("If block cannot parse condition");
+		} else {
+			if (cond) {
+				emit newDataInFlow(propertyFromPort("CF_IN"), portAssociatedWithProperty["TRUE"]);
+			} else {
+				emit newDataInFlow(propertyFromPort("CF_IN"), portAssociatedWithProperty["FALSE"]);
+			}
+		}
 	}
 
 	if (hasNewData("DATA")) {

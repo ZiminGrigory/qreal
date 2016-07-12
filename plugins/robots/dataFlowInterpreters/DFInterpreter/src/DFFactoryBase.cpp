@@ -71,21 +71,21 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFMotorsBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "Servo")) {
 		res = new details::DFServoMotorsBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "ValueEmitter")) {
+	} else if (elementDFMetatypeIs(element, "DFValueEmitterBlock")) {
 		res = new details::DFValueEmitter();
-	} else if (elementDFMetatypeIs(element, "Function")) {
+	} else if (elementDFMetatypeIs(element, "DFFunctionBlock")) {
 		res = new details::DFFunctionBlock();
-	}  else if (elementDFMetatypeIs(element, "Loop")) {
+	}  else if (elementDFMetatypeIs(element, "DFLoopBlock")) {
 		res = new details::DFLoopBlock();
 	} else if (elementDFMetatypeIs(element, "SensorVar")) {
 		res = new details::DFSensorVariableEmitter(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "Inhibitor")) {
+	} else if (elementDFMetatypeIs(element, "DFInhibitorBlock")) {
 		res = new details::DFInhibitionBlock();
-	} else if (elementDFMetatypeIs(element, "Supressor")) {
+	} else if (elementDFMetatypeIs(element, "DFSupressorBlock")) {
 		res = new details::DFSupressorBlock();
-	} else if (elementDFMetatypeIs(element, "Interflowing")) {
+	} else if (elementDFMetatypeIs(element, "DFInterflowingBlock")) {
 		res = new details::DFInterflowingBlock();
-	} else if (elementDFMetatypeIs(element, "FinalNode")) {
+	} else if (elementDFMetatypeIs(element, "DFFinalBlock")) {
 		res = new details::DFExitExecutionBlock();
 	} else if (elementDFMetatypeIs(element, "DelayFilterNode")) {
 		res = new details::DFDelayAndConditionFilter();
@@ -95,19 +95,19 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFInputSubProgramPort();
 	} else if (elementDFMetatypeIs(element, "OutPort")) {
 		res = new details::DFOutputSubProgramPort();
-	} else if (elementDFMetatypeIs(element, "SubprogramCall")) {
+	} else if (elementDFMetatypeIs(element, "DFUserBlock")) {
 		res = new details::DFSubprogramCall();
-	} else if (elementDFMetatypeIs(element, "GetSetVariable")) {
+	} else if (elementDFMetatypeIs(element, "DFGetSetVariableBlock")) {
 		res = new details::DFVariable();
-	} else if (elementDFMetatypeIs(element, "WaitNode")) {
+	} else if (elementDFMetatypeIs(element, "DFWaitBlock")) {
 		res = new details::DFWaitNode();
-	} else if (elementDFMetatypeIs(element, "RandomValue")) {
+	} else if (elementDFMetatypeIs(element, "DFRandomValueBlock")) {
 		res = new details::DFRandomValue(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "IfNode")) {
+	} else if (elementDFMetatypeIs(element, "DFIfBlock")) {
 		res = new details::DFConditionBlock();
-	} else if (elementDFMetatypeIs(element, "Switch")) {
+	} else if (elementDFMetatypeIs(element, "DFSwitchBlock")) {
 		res = new details::DFSwitchBlock();
-	} else if (elementDFMetatypeIs(element, "Separator")) {
+	} else if (elementDFMetatypeIs(element, "DFSeparatorBlock")) {
 		res = new details::DFSeparatorBlock();
 	} else if (elementDFMetatypeIs(element, "SmilePainter")) {
 		res = new details::DFSmileBlock(mRobotModelManager->model());

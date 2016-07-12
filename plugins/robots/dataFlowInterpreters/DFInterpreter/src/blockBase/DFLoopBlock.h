@@ -35,6 +35,7 @@ private:
 	int to = 0;
 	int step = 0;
 	int currentCounter = 0;
+	int timeForDispatch = 0;
 };
 
 }

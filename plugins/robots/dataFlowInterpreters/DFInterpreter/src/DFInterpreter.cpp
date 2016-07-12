@@ -296,7 +296,7 @@ IdList DFInterpeter::handleSubprogram(const Id &id, const Id &explosion)
 
 	IdList startElems;
 	for (const Id &elem : localFindStartChildrens) {
-		if (elem.element() != "InPort" && elem.element() != "OutPort") {
+		if (elem.element() != "DFInPortBlock" && elem.element() != "DFOutPortBlock") {
 			startElems << elem;
 		}
 	}

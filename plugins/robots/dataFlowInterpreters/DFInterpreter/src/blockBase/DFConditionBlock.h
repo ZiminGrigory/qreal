@@ -33,7 +33,6 @@ protected:
 
 private:
 	QString condition;
-	QString vars;
 };
 
 }

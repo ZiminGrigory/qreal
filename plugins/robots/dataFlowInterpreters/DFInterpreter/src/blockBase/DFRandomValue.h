@@ -16,6 +16,8 @@
 
 #include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/DFRobotsBlock.h"
 
+#include <kitBase/robotModel/robotParts/random.h>
+
 namespace dataFlowBlocks {
 namespace details {
 
@@ -25,13 +27,19 @@ class DFRandomValue : public dataFlow::interpretation::DFRobotsBlock
 
 public:
 	DFRandomValue(kitBase::robotModel::RobotModelInterface &robotModel);
+	~DFRandomValue();
 
 protected:
+	void init();
 	void handleData() override;
 
 private:
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 
+	bool repeatedly = false;
+	int sendingTime = 0;
+
+	kitBase::robotModel::robotParts::Random *mRandom = nullptr;
 };
 
 }
