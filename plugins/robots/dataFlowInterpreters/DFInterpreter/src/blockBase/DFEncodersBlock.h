@@ -29,7 +29,6 @@ public:
 	explicit DFEncodersBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void handleData() override;
 	void init() override;
 

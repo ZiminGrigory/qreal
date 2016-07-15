@@ -31,12 +31,12 @@ public:
 	explicit DFSendMessageToRobotBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void init() override;
 	void handleData(Shell &shell) override;
 
 private:
 	int mToRobot = 0;
+	QString mMsg = QString();
 };
 
 }

@@ -29,10 +29,11 @@ class DFLedBlock : public LedDevice
 
 public:
 	explicit DFLedBlock(kitBase::robotModel::RobotModelInterface &robotModel);
+	void init() override;
 
 protected:
-	int activationPortNumber() const override;
 	void handleData(Led &led) override;
+	QString mColor = QString();
 };
 
 }

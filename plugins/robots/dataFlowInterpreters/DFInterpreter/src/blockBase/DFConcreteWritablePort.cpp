@@ -10,8 +10,6 @@
 using namespace dataFlowBlocks::details;
 using namespace kitBase::robotModel;
 
-const int dummyActivationPortNumber = -1;
-
 const QSet<QString> scalarSensors = {"A6", "A5", "A4", "A3", "A2", "A1", "GamepadButton1", "GamepadButton2"
 		, "GamepadButton3", "GamepadButton4", "GamepadButton5", "Down", "Enter", "Esc", "Left"
 		, "Right", "Up"};
@@ -24,41 +22,40 @@ const QSet<QString> encoders = {"E1", "E2", "E3", "E4"};
 DFConcreteWritablePort::DFConcreteWritablePort(RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["DATA"] = 1;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["DATA"] = 2;
 }
 
 void DFConcreteWritablePort::handleData()
 {
-	if (hasNewData(dummyActivationPortNumber)) {
-		property(dummyActivationPortNumber);
-		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
-		return;
-	}
+	auto handle = [&](int impulse){
+		if (scalarSensors.contains(mSelectedPortName)) {
+			PortInfo const portInfo = RobotModelUtils::findPort(mRobotModel, mSelectedPortName, input);
+			auto scalarSensor = RobotModelUtils::findDevice<robotParts::ScalarSensor>(mRobotModel, portInfo);
+			scalarSensor->setLastData(impulse);
+		} else if (motors.contains(mSelectedPortName)) {
+			PortInfo const portInfo = RobotModelUtils::findPort(mRobotModel, mSelectedPortName, output);
+			auto motorDevice = RobotModelUtils::findDevice<robotParts::Motor>(mRobotModel, portInfo);
+			motorDevice->on(impulse);
+		} else if (encoders.contains(mSelectedPortName)) {
+			auto encoder = RobotModelUtils::findDevice<robotParts::EncoderSensor>(mRobotModel, mSelectedPortName);
+			encoder->nullify();
+		}
+	};
 
-	if (scalarSensors.contains(mSelectedPortName)) {
-		PortInfo const portInfo = RobotModelUtils::findPort(mRobotModel, mSelectedPortName, input);
-		auto scalarSensor = RobotModelUtils::findDevice<robotParts::ScalarSensor>(mRobotModel, portInfo);
-		scalarSensor->setLastData(propertyFromPort("DATA").toInt());
-	} else if (motors.contains(mSelectedPortName)) {
-		PortInfo const portInfo = RobotModelUtils::findPort(mRobotModel, mSelectedPortName, output);
-		auto motorDevice = RobotModelUtils::findDevice<robotParts::Motor>(mRobotModel, portInfo);
-		motorDevice->on(propertyFromPort("DATA").toInt());
-	} else if (encoders.contains(mSelectedPortName)) {
-		auto encoder = RobotModelUtils::findDevice<robotParts::EncoderSensor>(mRobotModel, mSelectedPortName);
-		encoder->nullify();
+	if (hasNewData(portAssociatedWithProperty["CF_IN"])) {
+		property(portAssociatedWithProperty["CF_IN"]);
+		handle(mImpulse);
+	} else if (hasNewData(portAssociatedWithProperty["DATA"])) {
+		handle(propertyFromPort("DATA").toInt());
 	}
 
 	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
-
-}
-
-int DFConcreteWritablePort::activationPortNumber() const
-{
-	return dummyActivationPortNumber;
 }
 
 void DFConcreteWritablePort::init()
 {
 	mSelectedPortName = stringProperty("portName");
+	mImpulse = intProperty("portmImpulse");
 }

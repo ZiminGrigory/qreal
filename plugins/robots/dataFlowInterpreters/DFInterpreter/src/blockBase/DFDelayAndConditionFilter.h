@@ -40,7 +40,6 @@ private:
 	int count = 0;
 
 	QString condition;
-	QString vars;
 	QTime mTime;
 
 	bool firstData = true;

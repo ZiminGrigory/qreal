@@ -32,11 +32,11 @@ public:
 
 protected:
 	void init() override;
-	int activationPortNumber() const override;
 	void handleData(Shell &shell) override;
 
 private:
 	bool mIsEvaluate = false;
+	QString mText = QString();
 };
 
 }

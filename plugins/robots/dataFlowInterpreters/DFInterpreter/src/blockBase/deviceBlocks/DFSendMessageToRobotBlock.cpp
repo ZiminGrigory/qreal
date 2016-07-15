@@ -16,39 +16,37 @@
 
 using namespace dataFlowBlocks::details;
 
-const int dummyActivationPortNumber = -1;
 
 DFSendMessageToRobotBlock::DFSendMessageToRobotBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: ShellDevice(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["MSG"] = 1;
-	portAssociatedWithProperty["NUMBER"] = 2;
-}
-
-int DFSendMessageToRobotBlock::activationPortNumber() const
-{
-	return dummyActivationPortNumber;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["MSG"] = 2;
+	portAssociatedWithProperty["NUMBER"] = 3;
 }
 
 void DFSendMessageToRobotBlock::init()
 {
 	mToRobot = intProperty("robotNum");
+	mMsg = stringProperty("message");
 }
 
-#include <QDebug>
 void DFSendMessageToRobotBlock::handleData(Shell &shell)
 {
-	if (hasNewData(dummyActivationPortNumber)) {
-		property(dummyActivationPortNumber);
-	} else if (hasNewData("NUMBER")) {
+	if (hasNewData("NUMBER")) {
 		mToRobot = propertyFromPort("NUMBER").toInt();
-	} else if (hasNewData("MSG")) {
-		QString msg = propertyFromPort("MSG").toString();
-		const QString command = QString("mailbox.send(%1, \"%2\")").arg(QString::number(mToRobot)).arg(msg);
-		qDebug() << command;
-		shell.runCommand(command);
+		return;
 	}
+
+	if (hasNewData(portAssociatedWithProperty["CF_IN"])) {
+		property(portAssociatedWithProperty["CF_IN"]);
+	} else if (hasNewData("MSG")) {
+		mMsg = propertyFromPort("MSG").toString();
+	}
+
+	const QString command = QString("mailbox.send(%1, \"%2\")").arg(QString::number(mToRobot)).arg(mMsg);
+	shell.runCommand(command);
 
 	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 }

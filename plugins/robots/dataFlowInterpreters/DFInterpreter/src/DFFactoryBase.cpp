@@ -67,9 +67,9 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 {
 	interpretation::DFRobotsBlock *res = nullptr;
 
-	if (elementDFMetatypeIs(element, "Motors")) {
+	if (elementDFMetatypeIs(element, "DFMotorsBlock")) {
 		res = new details::DFMotorsBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "Servo")) {
+	} else if (elementDFMetatypeIs(element, "DFServoBlock")) {
 		res = new details::DFServoMotorsBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "DFValueEmitterBlock")) {
 		res = new details::DFValueEmitter();
@@ -77,7 +77,7 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFFunctionBlock();
 	}  else if (elementDFMetatypeIs(element, "DFLoopBlock")) {
 		res = new details::DFLoopBlock();
-	} else if (elementDFMetatypeIs(element, "SensorVar")) {
+	} else if (elementDFMetatypeIs(element, "DFSensorVarBlock")) {
 		res = new details::DFSensorVariableEmitter(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "DFInhibitorBlock")) {
 		res = new details::DFInhibitionBlock();
@@ -87,13 +87,13 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFInterflowingBlock();
 	} else if (elementDFMetatypeIs(element, "DFFinalBlock")) {
 		res = new details::DFExitExecutionBlock();
-	} else if (elementDFMetatypeIs(element, "DelayFilterNode")) {
+	} else if (elementDFMetatypeIs(element, "DFDelayFilterBlock")) {
 		res = new details::DFDelayAndConditionFilter();
-	} else if (elementDFMetatypeIs(element, "Gamepad")) {
+	} else if (elementDFMetatypeIs(element, "DFGamepadBlock")) {
 		res = new details::DFGamepadBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "InPort")) {
+	} else if (elementDFMetatypeIs(element, "DFInPortBlock")) {
 		res = new details::DFInputSubProgramPort();
-	} else if (elementDFMetatypeIs(element, "OutPort")) {
+	} else if (elementDFMetatypeIs(element, "DFOutPortBlock")) {
 		res = new details::DFOutputSubProgramPort();
 	} else if (elementDFMetatypeIs(element, "DFUserBlock")) {
 		res = new details::DFSubprogramCall();
@@ -109,47 +109,47 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFSwitchBlock();
 	} else if (elementDFMetatypeIs(element, "DFSeparatorBlock")) {
 		res = new details::DFSeparatorBlock();
-	} else if (elementDFMetatypeIs(element, "SmilePainter")) {
+	} else if (elementDFMetatypeIs(element, "DFSmilePainterBlock")) {
 		res = new details::DFSmileBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "ClearNode")) {
+	} else if (elementDFMetatypeIs(element, "DFClearScreenBlock")) {
 		res = new details::DFClearScreenBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "Pen")) {
+	} else if (elementDFMetatypeIs(element, "DFPenBlock")) {
 		res = new details::DFSetPenBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "PaintSettings")) {
+	} else if (elementDFMetatypeIs(element, "DFPaintSettingsBlock")) {
 		res = new details::DFPaintSettingsBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "TextOnScreen")) {
+	} else if (elementDFMetatypeIs(element, "DFTextOnScreenBlock")) {
 		res = new details::DFTextOnScreenBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ShapePainter")) {
 		res = new details::DFShapeOnScreen(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "LedNode")) {
+	} else if (elementDFMetatypeIs(element, "DFLedBlock")) {
 		res = new details::DFLedBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "SayNode")) {
+	} else if (elementDFMetatypeIs(element, "DFSayBlock")) {
 		res = new details::DFSayBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "WriteToFile")) {
+	} else if (elementDFMetatypeIs(element, "DFWriteToFileBlock")) {
 		res = new details::DFWriteToFileBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "RemoveFile")) {
+	} else if (elementDFMetatypeIs(element, "DFRemoveFileBlock")) {
 		res = new details::DFRemoveFileBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "ReadFile")) {
+	} else if (elementDFMetatypeIs(element, "DFReadFileBlock")) {
 		res = new details::DFReadFileBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "SystemCallNode")) {
+	} else if (elementDFMetatypeIs(element, "DFSystemCallBlock")) {
 		res = new details::DFSystemCommandBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "StreamingNode")) {
+	} else if (elementDFMetatypeIs(element, "DFStreamingBlock")) {
 		res = new details::DFVideoStreamBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "InitCamera")) {
+	} else if (elementDFMetatypeIs(element, "DFInitCameraBlock")) {
 		res = new details::DFInitCameraBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "DetectByVideo")) {
+	} else if (elementDFMetatypeIs(element, "DFDetectByVideoBlock")) {
 		res = new details::DFLineDetectorEmitterBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "ConcreteInputPort")) {
+	} else if (elementDFMetatypeIs(element, "DFConcreteInputPortBlock")) {
 		res = new details::DFConcreteWritablePort(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "ConcreteOutputPort")) {
+	} else if (elementDFMetatypeIs(element, "DFConcreteOutputPortBlock")) {
 		res = new details::DFConcreteReadPort(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "Encoders")) {
+	} else if (elementDFMetatypeIs(element, "DFEncodersBlock")) {
 		res = new details::DFEncodersBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "ForkNode")) {
 		res = new details::DFForkBlock();
-	} else if (elementDFMetatypeIs(element, "ReceiveMsg")) {
+	} else if (elementDFMetatypeIs(element, "DFReceiveMsgBlock")) {
 		res = new details::DFReceiveMessageBlock(mRobotModelManager->model());
-	} else if (elementDFMetatypeIs(element, "MessageToRobot")) {
+	} else if (elementDFMetatypeIs(element, "DFMessageToRobotBlock")) {
 		res = new details::DFSendMessageToRobotBlock(mRobotModelManager->model());
 	}
 

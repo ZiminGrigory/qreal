@@ -32,12 +32,12 @@ public:
 	explicit DFSetPenBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void init() override;
 	void handleData(Marker &marker) override;
 
 private:
 	QColor mColor = QColor(Qt::black);
+	bool isDownState = true;
 };
 
 }

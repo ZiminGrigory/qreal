@@ -14,23 +14,27 @@ const QStringList ports = {"S1", "S2", "S3", "S4"};
 DFServoMotorsBlock::DFServoMotorsBlock(RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
 {
-//	QMap<int, QVariant> valueOnPort;
-//	QMap<QString, int> portAssociatedWithProperty;
-//	QSet<int> synchronisedPorts;
-	// associate port number and port name
-	portAssociatedWithProperty["S1"] = 0;
-	portAssociatedWithProperty["S2"] = 1;
-	portAssociatedWithProperty["S3"] = 2;
-	portAssociatedWithProperty["S4"] = 3;
-	portAssociatedWithProperty["CF_OUT"] = 4;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["S1"] = 2;
+	portAssociatedWithProperty["S2"] = 3;
+	portAssociatedWithProperty["S3"] = 4;
+	portAssociatedWithProperty["S4"] = 5;
 }
 
 void DFServoMotorsBlock::handleData()
 {
-	for (const QString &port : ports) {
-		if (hasNewData(portAssociatedWithProperty[port])) {
-			QVariant power = property(portAssociatedWithProperty[port]);
-			motors[port]->on(power.toInt());
+	if (hasNewData(portAssociatedWithProperty["CF_IN"])) {
+		property(portAssociatedWithProperty["CF_IN"]);
+		for (const QString &port : ports) {
+			motors[port]->on(intProperty(port + "Angle"));
+		}
+	} else {
+		for (const QString &port : ports) {
+			if (hasNewData(portAssociatedWithProperty[port])) {
+				QVariant power = property(portAssociatedWithProperty[port]);
+				motors[port]->on(power.toInt());
+			}
 		}
 	}
 

@@ -9,7 +9,6 @@ const int noCounterFilter = -1;
 
 DFDelayAndConditionFilter::DFDelayAndConditionFilter()
 	: condition()
-	, vars("vars")
 {
 	//	QMap<int, QVariant> valueOnPort;
 	//	QMap<QString, int> portAssociatedWithProperty;
@@ -18,12 +17,10 @@ DFDelayAndConditionFilter::DFDelayAndConditionFilter()
 		portAssociatedWithProperty["COUNT"] = 2;
 		portAssociatedWithProperty["OUT"] = 3;
 		portAssociatedWithProperty["DATA"] = 4;
-		portAssociatedWithProperty["VARS"] = 5;
 }
 
 void DFDelayAndConditionFilter::init()
 {
-	setVariable(vars, QVariantList());
 	delayTime = intProperty("dispatchTime");
 	count = intProperty("count");
 	condition = stringProperty("condition");
@@ -37,10 +34,6 @@ void DFDelayAndConditionFilter::handleData()
 
 	if (hasNewData("COUNT")) {
 		count = propertyFromPort("COUNT").toInt();
-	}
-
-	if (hasNewData("VARS")) {
-		setVariable(vars, propertyFromPort("VARS"));
 	}
 
 	if (hasNewData("DATA")) {

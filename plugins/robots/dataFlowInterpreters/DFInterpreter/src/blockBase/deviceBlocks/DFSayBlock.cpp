@@ -16,37 +16,35 @@
 
 using namespace dataFlowBlocks::details;
 
-const int activationPort = -1;
-
 DFSayBlock::DFSayBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: ShellDevice(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["DATA"] = 1;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["DATA"] = 2;
 }
 
 void DFSayBlock::init()
 {
 	mIsEvaluate = boolProperty("Evaluate");
-}
-
-int DFSayBlock::activationPortNumber() const
-{
-	return activationPort;
+	mText = stringProperty("text");
 }
 
 void DFSayBlock::handleData(Shell &shell)
 {
-	if (hasNewData(activationPort)) {
-		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
-		return;
+	if (hasNewData(portAssociatedWithProperty["CF_IN"])) {
+		emit newDataInFlow(property(portAssociatedWithProperty["CF_IN"]), portAssociatedWithProperty["CF_OUT"]);
 	}
 
-	QString rawText = propertyFromPort("DATA").toString();
-	const QString text = mIsEvaluate ? evalCode<QString>(rawText) : rawText;
+	if (hasNewData(portAssociatedWithProperty["DATA"])) {
+		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
+		mText = propertyFromPort("DATA").toString();
+	}
+
+	const QString text = mIsEvaluate ? evalCode<QString>(mText) : mText;
+
 	if (!errorsOccured()) {
 		shell.say(text);
 	}
 
-	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 }

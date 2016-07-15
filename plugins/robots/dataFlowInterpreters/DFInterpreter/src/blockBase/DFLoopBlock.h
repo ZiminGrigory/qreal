@@ -24,7 +24,6 @@ class DFLoopBlock: public dataFlow::interpretation::DFRobotsBlock
 {
 public:
 	DFLoopBlock();
-	~DFLoopBlock();
 
 protected:
 	void init() override;

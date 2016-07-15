@@ -32,12 +32,13 @@ public:
 	explicit DFTextOnScreenBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void init() override;
 	void handleData(Display &display) override;
 
 private:
 	QString mText = QString();
+	int xcord = 0;
+	int ycord = 0;
 	bool mRedraw = false;
 	bool mEvaluate = false;
 };

@@ -19,14 +19,10 @@ using namespace dataFlowBlocks::details;
 DFTextOnScreenBlock::DFTextOnScreenBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: DisplayDevice(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["COORDS"] = 1;
-	portAssociatedWithProperty["TEXT"] = 2;
-}
-
-int DFTextOnScreenBlock::activationPortNumber() const
-{
-	return portAssociatedWithProperty["TEXT"];
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["COORDS"] = 2;
+	portAssociatedWithProperty["TEXT"] = 3;
 }
 
 void DFTextOnScreenBlock::init()
@@ -34,6 +30,8 @@ void DFTextOnScreenBlock::init()
 	mText = stringProperty("text");
 	mRedraw = boolProperty("Redraw");
 	mEvaluate = boolProperty("Evaluate");
+	xcord = intProperty("xcord");
+	ycord = intProperty("ycord");
 }
 
 void DFTextOnScreenBlock::handleData(Display &display)
@@ -41,6 +39,7 @@ void DFTextOnScreenBlock::handleData(Display &display)
 	if (hasNewData("TEXT")) {
 		QString rawText = propertyFromPort("TEXT").toString();
 		mText = mEvaluate ? evalCode<QString>(rawText) : rawText;
+		return;
 	}
 
 	if (hasNewData("COORDS")) {
@@ -59,6 +58,17 @@ void DFTextOnScreenBlock::handleData(Display &display)
 		}
 
 		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
+		return;
+	}
+
+	if (hasNewData("CF_IN")) {
+		display.printText(xcord, ycord, mText);
+		if (mRedraw) {
+			display.redraw();
+		}
+
+		emit newDataInFlow(propertyFromPort("CF_IN"), portAssociatedWithProperty["CF_OUT"]);
+		return;
 	}
 }
 

@@ -8,19 +8,11 @@
 
 using namespace kitBase::robotModel;
 
-static bool isDestoyed = false;
-
 dataFlowBlocks::details::DFRandomValue::DFRandomValue(RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
 {
-	isDestoyed = false;
 	portAssociatedWithProperty["CF_IN"] = 0;
 	portAssociatedWithProperty["OUT"] = 1;
-}
-
-dataFlowBlocks::details::DFRandomValue::~DFRandomValue()
-{
-	isDestoyed = true;
 }
 
 void dataFlowBlocks::details::DFRandomValue::init()
@@ -38,6 +30,9 @@ void dataFlowBlocks::details::DFRandomValue::handleData()
 {
 	int from = intProperty("fromNumber");
 	int to = eval<int>("toNumber");
+
+	bool isDestoyed = false;
+	connect(this, &QObject::destroyed, this, [&](){isDestoyed = true;});
 
 	if (repeatedly) {
 		while (!isDestoyed) {

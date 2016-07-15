@@ -35,10 +35,11 @@ public:
 protected:
 	void init() override;
 	void handleData() override;
-	int activationPortNumber() const override;
 
 private:
 	QString mSelectedPortName = QString();
+	int mImpulse = 0;
+
 	kitBase::robotModel::RobotModelInterface &mRobotModel;
 };
 

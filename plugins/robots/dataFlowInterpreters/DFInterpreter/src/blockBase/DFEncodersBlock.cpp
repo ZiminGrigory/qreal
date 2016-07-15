@@ -6,36 +6,36 @@
 using namespace dataFlowBlocks::details;
 using namespace kitBase::robotModel;
 
-const int dummyActivationPortNumber = -1;
 const QStringList encoders = {"E1", "E2", "E3", "E4"};
 
 DFEncodersBlock::DFEncodersBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: mRobotModel(robotModel)
 {
-	portAssociatedWithProperty["E1_IN"] = 0;
-	portAssociatedWithProperty["E2_IN"] = 1;
-	portAssociatedWithProperty["E3_IN"] = 2;
-	portAssociatedWithProperty["E4_IN"] = 3;
-	portAssociatedWithProperty["E1_OUT"] = 4;
-	portAssociatedWithProperty["E2_OUT"] = 5;
-	portAssociatedWithProperty["E3_OUT"] = 6;
-	portAssociatedWithProperty["E4_OUT"] = 7;
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["E1_IN"] = 2;
+	portAssociatedWithProperty["E2_IN"] = 3;
+	portAssociatedWithProperty["E3_IN"] = 4;
+	portAssociatedWithProperty["E4_IN"] = 5;
+	portAssociatedWithProperty["E1_OUT"] = 6;
+	portAssociatedWithProperty["E2_OUT"] = 7;
+	portAssociatedWithProperty["E3_OUT"] = 8;
+	portAssociatedWithProperty["E4_OUT"] = 9;
 
 	mOwner.setValue<DFEncodersBlock *>(this);
 }
 
-int DFEncodersBlock::activationPortNumber() const
-{
-	return dummyActivationPortNumber;
-}
-
 void DFEncodersBlock::handleData()
 {
-	if (hasNewData(dummyActivationPortNumber)) {
-		property(dummyActivationPortNumber);
+	if (hasNewData(portAssociatedWithProperty["CF_IN"])) {
+		property(portAssociatedWithProperty["CF_IN"]);
 		for (const QString &enc : encoders) {
-			initEncoder(QString(enc+"_IN"));
+			if (boolProperty(enc + "Clear")) {
+				initEncoder(QString(enc + "_IN"));
+			}
 		}
+
+		emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);
 	} else {
 		handleEncoder("E1_IN");
 		handleEncoder("E2_IN");

@@ -27,7 +27,6 @@ class DFRandomValue : public dataFlow::interpretation::DFRobotsBlock
 
 public:
 	DFRandomValue(kitBase::robotModel::RobotModelInterface &robotModel);
-	~DFRandomValue();
 
 protected:
 	void init();

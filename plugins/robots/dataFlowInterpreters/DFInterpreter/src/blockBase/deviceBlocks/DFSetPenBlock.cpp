@@ -7,39 +7,34 @@ using namespace dataFlowBlocks::details;
 DFSetPenBlock::DFSetPenBlock(kitBase::robotModel::RobotModelInterface &robotModel)
 	: MarkerDevice(robotModel)
 {
-	portAssociatedWithProperty["CF_OUT"] = 0;
-	portAssociatedWithProperty["UP_DOWN"] = 1;
-	portAssociatedWithProperty["COLOR"] = 2;
-}
-
-int DFSetPenBlock::activationPortNumber() const
-{
-	return portAssociatedWithProperty["UP_DOWN"];
+	portAssociatedWithProperty["CF_IN"] = 0;
+	portAssociatedWithProperty["CF_OUT"] = 1;
+	portAssociatedWithProperty["UP_DOWN"] = 2;
+	portAssociatedWithProperty["COLOR"] = 3;
 }
 
 void DFSetPenBlock::init()
 {
 	mColor = propertyToColor(stringProperty("color"));
+	isDownState = boolProperty("state");
 }
 
 void DFSetPenBlock::handleData(Marker &marker)
 {
 	if (hasNewData("COLOR")) {
-
 		QString rawColor = propertyFromPort("COLOR").toString();
-
 		mColor = propertyToColor(rawColor);
 		if (!mColor.isValid()) {
 			error(QString("Use correct colors, %1 is incorrect").arg(rawColor));
 			return;
 		}
-
-		if (marker.isDown()) {
+	} else 	if (hasNewData("CF_IN")) {
+		if (isDownState) {
 			marker.down(mColor);
+		} else {
+			marker.up();
 		}
-	}
-
-	if (hasNewData("UP_DOWN")) {
+	} else if (hasNewData("UP_DOWN")) {
 		bool isDown= propertyFromPort("UP_DOWN").toBool();
 		if (isDown) {
 			marker.down(mColor);
