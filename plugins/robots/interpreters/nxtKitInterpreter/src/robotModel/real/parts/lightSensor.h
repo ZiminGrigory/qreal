@@ -16,13 +16,14 @@
 
 #include <kitBase/robotModel/robotParts/lightSensor.h>
 #include "nxtInputDevice.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class LightSensor : public kitBase::robotModel::robotParts::LightSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT LightSensor : public kitBase::robotModel::robotParts::LightSensor
 {
 	Q_OBJECT
 

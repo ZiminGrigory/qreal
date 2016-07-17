@@ -54,6 +54,7 @@ HEADERS += \
 	$$PWD/robotModel/twoD/parts/twoDDisplay.h \
 	$$PWD/robotModel/twoD/parts/twoDSpeaker.h \
 	$$PWD/robotModel/twoD/parts/twoDMotor.h \
+    $$PWD/declSpec.h
 
 SOURCES += \
 	$$PWD/nxtAdditionalPreferences.cpp \

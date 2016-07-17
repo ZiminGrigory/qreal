@@ -16,13 +16,14 @@
 
 #include <kitBase/robotModel/robotParts/touchSensor.h>
 #include "nxtInputDevice.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class TouchSensor : public kitBase::robotModel::robotParts::TouchSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT TouchSensor : public kitBase::robotModel::robotParts::TouchSensor
 {
 	Q_OBJECT
 

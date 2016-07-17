@@ -1,4 +1,4 @@
-/* Copyright 2007-2015 QReal Research Group
+/* Copyright 2007-2016 QReal Research Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,32 +14,30 @@
 
 #pragma once
 
-#include <nxtKit/robotModel/parts/nxtSpeaker.h>
+#include "plugins/robots/dataFlowInterpreters/DFInterpreter/src/blockBase/DFDeviceBlock.h"
 
-#include <twoDModel/engine/twoDModelEngineInterface.h>
-#include "declSpec.h"
+#include <kitBase/robotModel/robotParts/display.h>
 
-namespace nxt {
-namespace robotModel {
-namespace twoD {
-namespace parts {
+namespace dataFlowBlocks {
+namespace details {
 
-class ROBOTS_NXT_KIT_INTERPRETER_EXPORT TwoDSpeaker : public robotModel::parts::NxtSpeaker
+using DisplayDevice = DFDeviceBlock<kitBase::robotModel::robotParts::Display>;
+using Display = kitBase::robotModel::robotParts::Display;
+
+class DFDrawPixelBlock : public DisplayDevice
 {
 	Q_OBJECT
 
 public:
-	TwoDSpeaker(const kitBase::robotModel::DeviceInfo &info
-			, const kitBase::robotModel::PortInfo &port
-			, twoDModel::engine::TwoDModelEngineInterface &engine);
+	explicit DFDrawPixelBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
-	void playTone(unsigned freq, unsigned time) override;
+protected:
+	void init() override;
+	void handleData(Display &display) override;
 
 private:
-	twoDModel::engine::TwoDModelEngineInterface &mEngine;
+	bool mRedraw = false;
 };
 
-}
-}
 }
 }

@@ -18,13 +18,14 @@
 #include <utils/robotCommunication/robotCommunicator.h>
 
 #include "implementations/colorSensorImpl.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class ColorSensorBlue : public kitBase::robotModel::robotParts::ColorSensorBlue
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT ColorSensorBlue : public kitBase::robotModel::robotParts::ColorSensorBlue
 {
 	Q_OBJECT
 

@@ -1748,6 +1748,43 @@
 			<explodesTo/>
 		</logic>
 		</node>
+		<node description="Отрисовка пикселя на дисплее робота" displayedName="Draw pixel" name="DFNxtDrawPixelBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-25" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="120" textBinded="XCoordinatePix" prefix="X="/>
+				<label x="25" y="150" textBinded="YCoordinatePix" prefix="Y="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X=" name="XCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y=" name="YCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
 	</graphicTypes>
 		<palette sorted="false">
 			<group name="ControlBlocks">
@@ -1799,6 +1836,7 @@
 				<element name="DFClearScreenBlock"/>
 				<!-- <element name="DFShapePainterBlock"/> -->
 				<element name="DFSmilePainterBlock"/>
+				<element name="DFNxtDrawPixelBlock"/>
 			</group>
 	</palette>
 	</diagram>

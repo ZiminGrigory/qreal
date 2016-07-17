@@ -16,13 +16,14 @@
 
 #include <kitBase/robotModel/robotParts/soundSensor.h>
 #include "nxtInputDevice.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class SoundSensor : public kitBase::robotModel::robotParts::SoundSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT SoundSensor : public kitBase::robotModel::robotParts::SoundSensor
 {
 	Q_OBJECT
 

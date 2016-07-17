@@ -44,6 +44,9 @@
 #include "blockBase/deviceBlocks/DFSendMessageToRobotBlock.h"
 #include "blockBase/deviceBlocks/DFReceiveMessageBlock.h"
 
+
+#include "blockBase/nxtBlocks/DFDrawPixelBlock.h"
+
 ///@todo: split to factories (ex common, trik, etc)
 
 using namespace dataFlow::blocksBase;
@@ -151,6 +154,8 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFReceiveMessageBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "DFMessageToRobotBlock")) {
 		res = new details::DFSendMessageToRobotBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DFNxtDrawPixelBlock")) {
+		res = new details::DFDrawPixelBlock(mRobotModelManager->model());
 	}
 
 	if (res) {

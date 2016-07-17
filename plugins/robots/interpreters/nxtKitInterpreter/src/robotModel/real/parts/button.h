@@ -16,12 +16,14 @@
 
 #include <kitBase/robotModel/robotParts/button.h>
 
+#include "declSpec.h"
+
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class Button : public kitBase::robotModel::robotParts::Button
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT Button : public kitBase::robotModel::robotParts::Button
 {
 	Q_OBJECT
 

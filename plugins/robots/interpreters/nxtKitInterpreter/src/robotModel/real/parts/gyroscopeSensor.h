@@ -16,13 +16,14 @@
 
 #include <kitBase/robotModel/robotParts/gyroscopeSensor.h>
 #include "nxtInputDevice.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class GyroscopeSensor : public kitBase::robotModel::robotParts::GyroscopeSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT GyroscopeSensor : public kitBase::robotModel::robotParts::GyroscopeSensor
 {
 	Q_OBJECT
 

@@ -18,13 +18,14 @@
 #include <nxtKit/communication/i2cCommunicator.h>
 
 #include "nxtInputDevice.h"
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class SonarSensor : public kitBase::robotModel::robotParts::RangeSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT SonarSensor : public kitBase::robotModel::robotParts::RangeSensor
 {
 	Q_OBJECT
 	Q_CLASSINFO("friendlyName", tr("Sonar sensor"))

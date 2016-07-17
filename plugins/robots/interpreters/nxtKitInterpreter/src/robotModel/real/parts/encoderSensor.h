@@ -17,12 +17,14 @@
 #include <kitBase/robotModel/robotParts/encoderSensor.h>
 #include <utils/robotCommunication/robotCommunicator.h>
 
+#include "declSpec.h"
+
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class EncoderSensor : public kitBase::robotModel::robotParts::EncoderSensor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT EncoderSensor : public kitBase::robotModel::robotParts::EncoderSensor
 {
 	Q_OBJECT
 

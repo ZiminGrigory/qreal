@@ -20,12 +20,14 @@
 #include <twoDModel/engine/twoDModelEngineInterface.h>
 #include <twoDModel/engine/twoDModelDisplayInterface.h>
 
+#include "declSpec.h"
+
 namespace nxt {
 namespace robotModel {
 namespace twoD {
 namespace parts {
 
-class Display : public robotModel::parts::NxtDisplay, public utils::Canvas
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT Display : public robotModel::parts::NxtDisplay, public utils::Canvas
 {
 	Q_OBJECT
 	// Canvas cannot be QObject because of ambiguous base so we are forced to copy properties here.

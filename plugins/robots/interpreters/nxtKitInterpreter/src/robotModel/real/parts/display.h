@@ -16,12 +16,14 @@
 
 #include <nxtKit/robotModel/parts/nxtDisplay.h>
 
+#include "declSpec.h"
+
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class Display : public robotModel::parts::NxtDisplay
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT Display : public robotModel::parts::NxtDisplay
 {
 	Q_OBJECT
 

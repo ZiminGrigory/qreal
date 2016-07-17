@@ -17,6 +17,7 @@
 #include <kitBase/robotModel/robotParts/abstractSensor.h>
 #include <utils/robotCommunication/robotCommunicator.h>
 #include <nxtKit/communication/nxtCommandConstants.h>
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
@@ -25,7 +26,7 @@ namespace parts {
 
 /// Implements some base methods for working with real nxt devices. This class must be embedded into the sensor
 /// and sensorSpecificProcessResponse() and configured() signals must be connected.
-class NxtInputDevice : public QObject
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT NxtInputDevice : public QObject
 {
 	Q_OBJECT
 

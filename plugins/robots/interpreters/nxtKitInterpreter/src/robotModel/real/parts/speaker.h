@@ -17,12 +17,14 @@
 #include <nxtKit/robotModel/parts/nxtSpeaker.h>
 #include <utils/robotCommunication/robotCommunicator.h>
 
+#include "declSpec.h"
+
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class Speaker : public robotModel::parts::NxtSpeaker
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT Speaker : public robotModel::parts::NxtSpeaker
 {
 	Q_OBJECT
 

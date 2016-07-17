@@ -1,4 +1,4 @@
-/* Copyright 2007-2016 QReal Research Group
+/* Copyright 2007-2015 QReal Research Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,31 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. */
 
-#include "DFTrikV62KitInterpreterPlugin.h"
+#include "DFNxtKitInterpreterPlugin.h"
 #include <DFInterpreter/src/DFFactoryBase.h>
 
 
-using namespace trik;
+using namespace nxt;
 using namespace qReal;
 
 const Id robotDiagramType = Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourDiagram");
 const Id subprogramDiagramType = Id("RobotsDataFlowMetamodel", "RobotsDataFlowDiagram", "RobotsBehaviourSubprogram");
-const QString kitIdString = "trikV62Kit";
 
 
-DFTrikV62KitInterpreterPlugin::DFTrikV62KitInterpreterPlugin()
-	: TrikKitInterpreterPluginBase()
+DFNxtKitInterpreterPlugin::DFNxtKitInterpreterPlugin()
 {
 }
 
-QString DFTrikV62KitInterpreterPlugin::kitId() const
+void DFNxtKitInterpreterPlugin::init(const kitBase::KitPluginConfigurator &configurer)
 {
-	return kitIdString;
-}
-
-void DFTrikV62KitInterpreterPlugin::init(const kitBase::KitPluginConfigurator &configurer)
-{
-	//TrikKitInterpreterPluginBase::init(configurer);
+	NxtKitInterpreterPlugin::init(configurer);
 
 	mFactory = new dataFlow::blocksBase::DFFactoryBase();
 	mFactory->configure(configurer.qRealConfigurator().graphicalModelApi()
@@ -55,39 +48,17 @@ void DFTrikV62KitInterpreterPlugin::init(const kitBase::KitPluginConfigurator &c
 			, configurer.robotModelManager()
 			, configurer.textLanguage()
 	);
-
-//	configurer.robotModelManager().model()
-
-//	mBlocksFactoryManager.addFactory(mBlocksFactory, mRealModel);
-//	mBlocksFactoryManager.addFactory(mBlocksFactory, mTwoDModel);
 }
 
-kitBase::blocksBase::BlocksFactoryInterface *DFTrikV62KitInterpreterPlugin::blocksFactoryFor(
+kitBase::blocksBase::BlocksFactoryInterface *DFNxtKitInterpreterPlugin::blocksFactoryFor(
 		const kitBase::robotModel::RobotModelInterface *model)
 {
 	Q_UNUSED(model);
 	return {};
 }
 
-QString DFTrikV62KitInterpreterPlugin::friendlyKitName() const
-{
-	// already defined
-	return QString();
-}
 
-QList<kitBase::robotModel::RobotModelInterface *> DFTrikV62KitInterpreterPlugin::robotModels()
-{
-	// already defined
-	return {};
-}
-
-kitBase::DevicesConfigurationProvider *DFTrikV62KitInterpreterPlugin::devicesConfigurationProvider()
-{
-	return {};
-}
-
-
-QList<kitBase::InterpreterInterface *> DFTrikV62KitInterpreterPlugin::customInterpreters() const
+QList<kitBase::InterpreterInterface *> DFNxtKitInterpreterPlugin::customInterpreters() const
 {
 	return {mInterpreter};
 }

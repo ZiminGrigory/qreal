@@ -18,13 +18,14 @@
 #include <utils/robotCommunication/robotCommunicator.h>
 #include <nxtKit/robotModel/parts/nxtMotor.h>
 #include <nxtKit/communication/nxtCommandConstants.h>
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace real {
 namespace parts {
 
-class Motor : public nxt::robotModel::parts::NxtMotor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT Motor : public nxt::robotModel::parts::NxtMotor
 {
 	Q_OBJECT
 

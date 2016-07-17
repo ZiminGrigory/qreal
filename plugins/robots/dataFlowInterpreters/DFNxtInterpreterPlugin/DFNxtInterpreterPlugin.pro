@@ -1,4 +1,4 @@
-# Copyright 2007-2015 QReal Research Group
+# Copyright 2007-2016 QReal Research Group
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TEMPLATE = subdirs
+TARGET = robots-nxt-dataflow-interpreter
 
-SUBDIRS = \
-	DFInterpreter \
-	DFTrikKitV62InterpreterPlugin \
-	DFNxtInterpreterPlugin \
+TEMPLATE = lib
+CONFIG += plugin
 
-DFTrikKitV62InterpreterPlugin.depends = DFInterpreter
-DFNxtInterpreterPlugin.depends = DFInterpreter
+include(../../../../global.pri)
+
+DESTDIR = $$DESTDIR/plugins/tools/kitPlugins/
+
+include(src/DFNxtKitInterpreterPlugin.pri)
+

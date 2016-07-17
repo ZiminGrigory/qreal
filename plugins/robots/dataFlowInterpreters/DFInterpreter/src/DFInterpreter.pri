@@ -17,6 +17,8 @@ includes(plugins/robots/common/kitBase \
 		plugins/robots/common/twoDModel \
 		plugins/robots/common/trikKit \
 		plugins/robots/common/trikKit/include \
+		plugins/robots/common/nxtKit \
+		plugins/robots/common/nxtKit/include \
 		plugins/robots/interpreters/interpreterCore \
 		plugins/robots/utils \
 		plugins/robots/dataFlowInterpreters \
@@ -31,7 +33,8 @@ includes(plugins/robots/common/kitBase \
 )
 
 links(qrkernel qrutils qrtext qrgui-preferences-dialog qrgui-tool-plugin-interface \
-		robots-utils robots-kit-base robots-ev3-kit robots-2d-model qextserialport qslog \
+		robots-utils robots-kit-base robots-ev3-kit robots-nxt-kit robots-2d-model \
+		qextserialport qslog \
 		robots-interpreter-core robots-trik-kit-interpreter-common \
 )
 
@@ -100,7 +103,8 @@ HEADERS += \
     $$PWD/blockBase/DFEncodersBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.h \
     $$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.h \
-    $$PWD/blockBase/DFForkBlock.h
+    $$PWD/blockBase/DFForkBlock.h \
+	$$PWD/blockBase/nxtBlocks/DFDrawPixelBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -150,4 +154,5 @@ SOURCES += \
     $$PWD/blockBase/DFEncodersBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.cpp \
-    $$PWD/blockBase/DFForkBlock.cpp
+    $$PWD/blockBase/DFForkBlock.cpp \
+	$$PWD/blockBase/nxtBlocks/DFDrawPixelBlock.cpp

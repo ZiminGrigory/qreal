@@ -17,13 +17,14 @@
 #include <nxtKit/robotModel/parts/nxtMotor.h>
 
 #include <twoDModel/engine/twoDModelEngineInterface.h>
+#include "declSpec.h"
 
 namespace nxt {
 namespace robotModel {
 namespace twoD {
 namespace parts {
 
-class TwoDMotor : public robotModel::parts::NxtMotor
+class ROBOTS_NXT_KIT_INTERPRETER_EXPORT TwoDMotor : public robotModel::parts::NxtMotor
 {
 public:
 	TwoDMotor(const kitBase::robotModel::DeviceInfo &info
