@@ -1132,7 +1132,7 @@ NodeInfo NodeElement::data() const
 
 	// new element should not have references to links connected to original source element
 	result.setGraphicalProperty("links", IdListHelper::toVariant(IdList()));
-	result.setGraphicalProperty("position", mPos);
+	result.setGraphicalProperty("position", pos());
 
 	return result;
 }
@@ -1214,14 +1214,6 @@ QList<NodeElement *> const NodeElement::childNodes() const
 	}
 
 	return result;
-}
-
-void NodeElement::updateNodeEdges()
-{
-	arrangeLinks();
-	for (EdgeElement* edge : mEdgeList) {
-		edge->adjustLink();
-	}
 }
 
 AbstractCommand *NodeElement::changeParentCommand(const Id &newParent, const QPointF &position) const

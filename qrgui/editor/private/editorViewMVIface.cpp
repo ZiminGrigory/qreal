@@ -14,6 +14,8 @@
 
 #include "editorViewMVIface.h"
 
+#include <QtCore/QPair>
+
 #include <qrkernel/definitions.h>
 #include <metaMetaModel/elementType.h>
 #include <QtCore/QPair>
@@ -195,7 +197,6 @@ void EditorViewMViface::handleNodeElementsForRowsInserted(
 		NodeElement *elem = p.first;
 		QPersistentModelIndex current = p.second;
 		Id currentId = current.data(roles::idRole).value<Id>();
-
 		bool needToProcessChildren = true;
 
 		if (elem) {
