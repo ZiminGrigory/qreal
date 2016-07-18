@@ -102,9 +102,9 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h \
     $$PWD/blockBase/DFEncodersBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.h \
-    $$PWD/blockBase/DFForkBlock.h \
-	$$PWD/blockBase/nxtBlocks/DFDrawPixelBlock.h
+	$$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.h \
+	$$PWD/blockBase/DFDrawPixelBlock.h \
+    $$PWD/blockBase/DFDrawLineBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -153,6 +153,6 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFLineDetectorEmitterBlock.cpp \
     $$PWD/blockBase/DFEncodersBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.cpp \
-    $$PWD/blockBase/DFForkBlock.cpp \
-	$$PWD/blockBase/nxtBlocks/DFDrawPixelBlock.cpp
+	$$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.cpp \
+	$$PWD/blockBase/DFDrawPixelBlock.cpp \
+    $$PWD/blockBase/DFDrawLineBlock.cpp

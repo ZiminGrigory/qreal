@@ -14,8 +14,6 @@
 
 #include "DFDrawPixelBlock.h"
 
-#include <nxtKit/robotModel/parts/nxtDisplay.h>
-
 using namespace dataFlowBlocks::details;
 
 DFDrawPixelBlock::DFDrawPixelBlock(kitBase::robotModel::RobotModelInterface &robotModel)
@@ -33,7 +31,6 @@ void DFDrawPixelBlock::init()
 
 void DFDrawPixelBlock::handleData(Display &display)
 {
-	auto nxtDisplay = static_cast<nxt::robotModel::parts::NxtDisplay *>(&display);
 	if (hasNewData("COORDS"))
 	{
 		QVariantList config = propertyFromPort("COORDS").value<QVariantList>();
@@ -44,16 +41,16 @@ void DFDrawPixelBlock::handleData(Display &display)
 
 		int x = config.at(0).toInt();
 		int y = config.at(1).toInt();
-		nxtDisplay->drawPixel(x,y);
+		display.drawPixel(x,y);
 	} else {
 		propertyFromPort("CF_IN");
 		const int x = eval<int>("XCoordinatePix");
 		const int y = eval<int>("YCoordinatePix");
-		nxtDisplay->drawPixel(x,y);
+		display.drawPixel(x,y);
 	}
 
 	if (mRedraw) {
-		nxtDisplay->redraw();
+		display.redraw();
 	}
 
 	emit newDataInFlow(QVariant(), portAssociatedWithProperty["CF_OUT"]);

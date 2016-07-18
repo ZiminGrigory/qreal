@@ -1748,7 +1748,7 @@
 			<explodesTo/>
 		</logic>
 		</node>
-		<node description="Отрисовка пикселя на дисплее робота" displayedName="Draw pixel" name="DFNxtDrawPixelBlock">
+		<node description="Отрисовка пикселя на дисплее робота" displayedName="Draw pixel" name="DFDrawPixelBlock">
 		<graphics>
 			<picture sizex="100" sizey="115">
 				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
@@ -1774,6 +1774,51 @@
 			</property>
 			<property displayedName="Y=" name="YCoordinatePix" type="int">
 				<default>10</default>
+			</property>
+			<property displayedName="redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node description="Отрисовка линии на дисплее робота" displayedName="Draw line" name="DFDrawLineBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-25" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="120" textBinded="X1CoordinatePix" prefix="X1="/>
+				<label x="85" y="120" textBinded="Y1CoordinatePix" prefix="Y1="/>
+				<label x="25" y="150" textBinded="X2CoordinatePix" prefix="X2="/>
+				<label x="85" y="150" textBinded="Y2CoordinatePix" prefix="Y2="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X1=" name="X1CoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y1=" name="Y1CoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="X2=" name="X2CoordinatePix" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Y2=" name="Y2CoordinatePix" type="int">
+				<default>20</default>
 			</property>
 			<property displayedName="redraw" name="redraw" type="bool">
 				<default>true</default>
@@ -1834,9 +1879,10 @@
 				<element name="DFPaintSettingsBlock"/>
 				<element name="DFTextOnScreenBlock"/>
 				<element name="DFClearScreenBlock"/>
-				<!-- <element name="DFShapePainterBlock"/> -->
 				<element name="DFSmilePainterBlock"/>
-				<element name="DFNxtDrawPixelBlock"/>
+				<element name="DFDrawPixelBlock"/>
+				<element name="DFDrawLineBlock"/>
+				<!-- <element name="DFShapePainterBlock"/> -->
 			</group>
 	</palette>
 	</diagram>
