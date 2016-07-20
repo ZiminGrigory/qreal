@@ -205,19 +205,11 @@
 		<value name="CF_IN"/>
 		<value name="I0"/>
 		<value name="I1"/>
-<!--		<value name="I2"/>
-		<value name="I3"/>
-		<value name="I4"/>
-		<value name="I5"/> -->
 		</enum>
 		<enum editable="false" name="SubProgramOutputPorts">
 		<value name="CF_OUT"/>
 		<value name="O0"/>
 		<value name="O1"/>
-<!--		<value name="O2"/>
-		<value name="O3"/>
-		<value name="O4"/>
-		<value name="O5"/> -->
 		</enum>
 	</nonGraphicTypes>
 	<graphicTypes>
@@ -1830,6 +1822,203 @@
 			<explodesTo/>
 		</logic>
 		</node>
+		<!-- IMPORTANT: there is one c++ class for 2 draw rect blocks, it checks if there is "filled" property-->
+		<node description="Отрисовка прямоугольника на дисплее робота" displayedName="Draw rectangle" name="DFDrawRectBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-35" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="120" textBinded="XCoordinatePix" prefix="X="/>
+				<label x="85" y="120" textBinded="YCoordinatePix" prefix="Y="/>
+				<label x="15" y="150" textBinded="Width" prefix="Width="/>
+				<label x="100" y="150" textBinded="Height" prefix="Height="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X1=" name="XCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y1=" name="YCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="X2=" name="Width" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Y2=" name="Height" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			<property displayedName="Filled" name="Filled" type="bool">
+				<default>false</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node description="Отрисовка прямоугольника на дисплее робота" displayedName="Draw rectangle" name="DFDrawRectNxtBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-35" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="120" textBinded="XCoordinatePix" prefix="X="/>
+				<label x="85" y="120" textBinded="YCoordinatePix" prefix="Y="/>
+				<label x="15" y="150" textBinded="Width" prefix="Width="/>
+				<label x="100" y="150" textBinded="Height" prefix="Height="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X1=" name="XCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y1=" name="YCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="X2=" name="Width" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Y2=" name="Height" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node description="Отрисовка эллипса на дисплее робота" displayedName="Draw circle"
+				name="DFDrawCircleTrikBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-35" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="120" textBinded="XCoordinatePix" prefix="X="/>
+				<label x="85" y="120" textBinded="YCoordinatePix" prefix="Y="/>
+				<label x="15" y="150" textBinded="Width" prefix="Width="/>
+				<label x="100" y="150" textBinded="Height" prefix="Height="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X1=" name="XCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y1=" name="YCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="X2=" name="Width" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Y2=" name="Height" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			<property displayedName="Filled" name="Filled" type="bool">
+				<default>false</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
+		<node description="Отрисовка эллипса на дисплее робота" displayedName="Draw arc"
+				name="DFDrawArcTrikBlock">
+		<graphics>
+			<picture sizex="100" sizey="115">
+				<image y2="115" name="images/drawPixel.svg" x2="100" x1="0" y1="0"/>
+			</picture>
+			<labels>
+				<label x="15" y="-35" textBinded="name"/>
+				<label x="-55" y="30" text="coords[]"/>
+				<label x="25" y="116" textBinded="XCoordinatePix" prefix="X="/>
+				<label x="85" y="116" textBinded="YCoordinatePix" prefix="Y="/>
+				<label x="15" y="145" textBinded="Width" prefix="Width="/>
+				<label x="100" y="145" textBinded="Height" prefix="Height="/>
+				<label x="10" y="175" textBinded="StartAngle" prefix="Start angle="/>
+				<label x="120" y="175" textBinded="SpanAngle" prefix="Span angle="/>
+			</labels>
+			<ports>
+				<pointPort y="16" type="PI1" x="10"/>
+				<pointPort y="16" type="PO1" x="90"/>
+				<pointPort y="60" type="PI2" x="2"/>
+			</ports>
+			<nonResizeable/>
+		</graphics>
+		<logic>
+			<container/>
+			<properties>
+			<property displayedName="X1=" name="XCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="Y1=" name="YCoordinatePix" type="int">
+				<default>10</default>
+			</property>
+			<property displayedName="X2=" name="Width" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Y2=" name="Height" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Start angle=" name="StartAngle" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Span angle=" name="SpanAngle" type="int">
+				<default>20</default>
+			</property>
+			<property displayedName="Redraw" name="redraw" type="bool">
+				<default>true</default>
+			</property>
+			</properties>
+			<generalizations>
+				<parent overrides="" parentName="AbstactPainter"/>
+			</generalizations>
+			<explodesTo/>
+		</logic>
+		</node>
 	</graphicTypes>
 		<palette sorted="false">
 			<group name="ControlBlocks">
@@ -1882,6 +2071,10 @@
 				<element name="DFSmilePainterBlock"/>
 				<element name="DFDrawPixelBlock"/>
 				<element name="DFDrawLineBlock"/>
+				<element name="DFDrawRectBlock"/>
+				<element name="DFDrawRectNxtBlock"/>
+				<element name="DFDrawCircleTrikBlock"/>
+				<element name="DFDrawArcTrikBlock"/>
 				<!-- <element name="DFShapePainterBlock"/> -->
 			</group>
 	</palette>

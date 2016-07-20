@@ -88,7 +88,6 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFSetPenBlock.h \
     $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.h \
     $$PWD/blockBase/deviceBlocks/DFTextOnScreenBlock.h \
-    $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.h \
     $$PWD/blockBase/deviceBlocks/DFLedBlock.h \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.h \
     $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.h \
@@ -104,7 +103,10 @@ HEADERS += \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.h \
 	$$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.h \
 	$$PWD/blockBase/DFDrawPixelBlock.h \
-    $$PWD/blockBase/DFDrawLineBlock.h
+    $$PWD/blockBase/DFDrawLineBlock.h \
+    $$PWD/blockBase/DFDrawRectBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFDrawCircleBlock.h \
+    $$PWD/blockBase/deviceBlocks/DFDrawArcBlock.h
 
 SOURCES += \
     $$PWD/DFFactoryBase.cpp \
@@ -139,7 +141,6 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFSetPenBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFPaintSettingsBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFTextOnScreenBlock.cpp \
-    $$PWD/blockBase/deviceBlocks/DFShapeOnScreen.cpp \
     $$PWD/blockBase/deviceBlocks/DFLedBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFSayBlock.cpp \
     $$PWD/blockBase/deviceBlocks/DFWriteToFileBlock.cpp \
@@ -155,4 +156,7 @@ SOURCES += \
     $$PWD/blockBase/deviceBlocks/DFSendMessageToRobotBlock.cpp \
 	$$PWD/blockBase/deviceBlocks/DFReceiveMessageBlock.cpp \
 	$$PWD/blockBase/DFDrawPixelBlock.cpp \
-    $$PWD/blockBase/DFDrawLineBlock.cpp
+    $$PWD/blockBase/DFDrawLineBlock.cpp \
+    $$PWD/blockBase/DFDrawRectBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFDrawCircleBlock.cpp \
+    $$PWD/blockBase/deviceBlocks/DFDrawArcBlock.cpp

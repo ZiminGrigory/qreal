@@ -101,7 +101,6 @@ bool DFRobotsBlock::isSynchronizationNeeded()
 	return false;
 }
 
-
 QVariant DFRobotsBlock::property(const QString &propertyName)
 {
 	return property(id(), propertyName);
@@ -144,6 +143,16 @@ QString DFRobotsBlock::stringProperty(const Id &id, const QString &propertyName)
 int DFRobotsBlock::intProperty(const Id &id, const QString &propertyName)
 {
 	return property(id, propertyName).toInt();
+}
+
+bool DFRobotsBlock::propertyExist(const Id &id, const QString &propertyName)
+{
+	return property(id, propertyName).isValid();
+}
+
+bool DFRobotsBlock::propertyExist(const QString &propertyName)
+{
+	return propertyExist(id(), propertyName);
 }
 
 bool DFRobotsBlock::boolProperty(const Id &id, const QString &propertyName)

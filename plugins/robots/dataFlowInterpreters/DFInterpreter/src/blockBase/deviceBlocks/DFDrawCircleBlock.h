@@ -1,4 +1,4 @@
-/* Copyright 2007-2015 QReal Research Group
+/* Copyright 2007-2016 QReal Research Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,20 +24,18 @@ namespace details {
 using DisplayDevice = DFDeviceBlock<kitBase::robotModel::robotParts::Display>;
 using Display = kitBase::robotModel::robotParts::Display;
 
-class DFShapeOnScreen : public DisplayDevice
+class DFDrawCircleBlock : public DisplayDevice
 {
 	Q_OBJECT
 
 public:
-	explicit DFShapeOnScreen(kitBase::robotModel::RobotModelInterface &robotModel);
+	explicit DFDrawCircleBlock(kitBase::robotModel::RobotModelInterface &robotModel);
 
 protected:
-	int activationPortNumber() const override;
 	void init() override;
 	void handleData(Display &display) override;
 
 private:
-	QString mType = QString();
 	bool mRedraw = false;
 };
 

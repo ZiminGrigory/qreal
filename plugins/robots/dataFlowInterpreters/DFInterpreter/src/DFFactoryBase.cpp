@@ -43,8 +43,11 @@
 #include "blockBase/deviceBlocks/DFLineDetectorEmitterBlock.h"
 #include "blockBase/deviceBlocks/DFSendMessageToRobotBlock.h"
 #include "blockBase/deviceBlocks/DFReceiveMessageBlock.h"
+#include "blockBase/deviceBlocks/DFDrawCircleBlock.h"
+#include "blockBase/deviceBlocks/DFDrawArcBlock.h"
 #include "blockBase/DFDrawPixelBlock.h"
 #include "blockBase/DFDrawLineBlock.h"
+#include "blockBase/DFDrawRectBlock.h"
 
 
 
@@ -159,6 +162,14 @@ dataFlow::interpretation::DFRobotsBlockInterface *DFFactoryBase::block(const qRe
 		res = new details::DFDrawPixelBlock(mRobotModelManager->model());
 	} else if (elementDFMetatypeIs(element, "DFDrawLineBlock")) {
 		res = new details::DFDrawLineBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DFDrawRectNxtBlock")) {
+		res = new details::DFDrawRectBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DFDrawRectBlock")) {
+		res = new details::DFDrawRectBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DFDrawCircleTrikBlock")) {
+		res = new details::DFDrawCircleBlock(mRobotModelManager->model());
+	} else if (elementDFMetatypeIs(element, "DFDrawArcTrikBlock")) {
+		res = new details::DFDrawArcBlock(mRobotModelManager->model());
 	}
 
 	if (res) {
@@ -214,7 +225,6 @@ qReal::IdList DFFactoryBase::blocksToDisable() const
 
 	return result;
 }
-
 
 qReal::Id DFFactoryBase::dataFlowId(const QString &metatype) const
 {

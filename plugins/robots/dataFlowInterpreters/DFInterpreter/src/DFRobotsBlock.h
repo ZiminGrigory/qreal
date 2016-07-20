@@ -182,6 +182,8 @@ protected:
 	/// Shall be reimplemented to provide semantics of block execution.
 	virtual void handleData() = 0;
 
+	bool propertyExist(const qReal::Id &id, const QString &propertyName);
+	bool propertyExist(const QString &propertyName);
 
 	QMap<int, QQueue<QVariant>> valueOnPort;
 	QMap<QString, int> portAssociatedWithProperty;

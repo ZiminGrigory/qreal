@@ -18,7 +18,6 @@ namespace interpretation {
 class DFRobotBlocksTableBase : public DFRobotBlocksTableInterface
 {
 public:
-	/// Constructor. (c) Captain Obvious, 2008-2015
 	DFRobotBlocksTableBase();
 	~DFRobotBlocksTableBase() override;
 
