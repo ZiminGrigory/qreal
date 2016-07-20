@@ -230,6 +230,11 @@ qReal::IdList TrikBlocksFactoryBase::blocksToDisable() const
 {
 	qReal::IdList result = {id("TrikPlayTone")};
 
+	// because there is no implementation for it
+	if (!mRobotModelManager->model().name().contains("Gen")) {
+		result << id("TrikPlayTone");
+	}
+
 	if (mRobotModelManager->model().name().contains("TwoD")) {
 		result
 				<< id("TrikWaitForGyroscope")
