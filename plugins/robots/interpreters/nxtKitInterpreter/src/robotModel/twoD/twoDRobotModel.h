@@ -33,6 +33,12 @@ public:
 	twoDModel::engine::TwoDModelDisplayWidget *displayWidget() const override;
 	QRect sensorImageRect(const kitBase::robotModel::DeviceInfo &deviceType) const;
 
+	QPolygonF collidingPolygon() const override;
+	qreal mass() const override;
+	qreal friction() const override;
+	qreal onePercentAngularVelocity() const override;
+	QList<QPointF> wheelsPosition() const override;
+
 protected:
 	kitBase::robotModel::robotParts::Device *createDevice(
 			const kitBase::robotModel::PortInfo &port
